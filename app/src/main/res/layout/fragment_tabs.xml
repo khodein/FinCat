@@ -26,8 +26,10 @@
         android:layout_height="wrap_content"
         android:background="@color/white"
         app:elevation="0dp"
-        app:itemIconTint="@drawable/btm_navigation_item_selector"
-        app:itemTextColor="@drawable/btm_navigation_item_selector"
+        app:itemRippleColor="@color/grey_300"
+        app:itemTextAppearanceActive="@style/CaptionStyle"
+        app:itemTextAppearanceInactive="@style/CaptionStyle"
+        app:itemTextColor="@color/grey_700"
         app:labelVisibilityMode="labeled"
         app:menu="@menu/tabs_menu" />
 

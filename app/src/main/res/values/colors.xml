@@ -12,7 +12,8 @@
     <color name="grey_700">#616161</color>
     <color name="grey_800">#424242</color>
     <color name="grey_900">#212121</color>
-    
+    <color name="grey_900_18">#2E212121</color>
+
     <color name="red_600">#E53935</color>
 
     <color name="green_600">#00897B</color>

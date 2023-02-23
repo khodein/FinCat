@@ -10,4 +10,5 @@ class ReportFragment: BaseFragment<FragmentReportBinding>(FragmentReportBinding:
     override fun onBackPressed() {
         requireActivity().finishAndRemoveTask()
     }
+
 }

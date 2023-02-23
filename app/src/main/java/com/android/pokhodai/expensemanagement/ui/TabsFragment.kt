@@ -9,10 +9,10 @@ import androidx.navigation.NavOptions
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import com.android.pokhodai.expensemanagement.R
-import com.android.pokhodai.expensemanagement.base.utils.getMainController
+import com.android.pokhodai.expensemanagement.utils.getMainController
 import com.android.pokhodai.expensemanagement.databinding.FragmentTabsBinding
 import com.android.pokhodai.expensemanagement.base.ui.fragments.BaseFragment
-import com.android.pokhodai.expensemanagement.base.utils.observe
+import com.android.pokhodai.expensemanagement.utils.observe
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -37,6 +37,7 @@ class TabsFragment : BaseFragment<FragmentTabsBinding>(FragmentTabsBinding::infl
     private fun initBottomNavigation() = with(binding) {
         /* Настраивает Multiple Back Stacks */
         bnvTabs.setupWithNavController(navigationController)
+        bnvTabs.itemIconTintList = null
 
         /* Сбрасывает стэк экранов если нажали активную вкладку */
         bnvTabs.setOnItemReselectedListener {

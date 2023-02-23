@@ -1,4 +1,4 @@
-package com.android.pokhodai.expensemanagement.base.utils
+package com.android.pokhodai.expensemanagement.utils
 
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleOwner

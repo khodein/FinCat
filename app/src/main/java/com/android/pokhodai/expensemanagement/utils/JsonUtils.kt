@@ -1,4 +1,4 @@
-package com.android.pokhodai.expensemanagement.base.utils
+package com.android.pokhodai.expensemanagement.utils
 
 import android.util.Log
 import com.squareup.moshi.Moshi

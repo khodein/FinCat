@@ -1,4 +1,4 @@
-package com.android.pokhodai.expensemanagement.base.utils
+package com.android.pokhodai.expensemanagement.utils
 
 import android.content.Context
 import androidx.fragment.app.Fragment

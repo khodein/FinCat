@@ -2,8 +2,8 @@ package com.android.pokhodai.expensemanagement.base.source
 
 import android.content.SharedPreferences
 import androidx.core.content.edit
-import com.android.pokhodai.expensemanagement.base.utils.fromJson
-import com.android.pokhodai.expensemanagement.base.utils.toJson
+import com.android.pokhodai.expensemanagement.utils.fromJson
+import com.android.pokhodai.expensemanagement.utils.toJson
 import kotlin.properties.ReadWriteProperty
 import kotlin.reflect.KProperty
 
