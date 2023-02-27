@@ -5,4 +5,57 @@
     <string name="home_title">Home</string>
     <string name="settings_title">Settings</string>
 
+    <!--  Status  -->
+    <string name="status_expenses">Expenses</string>
+    <string name="status_balance">Balance</string>
+    <string name="status_income">Income</string>
+    <!--  /Status  -->
+
+    <!--  Home  -->
+    <string name="home_add">Add new</string>
+    <!--  /Home  -->
+
+    <!--  AddNewWallet  -->
+    <string name="add_new_wallet_title">Add new</string>
+    <string name="add_new_wallet_type">Type</string>
+
+    <string name="add_new_wallet_income">Income</string>
+    <string name="add_new_wallet_expense">Expense</string>
+    <string name="add_new_wallet_category_name">Category name</string>
+
+    <string-array name="TypesWallet">
+        <item>Income</item>
+        <item>Expense</item>
+    </string-array>
+
+    <string name="add_new_wallet_amount_hint">Amount</string>
+    <string name="add_new_wallet_description_hint">Description (Optional)</string>
+    <string name="add_new_wallet_btn_income">Add an income</string>
+    <string name="add_new_wallet_btn_expense">Add an expense</string>
+    <!--  /AddNewWallet  -->
+
+    <!--  Income  -->
+    <string name="income_grocery">Grocery</string>
+    <string name="income_gifts">Gifts</string>
+    <string name="income_wages">Wages</string>
+    <string name="income_interest">Interest</string>
+    <string name="income_savings">Savings</string>
+    <string name="income_allowance">Allowance</string>
+
+    <string name="income_title">CHOOSE CATEGORY</string>
+    <!--  /Income  -->
+
+    <!--  Expense  -->
+    <string name="expense_empty">Empty, add a category!</string>
+    <string name="expense_add_new_category">Add new category</string>
+    <!--  /Expense  -->
+
+    <!--  AddNewCategory  -->
+    <string name="add_new_category_title">Add new category</string>
+    <string name="add_new_category_hint">Category name</string>
+    <!--  /AddNewCategory  -->
+
+    <!--  Icons  -->
+    <string name="icons_title">CHOOSE CATEGORY ICON</string>
+    <!--  /Icons  -->
 </resources>

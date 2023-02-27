@@ -7,5 +7,10 @@ import androidx.room.PrimaryKey
 @Entity(tableName = "wallets")
 data class WalletEntity(
     @PrimaryKey(autoGenerate = false)
-    val id: Int = 0,
+    val id: Int? = null,
+    val categoryName: String,
+    val resId: Int,
+    val amount: Int,
+    val description: String = "",
+    val type: String
 )

@@ -24,10 +24,13 @@ object RoomModule {
             ExpenseDatabase.DATABASE_NAME
         )
         .allowMainThreadQueries()
-        .fallbackToDestructiveMigration()
         .build()
 
     @Singleton
     @Provides
     fun provideWalletDao(expenseDatabase: ExpenseDatabase) = expenseDatabase.walletDao()
+
+    @Singleton
+    @Provides
+    fun provideExpenseDao(expenseDatabase: ExpenseDatabase) = expenseDatabase.expenseDao()
 }

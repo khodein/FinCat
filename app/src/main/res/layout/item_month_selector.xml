@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:paddingHorizontal="12dp">
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnLeftMonthSelector"
+        style="@style/ButtonIconOnly"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="12dp"
+        app:icon="@drawable/ic_arrow_left"
+        app:rippleColor="@color/grey_100" />
+
+    <FrameLayout
+        android:id="@+id/flBoxMonthSelector"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1">
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/chipDateMonthSelector"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:textAppearance="@style/ButtonTextStyle"
+            android:textColor="@color/grey_800"
+            app:chipBackgroundColor="@color/grey_100"
+            app:chipEndPadding="12dp"
+            app:chipIcon="@drawable/ic_calendar"
+            app:chipIconSize="16dp"
+            app:chipStartPadding="12dp"
+            app:rippleColor="@color/white"
+            tools:text="May, 2021" />
+
+    </FrameLayout>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnRightMonthSelector"
+        style="@style/ButtonIconOnly"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="12dp"
+        app:icon="@drawable/ic_arrow_right"
+        app:rippleColor="@color/grey_100" />
+
+</LinearLayout>

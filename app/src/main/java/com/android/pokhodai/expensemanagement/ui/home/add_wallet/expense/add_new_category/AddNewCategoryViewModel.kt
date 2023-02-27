@@ -1,0 +1,58 @@
+package com.android.pokhodai.expensemanagement.ui.home.add_wallet.expense.add_new_category
+
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import com.android.pokhodai.expensemanagement.R
+import com.android.pokhodai.expensemanagement.data.room.entities.ExpenseEntity
+import com.android.pokhodai.expensemanagement.repositories.ExpenseRepository
+import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.channels.Channel
+import kotlinx.coroutines.flow.*
+import kotlinx.coroutines.launch
+import javax.inject.Inject
+
+@HiltViewModel
+class AddNewCategoryViewModel @Inject constructor(
+    private val expenseRepository: ExpenseRepository
+) : ViewModel() {
+
+    private val _categoryNameFlow = MutableStateFlow("")
+    val categoryNameFlow = _categoryNameFlow.asStateFlow()
+
+    private val _iconResIdFlow = MutableStateFlow(R.drawable.ic_add_new_category)
+    val iconResIdFlow = _iconResIdFlow.asStateFlow()
+
+    private val _navigatePopFlow = Channel<Unit>()
+    val navigatePopFlow = _navigatePopFlow.receiveAsFlow()
+
+    val validate = combine(
+        _iconResIdFlow,
+        _categoryNameFlow
+    ) { resId, name ->
+        resId != R.drawable.ic_add_new_category && name.trim().isNotEmpty()
+    }
+
+    fun onChangeCategoryName(name: String) {
+        _categoryNameFlow.value = name
+    }
+
+    fun onChangeIcon(resId: Int) {
+        _iconResIdFlow.value = resId
+    }
+
+    fun onAddNewCategory(
+        dispatcher: CoroutineDispatcher = Dispatchers.IO
+    ) {
+        viewModelScope.launch(dispatcher) {
+            expenseRepository.insertAllExpense(
+                ExpenseEntity(
+                    name = categoryNameFlow.value,
+                    resId = iconResIdFlow.value
+                )
+            )
+            _navigatePopFlow.send(Unit)
+        }
+    }
+}

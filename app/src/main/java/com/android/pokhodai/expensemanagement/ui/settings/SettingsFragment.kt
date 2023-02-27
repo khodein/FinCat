@@ -1,4 +1,4 @@
-package com.android.pokhodai.expensemanagement.ui.setting
+package com.android.pokhodai.expensemanagement.ui.settings
 
 import androidx.core.net.toUri
 import com.android.pokhodai.expensemanagement.R

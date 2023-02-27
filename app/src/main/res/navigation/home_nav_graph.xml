@@ -9,6 +9,67 @@
         android:id="@+id/homeFragment"
         android:name="com.android.pokhodai.expensemanagement.ui.home.HomeFragment"
         android:label="HomeFragment"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home">
+
+        <action
+            android:id="@+id/action_homeFragment_to_addNewWalletFragment"
+            app:destination="@id/addNewWalletFragment"
+            app:enterAnim="@anim/slide_in"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/slide_out" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/addNewWalletFragment"
+        android:name="com.android.pokhodai.expensemanagement.ui.home.add_wallet.AddNewWalletFragment"
+        android:label="AddNewWalletFragment"
+        tools:layout="@layout/fragment_add_new_wallet">
+        <action
+            android:id="@+id/action_addNewWalletFragment_to_incomeDialog"
+            app:destination="@id/incomeDialog" />
+        <action
+            android:id="@+id/action_addNewWalletFragment_to_expenseDialog"
+            app:destination="@id/expenseDialog" />
+    </fragment>
+
+    <dialog
+        android:id="@+id/expenseDialog"
+        android:name="com.android.pokhodai.expensemanagement.ui.home.add_wallet.expense.ExpenseDialog"
+        android:label="ExpenseDialog"
+        tools:layout="@layout/dialog_categories">
+
+        <action
+            android:id="@+id/action_expenseDialog_to_addNewCategoryFragment"
+            app:destination="@id/addNewCategoryFragment"
+            app:enterAnim="@anim/slide_in"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/slide_out" />
+
+    </dialog>
+
+    <dialog
+        android:id="@+id/incomeDialog"
+        android:name="com.android.pokhodai.expensemanagement.ui.home.add_wallet.income.IncomeDialog"
+        android:label="IncomeDialog"
+        tools:layout="@layout/dialog_categories" />
+
+    <fragment
+        android:id="@+id/addNewCategoryFragment"
+        android:name="com.android.pokhodai.expensemanagement.ui.home.add_wallet.expense.add_new_category.AddNewCategoryFragment"
+        android:label="AddNewCategoryFragment"
+        tools:layout="@layout/fragment_add_new_category" >
+        <action
+            android:id="@+id/action_addNewCategoryFragment_to_iconsDialog"
+            app:destination="@id/iconsDialog" />
+    </fragment>
+
+    <dialog
+        android:id="@+id/iconsDialog"
+        android:name="com.android.pokhodai.expensemanagement.ui.home.add_wallet.expense.add_new_category.icons.IconsDialog"
+        android:label="IconsDialog"
+        tools:layout="@layout/dialog_categories" />
 
 </navigation>
