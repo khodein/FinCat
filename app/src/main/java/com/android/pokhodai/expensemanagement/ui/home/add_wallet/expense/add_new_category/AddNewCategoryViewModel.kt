@@ -1,10 +1,12 @@
 package com.android.pokhodai.expensemanagement.ui.home.add_wallet.expense.add_new_category
 
+import android.graphics.drawable.Icon
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.android.pokhodai.expensemanagement.R
 import com.android.pokhodai.expensemanagement.data.room.entities.ExpenseEntity
 import com.android.pokhodai.expensemanagement.repositories.ExpenseRepository
+import com.android.pokhodai.expensemanagement.utils.enums.Icons
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
@@ -19,9 +21,8 @@ class AddNewCategoryViewModel @Inject constructor(
 ) : ViewModel() {
 
     private val _categoryNameFlow = MutableStateFlow("")
-    val categoryNameFlow = _categoryNameFlow.asStateFlow()
 
-    private val _iconResIdFlow = MutableStateFlow(R.drawable.ic_add_new_category)
+    private val _iconResIdFlow = MutableStateFlow(Icons.NONE)
     val iconResIdFlow = _iconResIdFlow.asStateFlow()
 
     private val _navigatePopFlow = Channel<Unit>()
@@ -30,16 +31,16 @@ class AddNewCategoryViewModel @Inject constructor(
     val validate = combine(
         _iconResIdFlow,
         _categoryNameFlow
-    ) { resId, name ->
-        resId != R.drawable.ic_add_new_category && name.trim().isNotEmpty()
+    ) { icon, name ->
+        icon != Icons.NONE && name.trim().isNotEmpty()
     }
 
     fun onChangeCategoryName(name: String) {
         _categoryNameFlow.value = name
     }
 
-    fun onChangeIcon(resId: Int) {
-        _iconResIdFlow.value = resId
+    fun onChangeIcon(icon: Icons) {
+        _iconResIdFlow.value = icon
     }
 
     fun onAddNewCategory(
@@ -48,10 +49,11 @@ class AddNewCategoryViewModel @Inject constructor(
         viewModelScope.launch(dispatcher) {
             expenseRepository.insertAllExpense(
                 ExpenseEntity(
-                    name = categoryNameFlow.value,
-                    resId = iconResIdFlow.value
+                    name = _categoryNameFlow.value,
+                    icon = iconResIdFlow.value
                 )
             )
+
             _navigatePopFlow.send(Unit)
         }
     }

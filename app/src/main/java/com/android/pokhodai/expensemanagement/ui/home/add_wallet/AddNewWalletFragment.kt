@@ -94,10 +94,10 @@ class AddNewWalletFragment :
             navigationController.popBackStack()
         }
 
-        setFragmentResultListener(IncomeDialog.NEW_CATEGORY_RESULT) { key, bundle ->
+        setFragmentResultListener(IncomeDialog.NEW_CATEGORY_RESULT) { _, bundle ->
             bundle.getParcelable<CategoriesAdapter.Categories>(IncomeDialog.NEW_CATEGORY)?.let {
                 viewModel.onChangeCategoryName(it)
-                binding.ivAddNewCategory.setImageResource(it.resId)
+                binding.ivAddNewCategory.setImageResource(it.icon.resId)
                 binding.ivAddNewCategory.isVisible = true
             }
 

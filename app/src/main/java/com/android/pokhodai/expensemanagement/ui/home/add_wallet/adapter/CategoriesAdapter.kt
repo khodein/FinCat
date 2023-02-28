@@ -5,6 +5,7 @@ import com.android.pokhodai.expensemanagement.base.ui.adapter.BaseListAdapter
 import com.android.pokhodai.expensemanagement.databinding.ItemCategoryBinding
 import com.android.pokhodai.expensemanagement.databinding.ItemEmptyBinding
 import com.android.pokhodai.expensemanagement.ui.home.add_wallet.income.IncomeViewModel
+import com.android.pokhodai.expensemanagement.utils.enums.Icons
 import kotlinx.parcelize.Parcelize
 import javax.inject.Inject
 
@@ -20,7 +21,7 @@ class CategoriesAdapter @Inject constructor(): BaseListAdapter<CategoriesAdapter
         baseViewHolder(Categories::class, ItemCategoryBinding::inflate) { item ->
             binding.run {
                 txtIncome.text = item.name
-                ivIncome.setImageResource(item.resId)
+                ivIncome.setImageResource(item.icon.resId)
                 root.setOnClickListener {
                     onClickCategoryActionListener?.invoke(item)
                 }
@@ -31,6 +32,6 @@ class CategoriesAdapter @Inject constructor(): BaseListAdapter<CategoriesAdapter
     @Parcelize
     data class Categories(
         val name: String,
-        val resId: Int
+        val icon: Icons
     ): Parcelable
 }

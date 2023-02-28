@@ -58,4 +58,8 @@
     <!--  Icons  -->
     <string name="icons_title">CHOOSE CATEGORY ICON</string>
     <!--  /Icons  -->
+
+    <!--  MonthPicker  -->
+    <string name="month_picker_title">PICK A MONTH</string>
+    <!--  /MonthPicker  -->
 </resources>

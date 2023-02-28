@@ -2,11 +2,11 @@
   "formatVersion": 1,
   "database": {
     "version": 3,
-    "identityHash": "0c72d861475ef589fe52325dcf99e59a",
+    "identityHash": "b3a719f745a4b73b753a453930b840b7",
     "entities": [
       {
         "tableName": "wallets",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER, `categoryName` TEXT NOT NULL, `resId` INTEGER NOT NULL, `amount` INTEGER NOT NULL, `description` TEXT NOT NULL, `type` TEXT NOT NULL, PRIMARY KEY(`id`))",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER, `categoryName` TEXT NOT NULL, `icons` TEXT NOT NULL, `amount` INTEGER NOT NULL, `description` TEXT NOT NULL, `type` TEXT NOT NULL, `publicatedAt` INTEGER NOT NULL, `monthAndYear` TEXT NOT NULL, PRIMARY KEY(`id`))",
         "fields": [
           {
             "fieldPath": "id",
@@ -21,9 +21,9 @@
             "notNull": true
           },
           {
-            "fieldPath": "resId",
-            "columnName": "resId",
-            "affinity": "INTEGER",
+            "fieldPath": "icons",
+            "columnName": "icons",
+            "affinity": "TEXT",
             "notNull": true
           },
           {
@@ -43,6 +43,18 @@
             "columnName": "type",
             "affinity": "TEXT",
             "notNull": true
+          },
+          {
+            "fieldPath": "publicatedAt",
+            "columnName": "publicatedAt",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "monthAndYear",
+            "columnName": "monthAndYear",
+            "affinity": "TEXT",
+            "notNull": true
           }
         ],
         "primaryKey": {
@@ -56,7 +68,7 @@
       },
       {
         "tableName": "expenses",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER, `name` TEXT NOT NULL, `resId` INTEGER NOT NULL, PRIMARY KEY(`id`))",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER, `name` TEXT NOT NULL, `icon` TEXT NOT NULL, PRIMARY KEY(`id`))",
         "fields": [
           {
             "fieldPath": "id",
@@ -71,9 +83,9 @@
             "notNull": true
           },
           {
-            "fieldPath": "resId",
-            "columnName": "resId",
-            "affinity": "INTEGER",
+            "fieldPath": "icon",
+            "columnName": "icon",
+            "affinity": "TEXT",
             "notNull": true
           }
         ],
@@ -90,7 +102,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '0c72d861475ef589fe52325dcf99e59a')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'b3a719f745a4b73b753a453930b840b7')"
     ]
   }
 }

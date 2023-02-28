@@ -4,14 +4,13 @@ import android.view.inputmethod.EditorInfo
 import androidx.core.os.bundleOf
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.widget.doAfterTextChanged
-import androidx.fragment.app.clearFragmentResultListener
 import androidx.fragment.app.setFragmentResult
 import androidx.fragment.app.setFragmentResultListener
 import androidx.fragment.app.viewModels
-import com.android.pokhodai.expensemanagement.R
 import com.android.pokhodai.expensemanagement.base.ui.fragments.BaseFragment
 import com.android.pokhodai.expensemanagement.databinding.FragmentAddNewCategoryBinding
 import com.android.pokhodai.expensemanagement.ui.home.add_wallet.expense.add_new_category.icons.IconsDialog
+import com.android.pokhodai.expensemanagement.utils.enums.Icons
 import com.android.pokhodai.expensemanagement.utils.navigateSafe
 import com.android.pokhodai.expensemanagement.utils.observe
 import dagger.hilt.android.AndroidEntryPoint
@@ -55,7 +54,7 @@ class AddNewCategoryFragment :
         }
 
         setFragmentResultListener(IconsDialog.CHOOSE_ICON) { _, bundle ->
-            bundle.getInt(IconsDialog.ICON).let {
+            bundle.getParcelable<Icons>(IconsDialog.ICON)?.let {
                 viewModel.onChangeIcon(it)
             }
         }
@@ -63,7 +62,7 @@ class AddNewCategoryFragment :
 
     override fun setObservable() = with(viewModel) {
         iconResIdFlow.observe(viewLifecycleOwner) {
-            binding.ivAddNewCategory.setImageResource(it)
+            binding.ivAddNewCategory.setImageResource(it.resId)
         }
 
         validate.observe(viewLifecycleOwner) {

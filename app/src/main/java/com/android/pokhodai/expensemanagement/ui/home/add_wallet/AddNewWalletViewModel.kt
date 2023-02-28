@@ -6,7 +6,9 @@ import com.android.pokhodai.expensemanagement.R
 import com.android.pokhodai.expensemanagement.data.room.entities.WalletEntity
 import com.android.pokhodai.expensemanagement.repositories.WalletRepository
 import com.android.pokhodai.expensemanagement.ui.home.add_wallet.adapter.CategoriesAdapter
+import com.android.pokhodai.expensemanagement.utils.LocalDateFormatter
 import com.android.pokhodai.expensemanagement.utils.ManagerUtils
+import com.android.pokhodai.expensemanagement.utils.enums.Icons
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
@@ -32,7 +34,7 @@ class AddNewWalletViewModel @Inject constructor(
     private val _walletTypeFlow = MutableStateFlow(incomeText)
     val walletTypeFlow = _walletTypeFlow.asStateFlow()
 
-    private val _categoryNameFlow = MutableStateFlow(CategoriesAdapter.Categories(name = "", 0))
+    private val _categoryNameFlow = MutableStateFlow(CategoriesAdapter.Categories(name = "", Icons.NONE))
     val categoryNameFlow = _categoryNameFlow.asStateFlow()
 
     private val _amountFlow = MutableStateFlow("")
@@ -73,10 +75,12 @@ class AddNewWalletViewModel @Inject constructor(
             walletRepository.insertAllWallet(
                 WalletEntity(
                     categoryName = categoryNameFlow.value.name,
-                    resId = categoryNameFlow.value.resId,
+                    icons = categoryNameFlow.value.icon,
                     amount = _amountFlow.value.toInt(),
                     description = _descriptionFlow.value,
-                    type = walletTypeFlow.value
+                    type = walletTypeFlow.value,
+                    publicatedAt = LocalDateFormatter.now().timeInMillis(),
+                    monthAndYear = LocalDateFormatter.today().MMMM_yyyy()
                 )
             )
 

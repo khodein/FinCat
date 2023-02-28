@@ -2,20 +2,21 @@ package com.android.pokhodai.expensemanagement.ui.home.add_wallet.expense.add_ne
 
 import com.android.pokhodai.expensemanagement.base.ui.adapter.BaseListAdapter
 import com.android.pokhodai.expensemanagement.databinding.ItemIconBinding
+import com.android.pokhodai.expensemanagement.utils.enums.Icons
 import javax.inject.Inject
 
-class IconsAdapter @Inject constructor() : BaseListAdapter<Int>() {
+class IconsAdapter @Inject constructor() : BaseListAdapter<Icons>() {
 
-    private var onClickIconActionListener: ((Int) -> Unit)? = null
+    private var onClickIconActionListener: ((Icons) -> Unit)? = null
 
-    fun setOnClickIconActionListener(action: (Int) -> Unit) {
+    fun setOnClickIconActionListener(action: (Icons) -> Unit) {
         onClickIconActionListener = action
     }
 
     override fun build() {
-        baseViewHolder(Int::class, ItemIconBinding::inflate) { item ->
+        baseViewHolder(Icons::class, ItemIconBinding::inflate) { item ->
             binding.run {
-                root.setImageResource(item)
+                root.setImageResource(item.resId)
                 root.setOnClickListener {
                     onClickIconActionListener?.invoke(item)
                 }

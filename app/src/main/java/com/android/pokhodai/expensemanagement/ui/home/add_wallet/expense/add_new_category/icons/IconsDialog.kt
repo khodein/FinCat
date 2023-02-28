@@ -13,14 +13,13 @@ import com.android.pokhodai.expensemanagement.base.ui.fragments.BaseBottomSheetD
 import com.android.pokhodai.expensemanagement.databinding.DialogCategoriesBinding
 import com.android.pokhodai.expensemanagement.ui.home.add_wallet.expense.add_new_category.icons.adapter.IconsAdapter
 import com.android.pokhodai.expensemanagement.utils.decorations.GridSpacingItemDecoration
+import com.android.pokhodai.expensemanagement.utils.enums.Icons
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
 @AndroidEntryPoint
 class IconsDialog :
     BaseBottomSheetDialogFragment<DialogCategoriesBinding>(DialogCategoriesBinding::inflate) {
-
-    private val viewModel by viewModels<IconsViewModel>()
 
     @Inject
     lateinit var adapter: IconsAdapter
@@ -35,7 +34,7 @@ class IconsDialog :
             (rvCategories.layoutManager as GridLayoutManager).spanCount = 4
             rvCategories.addItemDecoration(GridSpacingItemDecoration(4, 50, false))
             rvCategories.adapter = adapter
-            adapter.submitList(viewModel.icons)
+            adapter.submitList(Icons.values().toList().drop(1))
         }
     }
 

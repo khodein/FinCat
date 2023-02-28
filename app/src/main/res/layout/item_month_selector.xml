@@ -34,7 +34,7 @@
             app:chipIcon="@drawable/ic_calendar"
             app:chipIconSize="16dp"
             app:chipStartPadding="12dp"
-            app:rippleColor="@color/white"
+            app:rippleColor="@color/blue_500"
             tools:text="May, 2021" />
 
     </FrameLayout>

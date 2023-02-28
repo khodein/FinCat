@@ -23,7 +23,7 @@ class ExpenseViewModel @Inject constructor(
         list.map {
             CategoriesAdapter.Categories(
                 name = it.name,
-                resId = it.resId
+                icon = it.icon
             )
         }
     }

@@ -13,4 +13,5 @@ class WalletRepository @Inject constructor(
     fun insertAllWallet(vararg wallets: WalletEntity) {
         walletDao.insertAll(*wallets)
     }
+    fun getWalletByMonth(date: String) = walletDao.getWalletByMonth(date)
 }
