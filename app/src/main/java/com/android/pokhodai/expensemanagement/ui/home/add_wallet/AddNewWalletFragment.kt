@@ -14,6 +14,7 @@ import com.android.pokhodai.expensemanagement.ui.home.add_wallet.income.IncomeDi
 import com.android.pokhodai.expensemanagement.utils.ClickUtils.setOnThrottleClickListener
 import com.android.pokhodai.expensemanagement.utils.navigateSafe
 import com.android.pokhodai.expensemanagement.utils.observe
+import com.android.pokhodai.expensemanagement.utils.showDatePickerDialog
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -38,7 +39,15 @@ class AddNewWalletFragment :
         }
 
         txtCategoryNameAddNewWallet.setOnThrottleClickListener {
-           onOpenIncomeOrExpenseDialog()
+            onOpenIncomeOrExpenseDialog()
+        }
+
+        txtDateNameAddNewWallet.setOnThrottleClickListener {
+            childFragmentManager.showDatePickerDialog(
+                viewModel.dateFlow.value
+            ) {
+                viewModel.onChangeDate(it)
+            }
         }
 
         btnAddNewWallet.setOnClickListener {
@@ -78,6 +87,10 @@ class AddNewWalletFragment :
 
         validate.observe(viewLifecycleOwner) {
             binding.btnAddNewWallet.isEnabled = it
+        }
+
+        dateFlow.observe(viewLifecycleOwner) {
+            binding.txtDateNameAddNewWallet.setText(it.dd_MMMM_yyyy())
         }
 
         typesWallet.observe(viewLifecycleOwner) {

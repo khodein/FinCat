@@ -5,14 +5,13 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.android.pokhodai.expensemanagement.data.room.entities.WalletEntity
 import com.android.pokhodai.expensemanagement.repositories.WalletRepository
+import com.android.pokhodai.expensemanagement.ui.home.adapter.WalletAdapter
 import com.android.pokhodai.expensemanagement.utils.LocalDateFormatter
-import com.android.pokhodai.expensemanagement.utils.enums.Icons
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.coroutines.flow.update
+import kotlinx.coroutines.channels.BufferOverflow
+import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import java.time.temporal.TemporalAdjuster
 import java.time.temporal.TemporalAdjusters
@@ -20,25 +19,44 @@ import javax.inject.Inject
 
 @HiltViewModel
 class HomeViewModel @Inject constructor(
-    private val walletRepository: WalletRepository
+    private val walletRepository: WalletRepository,
 ) : ViewModel() {
 
     private val _dateFlow = MutableStateFlow(LocalDateFormatter.now())
     val dateFlow = _dateFlow.asStateFlow()
 
-    init {
+    private val _incomeFlow = MutableStateFlow(0)
+    val incomeFlow = _incomeFlow.asStateFlow()
 
-//        var date = LocalDateFormatter.now().update { minusMonths(1).with(TemporalAdjusters.firstDayOfMonth()) }
+    private val _expenseFlow = MutableStateFlow(0)
+    val expenseFlow = _expenseFlow.asStateFlow()
+
+    val balanceFlow = combine(
+        _expenseFlow,
+        _incomeFlow
+    ) { expense, income ->
+        income - expense
+    }
+
+    private val _refreshFlow =
+        MutableSharedFlow<Unit>(replay = 1, onBufferOverflow = BufferOverflow.DROP_LATEST)
+
+    init {
+        onChangeIncome()
+        onChangeExpense()
+        onSwipeRefresh()
+//        var date = LocalDateFormatter.today()
+//            .update { minusMonths(1).with(TemporalAdjusters.firstDayOfMonth()) }
 //        viewModelScope.launch {
-//            repeat(100) {
+//            repeat(200) {
 //                walletRepository.insertAllWallet(
 //                    WalletEntity(
-//                        categoryName = "123",
+//                        categoryName = "100",
 //                        icons = Icons.ALLOWANCE,
-//                        amount = 2123,
+//                        amount = "100",
 //                        type = "Income",
-//                        publicatedAt = date.timeInMillis(),
-//                        monthAndYear = date.MMMM_yyyy()
+//                        publicatedAt = date,
+//                        monthAndYear = date.MMMM_yyyy(),
 //                    )
 //                )
 //
@@ -49,17 +67,98 @@ class HomeViewModel @Inject constructor(
 //        Log.d("TAGATAG ", "tag "+walletRepository.getAllWallets())
     }
 
-    fun onChangePreviousOrNextMonth(const: String, dispatcher: CoroutineDispatcher = Dispatchers.IO) {
+    private val _walletsFlow = MutableStateFlow<List<WalletEntity>>(emptyList())
+    val walletsFlow = _walletsFlow.map {
+        it.getItemsWallet().ifEmpty {
+            listOf(WalletAdapter.ItemWallet.EmptyWallet)
+        }
+    }
+
+    val wallets = combine(
+        _dateFlow,
+        _refreshFlow
+    ) { dateFlow, _ ->
+        dateFlow
+    }.map { date ->
+        onChangeWalletByMonth(date = date)
+    }
+
+    private fun onChangeWalletByMonth(
+        dispatcher: CoroutineDispatcher = Dispatchers.IO,
+        date: LocalDateFormatter
+    ) {
         viewModelScope.launch(dispatcher) {
-            val date = dateFlow.value.update {
-                if (const == HomeFragment.PLUS) plusMonths(1) else minusMonths(1)
+            _walletsFlow.value = walletRepository.getWalletByMonth(date.MMMM_yyyy())
+        }
+    }
+
+    private fun List<WalletEntity>.getItemsWallet(
+    ): List<WalletAdapter.ItemWallet> {
+        val items = mutableListOf<WalletAdapter.ItemWallet>()
+        this.sortedBy { it.publicatedAt }
+            .groupBy { it.publicatedAt }
+            .forEach {
+                items += WalletAdapter.ItemWallet.WrapHeader(date = it.key, count = "")
+                items += it.value.map { wallet ->
+                    WalletAdapter.ItemWallet.WrapWallet(wallet)
+                }.reversed()
             }
-            Log.d("TAGATGATG ", "tagtag "+walletRepository.getWalletByMonth(date.MMMM_yyyy()))
-            _dateFlow.update { date }
+        return items
+    }
+
+    fun onSwipeRefresh() {
+        _refreshFlow.tryEmit(Unit)
+    }
+
+    fun onChangePreviousOrNextMonth(
+        const: String
+    ) {
+        _dateFlow.update {
+            it.update {
+                if (const == HomeFragment.PLUS)
+                    plusMonths(1)
+                else minusMonths(1)
+            }
+        }
+
+        onChangeIncome()
+        onChangeExpense()
+    }
+
+    private fun onChangeIncome(
+        dispatcher: CoroutineDispatcher = Dispatchers.IO
+    ) {
+        viewModelScope.launch(dispatcher) {
+            _incomeFlow.value =
+                walletRepository.sumByType(type = "Income", date = dateFlow.value.MMMM_yyyy())
+        }
+    }
+
+    private fun onChangeExpense(
+        dispatcher: CoroutineDispatcher = Dispatchers.IO
+    ) {
+        viewModelScope.launch(dispatcher) {
+            _expenseFlow.value =
+                walletRepository.sumByType(type = "Expense", date = dateFlow.value.MMMM_yyyy())
         }
     }
 
     fun onChangeMonthDate(date: LocalDateFormatter) {
         _dateFlow.update { date }
+    }
+
+    fun onClickDeleteWallet(
+        id: Int,
+        dispatcher: CoroutineDispatcher = Dispatchers.IO
+    ) {
+        viewModelScope.launch(dispatcher) {
+            walletRepository.deleteWalletById(id)
+            _walletsFlow.update { list ->
+                list.toMutableList().apply {
+                    val wallet = find { wallets -> wallets.id == id }
+                    remove(wallet)
+                }
+            }
+        }
     }
 }

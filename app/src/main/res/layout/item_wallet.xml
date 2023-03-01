@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingHorizontal="16dp"
+    android:paddingVertical="16dp">
+
+    <ImageView
+        android:id="@+id/ivAmount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@+id/txtTypeAmount"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/txtNameAmount"
+        tools:src="@drawable/ic_groceries" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/txtAmount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="@style/Body2Style"
+        android:textColor="@color/red_600"
+        android:maxLength="10"
+        app:layout_constraintBottom_toBottomOf="@+id/txtTypeAmount"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/txtNameAmount"
+        tools:text="800" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/txtTypeAmount"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:textAppearance="@style/CaptionStyle"
+        android:textColor="@color/grey_600"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/txtNameAmount"
+        app:layout_constraintStart_toStartOf="@+id/txtNameAmount"
+        app:layout_constraintTop_toBottomOf="@+id/txtNameAmount"
+        tools:text="Expense" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/txtNameAmount"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="20dp"
+        android:textAppearance="@style/Body2Style"
+        android:textColor="@color/grey_900"
+        app:layout_constraintEnd_toStartOf="@+id/txtAmount"
+        app:layout_constraintStart_toEndOf="@+id/ivAmount"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Egg &amp; veggies" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

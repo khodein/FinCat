@@ -1,6 +1,8 @@
 <resources>
     <string name="app_name">ExpenseManagement</string>
-    
+    <string name="today">TODAY</string>
+    <string name="yesterday">YESTERDAY</string>
+
     <string name="report_title">Report</string>
     <string name="home_title">Home</string>
     <string name="settings_title">Settings</string>
@@ -13,6 +15,7 @@
 
     <!--  Home  -->
     <string name="home_add">Add new</string>
+    <string name="home_item_wallet_empty">History is empty!</string>
     <!--  /Home  -->
 
     <!--  AddNewWallet  -->

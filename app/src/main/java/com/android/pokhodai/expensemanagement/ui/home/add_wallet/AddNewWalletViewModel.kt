@@ -26,6 +26,9 @@ class AddNewWalletViewModel @Inject constructor(
     private val walletRepository: WalletRepository
 ) : ViewModel() {
 
+    private val _dateFlow = MutableStateFlow(LocalDateFormatter.today())
+    val dateFlow = _dateFlow.asStateFlow()
+
     private val _typesWallet = MutableStateFlow(managerUtils.getStringArray(R.array.TypesWallet).toList())
     val typesWallet = _typesWallet.asStateFlow()
 
@@ -68,6 +71,10 @@ class AddNewWalletViewModel @Inject constructor(
         _descriptionFlow.value = description
     }
 
+    fun onChangeDate(date: LocalDateFormatter) {
+        _dateFlow.value = date
+    }
+
     fun onAddNewWallet(
         dispatcher: CoroutineDispatcher = Dispatchers.IO
     ) {
@@ -76,11 +83,11 @@ class AddNewWalletViewModel @Inject constructor(
                 WalletEntity(
                     categoryName = categoryNameFlow.value.name,
                     icons = categoryNameFlow.value.icon,
-                    amount = _amountFlow.value.toInt(),
+                    amount = _amountFlow.value,
                     description = _descriptionFlow.value,
                     type = walletTypeFlow.value,
-                    publicatedAt = LocalDateFormatter.now().timeInMillis(),
-                    monthAndYear = LocalDateFormatter.today().MMMM_yyyy()
+                    publicatedAt = dateFlow.value,
+                    monthAndYear = dateFlow.value.MMMM_yyyy(),
                 )
             )
 

@@ -2,11 +2,11 @@
   "formatVersion": 1,
   "database": {
     "version": 3,
-    "identityHash": "b3a719f745a4b73b753a453930b840b7",
+    "identityHash": "ebc5f9e297ec64e4d93f8e7c205cc18e",
     "entities": [
       {
         "tableName": "wallets",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER, `categoryName` TEXT NOT NULL, `icons` TEXT NOT NULL, `amount` INTEGER NOT NULL, `description` TEXT NOT NULL, `type` TEXT NOT NULL, `publicatedAt` INTEGER NOT NULL, `monthAndYear` TEXT NOT NULL, PRIMARY KEY(`id`))",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER, `categoryName` TEXT NOT NULL, `icons` TEXT NOT NULL, `amount` TEXT NOT NULL, `description` TEXT NOT NULL, `type` TEXT NOT NULL, `publicatedAt` INTEGER NOT NULL, `monthAndYear` TEXT NOT NULL, PRIMARY KEY(`id`))",
         "fields": [
           {
             "fieldPath": "id",
@@ -29,7 +29,7 @@
           {
             "fieldPath": "amount",
             "columnName": "amount",
-            "affinity": "INTEGER",
+            "affinity": "TEXT",
             "notNull": true
           },
           {
@@ -102,7 +102,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'b3a719f745a4b73b753a453930b840b7')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'ebc5f9e297ec64e4d93f8e7c205cc18e')"
     ]
   }
 }
