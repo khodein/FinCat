@@ -6,6 +6,7 @@ import androidx.lifecycle.viewModelScope
 import com.android.pokhodai.expensemanagement.data.service.WalletDao
 import com.android.pokhodai.expensemanagement.utils.LocalDateFormatter
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -14,11 +15,11 @@ class ReportViewModel @Inject constructor(
     private val walletDao: WalletDao
 ): ViewModel() {
 
-    val today = LocalDateFormatter.today()
+    private val today = LocalDateFormatter.today()
+
+    private val _dateFlow = MutableStateFlow(today)
 
     init {
-        viewModelScope.launch {
-            Log.d("TAGAG ", "af "+walletDao.getTotal("Expense", today.MMMM_yyyy()))
-        }
+
     }
 }

@@ -18,6 +18,12 @@
     <string name="home_item_wallet_empty">History is empty!</string>
     <!--  /Home  -->
 
+    <!--  Report  -->
+    <string name="report_statistics_title">Statistics</string>
+    <string name="report_overview">Overview</string>
+    <string name="report_details">Details</string>
+    <!--  /Report  -->
+
     <!--  AddNewWallet  -->
     <string name="add_new_wallet_title">Add new</string>
     <string name="add_new_wallet_type">Type</string>
