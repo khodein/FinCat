@@ -12,9 +12,10 @@ data class WalletEntity(
     val id: Int? = null,
     val categoryName: String,
     val icons: Icons,
-    val amount: String,
+    val amount: Int,
     val description: String = "",
     val type: String,
     val publicatedAt: LocalDateFormatter,
+    val dateFormat: String,
     val monthAndYear: String
 )

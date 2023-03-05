@@ -1,8 +1,10 @@
 package com.android.pokhodai.expensemanagement.ui.home.add_wallet
 
 import android.widget.ArrayAdapter
+import androidx.core.os.bundleOf
 import androidx.core.view.isVisible
 import androidx.core.widget.doAfterTextChanged
+import androidx.fragment.app.setFragmentResult
 import androidx.fragment.app.setFragmentResultListener
 import androidx.fragment.app.viewModels
 import com.android.pokhodai.expensemanagement.R
@@ -104,6 +106,7 @@ class AddNewWalletFragment :
         }
 
         navigatePopFlow.observe(viewLifecycleOwner) {
+            setFragmentResult(ADD_NEW_WALLET, bundleOf())
             navigationController.popBackStack()
         }
 
@@ -120,5 +123,9 @@ class AddNewWalletFragment :
         setFragmentResultListener(AddNewCategoryFragment.NEW_CATEGORY_SUCCESS) { key, bundle ->
             onOpenIncomeOrExpenseDialog()
         }
+    }
+
+    companion object {
+        const val ADD_NEW_WALLET = "ADD_NEW_WALLET"
     }
 }

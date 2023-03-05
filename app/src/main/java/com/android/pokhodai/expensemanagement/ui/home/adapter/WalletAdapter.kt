@@ -1,16 +1,22 @@
 package com.android.pokhodai.expensemanagement.ui.home.adapter
 
+import android.util.Log
+import android.view.View
+import androidx.core.view.isVisible
 import com.android.pokhodai.expensemanagement.R
 import com.android.pokhodai.expensemanagement.base.ui.adapter.BaseListAdapter
+import com.android.pokhodai.expensemanagement.base.ui.adapter.BasePagingAdapter
 import com.android.pokhodai.expensemanagement.data.room.entities.WalletEntity
 import com.android.pokhodai.expensemanagement.databinding.ItemWalletBinding
 import com.android.pokhodai.expensemanagement.databinding.ItemWalletEmptyBinding
 import com.android.pokhodai.expensemanagement.databinding.ItemWalletHeaderBinding
 import com.android.pokhodai.expensemanagement.ui.home.add_wallet.adapter.CategoriesAdapter
 import com.android.pokhodai.expensemanagement.utils.LocalDateFormatter
+import com.android.pokhodai.expensemanagement.utils.dp
 import com.android.pokhodai.expensemanagement.utils.getTextDate
+import com.google.android.material.shape.CornerFamily
 
-class WalletAdapter: BaseListAdapter<WalletAdapter.ItemWallet>() {
+class WalletAdapter: BasePagingAdapter<WalletAdapter.ItemWallet>() {
 
     private val today = LocalDateFormatter.today()
 
@@ -23,11 +29,22 @@ class WalletAdapter: BaseListAdapter<WalletAdapter.ItemWallet>() {
     override fun build() {
         baseViewHolder(ItemWallet.WrapWallet::class, ItemWalletBinding::inflate) { item ->
             binding.run {
+
                 ivAmount.setImageResource(item.wallet.icons.resId)
                 txtNameAmount.text = item.wallet.categoryName
                 txtTypeAmount.text = item.wallet.type
-                txtAmount.text = item.wallet.amount
-                root.setOnLongClickListener {
+                txtAmount.text = item.wallet.amount.toString()
+
+                dividerBottomWallet.isVisible = !item.bottom
+                val builderShapeModel = cardWallet.shapeAppearanceModel.toBuilder().apply {
+                    val bottom = if (item.bottom) 8.dp else 0.dp
+                    setBottomLeftCorner(CornerFamily.ROUNDED, bottom)
+                    setBottomRightCorner(CornerFamily.ROUNDED, bottom)
+                }
+                cardWallet.shapeAppearanceModel = builderShapeModel.build()
+
+
+                cardWallet.setOnLongClickListener {
                     item.wallet.id?.let {
                         onLongClickActionListener?.invoke(it)
                     }
@@ -37,7 +54,15 @@ class WalletAdapter: BaseListAdapter<WalletAdapter.ItemWallet>() {
         }
 
         baseViewHolder(ItemWallet.WrapHeader::class, ItemWalletHeaderBinding::inflate) { item ->
-            binding.txtDateWallet.getTextDate(item.date, today)
+            binding.run {
+                val builderShapeModel = cardWalletHeader.shapeAppearanceModel.toBuilder().apply {
+                    setTopLeftCorner(CornerFamily.ROUNDED, 8.dp)
+                    setTopRightCorner(CornerFamily.ROUNDED, 8.dp)
+                }
+                cardWalletHeader.shapeAppearanceModel = builderShapeModel.build()
+                txtDateWallet.getTextDate(item.date, today)
+                txtCountWallet.text = item.count
+            }
         }
 
         baseViewHolder(ItemWallet.EmptyWallet::class, ItemWalletEmptyBinding::inflate) { _ ->
@@ -46,7 +71,7 @@ class WalletAdapter: BaseListAdapter<WalletAdapter.ItemWallet>() {
     }
 
     sealed class ItemWallet {
-        data class WrapWallet(val wallet: WalletEntity): ItemWallet()
+        data class WrapWallet(val wallet: WalletEntity, var bottom: Boolean = false): ItemWallet()
         data class WrapHeader(val date: LocalDateFormatter, val count: String): ItemWallet()
         object EmptyWallet: ItemWallet()
     }

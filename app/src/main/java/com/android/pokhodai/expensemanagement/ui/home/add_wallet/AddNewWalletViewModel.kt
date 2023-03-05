@@ -1,5 +1,6 @@
 package com.android.pokhodai.expensemanagement.ui.home.add_wallet
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.android.pokhodai.expensemanagement.R
@@ -79,15 +80,18 @@ class AddNewWalletViewModel @Inject constructor(
         dispatcher: CoroutineDispatcher = Dispatchers.IO
     ) {
         viewModelScope.launch(dispatcher) {
+            val amount = Integer.parseInt(_amountFlow.value)
+
             walletRepository.insertAllWallet(
                 WalletEntity(
                     categoryName = categoryNameFlow.value.name,
                     icons = categoryNameFlow.value.icon,
-                    amount = _amountFlow.value,
+                    amount = if (walletTypeFlow.value == "Expense") amount - (amount*2) else amount,
                     description = _descriptionFlow.value,
                     type = walletTypeFlow.value,
                     publicatedAt = dateFlow.value,
                     monthAndYear = dateFlow.value.MMMM_yyyy(),
+                    dateFormat = dateFlow.value.dd_MMMM_yyyy()
                 )
             )
 

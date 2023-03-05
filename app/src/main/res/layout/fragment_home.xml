@@ -63,12 +63,10 @@
                     android:orientation="vertical"
                     android:overScrollMode="never"
                     android:paddingHorizontal="16dp"
-                    android:paddingVertical="20dp"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                     app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
             </LinearLayout>
-
 
         </androidx.core.widget.NestedScrollView>
 
