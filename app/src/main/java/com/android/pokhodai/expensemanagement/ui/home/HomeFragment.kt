@@ -4,19 +4,21 @@ import android.util.Log
 import androidx.core.net.toUri
 import androidx.fragment.app.setFragmentResultListener
 import androidx.fragment.app.viewModels
+import androidx.paging.LoadState
 import androidx.recyclerview.widget.RecyclerView
 import com.android.pokhodai.expensemanagement.R
 import com.android.pokhodai.expensemanagement.base.ui.fragments.BaseFragment
 import com.android.pokhodai.expensemanagement.databinding.FragmentHomeBinding
 import com.android.pokhodai.expensemanagement.ui.home.adapter.WalletAdapter
 import com.android.pokhodai.expensemanagement.ui.home.add_wallet.AddNewWalletFragment
-import com.android.pokhodai.expensemanagement.ui.home.add_wallet.expense.add_new_category.AddNewCategoryFragment
 import com.android.pokhodai.expensemanagement.ui.home.date_picker.MonthPickerDialog
 import com.android.pokhodai.expensemanagement.utils.ClickUtils.setOnThrottleClickListener
 import com.android.pokhodai.expensemanagement.utils.navigateSafe
 import com.android.pokhodai.expensemanagement.utils.observe
 import com.android.pokhodai.expensemanagement.utils.observeLatest
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.distinctUntilChangedBy
+import kotlinx.coroutines.flow.filter
 
 @AndroidEntryPoint
 class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::inflate) {
@@ -54,12 +56,13 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
             }
         }
 
-        setFragmentResultListener(AddNewWalletFragment.ADD_NEW_WALLET) { _, _ ->
-            adapter.refresh()
-        }
-
         adapter.setOnLongClickActionListener {
             viewModel.onClickDeleteWallet(it)
+        }
+
+        setFragmentResultListener(AddNewWalletFragment.ADD_NEW_WALLET) { _, _ ->
+            viewModel.onSumIncomeAndExpense()
+            adapter.refresh()
         }
     }
 
@@ -67,13 +70,16 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
         dateFlow.observe(viewLifecycleOwner) {
             binding.incMonthSelectorHome.run {
                 chipDateMonthSelector.text = it.MMMM_yyyy()
-                adapter.refresh()
             }
         }
 
         walletsFlow.observeLatest(viewLifecycleOwner) {
             adapter.submitData(it)
         }
+
+        adapter.loadStateFlow
+            .distinctUntilChangedBy { it.refresh }
+            .filter { it.refresh is LoadState.NotLoading }
 
         statusFlow.observe(viewLifecycleOwner) { triple ->
             binding.incStatusHome.run {

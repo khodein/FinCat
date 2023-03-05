@@ -78,7 +78,7 @@ class MonthPickerView : FrameLayout {
     }
 
     private fun setTitle() {
-        binding.txtYearMonthPicker.text = yearNow?.yyyy()
+        binding.txtYearMonthPicker.text = yearNow.yyyy()
     }
 
     private fun setListeners() = with(binding) {

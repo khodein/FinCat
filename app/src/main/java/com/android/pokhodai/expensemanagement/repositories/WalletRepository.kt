@@ -21,6 +21,4 @@ class WalletRepository @Inject constructor(
     suspend fun sumByPublicatedAt(dateFormat: String) = walletDao.sumAmountByPublicateAt(dateFormat)
 
     suspend fun deleteWalletById(id: Int) = walletDao.deleteWalletById(id)
-
-    suspend fun getWalletsCount() = walletDao.getWalletsCount()
 }
