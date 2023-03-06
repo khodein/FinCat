@@ -8,7 +8,7 @@
     <string name="settings_title">Settings</string>
 
     <!--  Status  -->
-    <string name="status_expenses">Expenses</string>
+    <string name="status_expenses">Expense</string>
     <string name="status_balance">Balance</string>
     <string name="status_income">Income</string>
     <!--  /Status  -->
@@ -22,6 +22,7 @@
     <string name="report_statistics_title">Statistics</string>
     <string name="report_overview">Overview</string>
     <string name="report_details">Details</string>
+    <string name="report_transactions">%s transactions</string>
     <!--  /Report  -->
 
     <!--  AddNewWallet  -->

@@ -32,6 +32,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
     }
 
     override fun setAdapter() = with(binding) {
+        rvHome.itemAnimator = null
         rvHome.adapter = adapter
     }
 
@@ -40,6 +41,10 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
             navigationController.navigateSafe(
                 HomeFragmentDirections.actionHomeFragmentToAddNewWalletFragment()
             )
+        }
+
+        srlHome.setOnRefreshListener {
+            viewModel.onSwipeRefresh()
         }
 
         incMonthSelectorHome.run {
@@ -80,6 +85,12 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
         adapter.loadStateFlow
             .distinctUntilChangedBy { it.refresh }
             .filter { it.refresh is LoadState.NotLoading }
+            .observe(viewLifecycleOwner) {
+                if (binding.srlHome.isRefreshing) {
+                    binding.rvHome.scrollToPosition(0)
+                    binding.srlHome.isRefreshing = false
+                }
+            }
 
         statusFlow.observe(viewLifecycleOwner) { triple ->
             binding.incStatusHome.run {

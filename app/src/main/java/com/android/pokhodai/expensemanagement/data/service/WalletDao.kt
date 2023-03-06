@@ -1,10 +1,8 @@
 package com.android.pokhodai.expensemanagement.data.service
 
-import androidx.paging.DataSource
 import androidx.room.*
-import com.android.pokhodai.expensemanagement.data.modals.TypesWallet
+import com.android.pokhodai.expensemanagement.data.modals.ReportWallet
 import com.android.pokhodai.expensemanagement.data.room.entities.WalletEntity
-import com.android.pokhodai.expensemanagement.utils.LocalDateFormatter
 
 @Dao
 interface WalletDao {
@@ -24,12 +22,15 @@ interface WalletDao {
     @Query("SELECT SUM(amount) AS value FROM wallets WHERE dateFormat LIKE :date")
     suspend fun sumAmountByPublicateAt(date: String): Int
 
-    @Query("SELECT COUNT(id) FROM wallets WHERE monthAndYear LIKE :date")
-    suspend fun getWalletsCountByMonthAndYear(date: String): Int
+    @Query("SELECT COUNT(id) FROM wallets WHERE monthAndYear LIKE :date AND type LIKE :type")
+    suspend fun getWalletsCountByMonthAndYear(type: String, date: String, ): Int
 
     @Query("DELETE FROM wallets WHERE id = :id")
     suspend fun deleteWalletById(id: Int)
 
     @Query("SELECT categoryName, COUNT(categoryName) as total, SUM(amount) as sum, categoryName as name, icons as icon FROM wallets WHERE monthAndYear LIKE :date AND type LIKE :type GROUP BY categoryName")
-    suspend fun getTotal(type: String, date: String): List<TypesWallet>
+    suspend fun getStatisticsByTypeAndDate(type: String, date: String): List<ReportWallet>
+
+    @Update(entity = WalletEntity::class)
+    suspend fun update(wallet: WalletEntity)
 }

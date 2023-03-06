@@ -10,6 +10,7 @@ import com.android.pokhodai.expensemanagement.ui.home.add_wallet.adapter.Categor
 import com.android.pokhodai.expensemanagement.utils.LocalDateFormatter
 import com.android.pokhodai.expensemanagement.utils.ManagerUtils
 import com.android.pokhodai.expensemanagement.utils.enums.Icons
+import com.android.pokhodai.expensemanagement.utils.enums.Wallets
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
@@ -33,9 +34,10 @@ class AddNewWalletViewModel @Inject constructor(
     private val _typesWallet = MutableStateFlow(managerUtils.getStringArray(R.array.TypesWallet).toList())
     val typesWallet = _typesWallet.asStateFlow()
 
-    val incomeText = managerUtils.getString(R.string.add_new_wallet_income)
+    val income = managerUtils.getString(Wallets.INCOME.resId)
+    private val expense = managerUtils.getString(Wallets.EXPENSE.resId)
 
-    private val _walletTypeFlow = MutableStateFlow(incomeText)
+    private val _walletTypeFlow = MutableStateFlow(income)
     val walletTypeFlow = _walletTypeFlow.asStateFlow()
 
     private val _categoryNameFlow = MutableStateFlow(CategoriesAdapter.Categories(name = "", Icons.NONE))
@@ -86,7 +88,7 @@ class AddNewWalletViewModel @Inject constructor(
                 WalletEntity(
                     categoryName = categoryNameFlow.value.name,
                     icons = categoryNameFlow.value.icon,
-                    amount = if (walletTypeFlow.value == "Expense") amount - (amount*2) else amount,
+                    amount = if (walletTypeFlow.value == expense) amount - (amount*2) else amount,
                     description = _descriptionFlow.value,
                     type = walletTypeFlow.value,
                     publicatedAt = dateFlow.value,

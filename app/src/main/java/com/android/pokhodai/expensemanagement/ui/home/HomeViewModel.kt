@@ -10,6 +10,8 @@ import com.android.pokhodai.expensemanagement.repositories.WalletRepository
 import com.android.pokhodai.expensemanagement.ui.home.adapter.WalletAdapter
 import com.android.pokhodai.expensemanagement.ui.home.source.WalletPagingSource
 import com.android.pokhodai.expensemanagement.utils.LocalDateFormatter
+import com.android.pokhodai.expensemanagement.utils.ManagerUtils
+import com.android.pokhodai.expensemanagement.utils.enums.Wallets
 import com.android.pokhodai.expensemanagement.utils.insertEmptyItem
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.*
@@ -20,15 +22,19 @@ import javax.inject.Inject
 @HiltViewModel
 class HomeViewModel @Inject constructor(
     private val walletRepository: WalletRepository,
-    private val walletDao: WalletDao,
+    managerUtils: ManagerUtils
 ) : ViewModel() {
 
     private val _dateFlow = MutableStateFlow(LocalDateFormatter.now())
     val dateFlow = _dateFlow.asStateFlow()
 
+    private val income = managerUtils.getString(Wallets.INCOME.resId)
+    private val expense = managerUtils.getString(Wallets.EXPENSE.resId)
+
     private val _refreshFlow =
         MutableSharedFlow<Unit>(replay = 1, onBufferOverflow = BufferOverflow.DROP_LATEST)
-    private val _statusFlow = MutableStateFlow<Triple<Int, Int, Int>>(Triple(0, 0, 0))
+
+    private val _statusFlow = MutableStateFlow(Triple(0, 0, 0))
     val statusFlow = _statusFlow.asStateFlow()
 
     @OptIn(ExperimentalCoroutinesApi::class)
@@ -36,7 +42,7 @@ class HomeViewModel @Inject constructor(
         _dateFlow,
         _refreshFlow
     ) { date, _ ->
-        setPager(date.MMMM_yyyy())
+        walletRepository.getPaginationWalletsByDate(date.MMMM_yyyy())
     }.flatMapLatest { pager ->
         pager.flow.map { pagerData ->
             pagerData.map<WalletEntity, WalletAdapter.ItemWallet> { wallet ->
@@ -53,9 +59,9 @@ class HomeViewModel @Inject constructor(
                         }
                         before is WalletAdapter.ItemWallet.WrapWallet && after is WalletAdapter.ItemWallet.WrapWallet -> {
                             if (before.wallet.publicatedAt.dd_MM_yyyy() != after.wallet.publicatedAt.dd_MM_yyyy()) {
-                                before.bottom = true
                                 val count =
                                     walletRepository.sumByPublicatedAt(after.wallet.dateFormat)
+                                before.bottom = true
                                 WalletAdapter.ItemWallet.WrapHeader(
                                     after.wallet.publicatedAt,
                                     count.toString()
@@ -74,24 +80,11 @@ class HomeViewModel @Inject constructor(
         }.cachedIn(viewModelScope)
     }.stateIn(viewModelScope, SharingStarted.Lazily, PagingData.empty())
 
-
-    private fun setPager(date: String) = Pager(
-        PagingConfig(
-            pageSize = 30,
-            initialLoadSize = 30,
-            prefetchDistance = 5,
-            maxSize = 60,
-            enablePlaceholders = false
-        )
-    ) {
-        WalletPagingSource(date = date, walletDao = walletDao)
-    }
-
     init {
         onSwipeRefresh()
     }
 
-    private fun onSwipeRefresh() {
+    fun onSwipeRefresh() {
         _refreshFlow.tryEmit(Unit)
         onSumIncomeAndExpense()
     }
@@ -106,6 +99,8 @@ class HomeViewModel @Inject constructor(
                 else minusMonths(1)
             }
         }
+
+        onSumIncomeAndExpense()
     }
 
     fun onSumIncomeAndExpense(
@@ -114,13 +109,13 @@ class HomeViewModel @Inject constructor(
         viewModelScope.launch(dispatcher) {
             val income = async {
                 walletRepository.sumByType(
-                    type = "Income",
+                    type = income,
                     date = dateFlow.value.MMMM_yyyy()
                 )
             }
             val expense = async {
                 walletRepository.sumByType(
-                    type = "Expense",
+                    type = expense,
                     date = dateFlow.value.MMMM_yyyy()
                 )
             }
@@ -129,7 +124,7 @@ class HomeViewModel @Inject constructor(
     }
 
     private fun onChangeBalance(income: Int, expense: Int) {
-        _statusFlow.value = Triple(first = income, second = income - expense, third = expense)
+        _statusFlow.value = Triple(first = income, second = income + expense, third = expense)
     }
 
     fun onChangeMonthDate(date: LocalDateFormatter) {
@@ -140,6 +135,9 @@ class HomeViewModel @Inject constructor(
         id: Int,
         dispatcher: CoroutineDispatcher = Dispatchers.IO
     ) {
-
+        viewModelScope.launch(dispatcher) {
+            walletRepository.deleteWalletById(id)
+            onSwipeRefresh()
+        }
     }
 }

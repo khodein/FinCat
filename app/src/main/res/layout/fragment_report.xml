@@ -48,12 +48,20 @@
                     android:layout_height="wrap_content" />
 
                 <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/txtOverviewReport"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
                     android:paddingHorizontal="16dp"
                     android:text="@string/report_overview"
                     android:textAppearance="@style/OverlineTextStyle" />
+
+                <com.android.pokhodai.expensemanagement.utils.view.statistics.StatisticsOverviewView
+                    android:id="@+id/sovReport"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginHorizontal="16dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
 
                 <com.google.android.material.textview.MaterialTextView
                     android:layout_width="match_parent"
@@ -63,17 +71,24 @@
                     android:text="@string/report_details"
                     android:textAppearance="@style/OverlineTextStyle" />
 
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rvReport"
+                <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+                    android:id="@+id/srlReport"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:clipToPadding="false"
-                    android:orientation="vertical"
-                    android:overScrollMode="never"
-                    android:paddingHorizontal="16dp"
-                    android:paddingVertical="20dp"
-                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                    app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+                    android:layout_height="match_parent">
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rvReport"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:clipToPadding="false"
+                        android:orientation="vertical"
+                        android:overScrollMode="never"
+                        android:paddingHorizontal="16dp"
+                        android:paddingVertical="20dp"
+                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+
+                </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
             </LinearLayout>
 

@@ -62,7 +62,7 @@ class AddNewWalletFragment :
     }
 
     private fun onOpenIncomeOrExpenseDialog() {
-        val navigateTo = if (viewModel.walletTypeFlow.value == viewModel.incomeText) {
+        val navigateTo = if (viewModel.walletTypeFlow.value == viewModel.income) {
             AddNewWalletFragmentDirections.actionAddNewWalletFragmentToIncomeDialog()
         } else {
             AddNewWalletFragmentDirections.actionAddNewWalletFragmentToExpenseDialog()
@@ -77,7 +77,7 @@ class AddNewWalletFragment :
         }
 
         walletTypeFlow.observe(viewLifecycleOwner) {
-            val textBtn = if (it == viewModel.incomeText) {
+            val textBtn = if (it == viewModel.income) {
                 getString(R.string.add_new_wallet_btn_income)
             } else {
                 getString(R.string.add_new_wallet_btn_expense)
