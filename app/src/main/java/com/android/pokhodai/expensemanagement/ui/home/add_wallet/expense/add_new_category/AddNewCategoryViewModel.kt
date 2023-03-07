@@ -25,6 +25,9 @@ class AddNewCategoryViewModel @Inject constructor(
     private val _iconResIdFlow = MutableStateFlow(Icons.NONE)
     val iconResIdFlow = _iconResIdFlow.asStateFlow()
 
+    private val _snackBarFlow = Channel<Unit>()
+    val shackBarFlow = _snackBarFlow.receiveAsFlow()
+
     private val _navigatePopFlow = Channel<Unit>()
     val navigatePopFlow = _navigatePopFlow.receiveAsFlow()
 
@@ -47,6 +50,12 @@ class AddNewCategoryViewModel @Inject constructor(
         dispatcher: CoroutineDispatcher = Dispatchers.IO
     ) {
         viewModelScope.launch(dispatcher) {
+
+            val isCheck = expenseRepository.checkNameExpense(_categoryNameFlow.value)
+            if (isCheck) {
+                _snackBarFlow.send(Unit)
+                return@launch
+            }
             expenseRepository.insertAllExpense(
                 ExpenseEntity(
                     name = _categoryNameFlow.value,

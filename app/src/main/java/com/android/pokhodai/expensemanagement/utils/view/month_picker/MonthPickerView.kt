@@ -40,12 +40,6 @@ class MonthPickerView : FrameLayout {
         set(value) {
             field = value
             yearNow = value.update { withMonth(1) }
-            if (list.isNotEmpty()) {
-                val monthsList = list.map {
-                    it.copy(check = it.date.MMMM_yyyy() == value.MMMM_yyyy())
-                }
-                adapter.submitList(monthsList)
-            }
         }
 
     override fun onSaveInstanceState(): Parcelable {

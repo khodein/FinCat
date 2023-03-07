@@ -11,8 +11,9 @@ import com.android.pokhodai.expensemanagement.base.ui.fragments.BaseFragment
 import com.android.pokhodai.expensemanagement.databinding.FragmentHomeBinding
 import com.android.pokhodai.expensemanagement.ui.home.adapter.WalletAdapter
 import com.android.pokhodai.expensemanagement.ui.home.add_wallet.AddNewWalletFragment
-import com.android.pokhodai.expensemanagement.ui.home.date_picker.MonthPickerDialog
+import com.android.pokhodai.expensemanagement.ui.date_picker.MonthPickerDialog
 import com.android.pokhodai.expensemanagement.utils.ClickUtils.setOnThrottleClickListener
+import com.android.pokhodai.expensemanagement.utils.LocalDateFormatter
 import com.android.pokhodai.expensemanagement.utils.navigateSafe
 import com.android.pokhodai.expensemanagement.utils.observe
 import com.android.pokhodai.expensemanagement.utils.observeLatest
@@ -53,7 +54,11 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
             }
 
             chipDateMonthSelector.setOnThrottleClickListener {
-                MonthPickerDialog().show(childFragmentManager, MONTH_PICKER_TAG)
+                navigationController.navigateSafe(
+                    HomeFragmentDirections.actionHomeFragmentToMonthPickerDialog(
+                        viewModel.dateFlow.value.timeInMillis()
+                    )
+                )
             }
 
             btnRightMonthSelector.setOnClickListener {
@@ -68,6 +73,11 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
         setFragmentResultListener(AddNewWalletFragment.ADD_NEW_WALLET) { _, _ ->
             viewModel.onSumIncomeAndExpense()
             adapter.refresh()
+        }
+
+        setFragmentResultListener(MonthPickerDialog.CHANGE_DATE) { _, bundle ->
+            val timeInMillis = bundle.getLong(MonthPickerDialog.DATE)
+            viewModel.onChangeMonthDate(LocalDateFormatter.from(timeInMillis))
         }
     }
 
@@ -104,6 +114,5 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
     companion object {
         const val PLUS = "PLUS"
         const val MINUS = "MINUS"
-        private const val MONTH_PICKER_TAG = "MONTH_PICKER"
     }
 }

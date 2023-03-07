@@ -9,6 +9,6 @@
         android:id="@+id/tabsFragment"
         android:name="com.android.pokhodai.expensemanagement.ui.TabsFragment"
         android:label="TabsFragment"
-        tools:layout="@layout/fragment_tabs"/>
+        tools:layout="@layout/fragment_tabs" />
 
 </navigation>

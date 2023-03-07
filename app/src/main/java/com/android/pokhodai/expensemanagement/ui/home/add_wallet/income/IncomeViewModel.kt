@@ -18,27 +18,33 @@ class IncomeViewModel @Inject constructor(
     val incomeCategoriesList = listOf(
         CategoriesAdapter.Categories(
             name = managerUtils.getString(R.string.income_grocery),
-            icon = Icons.GROCERIES
+            icon = Icons.GROCERIES,
+            id = 0
         ),
         CategoriesAdapter.Categories(
             name = managerUtils.getString(R.string.income_gifts),
             icon = Icons.GIFTS,
+            id = 1,
         ),
         CategoriesAdapter.Categories(
             name = managerUtils.getString(R.string.income_wages),
-            icon = Icons.DONATE
+            icon = Icons.DONATE,
+            id = 2
         ),
         CategoriesAdapter.Categories(
             name = managerUtils.getString(R.string.income_interest),
-            icon = Icons.INSTITUTE
+            icon = Icons.INSTITUTE,
+            id = 3
         ),
         CategoriesAdapter.Categories(
             name = managerUtils.getString(R.string.income_savings),
-            icon = Icons.SAVINGS
+            icon = Icons.SAVINGS,
+            id = 4
         ),
         CategoriesAdapter.Categories(
             name = managerUtils.getString(R.string.income_allowance),
-            icon = Icons.ALLOWANCE
+            icon = Icons.ALLOWANCE,
+            id = 5
         )
     )
 }

@@ -10,8 +10,14 @@ import com.android.pokhodai.expensemanagement.data.room.entities.ExpenseEntity
 interface ExpenseDao {
 
     @Query("SELECT * FROM expenses")
-    fun getAll(): List<ExpenseEntity>
+    suspend fun getAll(): List<ExpenseEntity>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertAll(vararg expenses: ExpenseEntity)
+    suspend fun insertAll(vararg expenses: ExpenseEntity)
+
+    @Query("SELECT EXISTS(SELECT * FROM expenses WHERE name = :nameExpense)")
+    suspend fun checkNameExpense(nameExpense: String): Boolean
+
+    @Query("DELETE FROM expenses WHERE id = :id")
+    suspend fun deleteExpenseById(id: Int)
 }

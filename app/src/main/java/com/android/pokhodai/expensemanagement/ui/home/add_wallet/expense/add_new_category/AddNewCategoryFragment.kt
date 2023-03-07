@@ -7,12 +7,14 @@ import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.setFragmentResult
 import androidx.fragment.app.setFragmentResultListener
 import androidx.fragment.app.viewModels
+import com.android.pokhodai.expensemanagement.R
 import com.android.pokhodai.expensemanagement.base.ui.fragments.BaseFragment
 import com.android.pokhodai.expensemanagement.databinding.FragmentAddNewCategoryBinding
 import com.android.pokhodai.expensemanagement.ui.home.add_wallet.expense.add_new_category.icons.IconsDialog
 import com.android.pokhodai.expensemanagement.utils.enums.Icons
 import com.android.pokhodai.expensemanagement.utils.navigateSafe
 import com.android.pokhodai.expensemanagement.utils.observe
+import com.android.pokhodai.expensemanagement.utils.showSnackBar
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -72,6 +74,10 @@ class AddNewCategoryFragment :
         navigatePopFlow.observe(viewLifecycleOwner) {
             setFragmentResult(NEW_CATEGORY_SUCCESS, bundleOf())
             navigationController.popBackStack()
+        }
+
+        shackBarFlow.observe(viewLifecycleOwner) {
+            showSnackBar(getString(R.string.add_new_category_name), anchorView = binding.root)
         }
     }
 

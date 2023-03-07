@@ -9,6 +9,22 @@
         android:id="@+id/reportFragment"
         android:name="com.android.pokhodai.expensemanagement.ui.report.ReportFragment"
         android:label="ReportFragment"
-        tools:layout="@layout/fragment_report" />
+        tools:layout="@layout/fragment_report" >
+        <action
+            android:id="@+id/action_reportFragment_to_monthPickerDialog"
+            app:destination="@id/monthPickerDialog" />
+    </fragment>
+
+    <dialog
+        android:id="@+id/monthPickerDialog"
+        android:name="com.android.pokhodai.expensemanagement.ui.date_picker.MonthPickerDialog"
+        android:label="MonthPickerDialog"
+        tools:layout="@layout/dialog_month_picker">
+
+        <argument
+            android:name="date"
+            app:argType="long" />
+
+    </dialog>
 
 </navigation>

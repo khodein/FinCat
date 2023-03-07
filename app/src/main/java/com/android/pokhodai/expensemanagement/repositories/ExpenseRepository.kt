@@ -8,9 +8,13 @@ class ExpenseRepository @Inject constructor(
     private val expenseDao: ExpenseDao
 ) {
 
-    fun getAllExpense() = expenseDao.getAll()
+    suspend fun getAllExpense() = expenseDao.getAll()
 
-    fun insertAllExpense(vararg expenses: ExpenseEntity) {
+    suspend fun insertAllExpense(vararg expenses: ExpenseEntity) {
         expenseDao.insertAll(*expenses)
     }
+
+    suspend fun checkNameExpense(name: String) = expenseDao.checkNameExpense(name)
+
+    suspend fun deleteById(id: Int) = expenseDao.deleteExpenseById(id)
 }

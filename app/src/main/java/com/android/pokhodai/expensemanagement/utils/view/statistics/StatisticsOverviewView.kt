@@ -135,6 +135,7 @@ class StatisticsOverviewView : View {
 
                     canvas?.drawRoundRect(rectF, radius, radius, backgroundPaint)
                 }
+
                 index == 0 -> {
                     rectF.set(
                         0f,
@@ -149,6 +150,7 @@ class StatisticsOverviewView : View {
                         isStart = true
                     )
                 }
+
                 index == lastIndex -> {
                     rectF.set(
                         left,

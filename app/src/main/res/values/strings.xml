@@ -63,6 +63,7 @@
     <!--  AddNewCategory  -->
     <string name="add_new_category_title">Add new category</string>
     <string name="add_new_category_hint">Category name</string>
+    <string name="add_new_category_name">This name already exists, please select a new one!</string>
     <!--  /AddNewCategory  -->
 
     <!--  Icons  -->

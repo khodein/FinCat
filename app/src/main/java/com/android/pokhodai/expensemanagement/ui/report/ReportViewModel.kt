@@ -12,8 +12,10 @@ import com.android.pokhodai.expensemanagement.utils.enums.Wallets
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -32,8 +34,8 @@ class ReportViewModel @Inject constructor(
     private val income = managerUtils.getString(Wallets.INCOME.resId)
     private val expense = managerUtils.getString(Wallets.EXPENSE.resId)
 
-    private val _refreshFlow = MutableStateFlow(false)
-    val refreshFlow = _refreshFlow.asStateFlow()
+    private val _refreshFlow = Channel<Unit>()
+    val refreshFlow = _refreshFlow.receiveAsFlow()
 
     private val _statisticsFlow =
         MutableStateFlow<List<ReportAdapter.ItemReport>>(emptyList())
@@ -52,7 +54,6 @@ class ReportViewModel @Inject constructor(
         dispatcher: CoroutineDispatcher = Dispatchers.IO
     ) {
         viewModelScope.launch(dispatcher) {
-            _refreshFlow.value = true
             val date = dateFlow.value.MMMM_yyyy()
             val allTotalByExpense =
                 repository.getWalletsCountByMonthAndYear(type = expense, date = date)
@@ -70,7 +71,7 @@ class ReportViewModel @Inject constructor(
                 listOf(ReportAdapter.ItemReport.EmptyReport)
             })
 
-            _refreshFlow.value = false
+            _refreshFlow.send(Unit)
         }
     }
 
@@ -83,6 +84,11 @@ class ReportViewModel @Inject constructor(
             }
         }
 
+        onSwipeRefresh()
+    }
+
+    fun onChangeMonthDate(date: LocalDateFormatter) {
+        _dateFlow.value = date
         onSwipeRefresh()
     }
 }

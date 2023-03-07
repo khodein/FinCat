@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.android.pokhodai.expensemanagement.R
 import com.android.pokhodai.expensemanagement.data.room.entities.WalletEntity
+import com.android.pokhodai.expensemanagement.repositories.ExpenseRepository
 import com.android.pokhodai.expensemanagement.repositories.WalletRepository
 import com.android.pokhodai.expensemanagement.ui.home.add_wallet.adapter.CategoriesAdapter
 import com.android.pokhodai.expensemanagement.utils.LocalDateFormatter
@@ -25,13 +26,15 @@ import javax.inject.Inject
 @HiltViewModel
 class AddNewWalletViewModel @Inject constructor(
     managerUtils: ManagerUtils,
-    private val walletRepository: WalletRepository
+    private val walletRepository: WalletRepository,
+    private val expenseRepository: ExpenseRepository
 ) : ViewModel() {
 
     private val _dateFlow = MutableStateFlow(LocalDateFormatter.today())
     val dateFlow = _dateFlow.asStateFlow()
 
-    private val _typesWallet = MutableStateFlow(managerUtils.getStringArray(R.array.TypesWallet).toList())
+    private val _typesWallet =
+        MutableStateFlow(managerUtils.getStringArray(R.array.TypesWallet).toList())
     val typesWallet = _typesWallet.asStateFlow()
 
     val income = managerUtils.getString(Wallets.INCOME.resId)
@@ -40,7 +43,8 @@ class AddNewWalletViewModel @Inject constructor(
     private val _walletTypeFlow = MutableStateFlow(income)
     val walletTypeFlow = _walletTypeFlow.asStateFlow()
 
-    private val _categoryNameFlow = MutableStateFlow(CategoriesAdapter.Categories(name = "", Icons.NONE))
+    private val _categoryNameFlow =
+        MutableStateFlow(CategoriesAdapter.Categories(name = "", icon = Icons.NONE, id = 0))
     val categoryNameFlow = _categoryNameFlow.asStateFlow()
 
     private val _amountFlow = MutableStateFlow("")
@@ -88,7 +92,7 @@ class AddNewWalletViewModel @Inject constructor(
                 WalletEntity(
                     categoryName = categoryNameFlow.value.name,
                     icons = categoryNameFlow.value.icon,
-                    amount = if (walletTypeFlow.value == expense) amount - (amount*2) else amount,
+                    amount = if (walletTypeFlow.value == expense) amount - (amount * 2) else amount,
                     description = _descriptionFlow.value,
                     type = walletTypeFlow.value,
                     publicatedAt = dateFlow.value,

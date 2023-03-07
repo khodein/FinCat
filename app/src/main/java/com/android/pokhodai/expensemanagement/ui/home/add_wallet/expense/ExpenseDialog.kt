@@ -58,5 +58,9 @@ class ExpenseDialog :
             setFragmentResult(IncomeDialog.NEW_CATEGORY_RESULT, bundleOf(IncomeDialog.NEW_CATEGORY to it))
             dismiss()
         }
+
+        adapter.setOnLongClickActionListener {
+            viewModel.onDeleteExpenseById(it)
+        }
     }
 }

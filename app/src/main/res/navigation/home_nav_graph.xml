@@ -19,6 +19,10 @@
             app:popEnterAnim="@anim/fade_in"
             app:popExitAnim="@anim/slide_out" />
 
+        <action
+            android:id="@+id/action_homeFragment_to_monthPickerDialog"
+            app:destination="@id/monthPickerDialog" />
+
     </fragment>
 
     <fragment
@@ -60,7 +64,7 @@
         android:id="@+id/addNewCategoryFragment"
         android:name="com.android.pokhodai.expensemanagement.ui.home.add_wallet.expense.add_new_category.AddNewCategoryFragment"
         android:label="AddNewCategoryFragment"
-        tools:layout="@layout/fragment_add_new_category" >
+        tools:layout="@layout/fragment_add_new_category">
         <action
             android:id="@+id/action_addNewCategoryFragment_to_iconsDialog"
             app:destination="@id/iconsDialog" />
@@ -71,5 +75,17 @@
         android:name="com.android.pokhodai.expensemanagement.ui.home.add_wallet.expense.add_new_category.icons.IconsDialog"
         android:label="IconsDialog"
         tools:layout="@layout/dialog_categories" />
+
+    <dialog
+        android:id="@+id/monthPickerDialog"
+        android:name="com.android.pokhodai.expensemanagement.ui.date_picker.MonthPickerDialog"
+        android:label="MonthPickerDialog"
+        tools:layout="@layout/dialog_month_picker">
+
+        <argument
+            android:name="date"
+            app:argType="long" />
+
+    </dialog>
 
 </navigation>
