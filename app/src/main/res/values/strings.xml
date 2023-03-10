@@ -2,6 +2,8 @@
     <string name="app_name">ExpenseManagement</string>
     <string name="today">TODAY</string>
     <string name="yesterday">YESTERDAY</string>
+    <string name="delete">Удалить</string>
+    <string name="edit">Редактировать</string>
 
     <string name="report_title">Report</string>
     <string name="home_title">Home</string>
@@ -25,8 +27,13 @@
     <string name="report_transactions">%s transactions</string>
     <!--  /Report  -->
 
+    <!--  Settings  -->
+
+    <!--  /Settings  -->
+
     <!--  AddNewWallet  -->
-    <string name="add_new_wallet_title">Add new</string>
+    <string name="add_new_wallet_title_add_new">Add new</string>
+    <string name="add_new_wallet_title_edit">Edit</string>
     <string name="add_new_wallet_type">Type</string>
 
     <string name="add_new_wallet_income">Income</string>
@@ -41,7 +48,9 @@
     <string name="add_new_wallet_amount_hint">Amount</string>
     <string name="add_new_wallet_description_hint">Description (Optional)</string>
     <string name="add_new_wallet_btn_income">Add an income</string>
+    <string name="add_new_wallet_btn_edit_income">Edit an income</string>
     <string name="add_new_wallet_btn_expense">Add an expense</string>
+    <string name="add_new_wallet_btn_edit_expense">Edit an expense</string>
     <!--  /AddNewWallet  -->
 
     <!--  Income  -->

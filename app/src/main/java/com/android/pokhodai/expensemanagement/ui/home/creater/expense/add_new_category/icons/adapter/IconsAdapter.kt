@@ -1,4 +1,4 @@
-package com.android.pokhodai.expensemanagement.ui.home.add_wallet.expense.add_new_category.icons.adapter
+package com.android.pokhodai.expensemanagement.ui.home.creater.expense.add_new_category.icons.adapter
 
 import com.android.pokhodai.expensemanagement.base.ui.adapter.BaseListAdapter
 import com.android.pokhodai.expensemanagement.databinding.ItemIconBinding

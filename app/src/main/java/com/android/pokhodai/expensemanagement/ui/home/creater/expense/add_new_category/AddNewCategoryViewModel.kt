@@ -1,9 +1,7 @@
-package com.android.pokhodai.expensemanagement.ui.home.add_wallet.expense.add_new_category
+package com.android.pokhodai.expensemanagement.ui.home.creater.expense.add_new_category
 
-import android.graphics.drawable.Icon
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.android.pokhodai.expensemanagement.R
 import com.android.pokhodai.expensemanagement.data.room.entities.ExpenseEntity
 import com.android.pokhodai.expensemanagement.repositories.ExpenseRepository
 import com.android.pokhodai.expensemanagement.utils.enums.Icons

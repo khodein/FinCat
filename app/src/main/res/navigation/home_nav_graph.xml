@@ -12,8 +12,8 @@
         tools:layout="@layout/fragment_home">
 
         <action
-            android:id="@+id/action_homeFragment_to_addNewWalletFragment"
-            app:destination="@id/addNewWalletFragment"
+            android:id="@+id/action_homeFragment_to_createrWalletFragment"
+            app:destination="@id/createrWalletFragment"
             app:enterAnim="@anim/slide_in"
             app:exitAnim="@anim/fade_out"
             app:popEnterAnim="@anim/fade_in"
@@ -26,21 +26,33 @@
     </fragment>
 
     <fragment
-        android:id="@+id/addNewWalletFragment"
-        android:name="com.android.pokhodai.expensemanagement.ui.home.add_wallet.AddNewWalletFragment"
+        android:id="@+id/createrWalletFragment"
+        android:name="com.android.pokhodai.expensemanagement.ui.home.creater.CreaterWalletFragment"
         android:label="AddNewWalletFragment"
-        tools:layout="@layout/fragment_add_new_wallet">
+        tools:layout="@layout/fragment_creater_wallet">
+
         <action
-            android:id="@+id/action_addNewWalletFragment_to_incomeDialog"
+            android:id="@+id/action_createrWalletFragment_to_incomeDialog"
             app:destination="@id/incomeDialog" />
         <action
-            android:id="@+id/action_addNewWalletFragment_to_expenseDialog"
+            android:id="@+id/action_createrWalletFragment_to_expenseDialog"
             app:destination="@id/expenseDialog" />
+
+        <argument
+            android:name="type"
+            app:argType="com.android.pokhodai.expensemanagement.utils.enums.Creater" />
+
+        <argument
+            android:name="wallet"
+            android:defaultValue="@null"
+            app:argType="com.android.pokhodai.expensemanagement.data.room.entities.WalletEntity"
+            app:nullable="true" />
+
     </fragment>
 
     <dialog
         android:id="@+id/expenseDialog"
-        android:name="com.android.pokhodai.expensemanagement.ui.home.add_wallet.expense.ExpenseDialog"
+        android:name="com.android.pokhodai.expensemanagement.ui.home.creater.expense.ExpenseDialog"
         android:label="ExpenseDialog"
         tools:layout="@layout/dialog_categories">
 
@@ -56,13 +68,13 @@
 
     <dialog
         android:id="@+id/incomeDialog"
-        android:name="com.android.pokhodai.expensemanagement.ui.home.add_wallet.income.IncomeDialog"
+        android:name="com.android.pokhodai.expensemanagement.ui.home.creater.income.IncomeDialog"
         android:label="IncomeDialog"
         tools:layout="@layout/dialog_categories" />
 
     <fragment
         android:id="@+id/addNewCategoryFragment"
-        android:name="com.android.pokhodai.expensemanagement.ui.home.add_wallet.expense.add_new_category.AddNewCategoryFragment"
+        android:name="com.android.pokhodai.expensemanagement.ui.home.creater.expense.add_new_category.AddNewCategoryFragment"
         android:label="AddNewCategoryFragment"
         tools:layout="@layout/fragment_add_new_category">
         <action
@@ -72,7 +84,7 @@
 
     <dialog
         android:id="@+id/iconsDialog"
-        android:name="com.android.pokhodai.expensemanagement.ui.home.add_wallet.expense.add_new_category.icons.IconsDialog"
+        android:name="com.android.pokhodai.expensemanagement.ui.home.creater.expense.add_new_category.icons.IconsDialog"
         android:label="IconsDialog"
         tools:layout="@layout/dialog_categories" />
 

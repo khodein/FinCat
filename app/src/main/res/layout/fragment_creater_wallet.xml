@@ -8,39 +8,38 @@
     android:background="@color/white">
 
     <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/ablAddNewWallet"
+        android:id="@+id/ablCreaterWallet"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/white"
         app:elevation="0dp">
 
         <com.google.android.material.appbar.MaterialToolbar
-            android:id="@+id/tbAddNewWallet"
+            android:id="@+id/tbCreaterWallet"
             style="@style/Expense.Toolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/grey_100"
             app:layout_scrollFlags="enterAlwaysCollapsed"
-            app:navigationIcon="@drawable/ic_arrow_back"
-            app:title="@string/add_new_wallet_title" />
+            app:navigationIcon="@drawable/ic_arrow_back" />
 
     </com.google.android.material.appbar.AppBarLayout>
 
     <androidx.core.widget.NestedScrollView
-        android:id="@+id/nsvAddNewWallet"
+        android:id="@+id/nsvCreaterWallet"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fillViewport="true"
         app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
 
         <LinearLayout
-            android:id="@+id/llColumnAddNewWallet"
+            android:id="@+id/llColumnCreaterWallet"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/tilTypeAddNewWallet"
+                android:id="@+id/tilTypeCreaterWallet"
                 style="@style/DropDownTextInputLayoutStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -49,7 +48,7 @@
                 app:hintEnabled="false">
 
                 <com.google.android.material.textfield.MaterialAutoCompleteTextView
-                    android:id="@+id/txtTypeAddNewWallet"
+                    android:id="@+id/txtTypeCreaterWallet"
                     style="@style/TextEditTextStyle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -61,7 +60,7 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <LinearLayout
-                android:id="@+id/llRowAddNewCategory"
+                android:id="@+id/llRowCreaterWallet"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
@@ -72,7 +71,7 @@
                 android:paddingHorizontal="16dp">
 
                 <ImageView
-                    android:id="@+id/ivAddNewCategory"
+                    android:id="@+id/ivCreaterWallet"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:layout_gravity="center"
@@ -81,14 +80,14 @@
                     tools:ignore="ContentDescription" />
 
                 <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/tilCategoryAddNewWallet"
+                    android:id="@+id/tilCategoryCreaterWallet"
                     style="@style/TextInputLayoutStyle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     app:hintEnabled="false">
 
                     <com.google.android.material.textfield.MaterialAutoCompleteTextView
-                        android:id="@+id/txtCategoryNameAddNewWallet"
+                        android:id="@+id/txtCategoryNameCreaterWallet"
                         style="@style/TextEditTextStyle"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -108,7 +107,7 @@
             </LinearLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/tilDateAddNewWallet"
+                android:id="@+id/tilDateCreaterWallet"
                 style="@style/TextInputLayoutStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -117,7 +116,7 @@
                 app:hintEnabled="false">
 
                 <com.google.android.material.textfield.MaterialAutoCompleteTextView
-                    android:id="@+id/txtDateNameAddNewWallet"
+                    android:id="@+id/txtDateNameCreaterWallet"
                     style="@style/TextEditTextStyle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -134,7 +133,7 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/tilAmountAddNewWallet"
+                android:id="@+id/tilAmountCreaterWallet"
                 style="@style/TextInputLayoutStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -142,17 +141,18 @@
                 android:layout_marginTop="12dp">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/txtAmountAddNewWallet"
+                    android:id="@+id/txtAmountCreaterWallet"
                     style="@style/TextEditTextStyle"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:hint="@string/add_new_wallet_amount_hint"
+                    android:maxLength="10"
                     android:inputType="number" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/tilDescriptionAddNewWallet"
+                android:id="@+id/tilDescriptionCreaterWallet"
                 style="@style/TextInputLayoutStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -160,7 +160,7 @@
                 android:layout_marginTop="12dp">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/txtDescriptionAddNewWallet"
+                    android:id="@+id/txtDescriptionCreaterWallet"
                     style="@style/TextEditTextStyle"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -178,7 +178,7 @@
                 android:minHeight="35dp" />
 
             <com.google.android.material.button.MaterialButton
-                android:id="@+id/btnAddNewWallet"
+                android:id="@+id/btnCreaterWallet"
                 style="@style/DefaultButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

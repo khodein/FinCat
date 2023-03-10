@@ -1,17 +1,14 @@
-package com.android.pokhodai.expensemanagement.ui.home.add_wallet.expense.add_new_category.icons
+package com.android.pokhodai.expensemanagement.ui.home.creater.expense.add_new_category.icons
 
 import android.os.Bundle
 import android.view.View
 import androidx.core.os.bundleOf
-import androidx.core.view.updatePadding
 import androidx.fragment.app.setFragmentResult
-import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.RecyclerView.LayoutManager
 import com.android.pokhodai.expensemanagement.R
 import com.android.pokhodai.expensemanagement.base.ui.fragments.BaseBottomSheetDialogFragment
 import com.android.pokhodai.expensemanagement.databinding.DialogCategoriesBinding
-import com.android.pokhodai.expensemanagement.ui.home.add_wallet.expense.add_new_category.icons.adapter.IconsAdapter
+import com.android.pokhodai.expensemanagement.ui.home.creater.expense.add_new_category.icons.adapter.IconsAdapter
 import com.android.pokhodai.expensemanagement.utils.decorations.GridSpacingItemDecoration
 import com.android.pokhodai.expensemanagement.utils.enums.Icons
 import dagger.hilt.android.AndroidEntryPoint

@@ -91,13 +91,10 @@ dependencies {
     implementation "androidx.room:room-paging:$room_version"
 
     //Pagination
-    implementation 'androidx.paging:paging-runtime-ktx:3.1.1'
+    implementation "androidx.paging:paging-runtime-ktx:$pagination_version"
 
     //SwipeRefresh
-    implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0"
-
-    //Balloon
-    implementation "com.github.skydoves:balloon:1.5.2"
+    implementation "androidx.swiperefreshlayout:swiperefreshlayout:$splash_version"
 
     //Test
     testImplementation 'junit:junit:4.13.2'

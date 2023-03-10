@@ -1,7 +1,6 @@
-package com.android.pokhodai.expensemanagement.ui.home.add_wallet.expense
+package com.android.pokhodai.expensemanagement.ui.home.creater.expense
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.core.os.bundleOf
 import androidx.core.view.isVisible
@@ -10,8 +9,8 @@ import androidx.fragment.app.viewModels
 import com.android.pokhodai.expensemanagement.R
 import com.android.pokhodai.expensemanagement.base.ui.fragments.BaseBottomSheetDialogFragment
 import com.android.pokhodai.expensemanagement.databinding.DialogCategoriesBinding
-import com.android.pokhodai.expensemanagement.ui.home.add_wallet.adapter.CategoriesAdapter
-import com.android.pokhodai.expensemanagement.ui.home.add_wallet.income.IncomeDialog
+import com.android.pokhodai.expensemanagement.ui.home.creater.adapter.CategoriesAdapter
+import com.android.pokhodai.expensemanagement.ui.home.creater.income.IncomeDialog
 import com.android.pokhodai.expensemanagement.utils.decorations.GridSpacingItemDecoration
 import com.android.pokhodai.expensemanagement.utils.navigateSafe
 import com.android.pokhodai.expensemanagement.utils.observe

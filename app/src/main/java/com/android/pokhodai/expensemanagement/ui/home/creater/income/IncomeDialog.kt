@@ -1,11 +1,11 @@
-package com.android.pokhodai.expensemanagement.ui.home.add_wallet.income
+package com.android.pokhodai.expensemanagement.ui.home.creater.income
 
 import androidx.core.os.bundleOf
 import androidx.fragment.app.setFragmentResult
 import androidx.fragment.app.viewModels
 import com.android.pokhodai.expensemanagement.base.ui.fragments.BaseBottomSheetDialogFragment
 import com.android.pokhodai.expensemanagement.databinding.DialogCategoriesBinding
-import com.android.pokhodai.expensemanagement.ui.home.add_wallet.adapter.CategoriesAdapter
+import com.android.pokhodai.expensemanagement.ui.home.creater.adapter.CategoriesAdapter
 import com.android.pokhodai.expensemanagement.utils.decorations.GridSpacingItemDecoration
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject

@@ -1,4 +1,4 @@
-package com.android.pokhodai.expensemanagement.ui.home.add_wallet.expense.add_new_category
+package com.android.pokhodai.expensemanagement.ui.home.creater.expense.add_new_category
 
 import android.view.inputmethod.EditorInfo
 import androidx.core.os.bundleOf
@@ -10,7 +10,7 @@ import androidx.fragment.app.viewModels
 import com.android.pokhodai.expensemanagement.R
 import com.android.pokhodai.expensemanagement.base.ui.fragments.BaseFragment
 import com.android.pokhodai.expensemanagement.databinding.FragmentAddNewCategoryBinding
-import com.android.pokhodai.expensemanagement.ui.home.add_wallet.expense.add_new_category.icons.IconsDialog
+import com.android.pokhodai.expensemanagement.ui.home.creater.expense.add_new_category.icons.IconsDialog
 import com.android.pokhodai.expensemanagement.utils.enums.Icons
 import com.android.pokhodai.expensemanagement.utils.navigateSafe
 import com.android.pokhodai.expensemanagement.utils.observe

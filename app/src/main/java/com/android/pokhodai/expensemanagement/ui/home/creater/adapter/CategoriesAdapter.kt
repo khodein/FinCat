@@ -1,10 +1,8 @@
-package com.android.pokhodai.expensemanagement.ui.home.add_wallet.adapter
+package com.android.pokhodai.expensemanagement.ui.home.creater.adapter
 
 import android.os.Parcelable
 import com.android.pokhodai.expensemanagement.base.ui.adapter.BaseListAdapter
 import com.android.pokhodai.expensemanagement.databinding.ItemCategoryBinding
-import com.android.pokhodai.expensemanagement.databinding.ItemEmptyBinding
-import com.android.pokhodai.expensemanagement.ui.home.add_wallet.income.IncomeViewModel
 import com.android.pokhodai.expensemanagement.utils.enums.Icons
 import kotlinx.parcelize.Parcelize
 import javax.inject.Inject

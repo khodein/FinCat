@@ -1,22 +1,18 @@
 package com.android.pokhodai.expensemanagement.ui.home
 
-import android.util.Log
 import androidx.core.net.toUri
 import androidx.fragment.app.setFragmentResultListener
 import androidx.fragment.app.viewModels
 import androidx.paging.LoadState
-import androidx.recyclerview.widget.RecyclerView
 import com.android.pokhodai.expensemanagement.R
 import com.android.pokhodai.expensemanagement.base.ui.fragments.BaseFragment
 import com.android.pokhodai.expensemanagement.databinding.FragmentHomeBinding
 import com.android.pokhodai.expensemanagement.ui.home.adapter.WalletAdapter
-import com.android.pokhodai.expensemanagement.ui.home.add_wallet.AddNewWalletFragment
+import com.android.pokhodai.expensemanagement.ui.home.creater.CreaterWalletFragment
 import com.android.pokhodai.expensemanagement.ui.date_picker.MonthPickerDialog
+import com.android.pokhodai.expensemanagement.utils.*
 import com.android.pokhodai.expensemanagement.utils.ClickUtils.setOnThrottleClickListener
-import com.android.pokhodai.expensemanagement.utils.LocalDateFormatter
-import com.android.pokhodai.expensemanagement.utils.navigateSafe
-import com.android.pokhodai.expensemanagement.utils.observe
-import com.android.pokhodai.expensemanagement.utils.observeLatest
+import com.android.pokhodai.expensemanagement.utils.enums.Creater
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.distinctUntilChangedBy
 import kotlinx.coroutines.flow.filter
@@ -40,12 +36,13 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
     override fun setListeners() = with(binding) {
         btnAddNewHome.setOnClickListener {
             navigationController.navigateSafe(
-                HomeFragmentDirections.actionHomeFragmentToAddNewWalletFragment()
+                HomeFragmentDirections.actionHomeFragmentToCreaterWalletFragment(type = Creater.CREATE)
             )
         }
 
         srlHome.setOnRefreshListener {
             viewModel.onSwipeRefresh()
+            navViewModel.onSwipeRefresh()
         }
 
         incMonthSelectorHome.run {
@@ -66,18 +63,33 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
             }
         }
 
-        adapter.setOnLongClickActionListener {
-            viewModel.onClickDeleteWallet(it)
+        adapter.setOnLongClickActionListener { action ->
+            when (action) {
+                is WalletAdapter.ActionWallet.ActionDeleteWallet -> {
+                    viewModel.onClickDeleteWallet(action.id)
+                }
+                is WalletAdapter.ActionWallet.ActionEditWallet -> {
+                    navigationController.navigateSafe(
+                        HomeFragmentDirections.actionHomeFragmentToCreaterWalletFragment(
+                            type = Creater.EDIT,
+                            wallet = action.wallet
+                        )
+                    )
+                }
+            }
+
         }
 
-        setFragmentResultListener(AddNewWalletFragment.ADD_NEW_WALLET) { _, _ ->
+        setFragmentResultListener(CreaterWalletFragment.ADD_NEW_WALLET) { _, _ ->
             viewModel.onSumIncomeAndExpense()
+            navViewModel.onSwipeRefresh()
             adapter.refresh()
         }
 
         setFragmentResultListener(MonthPickerDialog.CHANGE_DATE) { _, bundle ->
             val timeInMillis = bundle.getLong(MonthPickerDialog.DATE)
             viewModel.onChangeMonthDate(LocalDateFormatter.from(timeInMillis))
+            viewModel.onSumIncomeAndExpense()
         }
     }
 

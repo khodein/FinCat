@@ -1,10 +1,10 @@
-package com.android.pokhodai.expensemanagement.ui.home.add_wallet.expense
+package com.android.pokhodai.expensemanagement.ui.home.creater.expense
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.android.pokhodai.expensemanagement.data.room.entities.ExpenseEntity
 import com.android.pokhodai.expensemanagement.repositories.ExpenseRepository
-import com.android.pokhodai.expensemanagement.ui.home.add_wallet.adapter.CategoriesAdapter
+import com.android.pokhodai.expensemanagement.ui.home.creater.adapter.CategoriesAdapter
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
