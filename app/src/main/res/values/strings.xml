@@ -28,7 +28,11 @@
     <!--  /Report  -->
 
     <!--  Settings  -->
-
+    <string name="settings_manage">Manage categories</string>
+    <string name="settings_currency">Choose currency</string>
+    <string name="settings_language">Choose language</string>
+    <string name="settings_questions">Asked questions</string>
+    <string name="settings_logout">Logout</string>
     <!--  /Settings  -->
 
     <!--  AddNewWallet  -->

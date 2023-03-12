@@ -47,4 +47,13 @@
     <color name="icons_E6EE9C">#E6EE9C</color>
     <color name="icons_FFE0B2">#FFE0B2</color>
     <color name="icons_FFF9C4">#FFF9C4</color>
+
+    <array name="colorsAvatar">
+        <item>#f64c73</item>
+        <item>#20d2bb</item>
+        <item>#FF8B67</item>
+        <item>#8BC34A</item>
+        <item>#FFEB3B</item>
+        <item>#c873f4</item>
+    </array>
 </resources>

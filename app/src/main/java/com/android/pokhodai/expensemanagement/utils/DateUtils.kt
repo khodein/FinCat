@@ -23,20 +23,11 @@ class LocalDateFormatter(
 
     fun isItThisYear() = now().localDateTime.year == localDateTime.year
 
-    fun d() = format("d")
-    fun HH_mm() = format("HH:mm")
     fun dd_MM_yyyy() = format("dd.MM.yyyy")
-    fun d_M_yyyy() = format("d.M.yyyy")
-    fun dd_MM_yy() = format("dd.MM.yy")
-    fun dd_MMMM() = format("dd MMMM")
     fun MMMM_yyyy() = format("MMMM yyyy")
     fun yyyy() = format("yyyy")
-    fun dd_MMM() = format("dd MMM")
     fun MMMM() = format("MMMM")
-    fun dd_MMMM_HH_mm() = format("dd MMMM HH:mm")
-    fun dd_MMMM_yyyy_HH_mm() = format("dd MMMM yyyy HH:mm")
     fun dd_MMMM_yyyy() = format("dd MMMM yyyy")
-    fun yyyy_MM_dd_T_HH_mm_ss() = format("yyyy-MM-dd'T'HH:mm:ss")
     fun toIsoFormatWithoutTZ() = format(ISO_FORMAT)
 
     fun timeInMillis() = localDateTime.atZone(ZoneOffset.UTC).toInstant().toEpochMilli()

@@ -1,4 +1,4 @@
-package com.android.pokhodai.expensemanagement.data.modals
+package com.android.pokhodai.expensemanagement.data.models
 
 import com.android.pokhodai.expensemanagement.utils.enums.Icons
 

@@ -129,6 +129,8 @@ class HomeViewModel @Inject constructor(
 
     fun onChangeMonthDate(date: LocalDateFormatter) {
         _dateFlow.update { date }
+
+        onSumIncomeAndExpense()
     }
 
     fun onClickDeleteWallet(

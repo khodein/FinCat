@@ -3,15 +3,14 @@ package com.android.pokhodai.expensemanagement.ui.report.adapter
 import android.annotation.SuppressLint
 import com.android.pokhodai.expensemanagement.R
 import com.android.pokhodai.expensemanagement.base.ui.adapter.BaseListAdapter
-import com.android.pokhodai.expensemanagement.data.modals.Report
-import com.android.pokhodai.expensemanagement.data.modals.ReportWallet
+import com.android.pokhodai.expensemanagement.data.models.ReportWallet
 import com.android.pokhodai.expensemanagement.databinding.ItemReportBinding
 import com.android.pokhodai.expensemanagement.databinding.ItemWalletEmptyBinding
-import com.android.pokhodai.expensemanagement.utils.enums.Icons
 import java.math.RoundingMode
 import java.text.DecimalFormat
+import javax.inject.Inject
 
-class ReportAdapter: BaseListAdapter<ReportAdapter.ItemReport>() {
+class ReportAdapter @Inject constructor(): BaseListAdapter<ReportAdapter.ItemReport>() {
 
     @SuppressLint("SetTextI18n")
     override fun build() {

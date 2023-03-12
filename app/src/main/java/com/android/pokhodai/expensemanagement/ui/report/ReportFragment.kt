@@ -11,13 +11,15 @@ import com.android.pokhodai.expensemanagement.utils.LocalDateFormatter
 import com.android.pokhodai.expensemanagement.utils.navigateSafe
 import com.android.pokhodai.expensemanagement.utils.observe
 import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class ReportFragment : BaseFragment<FragmentReportBinding>(FragmentReportBinding::inflate) {
 
     private val viewModel by viewModels<ReportViewModel>()
 
-    private val adapter by lazy { ReportAdapter() }
+    @Inject
+    lateinit var adapter: ReportAdapter
 
     override fun onBackPressed() {
         requireActivity().finishAndRemoveTask()
@@ -86,7 +88,5 @@ class ReportFragment : BaseFragment<FragmentReportBinding>(FragmentReportBinding
     companion object {
         const val PLUS = "PLUS"
         const val MINUS = "MINUS"
-        private const val MONTH_PICKER_TAG = "MONTH_PICKER"
     }
-
 }

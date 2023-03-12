@@ -2,7 +2,6 @@ package com.android.pokhodai.expensemanagement.ui.report
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.android.pokhodai.expensemanagement.data.modals.ReportWallet
 import com.android.pokhodai.expensemanagement.repositories.WalletRepository
 import com.android.pokhodai.expensemanagement.ui.home.HomeFragment
 import com.android.pokhodai.expensemanagement.ui.report.adapter.ReportAdapter

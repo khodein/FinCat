@@ -16,13 +16,15 @@ import com.android.pokhodai.expensemanagement.utils.enums.Creater
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.distinctUntilChangedBy
 import kotlinx.coroutines.flow.filter
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::inflate) {
 
     private val viewModel by viewModels<HomeViewModel>()
 
-    private val adapter by lazy { WalletAdapter() }
+    @Inject
+    lateinit var adapter: WalletAdapter
 
     override fun onBackPressed() {
         navViewModel.onClickHardDeepLink("".toUri(), R.id.report_nav_graph)
@@ -36,13 +38,14 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
     override fun setListeners() = with(binding) {
         btnAddNewHome.setOnClickListener {
             navigationController.navigateSafe(
-                HomeFragmentDirections.actionHomeFragmentToCreaterWalletFragment(type = Creater.CREATE)
+                HomeFragmentDirections.actionHomeFragmentToCreaterWalletFragment(
+                    type = Creater.CREATE
+                )
             )
         }
 
         srlHome.setOnRefreshListener {
-            viewModel.onSwipeRefresh()
-            navViewModel.onSwipeRefresh()
+            onSwipeRefresh()
         }
 
         incMonthSelectorHome.run {
@@ -81,16 +84,17 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
         }
 
         setFragmentResultListener(CreaterWalletFragment.ADD_NEW_WALLET) { _, _ ->
-            viewModel.onSumIncomeAndExpense()
-            navViewModel.onSwipeRefresh()
-            adapter.refresh()
+            onSwipeRefresh()
         }
 
         setFragmentResultListener(MonthPickerDialog.CHANGE_DATE) { _, bundle ->
-            val timeInMillis = bundle.getLong(MonthPickerDialog.DATE)
-            viewModel.onChangeMonthDate(LocalDateFormatter.from(timeInMillis))
-            viewModel.onSumIncomeAndExpense()
+            viewModel.onChangeMonthDate(LocalDateFormatter.from(bundle.getLong(MonthPickerDialog.DATE)))
         }
+    }
+
+    private fun onSwipeRefresh() {
+        viewModel.onSwipeRefresh()
+        navViewModel.onSwipeRefresh()
     }
 
     override fun setObservable() = with(viewModel) {

@@ -19,8 +19,6 @@ class MonthPickerView : FrameLayout {
     private val binding = ViewMonthPickerBinding.inflate(LayoutInflater.from(context), this, true)
     private val adapter by lazy { MonthAdapter() }
 
-    private val list = mutableListOf<MonthAdapter.Month>()
-
     private var onClickMonthActionListener: ((LocalDateFormatter) -> Unit)? = null
 
     fun setOnClickMonthActionListener(action: (LocalDateFormatter) -> Unit) {
@@ -91,7 +89,7 @@ class MonthPickerView : FrameLayout {
     }
 
     private fun genMonths() {
-        list.clear()
+        val list = mutableListOf<MonthAdapter.Month>()
         var date = yearNow
         repeat(12) {
             list.add(

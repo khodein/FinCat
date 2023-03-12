@@ -22,8 +22,9 @@ import com.android.pokhodai.expensemanagement.utils.dp
 import com.android.pokhodai.expensemanagement.utils.enums.Creater
 import com.android.pokhodai.expensemanagement.utils.getTextDate
 import com.google.android.material.shape.CornerFamily
+import javax.inject.Inject
 
-class WalletAdapter: BasePagingAdapter<WalletAdapter.ItemWallet>() {
+class WalletAdapter @Inject constructor(): BasePagingAdapter<WalletAdapter.ItemWallet>() {
 
     private val today = LocalDateFormatter.today()
 

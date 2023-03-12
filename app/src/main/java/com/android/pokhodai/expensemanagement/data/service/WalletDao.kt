@@ -1,7 +1,7 @@
 package com.android.pokhodai.expensemanagement.data.service
 
 import androidx.room.*
-import com.android.pokhodai.expensemanagement.data.modals.ReportWallet
+import com.android.pokhodai.expensemanagement.data.models.ReportWallet
 import com.android.pokhodai.expensemanagement.data.room.entities.WalletEntity
 
 @Dao
