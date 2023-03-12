@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/clSettings"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -8,37 +10,87 @@
         android:id="@+id/ablSettings"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/white"
+        android:background="@color/grey_200"
         app:elevation="0dp">
 
-        <com.google.android.material.appbar.MaterialToolbar
-            android:id="@+id/tbSettings"
-            style="@style/Expense.Toolbar"
+        <com.google.android.material.appbar.CollapsingToolbarLayout
+            android:id="@+id/ctlSetting"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/grey_200"
-            app:layout_scrollFlags="enterAlwaysCollapsed"
-            app:title="@string/settings_title"
-            app:titleTextAppearance="@style/TitleStyle" />
+            android:background="@color/transparent"
+            android:elevation="0dp"
+            app:layout_scrollFlags="scroll|enterAlways|snap">
+
+            <LinearLayout
+                android:id="@+id/llColumnToolbarSetting"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <com.google.android.material.appbar.MaterialToolbar
+                    android:id="@+id/tbSettings"
+                    style="@style/Expense.Toolbar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/transparent"
+                    app:title="@string/settings_title"
+                    app:titleTextAppearance="@style/TitleStyle" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingHorizontal="16dp"
+                    android:paddingTop="30dp"
+                    android:paddingBottom="25dp">
+
+                    <com.android.pokhodai.expensemanagement.utils.view.avatar.AvatarView
+                        android:id="@+id/avSetting"
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:layout_gravity="center" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginStart="10dp"
+                        android:orientation="vertical">
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:id="@+id/txtNameSettings"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:textAppearance="@style/Subtitle1Style"
+                            android:textColor="@color/grey_900"
+                            tools:text="John Doe" />
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:id="@+id/txtEmailSettings"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:textAppearance="@style/CaptionStyle"
+                            android:textColor="@color/grey_800"
+                            tools:text="john.doe@gmail.com" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </com.google.android.material.appbar.CollapsingToolbarLayout>
 
     </com.google.android.material.appbar.AppBarLayout>
 
-    <androidx.core.widget.NestedScrollView
-        android:id="@+id/nsvSettings"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvSettings"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
-
-        <LinearLayout
-            android:id="@+id/llColumnSettings"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
-
-
-
-        </LinearLayout>
-
-    </androidx.core.widget.NestedScrollView>
+        android:orientation="vertical"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
