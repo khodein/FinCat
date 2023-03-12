@@ -6,6 +6,7 @@ import android.widget.ArrayAdapter
 import androidx.core.os.bundleOf
 import androidx.core.view.isVisible
 import androidx.core.widget.doAfterTextChanged
+import androidx.fragment.app.clearFragmentResult
 import androidx.fragment.app.setFragmentResult
 import androidx.fragment.app.setFragmentResultListener
 import androidx.fragment.app.viewModels
@@ -13,7 +14,7 @@ import com.android.pokhodai.expensemanagement.R
 import com.android.pokhodai.expensemanagement.base.ui.fragments.BaseFragment
 import com.android.pokhodai.expensemanagement.databinding.FragmentCreaterWalletBinding
 import com.android.pokhodai.expensemanagement.ui.home.creater.adapter.CategoriesAdapter
-import com.android.pokhodai.expensemanagement.ui.home.creater.expense.add_new_category.AddNewCategoryFragment
+import com.android.pokhodai.expensemanagement.ui.home.creater.expense.creater_category.CreaterCategoryFragment
 import com.android.pokhodai.expensemanagement.ui.home.creater.income.IncomeDialog
 import com.android.pokhodai.expensemanagement.utils.ClickUtils.setOnThrottleClickListener
 import com.android.pokhodai.expensemanagement.utils.enums.Creater
@@ -157,8 +158,9 @@ class CreaterWalletFragment :
             arguments?.remove(IncomeDialog.NEW_CATEGORY)
         }
 
-        setFragmentResultListener(AddNewCategoryFragment.NEW_CATEGORY_SUCCESS) { key, bundle ->
+        setFragmentResultListener(CreaterCategoryFragment.UPDATE_CATEGORY_SUCCESS) { _, _ ->
             onOpenIncomeOrExpenseDialog()
+            clearFragmentResult(CreaterCategoryFragment.UPDATE_CATEGORY_SUCCESS)
         }
     }
 

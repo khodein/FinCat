@@ -23,6 +23,31 @@
         android:id="@+id/managerCategoriesFragment"
         android:name="com.android.pokhodai.expensemanagement.ui.settings.manager.ManagerCategoriesFragment"
         android:label="ManagerCategoriesFragment"
-        tools:layout="@layout/fragment_manager_categories"/>
+        tools:layout="@layout/fragment_manager_categories">
+
+        <action
+            android:id="@+id/action_managerCategoriesFragment_to_creater_category_nav_graph"
+            app:destination="@id/creater_category_nav_graph"
+            app:enterAnim="@anim/slide_in"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/slide_out">
+
+            <argument
+                android:name="type"
+                app:argType="com.android.pokhodai.expensemanagement.utils.enums.Creater" />
+
+            <argument
+                android:name="expense"
+                app:nullable="true"
+                android:defaultValue="@null"
+                app:argType="com.android.pokhodai.expensemanagement.data.room.entities.ExpenseEntity" />
+
+        </action>
+
+    </fragment>
+
+    <include
+        app:graph="@navigation/creater_category_nav_graph" />
 
 </navigation>

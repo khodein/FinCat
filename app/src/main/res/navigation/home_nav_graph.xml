@@ -57,12 +57,17 @@
         tools:layout="@layout/dialog_categories">
 
         <action
-            android:id="@+id/action_expenseDialog_to_addNewCategoryFragment"
-            app:destination="@id/addNewCategoryFragment"
+            android:id="@+id/action_createrWalletFragment_to_creater_category_nav_graph"
+            app:destination="@id/creater_category_nav_graph"
             app:enterAnim="@anim/slide_in"
             app:exitAnim="@anim/fade_out"
             app:popEnterAnim="@anim/fade_in"
-            app:popExitAnim="@anim/slide_out" />
+            app:popExitAnim="@anim/slide_out">
+
+            <argument
+                android:name="type"
+                app:argType="com.android.pokhodai.expensemanagement.utils.enums.Creater" />
+        </action>
 
     </dialog>
 
@@ -70,22 +75,6 @@
         android:id="@+id/incomeDialog"
         android:name="com.android.pokhodai.expensemanagement.ui.home.creater.income.IncomeDialog"
         android:label="IncomeDialog"
-        tools:layout="@layout/dialog_categories" />
-
-    <fragment
-        android:id="@+id/addNewCategoryFragment"
-        android:name="com.android.pokhodai.expensemanagement.ui.home.creater.expense.add_new_category.AddNewCategoryFragment"
-        android:label="AddNewCategoryFragment"
-        tools:layout="@layout/fragment_add_new_category">
-        <action
-            android:id="@+id/action_addNewCategoryFragment_to_iconsDialog"
-            app:destination="@id/iconsDialog" />
-    </fragment>
-
-    <dialog
-        android:id="@+id/iconsDialog"
-        android:name="com.android.pokhodai.expensemanagement.ui.home.creater.expense.add_new_category.icons.IconsDialog"
-        android:label="IconsDialog"
         tools:layout="@layout/dialog_categories" />
 
     <dialog
@@ -99,5 +88,7 @@
             app:argType="long" />
 
     </dialog>
+
+    <include app:graph="@navigation/creater_category_nav_graph" />
 
 </navigation>

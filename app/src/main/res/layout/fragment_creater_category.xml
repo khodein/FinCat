@@ -4,36 +4,37 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/clAddNewCategory"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/white">
 
     <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/ablAddNewCategory"
+        android:id="@+id/ablCreaterCategory"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/white"
         app:elevation="0dp">
 
         <com.google.android.material.appbar.MaterialToolbar
-            android:id="@+id/tbAddNewCategory"
+            android:id="@+id/tbCreaterCategory"
             style="@style/Expense.Toolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/grey_100"
             app:layout_scrollFlags="enterAlwaysCollapsed"
             app:navigationIcon="@drawable/ic_arrow_back"
-            app:title="@string/add_new_category_title" />
+            app:title="@string/creater_category_title_add" />
 
     </com.google.android.material.appbar.AppBarLayout>
 
     <LinearLayout
-        android:id="@+id/llColumnAddNewCategory"
+        android:id="@+id/llColumnCreaterCategory"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
         app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
 
         <LinearLayout
-            android:id="@+id/llRowAddNewCategory"
+            android:id="@+id/llRowCreaterCategory"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
@@ -41,7 +42,7 @@
             android:paddingHorizontal="16dp">
 
             <ImageView
-                android:id="@+id/ivAddNewCategory"
+                android:id="@+id/ivCreaterCategory"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_gravity="center"
@@ -49,21 +50,21 @@
                 tools:ignore="ContentDescription" />
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/tilCategoryNameAddNewCategory"
+                android:id="@+id/tilCategoryNameCreaterCategory"
                 style="@style/TextInputLayoutStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                app:hintEnabled="false"
-                android:layout_marginStart="20dp">
+                android:layout_marginStart="20dp"
+                app:hintEnabled="false">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/txtCategoryNameAddNewCategory"
+                    android:id="@+id/txtCategoryNameCreaterCategory"
                     style="@style/TextEditTextStyle"
-                    android:imeOptions="actionDone"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:hint="@string/add_new_category_hint"
+                    android:hint="@string/creater_category_hint"
+                    android:imeOptions="actionDone"
                     android:inputType="text" />
 
             </com.google.android.material.textfield.TextInputLayout>
@@ -77,14 +78,14 @@
             android:minHeight="20dp" />
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/btnAddNewCategory"
+            android:id="@+id/btnCreaterCategory"
             style="@style/DefaultButton"
-            android:enabled="false"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="16dp"
             android:layout_marginBottom="20dp"
-            android:text="@string/add_new_category_title" />
+            android:enabled="false"
+            android:text="@string/creater_category_title_add" />
 
     </LinearLayout>
 

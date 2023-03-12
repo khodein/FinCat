@@ -1,4 +1,4 @@
-package com.android.pokhodai.expensemanagement.ui.home.creater.expense.add_new_category.icons
+package com.android.pokhodai.expensemanagement.ui.home.creater.expense.creater_category.icons
 
 import android.os.Bundle
 import android.view.View
@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.android.pokhodai.expensemanagement.R
 import com.android.pokhodai.expensemanagement.base.ui.fragments.BaseBottomSheetDialogFragment
 import com.android.pokhodai.expensemanagement.databinding.DialogCategoriesBinding
-import com.android.pokhodai.expensemanagement.ui.home.creater.expense.add_new_category.icons.adapter.IconsAdapter
+import com.android.pokhodai.expensemanagement.ui.home.creater.expense.creater_category.icons.adapter.IconsAdapter
 import com.android.pokhodai.expensemanagement.utils.decorations.GridSpacingItemDecoration
 import com.android.pokhodai.expensemanagement.utils.enums.Icons
 import dagger.hilt.android.AndroidEntryPoint

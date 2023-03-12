@@ -16,8 +16,8 @@
             android:id="@+id/ctlHome"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:elevation="0dp"
             android:background="@color/transparent"
+            android:elevation="0dp"
             app:layout_scrollFlags="scroll|enterAlways|snap">
 
             <LinearLayout
@@ -51,59 +51,52 @@
         android:layout_height="match_parent"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-        <FrameLayout
-            android:id="@+id/flBoxHome"
+        <androidx.core.widget.NestedScrollView
+            android:id="@+id/nsvHome"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:fillViewport="true">
 
-            <androidx.core.widget.NestedScrollView
-                android:id="@+id/nsvHome"
+            <LinearLayout
+                android:id="@+id/llColumnHome"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:fillViewport="true">
+                android:orientation="vertical">
 
-                <LinearLayout
-                    android:id="@+id/llColumnHome"
+                <include
+                    android:id="@+id/incStatusHome"
+                    layout="@layout/item_status"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="16dp"
+                    android:layout_marginTop="20dp" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvHome"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:orientation="vertical">
+                    android:clipToPadding="false"
+                    android:orientation="vertical"
+                    android:overScrollMode="never"
+                    android:paddingHorizontal="16dp"
+                    android:paddingBottom="80dp"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 
-                    <include
-                        android:id="@+id/incStatusHome"
-                        layout="@layout/item_status"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginHorizontal="16dp"
-                        android:layout_marginTop="20dp" />
+            </LinearLayout>
 
-                    <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/rvHome"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:clipToPadding="false"
-                        android:orientation="vertical"
-                        android:overScrollMode="never"
-                        android:paddingHorizontal="16dp"
-                        android:paddingBottom="80dp"
-                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
-
-                </LinearLayout>
-
-            </androidx.core.widget.NestedScrollView>
-
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/btnAddNewHome"
-                style="@style/DefaultButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center|bottom"
-                android:layout_marginBottom="20dp"
-                android:text="@string/home_add"
-                android:textAppearance="@style/ButtonTextStyle"
-                app:icon="@drawable/ic_add_plus_circle" />
-
-        </FrameLayout>
+        </androidx.core.widget.NestedScrollView>
 
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnAddNewHome"
+        style="@style/DefaultButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center|bottom"
+        android:layout_marginBottom="20dp"
+        android:text="@string/home_add"
+        android:textAppearance="@style/ButtonTextStyle"
+        app:icon="@drawable/ic_add_plus_circle" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

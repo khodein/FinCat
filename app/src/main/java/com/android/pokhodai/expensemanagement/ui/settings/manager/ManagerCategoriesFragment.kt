@@ -1,10 +1,16 @@
 package com.android.pokhodai.expensemanagement.ui.settings.manager
 
+import androidx.fragment.app.clearFragmentResult
+import androidx.fragment.app.setFragmentResultListener
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.ItemTouchHelper
 import com.android.pokhodai.expensemanagement.base.ui.fragments.BaseFragment
 import com.android.pokhodai.expensemanagement.databinding.FragmentManagerCategoriesBinding
+import com.android.pokhodai.expensemanagement.ui.home.creater.expense.creater_category.CreaterCategoryFragment
 import com.android.pokhodai.expensemanagement.ui.settings.manager.adapter.ManagerCategoriesAdapter
+import com.android.pokhodai.expensemanagement.utils.ClickUtils.setOnThrottleClickListener
+import com.android.pokhodai.expensemanagement.utils.enums.Creater
+import com.android.pokhodai.expensemanagement.utils.navigateSafe
 import com.android.pokhodai.expensemanagement.utils.observe
 import com.android.pokhodai.expensemanagement.utils.touch_helpers.ItemTouchHelperCallback
 import dagger.hilt.android.AndroidEntryPoint
@@ -29,6 +35,25 @@ class ManagerCategoriesFragment :
             viewModel.onSwipeRefresh()
         }
 
+        btnAddNewManagerCategories.setOnThrottleClickListener {
+            navigationController.navigateSafe(
+                ManagerCategoriesFragmentDirections.actionManagerCategoriesFragmentToCreaterCategoryNavGraph(
+                    type = Creater.CREATE,
+                    expense = null,
+                )
+            )
+        }
+
+        adapter.setOnClickEditActionListener {
+            navigationController.navigateSafe(
+                ManagerCategoriesFragmentDirections.actionManagerCategoriesFragmentToCreaterCategoryNavGraph(
+                    type = Creater.EDIT,
+                    expense = it
+                )
+            )
+            viewModel.onSwipeRefresh()
+        }
+
         tbManagerCategories.setNavigationOnClickListener {
             onBackPressed()
         }
@@ -41,6 +66,11 @@ class ManagerCategoriesFragment :
         helperCallback.setOnMoveActionListener { oldPosition, newPosition ->
             viewModel.onSwapAndUpdateExpenses(oldPosition, newPosition)
             adapter.notifyItemMoved(oldPosition, newPosition)
+        }
+
+        setFragmentResultListener(CreaterCategoryFragment.UPDATE_CATEGORY_SUCCESS) { _, _ ->
+            viewModel.onSwipeRefresh()
+            clearFragmentResult(CreaterCategoryFragment.UPDATE_CATEGORY_SUCCESS)
         }
     }
 

@@ -12,6 +12,7 @@ import com.android.pokhodai.expensemanagement.databinding.DialogCategoriesBindin
 import com.android.pokhodai.expensemanagement.ui.home.creater.adapter.CategoriesAdapter
 import com.android.pokhodai.expensemanagement.ui.home.creater.income.IncomeDialog
 import com.android.pokhodai.expensemanagement.utils.decorations.GridSpacingItemDecoration
+import com.android.pokhodai.expensemanagement.utils.enums.Creater
 import com.android.pokhodai.expensemanagement.utils.navigateSafe
 import com.android.pokhodai.expensemanagement.utils.observe
 import dagger.hilt.android.AndroidEntryPoint
@@ -50,11 +51,16 @@ class ExpenseDialog :
 
     override fun setListeners() = with(binding) {
         btnAddNewCategories.setOnClickListener {
-            navigationController.navigateSafe(ExpenseDialogDirections.actionExpenseDialogToAddNewCategoryFragment())
+            navigationController.navigateSafe(
+                ExpenseDialogDirections.actionCreaterWalletFragmentToCreaterCategoryNavGraph(Creater.CREATE)
+            )
         }
 
         adapter.setOnClickCategoryActionListener {
-            setFragmentResult(IncomeDialog.NEW_CATEGORY_RESULT, bundleOf(IncomeDialog.NEW_CATEGORY to it))
+            setFragmentResult(
+                IncomeDialog.NEW_CATEGORY_RESULT,
+                bundleOf(IncomeDialog.NEW_CATEGORY to it)
+            )
             dismiss()
         }
 

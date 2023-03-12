@@ -39,6 +39,7 @@
     <string name="manager_categories_title">Manage categories</string>
     <string name="manager_categories_edit">Edit</string>
     <string name="manager_categories_empty">Categories is empty!</string>
+    <string name="manager_categories_add_new">Add new category</string>
     <!--  /ManagerCategories  -->
 
     <!--  AddNewWallet  -->
@@ -80,9 +81,10 @@
     <!--  /Expense  -->
 
     <!--  AddNewCategory  -->
-    <string name="add_new_category_title">Add new category</string>
-    <string name="add_new_category_hint">Category name</string>
-    <string name="add_new_category_name">This name already exists, please select a new one!</string>
+    <string name="creater_category_title_add">Add new category</string>
+    <string name="creater_category_title_edit">Edit category</string>
+    <string name="creater_category_hint">Category name</string>
+    <string name="creater_category_name">This name already exists, please select a new one!</string>
     <!--  /AddNewCategory  -->
 
     <!--  Icons  -->
