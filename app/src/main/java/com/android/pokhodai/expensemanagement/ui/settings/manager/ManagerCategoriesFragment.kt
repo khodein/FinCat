@@ -33,7 +33,7 @@ class ManagerCategoriesFragment :
             onBackPressed()
         }
 
-        helperCallback.setOnItemDismissActionListener {position ->
+        helperCallback.setOnItemDismissActionListener { position ->
             viewModel.onDeleteExpense(position)
             adapter.notifyItemRemoved(position)
         }
