@@ -11,8 +11,10 @@ import com.android.pokhodai.expensemanagement.data.models.User
 import com.android.pokhodai.expensemanagement.databinding.FragmentSettingsBinding
 import com.android.pokhodai.expensemanagement.ui.home.adapter.WalletAdapter
 import com.android.pokhodai.expensemanagement.ui.settings.adapter.SettingAdapter
+import com.android.pokhodai.expensemanagement.utils.enums.Settings
 import com.android.pokhodai.expensemanagement.utils.navigateSafe
 import com.android.pokhodai.expensemanagement.utils.observe
+import com.android.pokhodai.expensemanagement.utils.showAlert
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
@@ -32,25 +34,52 @@ class SettingsFragment : BaseFragment<FragmentSettingsBinding>(FragmentSettingsB
         rvSettings.adapter = adapter
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        val user = User("Sergei", "Pokhodai", "john.doe@gmail.comsd;lsdl;;lds;lsd;lds;l;lds;lds;lsd;lds;lds;lsd")
-        binding.run {
-            txtNameSettings.text = user.fullName()
-            txtEmailSettings.text = user.email
-            avSetting.user = user
-        }
-    }
-
     override fun setObservable() = with(viewModel) {
         settingsFlow.observe(viewLifecycleOwner) {
             adapter.submitList(it)
         }
+
+        logoutFlow.observe(viewLifecycleOwner) {
+
+        }
+
+        userFlow.observe(viewLifecycleOwner) { user ->
+            binding.run {
+                user?.let {
+                    txtNameSettings.text = user.fullName()
+                    txtEmailSettings.text = user.email
+                    avSetting.user = user
+                }
+            }
+        }
     }
 
     override fun setListeners() = with(binding) {
-        adapter.setOnClickActionListener {
-            navigationController.navigateSafe(SettingsFragmentDirections.actionSettingsFragmentToManagerCategoriesFragment())
+        adapter.setOnClickActionListener { type ->
+            when (type) {
+                Settings.MANAGER -> {
+                    navigationController.navigateSafe(
+                        SettingsFragmentDirections.actionSettingsFragmentToManagerCategoriesFragment()
+                    )
+                }
+                Settings.LOGOUT -> {
+                    showAlert(
+                        getString(R.string.question_logout),
+                        positiveBtnText = getString(R.string.ok),
+                        negativeBtnText = getString(R.string.no)
+                    ) {
+                        viewModel.onLogout()
+                    }
+                }
+                Settings.CHOOSE_LANGUAGE -> {
+                    navigationController.navigateSafe(
+                        SettingsFragmentDirections.actionSettingsFragmentToLanguageDialog()
+                    )
+                }
+                Settings.ASKED_QUESTIONS -> {
+
+                }
+            }
         }
     }
 }

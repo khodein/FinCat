@@ -24,15 +24,17 @@ abstract class PrefDelegateModel(val prefs: SharedPreferences) {
     fun longPref(key: String = "", defaultValue: Long = 0L) =
         defaultPref(key, defaultValue, prefs::getLong, prefs.edit()::putLong)
 
-    inline fun <reified T> putObject(key: String, value: T) {
-        prefs.edit {
-            putString(key, value.toJson())
-        }
-    }
-
-    inline fun <reified T> getObject(key: String): T? {
-        return prefs.getString(key, null)?.fromJson()
-    }
+    protected inline fun <reified T> objPref(defaultKey: String = "", defaultValue: T? = null) =
+        PrefDelegate(
+            key = defaultKey,
+            defaultValue = defaultValue,
+            get = { key, value ->
+                prefs.getString(key, null)?.fromJson() ?: value
+            },
+            set = { key, value ->
+                prefs.edit().putString(key, value.toJson())
+            }
+        )
 
     private fun <T> defaultPref(
         key: String,

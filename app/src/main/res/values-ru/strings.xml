@@ -2,8 +2,8 @@
     <string name="app_name">ExpenseManagement</string>
     <string name="today">TODAY</string>
     <string name="yesterday">YESTERDAY</string>
-    <string name="delete">Удалить</string>
-    <string name="edit">Редактировать</string>
+    <string name="delete">Delete</string>
+    <string name="edit">Edit</string>
     <string name="currency_dollar">$</string>
     <string name="currency_ruble">₽</string>
     <string name="question_logout">Are you sure you want to do this?</string>

@@ -23,7 +23,7 @@ class ReportAdapter @Inject constructor(): BaseListAdapter<ReportAdapter.ItemRep
                 ivReport.setImageResource(item.reportWallet.icon.resId)
                 txtNameReport.text = item.reportWallet.name
                 txtPercentReport.text = "${df.format(item.percent)}%"
-                txtSumReport.text = item.reportWallet.sum
+                txtSumReport.text = "${item.reportWallet.sum}${root.context.getString(item.reportWallet.currency.resId)}"
                 txtCountReport.text = root.context.getString(R.string.report_transactions, item.reportWallet.total.toString())
             }
         }

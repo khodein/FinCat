@@ -17,6 +17,9 @@
             app:exitAnim="@anim/fade_out"
             app:popEnterAnim="@anim/fade_in"
             app:popExitAnim="@anim/slide_out" />
+        <action
+            android:id="@+id/action_settingsFragment_to_languageDialog"
+            app:destination="@id/languageDialog" />
     </fragment>
 
     <fragment
@@ -39,15 +42,20 @@
 
             <argument
                 android:name="expense"
-                app:nullable="true"
                 android:defaultValue="@null"
-                app:argType="com.android.pokhodai.expensemanagement.data.room.entities.ExpenseEntity" />
+                app:argType="com.android.pokhodai.expensemanagement.data.room.entities.ExpenseEntity"
+                app:nullable="true" />
 
         </action>
 
     </fragment>
 
-    <include
-        app:graph="@navigation/creater_category_nav_graph" />
+    <include app:graph="@navigation/creater_category_nav_graph" />
+
+    <dialog
+        android:id="@+id/languageDialog"
+        android:name="com.android.pokhodai.expensemanagement.ui.language.LanguageDialog"
+        android:label="LanguageDialog"
+        tools:layout="@layout/dialog_language" />
 
 </navigation>

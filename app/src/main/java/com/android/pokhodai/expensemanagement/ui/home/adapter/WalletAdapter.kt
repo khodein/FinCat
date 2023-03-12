@@ -20,6 +20,7 @@ import com.android.pokhodai.expensemanagement.databinding.ItemWalletHeaderBindin
 import com.android.pokhodai.expensemanagement.utils.LocalDateFormatter
 import com.android.pokhodai.expensemanagement.utils.dp
 import com.android.pokhodai.expensemanagement.utils.enums.Creater
+import com.android.pokhodai.expensemanagement.utils.enums.Currency
 import com.android.pokhodai.expensemanagement.utils.getTextDate
 import com.google.android.material.shape.CornerFamily
 import javax.inject.Inject
@@ -34,6 +35,7 @@ class WalletAdapter @Inject constructor(): BasePagingAdapter<WalletAdapter.ItemW
         onLongClickActionListener = action
     }
 
+    @SuppressLint("SetTextI18n")
     override fun build() {
         baseViewHolder(ItemWallet.WrapWallet::class, ItemWalletBinding::inflate) { item ->
             binding.run {
@@ -41,7 +43,7 @@ class WalletAdapter @Inject constructor(): BasePagingAdapter<WalletAdapter.ItemW
                 ivAmount.setImageResource(item.wallet.icons.resId)
                 txtNameAmount.text = item.wallet.categoryName
                 txtTypeAmount.text = item.wallet.type
-                txtAmount.text = item.wallet.amount.toString()
+                txtAmount.text = "${item.wallet.amount}${root.context.getString(item.wallet.currency.resId)}"
 
                 dividerBottomWallet.isVisible = !item.bottom
                 val builderShapeModel = cardWallet.shapeAppearanceModel.toBuilder().apply {
@@ -50,7 +52,6 @@ class WalletAdapter @Inject constructor(): BasePagingAdapter<WalletAdapter.ItemW
                     setBottomRightCorner(CornerFamily.ROUNDED, bottom)
                 }
                 cardWallet.shapeAppearanceModel = builderShapeModel.build()
-
 
                 cardWallet.setOnLongClickListener {
                     showMenu(binding.txtAmount, binding.txtAmount.context) {creater ->
@@ -74,7 +75,7 @@ class WalletAdapter @Inject constructor(): BasePagingAdapter<WalletAdapter.ItemW
                 }
                 cardWalletHeader.shapeAppearanceModel = builderShapeModel.build()
                 txtDateWallet.getTextDate(item.date, today)
-                txtCountWallet.text = item.count
+                txtCountWallet.text = "${item.count}${root.context.getString(item.currency.resId)}"
             }
         }
 
@@ -123,7 +124,7 @@ class WalletAdapter @Inject constructor(): BasePagingAdapter<WalletAdapter.ItemW
 
     sealed class ItemWallet {
         data class WrapWallet(val wallet: WalletEntity, var bottom: Boolean = false): ItemWallet()
-        data class WrapHeader(val date: LocalDateFormatter, val count: String): ItemWallet()
+        data class WrapHeader(val date: LocalDateFormatter, val count: String, val currency: Currency): ItemWallet()
         object EmptyWallet: ItemWallet()
     }
 }

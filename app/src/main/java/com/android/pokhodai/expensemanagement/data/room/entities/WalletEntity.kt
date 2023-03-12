@@ -5,6 +5,7 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.android.pokhodai.expensemanagement.utils.LocalDateFormatter
+import com.android.pokhodai.expensemanagement.utils.enums.Currency
 import com.android.pokhodai.expensemanagement.utils.enums.Icons
 import kotlinx.parcelize.Parcelize
 
@@ -20,5 +21,6 @@ data class WalletEntity(
     val type: String,
     val publicatedAt: LocalDateFormatter,
     val dateFormat: String,
-    val monthAndYear: String
+    val monthAndYear: String,
+    val currency: Currency,
 ): Parcelable

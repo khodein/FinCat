@@ -6,10 +6,12 @@ import androidx.lifecycle.viewModelScope
 import com.android.pokhodai.expensemanagement.R
 import com.android.pokhodai.expensemanagement.data.room.entities.WalletEntity
 import com.android.pokhodai.expensemanagement.repositories.WalletRepository
+import com.android.pokhodai.expensemanagement.source.UserDataSource
 import com.android.pokhodai.expensemanagement.ui.home.creater.adapter.CategoriesAdapter
 import com.android.pokhodai.expensemanagement.utils.LocalDateFormatter
 import com.android.pokhodai.expensemanagement.utils.ManagerUtils
 import com.android.pokhodai.expensemanagement.utils.enums.Creater
+import com.android.pokhodai.expensemanagement.utils.enums.Currency
 import com.android.pokhodai.expensemanagement.utils.enums.Icons
 import com.android.pokhodai.expensemanagement.utils.enums.Wallets
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -26,6 +28,7 @@ class CreaterWalletViewModel @Inject constructor(
     managerUtils: ManagerUtils,
     savedStateHandle: SavedStateHandle,
     private val walletRepository: WalletRepository,
+    private val userDataSource: UserDataSource,
 ) : ViewModel() {
 
     val editOrCreateType = CreaterWalletFragmentArgs.fromSavedStateHandle(savedStateHandle).type
@@ -125,7 +128,8 @@ class CreaterWalletViewModel @Inject constructor(
                 type = typeFlow.value,
                 publicatedAt = dateFlow.value,
                 monthAndYear = dateFlow.value.MMMM_yyyy(),
-                dateFormat = dateFlow.value.dd_MMMM_yyyy()
+                dateFormat = dateFlow.value.dd_MMMM_yyyy(),
+                currency = userDataSource.currency ?: Currency.DOLLAR
             )
 
             if (editOrCreateType == Creater.CREATE) {

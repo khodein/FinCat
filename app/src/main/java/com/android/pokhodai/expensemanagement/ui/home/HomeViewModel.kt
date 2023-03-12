@@ -7,10 +7,12 @@ import androidx.paging.*
 import com.android.pokhodai.expensemanagement.data.room.entities.WalletEntity
 import com.android.pokhodai.expensemanagement.data.service.WalletDao
 import com.android.pokhodai.expensemanagement.repositories.WalletRepository
+import com.android.pokhodai.expensemanagement.source.UserDataSource
 import com.android.pokhodai.expensemanagement.ui.home.adapter.WalletAdapter
 import com.android.pokhodai.expensemanagement.ui.home.source.WalletPagingSource
 import com.android.pokhodai.expensemanagement.utils.LocalDateFormatter
 import com.android.pokhodai.expensemanagement.utils.ManagerUtils
+import com.android.pokhodai.expensemanagement.utils.enums.Currency
 import com.android.pokhodai.expensemanagement.utils.enums.Wallets
 import com.android.pokhodai.expensemanagement.utils.insertEmptyItem
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -22,8 +24,11 @@ import javax.inject.Inject
 @HiltViewModel
 class HomeViewModel @Inject constructor(
     private val walletRepository: WalletRepository,
-    managerUtils: ManagerUtils
+    managerUtils: ManagerUtils,
+    private val userDataSource: UserDataSource,
 ) : ViewModel() {
+
+    val currency = userDataSource.currency ?: Currency.DOLLAR
 
     private val _dateFlow = MutableStateFlow(LocalDateFormatter.now())
     val dateFlow = _dateFlow.asStateFlow()
@@ -54,7 +59,8 @@ class HomeViewModel @Inject constructor(
                             val count = walletRepository.sumByPublicatedAt(after.wallet.dateFormat)
                             WalletAdapter.ItemWallet.WrapHeader(
                                 after.wallet.publicatedAt,
-                                count.toString()
+                                count.toString(),
+                                after.wallet.currency
                             )
                         }
                         before is WalletAdapter.ItemWallet.WrapWallet && after is WalletAdapter.ItemWallet.WrapWallet -> {
@@ -64,7 +70,8 @@ class HomeViewModel @Inject constructor(
                                 before.bottom = true
                                 WalletAdapter.ItemWallet.WrapHeader(
                                     after.wallet.publicatedAt,
-                                    count.toString()
+                                    count.toString(),
+                                    after.wallet.currency
                                 )
                             } else {
                                 null
@@ -103,7 +110,7 @@ class HomeViewModel @Inject constructor(
         onSumIncomeAndExpense()
     }
 
-    fun onSumIncomeAndExpense(
+    private fun onSumIncomeAndExpense(
         dispatcher: CoroutineDispatcher = Dispatchers.IO
     ) {
         viewModelScope.launch(dispatcher) {

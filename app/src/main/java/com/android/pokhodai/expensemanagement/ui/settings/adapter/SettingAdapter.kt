@@ -8,9 +8,9 @@ import javax.inject.Inject
 
 class SettingAdapter @Inject constructor(): BaseListAdapter<SettingAdapter.Setting>() {
 
-    private var onClickActionListener: (() -> Unit)? = null
+    private var onClickActionListener: ((Settings) -> Unit)? = null
 
-    fun setOnClickActionListener(action: () -> Unit) {
+    fun setOnClickActionListener(action: (Settings) -> Unit) {
         onClickActionListener = action
     }
 
@@ -21,7 +21,7 @@ class SettingAdapter @Inject constructor(): BaseListAdapter<SettingAdapter.Setti
                 ivSetting.setImageResource(item.setting.iconResId)
                 ivSetting.isVisible = item.isVisibleIcon
                 root.setOnClickListener {
-                    onClickActionListener?.invoke()
+                    onClickActionListener?.invoke(item.setting)
                 }
             }
         }

@@ -35,6 +35,8 @@ class WalletRepository @Inject constructor(
         walletDao.update(walletEntity)
     }
 
+    suspend fun deleteAll() = walletDao.deleteAll()
+
     fun getPaginationWalletsByDate(date: String) = Pager(
         PagingConfig(
             pageSize = 30,

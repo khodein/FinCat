@@ -23,4 +23,6 @@ class ExpenseRepository @Inject constructor(
     suspend fun deleteExpense(expenseEntity: ExpenseEntity) = expenseDao.delete(expenseEntity)
 
     suspend fun getCount() = expenseDao.getCount()
+
+    suspend fun deleteAll() = expenseDao.deleteAll()
 }

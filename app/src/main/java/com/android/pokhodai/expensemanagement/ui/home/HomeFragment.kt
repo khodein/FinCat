@@ -1,5 +1,6 @@
 package com.android.pokhodai.expensemanagement.ui.home
 
+import android.annotation.SuppressLint
 import androidx.core.net.toUri
 import androidx.fragment.app.setFragmentResultListener
 import androidx.fragment.app.viewModels
@@ -97,6 +98,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
         navViewModel.onSwipeRefresh()
     }
 
+    @SuppressLint("SetTextI18n")
     override fun setObservable() = with(viewModel) {
         dateFlow.observe(viewLifecycleOwner) {
             binding.incMonthSelectorHome.run {
@@ -120,9 +122,10 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
 
         statusFlow.observe(viewLifecycleOwner) { triple ->
             binding.incStatusHome.run {
-                txtIncomeStatus.text = triple.first.toString()
-                txtBalanceStatus.text = triple.second.toString()
-                txtExpenseStatus.text = triple.third.toString()
+                val currencyText = getString(currency.resId)
+                txtIncomeStatus.text = "${triple.first}$currencyText"
+                txtBalanceStatus.text = "${triple.second}$currencyText"
+                txtExpenseStatus.text = "${triple.third}$currencyText"
             }
         }
     }
