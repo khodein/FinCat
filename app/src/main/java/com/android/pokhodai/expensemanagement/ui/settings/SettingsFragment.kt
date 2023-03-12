@@ -4,12 +4,14 @@ import android.os.Bundle
 import android.view.View
 import androidx.core.net.toUri
 import androidx.fragment.app.viewModels
+import androidx.recyclerview.widget.ItemTouchHelper
 import com.android.pokhodai.expensemanagement.R
 import com.android.pokhodai.expensemanagement.base.ui.fragments.BaseFragment
 import com.android.pokhodai.expensemanagement.data.models.User
 import com.android.pokhodai.expensemanagement.databinding.FragmentSettingsBinding
 import com.android.pokhodai.expensemanagement.ui.home.adapter.WalletAdapter
 import com.android.pokhodai.expensemanagement.ui.settings.adapter.SettingAdapter
+import com.android.pokhodai.expensemanagement.utils.navigateSafe
 import com.android.pokhodai.expensemanagement.utils.observe
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
@@ -48,7 +50,7 @@ class SettingsFragment : BaseFragment<FragmentSettingsBinding>(FragmentSettingsB
 
     override fun setListeners() = with(binding) {
         adapter.setOnClickActionListener {
-
+            navigationController.navigateSafe(SettingsFragmentDirections.actionSettingsFragmentToManagerCategoriesFragment())
         }
     }
 }

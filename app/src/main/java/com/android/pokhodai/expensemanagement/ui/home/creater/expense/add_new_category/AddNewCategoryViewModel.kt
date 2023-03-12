@@ -48,7 +48,8 @@ class AddNewCategoryViewModel @Inject constructor(
         dispatcher: CoroutineDispatcher = Dispatchers.IO
     ) {
         viewModelScope.launch(dispatcher) {
-
+            val count = expenseRepository.getCount() - 1
+            val position = if (count < 0) 0 else count+1
             val isCheck = expenseRepository.checkNameExpense(_categoryNameFlow.value)
             if (isCheck) {
                 _snackBarFlow.send(Unit)
@@ -57,7 +58,8 @@ class AddNewCategoryViewModel @Inject constructor(
             expenseRepository.insertAllExpense(
                 ExpenseEntity(
                     name = _categoryNameFlow.value,
-                    icon = iconResIdFlow.value
+                    icon = iconResIdFlow.value,
+                    position = position
                 )
             )
 

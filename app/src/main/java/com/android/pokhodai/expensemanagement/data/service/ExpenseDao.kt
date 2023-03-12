@@ -1,15 +1,12 @@
 package com.android.pokhodai.expensemanagement.data.service
 
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.OnConflictStrategy
-import androidx.room.Query
+import androidx.room.*
 import com.android.pokhodai.expensemanagement.data.room.entities.ExpenseEntity
 
 @Dao
 interface ExpenseDao {
 
-    @Query("SELECT * FROM expenses")
+    @Query("SELECT * FROM expenses ORDER BY position ASC")
     suspend fun getAll(): List<ExpenseEntity>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
@@ -20,4 +17,13 @@ interface ExpenseDao {
 
     @Query("DELETE FROM expenses WHERE id = :id")
     suspend fun deleteExpenseById(id: Int)
+
+    @Update
+    suspend fun update(expenseEntity: ExpenseEntity)
+
+    @Delete
+    suspend fun delete(expenseEntity: ExpenseEntity)
+
+    @Query("SELECT COUNT(id) FROM expenses")
+    fun getCount(): Int
 }

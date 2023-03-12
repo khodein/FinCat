@@ -9,6 +9,20 @@
         android:id="@+id/settingsFragment"
         android:name="com.android.pokhodai.expensemanagement.ui.settings.SettingsFragment"
         android:label="SettingsFragment"
-        tools:layout="@layout/fragment_settings"/>
+        tools:layout="@layout/fragment_settings">
+        <action
+            android:id="@+id/action_settingsFragment_to_managerCategoriesFragment"
+            app:destination="@id/managerCategoriesFragment"
+            app:enterAnim="@anim/slide_in"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/slide_out" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/managerCategoriesFragment"
+        android:name="com.android.pokhodai.expensemanagement.ui.settings.manager.ManagerCategoriesFragment"
+        android:label="ManagerCategoriesFragment"
+        tools:layout="@layout/fragment_manager_categories"/>
 
 </navigation>

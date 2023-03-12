@@ -17,4 +17,10 @@ class ExpenseRepository @Inject constructor(
     suspend fun checkNameExpense(name: String) = expenseDao.checkNameExpense(name)
 
     suspend fun deleteById(id: Int) = expenseDao.deleteExpenseById(id)
+
+    suspend fun updateExpense(expenseEntity: ExpenseEntity) = expenseDao.update(expenseEntity)
+
+    suspend fun deleteExpense(expenseEntity: ExpenseEntity) = expenseDao.delete(expenseEntity)
+
+    suspend fun getCount() = expenseDao.getCount()
 }

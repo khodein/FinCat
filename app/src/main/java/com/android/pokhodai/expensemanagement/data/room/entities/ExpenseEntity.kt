@@ -9,5 +9,6 @@ data class ExpenseEntity(
     @PrimaryKey(autoGenerate = false)
     val id: Int? = null,
     val name: String,
-    val icon: Icons
+    val icon: Icons,
+    val position: Int
 )

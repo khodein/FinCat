@@ -9,7 +9,7 @@
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btnLeftMonthSelector"
-        style="@style/ButtonIconOnly"
+        style="@style/Only.IconButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="12dp"
@@ -41,7 +41,7 @@
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btnRightMonthSelector"
-        style="@style/ButtonIconOnly"
+        style="@style/Only.IconButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="12dp"

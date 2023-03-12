@@ -35,6 +35,12 @@
     <string name="settings_logout">Logout</string>
     <!--  /Settings  -->
 
+    <!--  ManagerCategories  -->
+    <string name="manager_categories_title">Manage categories</string>
+    <string name="manager_categories_edit">Edit</string>
+    <string name="manager_categories_empty">Categories is empty!</string>
+    <!--  /ManagerCategories  -->
+
     <!--  AddNewWallet  -->
     <string name="add_new_wallet_title_add_new">Add new</string>
     <string name="add_new_wallet_title_edit">Edit</string>
