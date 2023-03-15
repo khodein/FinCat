@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:paddingVertical="20dp">
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/txtTitleCurrency"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="@string/currency_title"
+        android:textAppearance="@style/Subtitle1Style"
+        android:textColor="@color/grey_900" />
+
+    <include
+        android:id="@+id/incDollarCurrency"
+        layout="@layout/item_currency"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginTop="20dp" />
+
+    <include
+        android:id="@+id/incRubleCurrency"
+        layout="@layout/item_currency"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginTop="20dp" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnCurrency"
+        style="@style/DefaultButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginTop="40dp"
+        android:enabled="false"
+        android:text="@string/currency_save" />
+
+</LinearLayout>

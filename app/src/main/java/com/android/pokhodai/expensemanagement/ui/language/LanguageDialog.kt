@@ -2,6 +2,8 @@ package com.android.pokhodai.expensemanagement.ui.language
 
 import android.os.Bundle
 import android.view.View
+import androidx.core.os.bundleOf
+import androidx.fragment.app.setFragmentResult
 import androidx.fragment.app.viewModels
 import com.android.pokhodai.expensemanagement.R
 import com.android.pokhodai.expensemanagement.base.ui.fragments.BaseBottomSheetDialogFragment
@@ -22,7 +24,7 @@ class LanguageDialog :
         binding.run {
             incRussianLanguage.run {
                 ivLanguage.setImageResource(R.drawable.ic_russian)
-                txtNameLanguage.text = getText(R.string.russian)
+                txtNameLanguage.text = getString(R.string.russian)
             }
             incEnglishLanguage.run {
                 ivLanguage.setImageResource(R.drawable.ic_english)
@@ -77,6 +79,7 @@ class LanguageDialog :
     override fun setListeners() = with(binding) {
         btnLanguage.setOnClickListener {
             viewModel.onClickLanguage()
+            setFragmentResult(LANGUAGE, bundleOf())
             navigationController.popBackStack()
         }
 
@@ -87,5 +90,9 @@ class LanguageDialog :
         incRussianLanguage.root.setOnClickListener {
             viewModel.onChangeLanguage(Language.RU)
         }
+    }
+
+    companion object {
+        const val LANGUAGE = "LANGUAGE"
     }
 }

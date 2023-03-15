@@ -1,9 +1,154 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/clUser"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/clUser"
     android:background="@color/white">
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/nsvUser"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:id="@+id/llColumnUser"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:paddingHorizontal="20dp">
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:minHeight="20dp" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/txtTitleUser"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/user_title"
+                android:textAlignment="center"
+                android:textAppearance="@style/TitleStyle" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tilFirstNameUser"
+                style="@style/TextInputLayoutStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/txtFirstNameUser"
+                    style="@style/TextEditTextStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:hint="@string/user_first_name"
+                    android:inputType="text" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tilSecondNameUser"
+                style="@style/TextInputLayoutStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/txtSecondNameUser"
+                    style="@style/TextEditTextStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:hint="@string/user_second_name"
+                    android:inputType="text" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.chip.ChipGroup
+                android:id="@+id/cgUser"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp">
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chipLanguage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:textAppearance="@style/ButtonTextStyle"
+                    android:textColor="@color/grey_800"
+                    app:chipBackgroundColor="@color/grey_100"
+                    app:chipEndPadding="20dp"
+                    app:chipStartPadding="20dp"
+                    app:rippleColor="@color/blue_500"
+                    tools:text="Russian" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chipCurrency"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:textAppearance="@style/ButtonTextStyle"
+                    android:textColor="@color/grey_800"
+                    app:chipBackgroundColor="@color/grey_100"
+                    app:chipEndPadding="20dp"
+                    app:chipStartPadding="20dp"
+                    app:rippleColor="@color/blue_500"
+                    tools:text="Dollar" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chipBirth"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:textAppearance="@style/ButtonTextStyle"
+                    android:textColor="@color/grey_800"
+                    app:chipBackgroundColor="@color/grey_100"
+                    app:chipEndPadding="20dp"
+                    app:chipStartPadding="20dp"
+                    app:rippleColor="@color/blue_500"
+                    tools:text="20.05.1996" />
+
+            </com.google.android.material.chip.ChipGroup>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tilEmailUser"
+                style="@style/TextInputLayoutStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/txtEmailUser"
+                    style="@style/TextEditTextStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:hint="@string/user_email"
+                    android:inputType="text" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:minHeight="20dp" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnCreaterUser"
+                style="@style/DefaultButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/user_create"
+                android:layout_marginBottom="40dp"
+                android:enabled="false" />
+
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

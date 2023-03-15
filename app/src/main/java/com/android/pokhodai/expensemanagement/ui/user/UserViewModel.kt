@@ -1,32 +1,33 @@
 package com.android.pokhodai.expensemanagement.ui.user
 
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
-import com.android.pokhodai.expensemanagement.data.models.User
 import com.android.pokhodai.expensemanagement.repositories.LanguageRepository
 import com.android.pokhodai.expensemanagement.source.UserDataSource
+import com.android.pokhodai.expensemanagement.utils.LocalDateFormatter
+import com.android.pokhodai.expensemanagement.utils.ValidatorsUtils
 import com.android.pokhodai.expensemanagement.utils.enums.Currency
 import com.android.pokhodai.expensemanagement.utils.enums.Language
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.CoroutineDispatcher
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.combine
-import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class UserViewModel @Inject constructor(
     private val userDataSource: UserDataSource,
-    private val languageRepository: LanguageRepository,
+    private val validatorsUtils: ValidatorsUtils,
+    languageRepository: LanguageRepository,
 ): ViewModel() {
 
-    private val _firstNameFlow = MutableStateFlow<String>("")
+    private val _firstNameFlow = MutableStateFlow("")
+    val firstNameFlow = _firstNameFlow.asStateFlow()
 
-    private val _secondNameFlow = MutableStateFlow<String>("")
+    private val _secondNameFlow = MutableStateFlow("")
+    val secondNameFlow = _secondNameFlow.asStateFlow()
 
-    private val _emailFlow = MutableStateFlow<String>("")
+    private val _emailFlow = MutableStateFlow("")
+    val emailFlow = _emailFlow.asStateFlow()
 
     private val _languageFlow = MutableStateFlow(languageRepository.getLanguage())
     val languageFlow = _languageFlow.asStateFlow()
@@ -34,25 +35,17 @@ class UserViewModel @Inject constructor(
     private val _currencyFlow = MutableStateFlow(userDataSource.currency ?: Currency.DOLLAR)
     val currencyFlow = _currencyFlow.asStateFlow()
 
-    fun onClickSaveUserData(
-        coroutineDispatcher: CoroutineDispatcher = Dispatchers.IO
-    ) {
-        viewModelScope.launch(coroutineDispatcher) {
-            userDataSource.user = User(
-                firstName = _firstNameFlow.value,
-                secondName = _secondNameFlow.value,
-                email = _emailFlow.value
-            )
-            userDataSource.currency = currencyFlow.value
-        }
-    }
+    private val _birthFlow = MutableStateFlow(LocalDateFormatter.today())
+    val birthFlow = _birthFlow.asStateFlow()
 
     val validate = combine(
         _firstNameFlow,
         _secondNameFlow,
         _emailFlow
     ) { first, second, email ->
-        first.trim().isNotEmpty() && second.trim().isNotEmpty() && email.trim().isNotEmpty()
+        first.trim().isNotEmpty()
+                && second.trim().isNotEmpty()
+                && validatorsUtils.validateEmail(email)
     }
 
     fun onChangeFirstName(firstName: String) {
@@ -67,12 +60,15 @@ class UserViewModel @Inject constructor(
         _emailFlow.value = email
     }
 
-    fun onChangeLanguage(language: Language) {
-        languageRepository.setLanguage(language)
-        _languageFlow.value = language
+    fun onChangeLanguage() {
+        _languageFlow.value = userDataSource.language ?: Language.EU
     }
 
-    fun onChangeCurrency(currency: Currency) {
-        _currencyFlow.value = currency
+    fun onChangeCurrency() {
+        _currencyFlow.value = userDataSource.currency ?: Currency.DOLLAR
+    }
+
+    fun onChangeBirth(birth: LocalDateFormatter) {
+        _birthFlow.value = birth
     }
 }

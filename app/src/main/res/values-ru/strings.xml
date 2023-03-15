@@ -11,6 +11,16 @@
     <string name="no">NO</string>
     <string name="russian">Russian</string>
     <string name="english">English</string>
+    <string name="dollar">Dollar</string>
+    <string name="ruble">Ruble</string>
+
+    <!--  User  -->
+    <string name="user_title">User profile</string>
+    <string name="user_first_name">First name</string>
+    <string name="user_second_name">Second name</string>
+    <string name="user_email">Email</string>
+    <string name="user_create">Create user</string>
+    <!--  /User  -->
 
     <string name="report_title">Report</string>
     <string name="home_title">Home</string>
@@ -106,4 +116,9 @@
     <string name="language_title">Choose language</string>
     <string name="language_save">Save</string>
     <!--  /Language  -->
+
+    <!--  Currency  -->
+    <string name="currency_title">Choose currency</string>
+    <string name="currency_save">Save</string>
+    <!--  /Currency  -->
 </resources>

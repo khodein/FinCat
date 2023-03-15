@@ -31,7 +31,6 @@ class TabsFragment : BaseFragment<FragmentTabsBinding>(FragmentTabsBinding::infl
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initBottomNavigation()
-        getMainController().setGraph(R.navigation.root_nav_graph)
     }
 
     private fun initBottomNavigation() = with(binding) {
