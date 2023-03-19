@@ -1,6 +1,7 @@
 package com.android.pokhodai.expensemanagement.data.service
 
 import androidx.room.*
+import com.android.pokhodai.expensemanagement.data.models.Tip
 import com.android.pokhodai.expensemanagement.data.models.ReportWallet
 import com.android.pokhodai.expensemanagement.data.room.entities.WalletEntity
 
@@ -28,7 +29,17 @@ interface WalletDao {
     @Query("DELETE FROM wallets WHERE id = :id")
     suspend fun deleteWalletById(id: Int)
 
-    @Query("SELECT categoryName, COUNT(categoryName) as total, SUM(amount) as sum, categoryName as name, icons as icon, currency as currency FROM wallets WHERE monthAndYear LIKE :date AND type LIKE :type GROUP BY categoryName")
+    @Query("SELECT categoryName, " +
+            "COUNT(categoryName) as total, " +
+            "SUM(amount) as sum, " +
+            "categoryName as name, " +
+            "icons as icon, " +
+            "currency as currency " +
+            "FROM wallets WHERE " +
+            "monthAndYear LIKE :date " +
+            "AND " +
+            "type LIKE :type " +
+            "GROUP BY categoryName")
     suspend fun getStatisticsByTypeAndDate(type: String, date: String): List<ReportWallet>
 
     @Update(entity = WalletEntity::class)
@@ -36,4 +47,10 @@ interface WalletDao {
 
     @Query("DELETE FROM wallets")
     suspend fun deleteAll()
+
+    @Query("SELECT * FROM wallets WHERE categoryName IN(:categoryNames)")
+    suspend fun find(categoryNames: Array<String>) : List<WalletEntity>
+
+    @Query("SELECT categoryName, categoryName as name, icons as icon FROM wallets GROUP BY categoryName")
+    suspend fun findCategoryNamesByGroup(): List<Tip>
 }

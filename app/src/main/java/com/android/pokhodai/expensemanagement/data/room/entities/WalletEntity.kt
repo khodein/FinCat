@@ -3,6 +3,7 @@ package com.android.pokhodai.expensemanagement.data.room.entities
 import android.os.Parcelable
 import androidx.room.ColumnInfo
 import androidx.room.Entity
+import androidx.room.Fts4
 import androidx.room.PrimaryKey
 import com.android.pokhodai.expensemanagement.utils.LocalDateFormatter
 import com.android.pokhodai.expensemanagement.utils.enums.Currency
@@ -24,3 +25,12 @@ data class WalletEntity(
     val monthAndYear: String,
     val currency: Currency,
 ): Parcelable
+
+@Fts4(contentEntity = WalletEntity::class)
+@Entity(tableName = "walletsFts")
+data class WalletFtsEntity(
+    @PrimaryKey
+    @ColumnInfo(name = "rowid") val id: Int,
+    val categoryName: String,
+    val description: String,
+)

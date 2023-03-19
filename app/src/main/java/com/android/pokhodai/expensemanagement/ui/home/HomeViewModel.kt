@@ -25,7 +25,7 @@ import javax.inject.Inject
 class HomeViewModel @Inject constructor(
     private val walletRepository: WalletRepository,
     managerUtils: ManagerUtils,
-    private val userDataSource: UserDataSource,
+    val userDataSource: UserDataSource,
 ) : ViewModel() {
 
     val currency = userDataSource.currency ?: Currency.DOLLAR

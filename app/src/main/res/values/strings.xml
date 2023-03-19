@@ -26,6 +26,11 @@
     <string name="user_create">Create user</string>
     <!--  /User  -->
 
+    <!--  Search  -->
+    <string name="search_title_hint">Search for notes, categories or labels</string>
+    <string name="search_empty">Search or selected hints are empty!</string>
+    <!--  /Search  -->
+
     <!--  Status  -->
     <string name="status_expenses">Expense</string>
     <string name="status_balance">Balance</string>

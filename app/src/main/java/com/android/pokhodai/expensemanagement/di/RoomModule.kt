@@ -33,4 +33,8 @@ object RoomModule {
     @Singleton
     @Provides
     fun provideExpenseDao(expenseDatabase: ExpenseDatabase) = expenseDatabase.expenseDao()
+
+    @Singleton
+    @Provides
+    fun provideWalletFtsDao(expenseDatabase: ExpenseDatabase) = expenseDatabase.walletFtsDao()
 }

@@ -1,6 +1,8 @@
 package com.android.pokhodai.expensemanagement.ui.home
 
 import android.annotation.SuppressLint
+import android.os.Bundle
+import android.view.View
 import androidx.core.net.toUri
 import androidx.fragment.app.setFragmentResultListener
 import androidx.fragment.app.viewModels
@@ -32,6 +34,15 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
         navViewModel.onClickHardDeepLink("".toUri(), R.id.report_nav_graph)
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        setAvatar()
+    }
+
+    private fun setAvatar() {
+        binding.avHome.user = viewModel.userDataSource.user
+    }
+
     override fun setAdapter() = with(binding) {
         rvHome.itemAnimator = null
         rvHome.adapter = adapter
@@ -48,6 +59,10 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
 
         srlHome.setOnRefreshListener {
             onSwipeRefresh()
+        }
+
+        btnSearchHome.setOnClickListener {
+            navigationController.navigateSafe(HomeFragmentDirections.actionHomeFragmentToSearchFragment())
         }
 
         incMonthSelectorHome.run {

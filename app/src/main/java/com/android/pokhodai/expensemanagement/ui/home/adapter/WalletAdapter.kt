@@ -39,13 +39,13 @@ class WalletAdapter @Inject constructor(): BasePagingAdapter<WalletAdapter.ItemW
     override fun build() {
         baseViewHolder(ItemWallet.WrapWallet::class, ItemWalletBinding::inflate) { item ->
             binding.run {
-
                 ivAmount.setImageResource(item.wallet.icons.resId)
                 txtNameAmount.text = item.wallet.categoryName
                 txtTypeAmount.text = item.wallet.type
                 txtAmount.text = "${item.wallet.amount}${root.context.getString(item.wallet.currency.resId)}"
 
                 dividerBottomWallet.isVisible = !item.bottom
+
                 val builderShapeModel = cardWallet.shapeAppearanceModel.toBuilder().apply {
                     val bottom = if (item.bottom) 8.dp else 0.dp
                     setBottomLeftCorner(CornerFamily.ROUNDED, bottom)
@@ -54,7 +54,7 @@ class WalletAdapter @Inject constructor(): BasePagingAdapter<WalletAdapter.ItemW
                 cardWallet.shapeAppearanceModel = builderShapeModel.build()
 
                 cardWallet.setOnLongClickListener {
-                    showMenu(binding.txtAmount, binding.txtAmount.context) {creater ->
+                    showMenu(txtAmount, txtAmount.context) {creater ->
                         val action = if (creater == Creater.EDIT) {
                             ActionWallet.ActionEditWallet(item.wallet)
                         } else {

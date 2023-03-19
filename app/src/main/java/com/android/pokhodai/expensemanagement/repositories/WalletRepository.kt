@@ -37,6 +37,10 @@ class WalletRepository @Inject constructor(
 
     suspend fun deleteAll() = walletDao.deleteAll()
 
+    suspend fun findCategoryNames(categoryNames: Array<String>) = walletDao.find(categoryNames)
+
+    suspend fun findCategoryNamesByGroup() = walletDao.findCategoryNamesByGroup()
+
     fun getPaginationWalletsByDate(date: String) = Pager(
         PagingConfig(
             pageSize = 30,

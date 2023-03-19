@@ -23,6 +23,14 @@
             android:id="@+id/action_homeFragment_to_monthPickerDialog"
             app:destination="@id/monthPickerDialog" />
 
+        <action
+            android:id="@+id/action_homeFragment_to_searchFragment"
+            app:destination="@id/searchFragment"
+            app:enterAnim="@anim/slide_in"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/slide_out" />
+
     </fragment>
 
     <fragment
@@ -91,5 +99,11 @@
     </dialog>
 
     <include app:graph="@navigation/creater_category_nav_graph" />
+
+    <fragment
+        android:id="@+id/searchFragment"
+        android:name="com.android.pokhodai.expensemanagement.ui.search.SearchFragment"
+        android:label="SearchFragment"
+        tools:layout="@layout/fragment_search"/>
 
 </navigation>

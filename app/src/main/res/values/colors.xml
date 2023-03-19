@@ -25,7 +25,8 @@
     <color name="red_600">#E53935</color>
 
     <color name="green_600">#00897B</color>
-    
+
+    <color name="blue_50">#DBEEFC</color>
     <color name="blue_700">#004FBF</color>
     <color name="blue_600">#006ADD</color>
     <color name="blue_500">#007BEF</color>

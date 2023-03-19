@@ -22,6 +22,11 @@
     <string name="user_create">Create user</string>
     <!--  /User  -->
 
+    <!--  Search  -->
+    <string name="search_title_hint">Search for notes, categories or labels</string>
+    <string name="search_empty">Search or selected hints are empty!</string>
+    <!--  /Search  -->
+
     <string name="report_title">Report</string>
     <string name="home_title">Home</string>
     <string name="settings_title">Settings</string>

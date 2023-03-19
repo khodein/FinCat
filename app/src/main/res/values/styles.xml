@@ -90,12 +90,30 @@
         <item name="boxCornerRadiusTopStart">5dp</item>
         <item name="hintTextAppearance">@style/CaptionStyle</item>
     </style>
+
+    <style name="SearchTextInputLayoutStyle" parent="Widget.MaterialComponents.TextInputLayout.FilledBox">
+        <item name="boxBackgroundColor">@color/white</item>
+        <item name="boxStrokeWidth">0dp</item>
+        <item name="boxStrokeWidthFocused">0dp</item>
+        <item name="boxCornerRadiusBottomEnd">8dp</item>
+        <item name="boxCornerRadiusBottomStart">8dp</item>
+        <item name="boxCornerRadiusTopEnd">8dp</item>
+        <item name="boxCornerRadiusTopStart">8dp</item>
+        <item name="hintEnabled">false</item>
+        <item name="android:textColorHint">@color/grey_700</item>
+        <item name="hintTextAppearance">@style/Body2Style</item>
+    </style>
     <!--  /TextInputLayoutStyles  -->
 
     <!--  TextEditTextStyles  -->
     <style name="TextEditTextStyle">
         <item name="android:textAppearance">@style/Body1Style</item>
         <item name="android:textColorHint">@color/grey_700</item>
+    </style>
+
+    <style name="SearchTextEditTextStyle" parent="TextEditTextStyle">
+        <item name="android:textAppearance">@style/Body2Style</item>
+        <item name="android:textColor">@color/black</item>
     </style>
     <!--  /TextEditTextStyles  -->
 
