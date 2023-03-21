@@ -10,6 +10,8 @@
 
     <color name="transparent">#00000000</color>
 
+    <color name="background_bottom_sheet">#FAFAFA</color>
+
     <color name="grey_50">#FAFAFA</color>
     <color name="grey_100">#F5F5F5</color>
     <color name="grey_200">#EEEEEE</color>

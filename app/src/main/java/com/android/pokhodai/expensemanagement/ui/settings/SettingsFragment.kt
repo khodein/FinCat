@@ -1,15 +1,12 @@
 package com.android.pokhodai.expensemanagement.ui.settings
 
-import android.os.Bundle
-import android.view.View
 import androidx.core.net.toUri
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
-import androidx.recyclerview.widget.ItemTouchHelper
+import com.android.pokhodai.expensemanagement.MainViewModel
 import com.android.pokhodai.expensemanagement.R
 import com.android.pokhodai.expensemanagement.base.ui.fragments.BaseFragment
-import com.android.pokhodai.expensemanagement.data.models.User
 import com.android.pokhodai.expensemanagement.databinding.FragmentSettingsBinding
-import com.android.pokhodai.expensemanagement.ui.home.adapter.WalletAdapter
 import com.android.pokhodai.expensemanagement.ui.settings.adapter.SettingAdapter
 import com.android.pokhodai.expensemanagement.utils.enums.Settings
 import com.android.pokhodai.expensemanagement.utils.navigateSafe
@@ -22,6 +19,7 @@ import javax.inject.Inject
 class SettingsFragment : BaseFragment<FragmentSettingsBinding>(FragmentSettingsBinding::inflate) {
 
     private val viewModel by viewModels<SettingsViewModel>()
+    private val mainViewModel by activityViewModels<MainViewModel>()
 
     @Inject
     lateinit var adapter: SettingAdapter
@@ -40,7 +38,7 @@ class SettingsFragment : BaseFragment<FragmentSettingsBinding>(FragmentSettingsB
         }
 
         logoutFlow.observe(viewLifecycleOwner) {
-
+            mainViewModel.onPrepareProject()
         }
 
         userFlow.observe(viewLifecycleOwner) { user ->
@@ -77,7 +75,9 @@ class SettingsFragment : BaseFragment<FragmentSettingsBinding>(FragmentSettingsB
                     )
                 }
                 Settings.ASKED_QUESTIONS -> {
-
+                    navigationController.navigateSafe(
+                        SettingsFragmentDirections.actionSettingsFragmentToAskedQuestDialog()
+                    )
                 }
             }
         }

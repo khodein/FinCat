@@ -1,9 +1,8 @@
-package com.android.pokhodai.expensemanagement.di
+package com.android.pokhodai.expensemanagement.di.room
 
 import android.content.Context
 import androidx.room.Room
 import com.android.pokhodai.expensemanagement.data.room.ExpenseDatabase
-import com.android.pokhodai.expensemanagement.data.service.WalletDao
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

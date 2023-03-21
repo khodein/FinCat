@@ -99,6 +99,20 @@ dependencies {
     //Security Crypto
     implementation "androidx.security:security-crypto:$security_crypto_version"
 
+    //Retrofit
+    implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
+    implementation "com.squareup.retrofit2:converter-gson:$retrofit_version"
+
+    //Okhttp
+    implementation "com.squareup.okhttp3:okhttp:$okhttp_version"
+    implementation "com.squareup.okhttp3:logging-interceptor:$okhttp_version"
+
+    //Moshi
+    implementation "com.squareup.moshi:moshi-kotlin:$moshi_version"
+
+    //Biometry
+    implementation "androidx.biometric:biometric:$biometry_version"
+
     //Test
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'

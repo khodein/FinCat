@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.WindowManager
 import androidx.annotation.CallSuper
 import androidx.navigation.fragment.findNavController
 import androidx.viewbinding.ViewBinding
@@ -12,6 +13,7 @@ import com.android.pokhodai.expensemanagement.R
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
+
 
 abstract class BaseBottomSheetDialogFragment<VB : ViewBinding>(
     private val vbInflate: (LayoutInflater, ViewGroup?, Boolean) -> VB
@@ -49,6 +51,8 @@ abstract class BaseBottomSheetDialogFragment<VB : ViewBinding>(
     protected open fun setListeners() {}
     protected open fun setAdapter() {}
 
+    override fun getTheme() = R.style.AppBottomSheetDialogTheme
+
     @CallSuper
     protected open fun setSettingsDialog(dialog: BottomSheetDialog) {
         with(dialog) {
@@ -60,6 +64,10 @@ abstract class BaseBottomSheetDialogFragment<VB : ViewBinding>(
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         val dialog = super.onCreateDialog(savedInstanceState)
         dialog.window?.attributes?.windowAnimations = R.style.BottomSheetDialogAnimation
+        dialog.window!!.setSoftInputMode(
+            WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE or
+                    WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE
+        )
         dialog.setOnShowListener {
             setSettingsDialog((it as BottomSheetDialog))
         }

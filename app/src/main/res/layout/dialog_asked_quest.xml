@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:paddingVertical="20dp">
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/txtTitleAskedQuest"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="20dp"
+        android:text="@string/asked_quest_title"
+        android:textAlignment="center"
+        android:textColor="@color/grey_900"
+        android:textAppearance="@style/Body2Style" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/txtSubtitleAskedQuest"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:textColor="@color/grey_500"
+        android:text="@string/asked_quest_subtitle"
+        android:textAlignment="center"
+        android:textAppearance="@style/CaptionStyle"/>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tilTopicAskedQuest"
+        style="@style/TextInputLayoutStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginTop="10dp">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/txtTopicAskedQuest"
+            style="@style/TextEditTextStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="text"
+            android:imeOptions="actionGo"
+            android:hint="@string/asked_quest_hint_topic" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tilDescriptionAskedQuest"
+        style="@style/TextInputLayoutStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginTop="10dp">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/txtDescriptionAskedQuest"
+            style="@style/TextEditTextStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="start|top"
+            android:hint="@string/asked_quest_hint_descr"
+            android:inputType="textMultiLine"
+            android:minLines="3"
+            tools:text="sddssdsdsdsdsd" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.android.pokhodai.expensemanagement.utils.view.button.NetworkButtonView
+        android:id="@+id/btnAskedQuest"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginTop="20dp"
+        android:enabled="false"
+        android:text="@string/asked_quest_send"/>
+
+</LinearLayout>

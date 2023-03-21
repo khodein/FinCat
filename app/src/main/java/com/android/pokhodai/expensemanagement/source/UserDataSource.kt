@@ -17,6 +17,8 @@ class UserDataSource(
 
     var language by objPref<Language>()
 
+    var pinCode by stringPref()
+
     fun logout() {
         prefs.edit { clear() }
     }

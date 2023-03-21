@@ -7,6 +7,7 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.navigation.fragment.NavHostFragment
 import com.android.pokhodai.expensemanagement.databinding.ActivityMainBinding
+import com.android.pokhodai.expensemanagement.ui.pin_code.PinCodeFragmentDirections
 import com.android.pokhodai.expensemanagement.utils.navigateSafe
 import com.android.pokhodai.expensemanagement.utils.observe
 import dagger.hilt.android.AndroidEntryPoint
@@ -36,14 +37,14 @@ class MainActivity : AppCompatActivity() {
     private fun setObservable() = with(viewModel) {
         navigateFlow.observe(this@MainActivity) { result ->
             when(result) {
-
                 is MainResult.UserEmptyResult -> {
-                    Log.d("TAGATGTG", "content")
                     navController.navigateSafe(RootNavGraphDirections.actionGlobalUserNavGraph())
                 }
                 is MainResult.EnterTheApplicationResult -> {
-
                     navController.navigateSafe(RootNavGraphDirections.actionGlobalTabsFragment())
+                }
+                is MainResult.PassCodeResult -> {
+                    navController.navigateSafe(RootNavGraphDirections.actionGlobalPinCodeFragment())
                 }
             }
         }

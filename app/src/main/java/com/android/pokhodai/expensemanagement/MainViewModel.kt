@@ -26,28 +26,39 @@ class MainViewModel @Inject constructor(
         onPrepareProject()
     }
 
-    private fun onPrepareProject() {
+    fun onPrepareProject() {
         viewModelScope.launch {
-            _navigateFlow.send(if (userDataSource.user != null) {
-                MainResult.EnterTheApplicationResult
-            } else {
-                MainResult.UserEmptyResult
-            })
+            _navigateFlow.send(
+                if (userDataSource.user != null) {
+                    MainResult.PassCodeResult
+                } else {
+                    MainResult.UserEmptyResult
+                }
+            )
+        }
+    }
+
+    fun onEnterApp(
+        coroutineDispatcher: CoroutineDispatcher = Dispatchers.IO
+    ) {
+        viewModelScope.launch(coroutineDispatcher) {
+            _navigateFlow.send(MainResult.EnterTheApplicationResult)
         }
     }
 
     fun onChangeUser(
         user: User,
-        coroutineDispatcher: CoroutineDispatcher = Dispatchers.IO)
-    {
+        coroutineDispatcher: CoroutineDispatcher = Dispatchers.IO
+    ) {
         viewModelScope.launch(coroutineDispatcher) {
             userDataSource.user = user
-            _navigateFlow.trySend(MainResult.EnterTheApplicationResult)
+            onPrepareProject()
         }
     }
 }
 
 sealed class MainResult {
-    object UserEmptyResult: MainResult()
-    object EnterTheApplicationResult: MainResult()
+    object UserEmptyResult : MainResult()
+    object PassCodeResult : MainResult()
+    object EnterTheApplicationResult : MainResult()
 }

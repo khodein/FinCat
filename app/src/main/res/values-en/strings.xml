@@ -4,6 +4,8 @@
     <string name="yesterday">YESTERDAY</string>
     <string name="delete">Delete</string>
     <string name="edit">Edit</string>
+    <string name="exit">Exit</string>
+    <string name="cancel">Cancel</string>
     <string name="currency_dollar">$</string>
     <string name="currency_ruble">₽</string>
     <string name="question_logout">Are you sure you want to do this?</string>
@@ -13,6 +15,29 @@
     <string name="english">English</string>
     <string name="dollar">Dollar</string>
     <string name="ruble">Ruble</string>
+    <string name="network_error">Failed to connect to server</string>
+    <string name="one">1</string>
+    <string name="two">2</string>
+    <string name="three">3</string>
+    <string name="four">4</string>
+    <string name="five">5</string>
+    <string name="six">6</string>
+    <string name="seven">7</string>
+    <string name="eight">8</string>
+    <string name="nine">9</string>
+    <string name="zero">0</string>
+
+    <string name="report_title">Report</string>
+    <string name="home_title">Home</string>
+    <string name="settings_title">Settings</string>
+
+    <!--  PinCode  -->
+    <string name="pin_code_bio_title">Entrance to ExpenseManagement</string>
+    <string name="pin_code_title">Enter a code</string>
+    <string name="pin_code_set">Set code</string>
+    <string name="pin_code_repeat">Repeat code</string>
+    <string name="pin_code_next">Next</string>
+    <!--  /PinCode  -->
 
     <!--  User  -->
     <string name="user_title">User profile</string>
@@ -27,9 +52,13 @@
     <string name="search_empty">Search or selected hints are empty!</string>
     <!--  /Search  -->
 
-    <string name="report_title">Report</string>
-    <string name="home_title">Home</string>
-    <string name="settings_title">Settings</string>
+    <!--  Asked Quest  -->
+    <string name="asked_quest_title">Ask your question about the application!</string>
+    <string name="asked_quest_subtitle">The developer will contact you by email</string>
+    <string name="asked_quest_hint_topic">Topic</string>
+    <string name="asked_quest_hint_descr">Description</string>
+    <string name="asked_quest_send">Send</string>
+    <!--  /Asked Quest  -->
 
     <!--  Status  -->
     <string name="status_expenses">Expense</string>

@@ -43,4 +43,16 @@
         <item name="fontWeight">500</item>
         <item name="android:letterSpacing">0.15</item>
     </style>
+
+    <style name="KeyboardCodeNumber">
+        <item name="android:hapticFeedbackEnabled">true</item>
+        <item name="android:textAppearance">@style/Body2Style</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:background">?attr/selectableItemBackgroundBorderless</item>
+        <item name="android:padding">10dp</item>
+        <item name="android:textSize">30sp</item>
+        <item name="android:gravity">center</item>
+        <item name="layout_constraintDimensionRatio">1:1</item>
+    </style>
+
 </resources>
