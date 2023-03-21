@@ -63,6 +63,7 @@ class CreaterCategoryFragment :
         }
 
         ivCreaterCategory.setOnClickListener {
+            windowInsetsController.hide(WindowInsetsCompat.Type.ime())
             navigationController.navigateSafe(
                 CreaterCategoryFragmentDirections.actionCreaterCategoryFragmentToIconsDialog()
             )

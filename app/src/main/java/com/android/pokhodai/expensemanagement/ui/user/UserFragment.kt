@@ -1,6 +1,7 @@
 package com.android.pokhodai.expensemanagement.ui.user
 
 import android.annotation.SuppressLint
+import androidx.core.view.WindowInsetsCompat
 import androidx.core.widget.addTextChangedListener
 import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.activityViewModels
@@ -40,6 +41,7 @@ class UserFragment : BaseFragment<FragmentUserBinding>(FragmentUserBinding::infl
         }
 
         btnCreaterUser.setOnClickListener {
+            windowInsetsController.hide(WindowInsetsCompat.Type.ime())
             mainViewModel.onChangeUser(
                 User(
                     firstName = viewModel.firstNameFlow.value,

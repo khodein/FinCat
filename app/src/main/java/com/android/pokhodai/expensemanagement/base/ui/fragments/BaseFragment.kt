@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.activity.addCallback
 import androidx.annotation.CallSuper
+import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.WindowInsetsControllerCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
@@ -80,6 +81,7 @@ abstract class BaseFragment<VB : ViewBinding>(
     }
 
     protected open fun onBackPressed() {
+        windowInsetsController.hide(WindowInsetsCompat.Type.ime())
         navigationController.popBackStack()
     }
 

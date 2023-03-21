@@ -18,7 +18,7 @@ class PinCodeViewModel @Inject constructor(
     val isInstallMode = userDataSource.pinCode.isEmpty()
 
     private val _title = MutableStateFlow(
-        if (isInstallMode) R.string.pin_code_title else R.string.pin_code_set
+        if (isInstallMode) R.string.pin_code_set else R.string.pin_code_title
     )
     val title = _title.asStateFlow()
 
@@ -82,7 +82,7 @@ class PinCodeViewModel @Inject constructor(
                     PassCodeState.InstallErrorState
                 }
             }
-            code -> { //Если мы пытаемся войти
+            code -> {
                 PassCodeState.SuccessState
             }
             else -> {
@@ -108,7 +108,5 @@ class PinCodeViewModel @Inject constructor(
 
     companion object {
         const val CODE_LENGTH = 4
-        const val MAX_ERROR = 5
-        const val ZERO_ATTEMPTS = 0
     }
 }
