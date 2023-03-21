@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/root_nav_graph"
-    app:startDestination="@id/pinCodeFragment">
+    app:startDestination="@id/splashFragment">
 
     <include app:graph="@navigation/user_nav_graph" />
 
@@ -14,6 +14,12 @@
         tools:layout="@layout/fragment_tabs" />
 
     <fragment
+        android:id="@+id/splashFragment"
+        android:name="com.android.pokhodai.expensemanagement.ui.splash.SplashFragment"
+        android:label="SplashFragment"
+        tools:layout="@layout/fragment_splash" />
+
+    <fragment
         android:id="@+id/pinCodeFragment"
         android:name="com.android.pokhodai.expensemanagement.ui.pin_code.PinCodeFragment"
         android:label="PinCodeFragment"
@@ -22,37 +28,38 @@
             android:id="@+id/action_pinCodeFragment_to_tabsFragment"
             app:destination="@id/tabsFragment"
             app:popUpTo="@id/pinCodeFragment"
-            app:popUpToInclusive="true"/>
+            app:popUpToInclusive="true" />
     </fragment>
 
     <action
         android:id="@+id/action_global_tabsFragment"
         app:destination="@id/tabsFragment"
-        app:popUpTo="@id/root_nav_graph"
-        app:popUpToInclusive="true"
         app:enterAnim="@android:anim/fade_in"
         app:exitAnim="@android:anim/fade_out"
         app:popEnterAnim="@android:anim/fade_in"
-        app:popExitAnim="@android:anim/fade_out" />
+        app:popExitAnim="@android:anim/fade_out"
+        app:popUpTo="@id/root_nav_graph"
+        app:popUpToInclusive="true" />
 
     <action
         android:id="@+id/action_global_user_nav_graph"
         app:destination="@id/user_nav_graph"
-        app:popUpTo="@id/root_nav_graph"
-        app:popUpToInclusive="true"
         app:enterAnim="@android:anim/fade_in"
         app:exitAnim="@android:anim/fade_out"
         app:popEnterAnim="@android:anim/fade_in"
-        app:popExitAnim="@android:anim/fade_out" />
+        app:popExitAnim="@android:anim/fade_out"
+        app:popUpTo="@id/root_nav_graph"
+        app:popUpToInclusive="true" />
 
     <action
         android:id="@+id/action_global_pinCodeFragment"
         app:destination="@id/pinCodeFragment"
-        app:popUpTo="@id/root_nav_graph"
-        app:popUpToInclusive="true"
         app:enterAnim="@android:anim/fade_in"
         app:exitAnim="@android:anim/fade_out"
         app:popEnterAnim="@android:anim/fade_in"
-        app:popExitAnim="@android:anim/fade_out" />
+        app:popExitAnim="@android:anim/fade_out"
+        app:popUpTo="@id/root_nav_graph"
+        app:popUpToInclusive="true" />
+
 
 </navigation>
