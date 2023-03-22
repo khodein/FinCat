@@ -113,6 +113,9 @@ dependencies {
     //Biometry
     implementation "androidx.biometric:biometric:$biometry_version"
 
+    //SplashScreen
+    implementation "androidx.core:core-splashscreen:$splash_version"
+
     //Test
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
