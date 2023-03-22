@@ -81,7 +81,6 @@ abstract class BaseFragment<VB : ViewBinding>(
     }
 
     protected open fun onBackPressed() {
-        windowInsetsController.hide(WindowInsetsCompat.Type.ime())
         navigationController.popBackStack()
     }
 

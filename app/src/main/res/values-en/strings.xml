@@ -37,6 +37,7 @@
     <string name="pin_code_set">Set code</string>
     <string name="pin_code_repeat">Repeat code</string>
     <string name="pin_code_next">Next</string>
+    <string name="pin_code_success">Your question has been sent successfully!</string>
     <!--  /PinCode  -->
 
     <!--  User  -->

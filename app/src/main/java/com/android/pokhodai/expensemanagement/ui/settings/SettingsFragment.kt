@@ -2,16 +2,19 @@ package com.android.pokhodai.expensemanagement.ui.settings
 
 import androidx.core.net.toUri
 import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.setFragmentResultListener
 import androidx.fragment.app.viewModels
 import com.android.pokhodai.expensemanagement.MainViewModel
 import com.android.pokhodai.expensemanagement.R
 import com.android.pokhodai.expensemanagement.base.ui.fragments.BaseFragment
 import com.android.pokhodai.expensemanagement.databinding.FragmentSettingsBinding
 import com.android.pokhodai.expensemanagement.ui.settings.adapter.SettingAdapter
+import com.android.pokhodai.expensemanagement.ui.settings.asked.AskedQuestDialog
 import com.android.pokhodai.expensemanagement.utils.enums.Settings
 import com.android.pokhodai.expensemanagement.utils.navigateSafe
 import com.android.pokhodai.expensemanagement.utils.observe
 import com.android.pokhodai.expensemanagement.utils.showAlert
+import com.android.pokhodai.expensemanagement.utils.showSnackBar
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
@@ -53,6 +56,10 @@ class SettingsFragment : BaseFragment<FragmentSettingsBinding>(FragmentSettingsB
     }
 
     override fun setListeners() = with(binding) {
+        setFragmentResultListener(AskedQuestDialog.ASK_SUCCESS) { _, _ ->
+            showSnackBar(getString(R.string.pin_code_success), binding.root)
+        }
+
         adapter.setOnClickActionListener { type ->
             when (type) {
                 Settings.MANAGER -> {

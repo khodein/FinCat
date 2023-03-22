@@ -63,7 +63,7 @@
 
     <dialog
         android:id="@+id/askedQuestDialog"
-        android:name="com.android.pokhodai.expensemanagement.ui.asked.AskedQuestDialog"
+        android:name="com.android.pokhodai.expensemanagement.ui.settings.asked.AskedQuestDialog"
         android:label="AskedQuestDialog"
         tools:layout="@layout/dialog_asked_quest" />
 

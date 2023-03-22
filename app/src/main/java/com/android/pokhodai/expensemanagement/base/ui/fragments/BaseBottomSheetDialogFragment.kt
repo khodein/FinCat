@@ -6,7 +6,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
+import androidx.activity.addCallback
 import androidx.annotation.CallSuper
+import androidx.core.view.WindowInsetsControllerCompat
 import androidx.navigation.fragment.findNavController
 import androidx.viewbinding.ViewBinding
 import com.android.pokhodai.expensemanagement.R
@@ -23,6 +25,12 @@ abstract class BaseBottomSheetDialogFragment<VB : ViewBinding>(
     protected val binding: VB
         get() = _binding!!
 
+    protected val windowInsetsController by lazy {
+        WindowInsetsControllerCompat(
+            requireActivity().window,
+            binding.root
+        )
+    }
 
     protected val navigationController by lazy { findNavController() }
 
@@ -33,6 +41,7 @@ abstract class BaseBottomSheetDialogFragment<VB : ViewBinding>(
     ): View {
         _binding = vbInflate(inflater, container, false)
         onCreateView()
+
         return binding.root
     }
 
@@ -45,13 +54,22 @@ abstract class BaseBottomSheetDialogFragment<VB : ViewBinding>(
         setListeners()
         setObservable()
         setAdapter()
+        initOnBackPressedDispatcher()
+    }
+
+    protected open fun initOnBackPressedDispatcher() {
+        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner) {
+            onBackPressed()
+        }
+    }
+
+    protected open fun onBackPressed() {
+        navigationController.popBackStack()
     }
 
     protected open fun setObservable() {}
     protected open fun setListeners() {}
     protected open fun setAdapter() {}
-
-    override fun getTheme() = R.style.AppBottomSheetDialogTheme
 
     @CallSuper
     protected open fun setSettingsDialog(dialog: BottomSheetDialog) {
@@ -64,7 +82,7 @@ abstract class BaseBottomSheetDialogFragment<VB : ViewBinding>(
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         val dialog = super.onCreateDialog(savedInstanceState)
         dialog.window?.attributes?.windowAnimations = R.style.BottomSheetDialogAnimation
-        dialog.window!!.setSoftInputMode(
+        dialog.window?.setSoftInputMode(
             WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE or
                     WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE
         )

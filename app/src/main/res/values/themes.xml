@@ -17,6 +17,8 @@
         <item name="windowNoTitle">true</item>
         <item name="android:overScrollMode">never</item>
         <item name="android:scrollbars">none</item>
+
+        <item name="bottomSheetDialogTheme">@style/AppDialogTheme</item>
     </style>
 
     <style name="Theme.ExpenseManager" parent="Theme.Common.ExpenseManager"/>
@@ -24,5 +26,17 @@
     <style name="Theme.ExpenseManager.Launch" parent="Theme.SplashScreen">
         <item name="android:windowBackground">@drawable/bgr_splash</item>
         <item name="postSplashScreenTheme">@style/Theme.ExpenseManager</item>
+    </style>
+
+    <style name="AppDialogTheme" parent="ThemeOverlay.MaterialComponents.BottomSheetDialog">
+        <item name="bottomSheetStyle">@style/AppModalStyle</item>
+        <item name="android:windowSoftInputMode">adjustResize|stateAlwaysHidden</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowFrame">@null</item>
+        <item name="android:backgroundDimEnabled">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowMinWidthMajor">90%</item>
+        <item name="android:windowMinWidthMinor">90%</item>
+        <item name="colorPrimary">@color/purple_500</item>
     </style>
 </resources>

@@ -1,6 +1,8 @@
-package com.android.pokhodai.expensemanagement.ui.asked
+package com.android.pokhodai.expensemanagement.ui.settings.asked
 
+import androidx.core.os.bundleOf
 import androidx.core.widget.doAfterTextChanged
+import androidx.fragment.app.setFragmentResult
 import androidx.fragment.app.viewModels
 import com.android.pokhodai.expensemanagement.R
 import com.android.pokhodai.expensemanagement.base.ui.fragments.BaseBottomSheetDialogFragment
@@ -26,18 +28,21 @@ class AskedQuestDialog :
             viewModel.onChangeDescription(it.toString())
         }
 
-        btnAskedQuest.setOnClickListener {
+        btnAskedQuest.setOnThrottleClickListener {
             viewModel.onClickAskQuest()
         }
+
         btnAskedQuest.setOnEndAnimateDoneListener {
-            navigationController.popBackStack()
+            onBackPressed()
         }
     }
 
     override fun setObservable() = with(viewModel) {
         askQuestState.observe(viewLifecycleOwner) {
             binding.btnAskedQuest.setUIState(it)
-
+            if (it is UIState.UIPreSuccess) {
+                setFragmentResult(ASK_SUCCESS, bundleOf())
+            }
             if (it is UIState.UIError) {
                 showSnackBar(getString(R.string.network_error), binding.root)
             }
@@ -46,5 +51,9 @@ class AskedQuestDialog :
         validateFlow.observe(viewLifecycleOwner) {
             binding.btnAskedQuest.isEnabled = it
         }
+    }
+
+    companion object {
+        const val ASK_SUCCESS = "ASK_SUCCESS"
     }
 }

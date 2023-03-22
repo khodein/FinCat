@@ -1,4 +1,4 @@
-package com.android.pokhodai.expensemanagement.ui.asked
+package com.android.pokhodai.expensemanagement.ui.settings.asked
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -14,6 +14,7 @@ import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -63,10 +64,10 @@ class AskedQuestViewModel @Inject constructor(
 
             _askQuestState.emitRequest(
                 askQuestRepository.sendMessage(
-                    chatId = -1001752492520,
+                    chatId = "-1001752492520",
                     text = text
                 )
-            ) {}
+            ) { Unit }
         }
     }
 }

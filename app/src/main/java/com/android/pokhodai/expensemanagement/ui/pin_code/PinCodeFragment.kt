@@ -39,6 +39,7 @@ class PinCodeFragment : BaseFragment<FragmentPinCodeBinding>(FragmentPinCodeBind
                     result: BiometricPrompt.AuthenticationResult
                 ) {
                     onSuccessCodeState()
+                    mainViewModel.onEnterApp()
                 }
             }
         )
