@@ -21,5 +21,6 @@ class UserDataSource(
 
     fun logout() {
         prefs.edit { clear() }
+        language = Language.EU
     }
 }

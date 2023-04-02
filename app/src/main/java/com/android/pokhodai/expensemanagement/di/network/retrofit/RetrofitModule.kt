@@ -2,6 +2,8 @@ package com.android.pokhodai.expensemanagement.di.network.retrofit
 
 import com.google.gson.GsonBuilder
 import com.android.pokhodai.expensemanagement.data.settings.ApiSettings
+import com.android.pokhodai.expensemanagement.di.annotations.Api1RetrofitClient
+import com.android.pokhodai.expensemanagement.di.annotations.Api2RetrofitClient
 import com.android.pokhodai.expensemanagement.di.annotations.ApiRetrofitClient
 import com.android.pokhodai.expensemanagement.di.annotations.HttpClient
 import dagger.Module
@@ -25,7 +27,7 @@ object RetrofitModule {
     @Provides
     @Singleton
     @ApiRetrofitClient
-    fun vitaRetrofit(
+    fun apiRetrofit(
         @HttpClient okHttpClient: OkHttpClient,
         factory: GsonConverterFactory
     ): Retrofit =

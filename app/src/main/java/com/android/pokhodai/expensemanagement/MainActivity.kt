@@ -3,19 +3,19 @@ package com.android.pokhodai.expensemanagement
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowCompat
-import androidx.core.view.WindowInsetsCompat
-import androidx.core.view.updatePadding
+import androidx.core.view.*
 import androidx.navigation.fragment.NavHostFragment
 import com.android.pokhodai.expensemanagement.databinding.ActivityMainBinding
+import com.android.pokhodai.expensemanagement.repositories.LanguageRepository
 import com.android.pokhodai.expensemanagement.ui.pin_code.PinCodeFragmentDirections
 import com.android.pokhodai.expensemanagement.utils.navigateSafe
 import com.android.pokhodai.expensemanagement.utils.observe
 import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
@@ -31,19 +31,22 @@ class MainActivity : AppCompatActivity() {
     private val viewModel by viewModels<MainViewModel>()
     private val navigationViewModel by viewModels<NavigationViewModel>()
 
+    @Inject
+    lateinit var languageRepository: LanguageRepository
+
     override fun onCreate(savedInstanceState: Bundle?) {
         installSplashScreen()
         super.onCreate(savedInstanceState)
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+        languageRepository.setLanguage()
         _binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         setObservable()
-        setListeners()
     }
 
     private fun setObservable() = with(viewModel) {
         navigateFlow.observe(this@MainActivity) { result ->
-            when(result) {
+            when (result) {
                 is MainResult.UserEmptyResult -> {
                     navController.navigateSafe(RootNavGraphDirections.actionGlobalUserNavGraph())
                 }
@@ -54,23 +57,6 @@ class MainActivity : AppCompatActivity() {
                     navController.navigateSafe(RootNavGraphDirections.actionGlobalPinCodeFragment())
                 }
             }
-        }
-    }
-
-    private fun setListeners() {
-        WindowCompat.setDecorFitsSystemWindows(window, false)
-        ViewCompat.setOnApplyWindowInsetsListener(binding.root) { v, insets ->
-            v.updatePadding(
-                top = insets.getInsets(
-                    WindowInsetsCompat.Type.statusBars()
-                ).top,
-                bottom = if (insets.isVisible(WindowInsetsCompat.Type.ime())) {
-                    insets.getInsets(WindowInsetsCompat.Type.ime()).bottom
-                } else {
-                    insets.getInsets(WindowInsetsCompat.Type.navigationBars()).bottom
-                }
-            )
-            insets
         }
     }
 }

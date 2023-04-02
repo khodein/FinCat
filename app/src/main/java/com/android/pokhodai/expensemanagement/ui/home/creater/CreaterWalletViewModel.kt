@@ -1,5 +1,6 @@
 package com.android.pokhodai.expensemanagement.ui.home.creater
 
+import android.util.Log
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -32,14 +33,14 @@ class CreaterWalletViewModel @Inject constructor(
 ) : ViewModel() {
 
     val editOrCreateType = CreaterWalletFragmentArgs.fromSavedStateHandle(savedStateHandle).type
-    private val editWallet = CreaterWalletFragmentArgs.fromSavedStateHandle(savedStateHandle).wallet
+    private var editWallet = CreaterWalletFragmentArgs.fromSavedStateHandle(savedStateHandle).wallet
 
     private val _dateFlow = MutableStateFlow(LocalDateFormatter.today())
     val dateFlow = _dateFlow.asStateFlow()
 
-    private val _typesWallet =
-        MutableStateFlow(managerUtils.getStringArray(R.array.TypesWallet).toList())
-    val typesWallet = _typesWallet.asStateFlow()
+    private val _typesWalletFlow =
+        MutableStateFlow(R.array.TypesWallet)
+    val typesWalletFlow = _typesWalletFlow.asStateFlow()
 
     val income = managerUtils.getString(Wallets.INCOME.resId)
     val expense = managerUtils.getString(Wallets.EXPENSE.resId)
@@ -66,14 +67,22 @@ class CreaterWalletViewModel @Inject constructor(
 
     init {
         editWallet?.let {
-            _dateFlow.value = it.publicatedAt
-            _typeFlow.value = it.type
-            _amountFlow.value =
-                if (it.type == expense) it.amount.toString().drop(1) else it.amount.toString()
-            _descriptionFlow.value = it.description
+            var wallet = it
+            if (it.type == expense) {
+                wallet = it.copy(amount = it.amount.toString().drop(0).toLong())
+            }
+            _dateFlow.value = wallet.publicatedAt
+            _typeFlow.value = wallet.type
+            _amountFlow.value = wallet.amount.toString()
+            _descriptionFlow.value = wallet.description
             _categoryNameFlow.value =
-                CategoriesAdapter.Categories(name = it.categoryName, icon = it.icons, id = -1)
+                CategoriesAdapter.Categories(
+                    name = wallet.categoryName,
+                    icon = wallet.icons,
+                    id = -1
+                )
             _editWalletFlow.tryEmit(Unit)
+            editWallet = wallet
         }
     }
 
@@ -81,20 +90,22 @@ class CreaterWalletViewModel @Inject constructor(
         _typeFlow,
         _categoryNameFlow,
         _amountFlow,
-    ) { type, category, amount ->
+        _dateFlow,
+        _descriptionFlow
+    ) { type, category, amount, date, description ->
         if (editOrCreateType == Creater.CREATE) {
-            type.trim().isNotEmpty() && category.name.isNotEmpty() && amount.trim().isNotEmpty()
+            type.trim().isNotEmpty() && category.name.isNotEmpty() && amount.isNotEmpty()
         } else {
-            type.trim().isNotEmpty()
-                    && type != editWallet?.type || category.name.isNotEmpty()
-                    && category.name != editWallet?.categoryName || amount.trim().isNotEmpty()
-                    && amount != editWallet?.amount.toString()
+            category.name != editWallet?.categoryName
+                    || date != editWallet?.publicatedAt
+                    || description != editWallet?.description
+                    || amount != editWallet?.amount.toString()
         }
-
     }
 
     fun onChangeWalletType(type: String) {
         _typeFlow.value = type
+        _amountFlow.value = ""
     }
 
     fun onChangeCategoryName(name: CategoriesAdapter.Categories) {
@@ -117,13 +128,11 @@ class CreaterWalletViewModel @Inject constructor(
         dispatcher: CoroutineDispatcher = Dispatchers.IO
     ) {
         viewModelScope.launch(dispatcher) {
-            val amount = Integer.parseInt(_amountFlow.value)
-
             val wallet = WalletEntity(
                 id = editWallet?.id,
                 categoryName = categoryNameFlow.value.name,
                 icons = categoryNameFlow.value.icon,
-                amount = if (typeFlow.value == expense) amount - (amount * 2) else amount,
+                amount = _amountFlow.value.toLong(),
                 description = _descriptionFlow.value,
                 type = typeFlow.value,
                 publicatedAt = dateFlow.value,

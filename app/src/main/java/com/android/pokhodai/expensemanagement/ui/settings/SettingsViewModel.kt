@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.android.pokhodai.expensemanagement.data.models.User
 import com.android.pokhodai.expensemanagement.repositories.ExpenseRepository
+import com.android.pokhodai.expensemanagement.repositories.LanguageRepository
 import com.android.pokhodai.expensemanagement.repositories.WalletRepository
 import com.android.pokhodai.expensemanagement.source.UserDataSource
 import com.android.pokhodai.expensemanagement.ui.settings.adapter.SettingAdapter
@@ -17,6 +18,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 @HiltViewModel
@@ -24,6 +26,7 @@ class SettingsViewModel @Inject constructor(
     private val expenseRepository: ExpenseRepository,
     private val walletRepository: WalletRepository,
     private val userDataSource: UserDataSource,
+    private val languageRepository: LanguageRepository,
 ) : ViewModel() {
 
     private val _userFlow = MutableStateFlow(userDataSource.user)
@@ -51,7 +54,11 @@ class SettingsViewModel @Inject constructor(
         viewModelScope.launch(dispatcher) {
             expenseRepository.deleteAll()
             walletRepository.deleteAll()
-            userDataSource.logout()
+
+            withContext(Dispatchers.Main) {
+                userDataSource.logout()
+                languageRepository.setLanguage()
+            }
             _logoutFlow.emit(Unit)
         }
     }

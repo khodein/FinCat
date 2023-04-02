@@ -31,10 +31,6 @@ class ManagerCategoriesFragment :
     private val viewModel by viewModels<ManagerCategoriesViewModel>()
 
     override fun setListeners() = with(binding) {
-        srlManagerCategories.setOnRefreshListener {
-            viewModel.onSwipeRefresh()
-        }
-
         btnAddNewManagerCategories.setOnThrottleClickListener {
             navigationController.navigateSafe(
                 ManagerCategoriesFragmentDirections.actionManagerCategoriesFragmentToCreaterCategoryNavGraph(
@@ -82,10 +78,6 @@ class ManagerCategoriesFragment :
     }
 
     override fun setObservable() = with(viewModel) {
-        refreshFlow.observe(viewLifecycleOwner) {
-            binding.srlManagerCategories.isRefreshing = it
-        }
-
         expensesFlow.observe(viewLifecycleOwner) {
             adapter.submitList(it)
         }

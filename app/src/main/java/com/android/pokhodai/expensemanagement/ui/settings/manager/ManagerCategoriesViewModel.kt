@@ -28,9 +28,6 @@ class ManagerCategoriesViewModel @Inject constructor(
         }.ifEmpty { listOf(ManagerCategoriesAdapter.ItemManagerCategories.ItemEmpty) }
     }
 
-    private val _refreshFlow = Channel<Boolean>()
-    val refreshFlow = _refreshFlow.receiveAsFlow()
-
     init {
         onSwipeRefresh()
     }
@@ -39,9 +36,7 @@ class ManagerCategoriesViewModel @Inject constructor(
         coroutineDispatcher: CoroutineDispatcher = Dispatchers.IO
     ) {
         viewModelScope.launch(coroutineDispatcher) {
-            _refreshFlow.send(true)
             _expensesFlow.emit(expenseRepository.getAllExpense())
-            _refreshFlow.send(false)
         }
     }
 

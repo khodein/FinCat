@@ -97,7 +97,6 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
                     )
                 }
             }
-
         }
 
         setFragmentResultListener(CreaterWalletFragment.ADD_NEW_WALLET) { _, _ ->

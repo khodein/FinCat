@@ -84,7 +84,7 @@ abstract class BaseBottomSheetDialogFragment<VB : ViewBinding>(
         dialog.window?.attributes?.windowAnimations = R.style.BottomSheetDialogAnimation
         dialog.window?.setSoftInputMode(
             WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE or
-                    WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE
+                    WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN
         )
         dialog.setOnShowListener {
             setSettingsDialog((it as BottomSheetDialog))

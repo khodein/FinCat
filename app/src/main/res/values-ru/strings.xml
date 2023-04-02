@@ -1,21 +1,21 @@
 <resources>
     <string name="app_name">ExpenseManagement</string>
-    <string name="today">TODAY</string>
-    <string name="yesterday">YESTERDAY</string>
-    <string name="delete">Delete</string>
-    <string name="edit">Edit</string>
-    <string name="exit">Exit</string>
-    <string name="cancel">Cancel</string>
+    <string name="today">СЕГОДНЯ</string>
+    <string name="yesterday">ВЧЕРА</string>
+    <string name="delete">Удалить</string>
+    <string name="edit">Редактировать</string>
+    <string name="exit">Выйти</string>
+    <string name="cancel">Отменить</string>
     <string name="currency_dollar">$</string>
     <string name="currency_ruble">₽</string>
-    <string name="question_logout">Are you sure you want to do this?</string>
-    <string name="ok">OK</string>
-    <string name="no">NO</string>
-    <string name="russian">Russian</string>
-    <string name="english">English</string>
-    <string name="dollar">Dollar</string>
-    <string name="ruble">Ruble</string>
-    <string name="network_error">Failed to connect to server</string>
+    <string name="question_logout">Вы уверены, что хотите это сделать?</string>
+    <string name="ok">Да</string>
+    <string name="no">Нет</string>
+    <string name="russian">Русский</string>
+    <string name="english">Английский</string>
+    <string name="dollar">Доллар</string>
+    <string name="ruble">Рубль</string>
+    <string name="network_error">Не удалось подключиться к серверу</string>
     <string name="one">1</string>
     <string name="two">2</string>
     <string name="three">3</string>
@@ -27,133 +27,133 @@
     <string name="nine">9</string>
     <string name="zero">0</string>
 
-    <string name="report_title">Report</string>
-    <string name="home_title">Home</string>
-    <string name="settings_title">Settings</string>
+    <string name="report_title">Отчет</string>
+    <string name="home_title">Главная</string>
+    <string name="settings_title">Настройки</string>
 
     <!--  PinCode  -->
-    <string name="pin_code_bio_title">Entrance to ExpenseManagement</string>
-    <string name="pin_code_title">Enter a code</string>
-    <string name="pin_code_set">Set code</string>
-    <string name="pin_code_repeat">Repeat code</string>
-    <string name="pin_code_next">Next</string>
-    <string name="pin_code_success">Your question has been sent successfully!</string>
+    <string name="pin_code_bio_title">Вход в Управление расходами</string>
+    <string name="pin_code_title">Введите код</string>
+    <string name="pin_code_set">Установить код</string>
+    <string name="pin_code_repeat">Повторить код</string>
+    <string name="pin_code_next">Вперед</string>
+    <string name="pin_code_success">Ваш вопрос успешно отправлен!</string>
     <!--  /PinCode  -->
 
     <!--  User  -->
-    <string name="user_title">User profile</string>
-    <string name="user_first_name">First name</string>
-    <string name="user_second_name">Second name</string>
-    <string name="user_email">Email</string>
-    <string name="user_create">Create user</string>
+    <string name="user_title">Профиль пользователя</string>
+    <string name="user_first_name">Имя</string>
+    <string name="user_second_name">Фамилия</string>
+    <string name="user_email">Электронная почта</string>
+    <string name="user_create">Создать пользователя</string>
     <!--  /User  -->
 
     <!--  Search  -->
-    <string name="search_title_hint">Search for notes, categories or labels</string>
-    <string name="search_empty">Search or selected hints are empty!</string>
+    <string name="search_title_hint">Поиск заметок, категорий или ярлыков</string>
+    <string name="search_empty">Поиск или выбранные подсказки пусты!</string>
     <!--  /Search  -->
 
     <!--  Asked Quest  -->
-    <string name="asked_quest_title">Ask your question about the application!</string>
-    <string name="asked_quest_subtitle">The developer will contact you by email</string>
-    <string name="asked_quest_hint_topic">Topic</string>
-    <string name="asked_quest_hint_descr">Description</string>
-    <string name="asked_quest_send">Send</string>
+    <string name="asked_quest_title">Задайте свой вопрос о приложении!</string>
+    <string name="asked_quest_subtitle">Разработчик свяжется с вами по электронной почте</string>
+    <string name="asked_quest_hint_topic">Тема</string>
+    <string name="asked_quest_hint_descr">Описание</string>
+    <string name="asked_quest_send">Отправить</string>
     <!--  /Asked Quest  -->
 
     <!--  Status  -->
-    <string name="status_expenses">Expense</string>
-    <string name="status_balance">Balance</string>
-    <string name="status_income">Income</string>
+    <string name="status_expenses">Расход</string>
+    <string name="status_balance">Баланс</string>
+    <string name="status_income">Доход</string>
     <!--  /Status  -->
 
     <!--  Home  -->
-    <string name="home_add">Add new</string>
-    <string name="home_item_wallet_empty">History is empty!</string>
+    <string name="home_add">Добавить новый</string>
+    <string name="home_item_wallet_empty">История пуста!</string>
     <!--  /Home  -->
 
     <!--  Report  -->
-    <string name="report_statistics_title">Statistics</string>
-    <string name="report_overview">Overview</string>
-    <string name="report_details">Details</string>
-    <string name="report_transactions">%s transactions</string>
+    <string name="report_statistics_title">Статистика</string>
+    <string name="report_overview">Обзор</string>
+    <string name="report_details">Детали</string>
+    <string name="report_transactions">%s операций</string>
     <!--  /Report  -->
 
     <!--  Settings  -->
-    <string name="settings_manage">Manage categories</string>
-    <string name="settings_currency">Choose currency</string>
-    <string name="settings_language">Choose language</string>
-    <string name="settings_questions">Asked questions</string>
-    <string name="settings_logout">Logout</string>
+    <string name="settings_manage">Управление категориями</string>
+    <string name="settings_currency">Выберите валюту</string>
+    <string name="settings_language">Выберите язык</string>
+    <string name="settings_questions">Задаваемые вопросы</string>
+    <string name="settings_logout">Выйти</string>
     <!--  /Settings  -->
 
     <!--  ManagerCategories  -->
-    <string name="manager_categories_title">Manage categories</string>
-    <string name="manager_categories_edit">Edit</string>
-    <string name="manager_categories_empty">Categories is empty!</string>
-    <string name="manager_categories_add_new">Add new category</string>
+    <string name="manager_categories_title">Управление категориями</string>
+    <string name="manager_categories_edit">Редактирование</string>
+    <string name="manager_categories_empty">Категории пусты!</string>
+    <string name="manager_categories_add_new">Добавить новую категорию</string>
     <!--  /ManagerCategories  -->
 
     <!--  AddNewWallet  -->
-    <string name="add_new_wallet_title_add_new">Add new</string>
-    <string name="add_new_wallet_title_edit">Edit</string>
-    <string name="add_new_wallet_type">Type</string>
+    <string name="add_new_wallet_title_add_new">Добавить новую</string>
+    <string name="add_new_wallet_title_edit">Редактировать</string>
+    <string name="add_new_wallet_type">Тип</string>
 
-    <string name="add_new_wallet_income">Income</string>
-    <string name="add_new_wallet_expense">Expense</string>
-    <string name="add_new_wallet_category_name">Category name</string>
+    <string name="add_new_wallet_income">Доход</string>
+    <string name="add_new_wallet_expense">Расход</string>
+    <string name="add_new_wallet_category_name">Имя</string>
 
     <string-array name="TypesWallet">
-        <item>Income</item>
-        <item>Expense</item>
+        <item>Доход</item>
+        <item>Расход</item>
     </string-array>
 
-    <string name="add_new_wallet_amount_hint">Amount</string>
-    <string name="add_new_wallet_description_hint">Description (Optional)</string>
-    <string name="add_new_wallet_btn_income">Add an income</string>
-    <string name="add_new_wallet_btn_edit_income">Edit an income</string>
-    <string name="add_new_wallet_btn_expense">Add an expense</string>
-    <string name="add_new_wallet_btn_edit_expense">Edit an expense</string>
+    <string name="add_new_wallet_amount_hint">Сумма</string>
+    <string name="add_new_wallet_description_hint">Описание (Необязательно)</string>
+    <string name="add_new_wallet_btn_income">Добавить доход</string>
+    <string name="add_new_wallet_btn_edit_income">Изменить доход</string>
+    <string name="add_new_wallet_btn_expense">Добавить расход</string>
+    <string name="add_new_wallet_btn_edit_expense">Изменить расход</string>
     <!--  /AddNewWallet  -->
 
     <!--  Income  -->
-    <string name="income_grocery">Grocery</string>
-    <string name="income_gifts">Gifts</string>
-    <string name="income_wages">Wages</string>
-    <string name="income_interest">Interest</string>
-    <string name="income_savings">Savings</string>
-    <string name="income_allowance">Allowance</string>
+    <string name="income_grocery">Бакалея</string>
+    <string name="income_gifts">Подарки</string>
+    <string name="income_wages">Зарплата</string>
+    <string name="income_interest">Интерес</string>
+    <string name="income_savings">Экономия</string>
+    <string name="income_allowance">Пособие</string>
 
-    <string name="income_title">CHOOSE CATEGORY</string>
+    <string name="income_title">ВЫБЕРИТЕ КАТЕГОРИЮ</string>
     <!--  /Income  -->
 
     <!--  Expense  -->
-    <string name="expense_empty">Empty, add a category!</string>
-    <string name="expense_add_new_category">Add new category</string>
+    <string name="expense_empty">Пусто, добавьте категорию!</string>
+    <string name="expense_add_new_category">Добавить новую категорию</string>
     <!--  /Expense  -->
 
     <!--  AddNewCategory  -->
-    <string name="creater_category_title_add">Add new category</string>
-    <string name="creater_category_title_edit">Edit category</string>
-    <string name="creater_category_hint">Category name</string>
-    <string name="creater_category_name">This name already exists, please select a new one!</string>
+    <string name="creater_category_title_add">Добавить новую категорию</string>
+    <string name="creater_category_title_edit">Изменить категорию</string>
+    <string name="creater_category_hint">Имя</string>
+    <string name="creater_category_name">Это имя уже существует, выберите новое!</string>
     <!--  /AddNewCategory  -->
 
     <!--  Icons  -->
-    <string name="icons_title">CHOOSE CATEGORY ICON</string>
+    <string name="icons_title">ВЫБЕРИТЕ ЗНАЧОК КАТЕГОРИИ</string>
     <!--  /Icons  -->
 
     <!--  MonthPicker  -->
-    <string name="month_picker_title">PICK A MONTH</string>
+    <string name="month_picker_title">ВЫБЕРИТЕ МЕСЯЦ</string>
     <!--  /MonthPicker  -->
 
     <!--  Language  -->
-    <string name="language_title">Choose language</string>
-    <string name="language_save">Save</string>
+    <string name="language_title">Выберите язык</string>
+    <string name="language_save">Сохранить</string>
     <!--  /Language  -->
 
     <!--  Currency  -->
-    <string name="currency_title">Choose currency</string>
-    <string name="currency_save">Save</string>
+    <string name="currency_title">Выберите валюту</string>
+    <string name="currency_save">Сохранить</string>
     <!--  /Currency  -->
 </resources>

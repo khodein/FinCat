@@ -4,6 +4,6 @@ import com.android.pokhodai.expensemanagement.R
 import java.util.Locale
 
 enum class Language(val locale: String, val nameResIs: Int) {
-    EU("en", R.string.english),
-    RU("ru", R.string.russian)
+    EU("en-EN", R.string.english),
+    RU("ru-RU", R.string.russian)
 }

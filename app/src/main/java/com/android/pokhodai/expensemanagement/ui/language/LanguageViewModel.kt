@@ -28,6 +28,6 @@ class LanguageViewModel @Inject constructor(
     }
 
     fun onClickLanguage() {
-        languageRepository.setLanguage(language = languageFlow.value)
+        languageRepository.setLanguage(languageFlow.value)
     }
 }

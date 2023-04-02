@@ -4,7 +4,6 @@ import android.content.Context
 import androidx.security.crypto.EncryptedSharedPreferences
 import androidx.security.crypto.MasterKey
 import com.android.pokhodai.expensemanagement.App
-import com.android.pokhodai.expensemanagement.repositories.LanguageRepository
 import com.android.pokhodai.expensemanagement.source.UserDataSource
 import dagger.Module
 import dagger.Provides
@@ -37,11 +36,4 @@ object AppModule {
             )
         )
     }
-
-    @Provides
-    @Singleton
-    fun provideLanguageRepository(
-        userDataSource: UserDataSource,
-        @ApplicationContext context: Context
-    ): LanguageRepository = LanguageRepository(userDataSource, context)
 }

@@ -83,6 +83,7 @@
 
     <style name="DropDownTextInputLayoutStyle" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu">
         <item name="boxStrokeWidth">1dp</item>
+        <item name="popupMenuBackground">@color/grey_200</item>
         <item name="boxStrokeColor">@color/background_text_input_layout</item>
         <item name="boxCornerRadiusBottomEnd">5dp</item>
         <item name="boxCornerRadiusBottomStart">5dp</item>
@@ -127,5 +128,4 @@
         <item name="android:background">@drawable/bgr_bottom_sheet</item>
     </style>
     <!--  /BottomSheetStyles -->
-
 </resources>

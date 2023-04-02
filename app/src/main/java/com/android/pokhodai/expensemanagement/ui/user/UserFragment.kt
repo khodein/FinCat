@@ -1,6 +1,9 @@
 package com.android.pokhodai.expensemanagement.ui.user
 
 import android.annotation.SuppressLint
+import android.util.Log
+import android.view.WindowManager
+import android.view.inputmethod.EditorInfo
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.widget.addTextChangedListener
 import androidx.core.widget.doAfterTextChanged
@@ -14,6 +17,7 @@ import com.android.pokhodai.expensemanagement.data.models.User
 import com.android.pokhodai.expensemanagement.databinding.FragmentUserBinding
 import com.android.pokhodai.expensemanagement.ui.currency.CurrencyDialog
 import com.android.pokhodai.expensemanagement.ui.language.LanguageDialog
+import com.android.pokhodai.expensemanagement.ui.settings.SettingsViewModel
 import com.android.pokhodai.expensemanagement.utils.ClickUtils.setOnThrottleClickListener
 import com.android.pokhodai.expensemanagement.utils.navigateSafe
 import com.android.pokhodai.expensemanagement.utils.observe
@@ -26,6 +30,16 @@ class UserFragment : BaseFragment<FragmentUserBinding>(FragmentUserBinding::infl
 
     private val viewModel by viewModels<UserViewModel>()
     private val mainViewModel by activityViewModels<MainViewModel>()
+
+    override fun onStart() {
+        super.onStart()
+        requireActivity().window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN)
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        requireActivity().window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE)
+    }
 
     override fun setListeners() = with(binding) {
         txtFirstNameUser.doAfterTextChanged {
@@ -41,15 +55,19 @@ class UserFragment : BaseFragment<FragmentUserBinding>(FragmentUserBinding::infl
         }
 
         btnCreaterUser.setOnClickListener {
-            windowInsetsController.hide(WindowInsetsCompat.Type.ime())
-            mainViewModel.onChangeUser(
-                User(
-                    firstName = viewModel.firstNameFlow.value,
-                    secondName = viewModel.secondNameFlow.value,
-                    email = viewModel.emailFlow.value,
-                    birth = viewModel.birthFlow.value
-                )
-            )
+            onChangeUser()
+        }
+
+        txtEmailUser.setOnEditorActionListener { _, actionId, _ ->
+            if (actionId == EditorInfo.IME_ACTION_DONE) {
+                if (binding.btnCreaterUser.isEnabled) {
+                    onChangeUser()
+                } else {
+                    windowInsetsController.hide(WindowInsetsCompat.Type.ime())
+                }
+                return@setOnEditorActionListener true
+            }
+            return@setOnEditorActionListener false
         }
 
         chipCurrency.setOnClickListener {
@@ -75,6 +93,18 @@ class UserFragment : BaseFragment<FragmentUserBinding>(FragmentUserBinding::infl
         setFragmentResultListener(CurrencyDialog.CURRENCY) { _, _ ->
             viewModel.onChangeCurrency()
         }
+    }
+
+    private fun onChangeUser() {
+        windowInsetsController.hide(WindowInsetsCompat.Type.ime())
+        mainViewModel.onChangeUser(
+            User(
+                firstName = viewModel.firstNameFlow.value,
+                secondName = viewModel.secondNameFlow.value,
+                email = viewModel.emailFlow.value,
+                birth = viewModel.birthFlow.value
+            )
+        )
     }
 
     override fun onBackPressed() {

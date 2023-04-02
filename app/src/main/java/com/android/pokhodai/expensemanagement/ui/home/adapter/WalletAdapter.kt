@@ -6,6 +6,7 @@ import android.graphics.drawable.InsetDrawable
 import android.text.Spannable
 import android.text.SpannableString
 import android.text.style.ForegroundColorSpan
+import android.view.Gravity
 import android.view.View
 import androidx.appcompat.view.menu.MenuBuilder
 import androidx.appcompat.widget.PopupMenu
@@ -90,8 +91,10 @@ class WalletAdapter @Inject constructor(): BasePagingAdapter<WalletAdapter.ItemW
         context: Context,
         action: (Creater) -> Unit,
     ) {
-        val popup = PopupMenu(context, v)
-        popup.menuInflater.inflate(R.menu.wallet_attach_menu, popup.menu)
+        val popup = PopupMenu(context, v).apply {
+            menuInflater.inflate(R.menu.wallet_attach_menu, menu)
+            gravity = Gravity.END
+        }
 
         val menuBuilder = popup.menu as MenuBuilder
 

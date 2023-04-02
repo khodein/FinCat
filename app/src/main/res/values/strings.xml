@@ -98,7 +98,6 @@
     <string name="add_new_wallet_title_add_new">Add new</string>
     <string name="add_new_wallet_title_edit">Edit</string>
     <string name="add_new_wallet_type">Type</string>
-
     <string name="add_new_wallet_income">Income</string>
     <string name="add_new_wallet_expense">Expense</string>
     <string name="add_new_wallet_category_name">Category name</string>
@@ -123,7 +122,6 @@
     <string name="income_interest">Interest</string>
     <string name="income_savings">Savings</string>
     <string name="income_allowance">Allowance</string>
-
     <string name="income_title">CHOOSE CATEGORY</string>
     <!--  /Income  -->
 
@@ -137,6 +135,7 @@
     <string name="creater_category_title_edit">Edit category</string>
     <string name="creater_category_hint">Category name</string>
     <string name="creater_category_name">This name already exists, please select a new one!</string>
+    <string name="create_amount_mask">-%s</string>
     <!--  /AddNewCategory  -->
 
     <!--  Icons  -->

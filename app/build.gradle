@@ -32,6 +32,8 @@ android {
                         "room.expandProjection":"true"]
             }
         }
+
+        resConfigs "ru", "en"
     }
 
     buildTypes {

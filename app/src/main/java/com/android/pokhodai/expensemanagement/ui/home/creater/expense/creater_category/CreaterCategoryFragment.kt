@@ -28,12 +28,7 @@ class CreaterCategoryFragment :
 
     override val isBnvVisible: Boolean = false
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        setTitle()
-    }
-
-    private fun setTitle() = with(binding) {
+    override fun initToolbar() = with(binding) {
         val title = getString(if (viewModel.editOrCreateType == Creater.CREATE) {
             R.string.creater_category_title_add
         } else {
@@ -59,7 +54,7 @@ class CreaterCategoryFragment :
         }
 
         tbCreaterCategory.setNavigationOnClickListener {
-            navigationController.popBackStack()
+            onBackPressed()
         }
 
         ivCreaterCategory.setOnClickListener {
@@ -92,7 +87,7 @@ class CreaterCategoryFragment :
 
         navigatePopFlow.observe(viewLifecycleOwner) {
             setFragmentResult(UPDATE_CATEGORY_SUCCESS, bundleOf())
-            navigationController.popBackStack()
+            onBackPressed()
         }
 
         shackBarFlow.observe(viewLifecycleOwner) {

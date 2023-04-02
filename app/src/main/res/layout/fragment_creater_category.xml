@@ -25,67 +25,68 @@
 
     </com.google.android.material.appbar.AppBarLayout>
 
-    <LinearLayout
-        android:id="@+id/llColumnCreaterCategory"
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
+        android:fillViewport="true"
         app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
 
         <LinearLayout
-            android:id="@+id/llRowCreaterCategory"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
-            android:orientation="horizontal"
-            android:paddingHorizontal="16dp">
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-            <ImageView
-                android:id="@+id/ivCreaterCategory"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_gravity="center"
-                android:src="@drawable/ic_add_new_category"
-                tools:ignore="ContentDescription" />
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/tilCategoryNameCreaterCategory"
-                style="@style/TextInputLayoutStyle"
+            <LinearLayout
+                android:id="@+id/llRowCreaterCategory"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginStart="20dp"
-                app:hintEnabled="false">
+                android:layout_marginTop="30dp"
+                android:orientation="horizontal"
+                android:paddingHorizontal="16dp">
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/txtCategoryNameCreaterCategory"
-                    style="@style/TextEditTextStyle"
+                <ImageView
+                    android:id="@+id/ivCreaterCategory"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/ic_add_new_category"
+                    tools:ignore="ContentDescription" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/tilCategoryNameCreaterCategory"
+                    style="@style/TextInputLayoutStyle"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:hint="@string/creater_category_hint"
-                    android:imeOptions="actionDone"
-                    android:inputType="text" />
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="20dp"
+                    app:hintEnabled="false">
 
-            </com.google.android.material.textfield.TextInputLayout>
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/txtCategoryNameCreaterCategory"
+                        style="@style/TextEditTextStyle"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:hint="@string/creater_category_hint"
+                        android:imeOptions="actionDone"
+                        android:inputType="text" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+            </LinearLayout>
 
         </LinearLayout>
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:minHeight="20dp" />
+    </androidx.core.widget.NestedScrollView>
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/btnCreaterCategory"
-            style="@style/DefaultButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="16dp"
-            android:layout_marginBottom="20dp"
-            android:enabled="false"
-            android:text="@string/creater_category_title_add" />
-
-    </LinearLayout>
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnCreaterCategory"
+        style="@style/DefaultButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginBottom="20dp"
+        android:enabled="false"
+        android:text="@string/creater_category_title_add" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

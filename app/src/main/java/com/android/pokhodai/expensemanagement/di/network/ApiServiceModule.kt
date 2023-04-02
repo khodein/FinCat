@@ -1,6 +1,7 @@
 package com.android.pokhodai.expensemanagement.di.network
 
 import com.android.pokhodai.expensemanagement.data.service.AskQuestService
+import com.android.pokhodai.expensemanagement.di.annotations.Api1RetrofitClient
 import com.android.pokhodai.expensemanagement.di.annotations.ApiRetrofitClient
 import dagger.Module
 import dagger.Provides
