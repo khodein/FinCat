@@ -38,3 +38,5 @@ bin/
 gen/
 
 settings.expense
+
+ApiSettings
