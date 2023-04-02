@@ -4,7 +4,7 @@ buildscript {
         hilt_version = '2.44.2'
         nav_version = "2.5.3"
         hilt_nav_fragment_version = "1.0.0"
-        room_version = "2.5.0"
+        room_version = "2.5.1"
         moshi_version = '1.13.0'
         kotlin_version = '1.8.20-Beta'
         pagination_version = '3.1.1'

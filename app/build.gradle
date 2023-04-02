@@ -12,11 +12,11 @@ android {
     compileSdk 33
 
     defaultConfig {
-        applicationId "com.android.pokhodai.expensemanagement"
+        applicationId APP_PACKAGE
         minSdk 24
         targetSdk 33
-        versionCode 1
-        versionName "0.0.1"
+        versionCode Integer.parseInt(APP_VERSION_CODE)
+        versionName APP_VERSION_NAME
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
@@ -34,6 +34,8 @@ android {
         }
 
         resConfigs "ru", "en"
+
+        multiDexEnabled true
     }
 
     buildTypes {
@@ -62,6 +64,23 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
+
+    def branch = ""
+    def proc = "git rev-parse --abbrev-ref HEAD".execute()
+    proc.in.eachLine { line -> branch = line }
+    proc.err.eachLine { line -> println line }
+    proc.waitFor()
+
+    applicationVariants.all { variant ->
+        variant.outputs.all { output ->
+            outputFileName = "emanager_${APP_VERSION_NAME}(${getBuildVersion()}).apk"
+        }
+    }
+}
+
+static def getBuildVersion() {
+    def date = new Date()
+    return date.format('MMddHHmm')
 }
 
 dependencies {
