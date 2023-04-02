@@ -2,7 +2,7 @@ package com.android.pokhodai.expensemanagement.data.settings
 
 object ApiSettings {
 
-    const val BASE_URL = "https://api.telegram.org/bot5906683048:AAHrBp6aWLbbNX9V4puNHbvMSTDQYZERPyM/"
+    const val BASE_URL = ""
 
     //Send
     const val SEND_MESSAGE = "sendMessage"
