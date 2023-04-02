@@ -37,6 +37,4 @@ google-services.json
 bin/
 gen/
 
-*.ApiSettings
-
 settings.expense
