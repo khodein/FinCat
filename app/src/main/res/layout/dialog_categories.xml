@@ -15,7 +15,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginTop="25dp"
+            android:layout_marginTop="@dimen/dialog_categories_title_margin_top"
             android:text="@string/income_title"
             android:textAppearance="@style/OverlineTextStyle" />
 
@@ -35,9 +35,9 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:overScrollMode="never"
-                android:paddingHorizontal="40dp"
-                android:paddingTop="20dp"
-                android:paddingBottom="20dp"
+                android:paddingHorizontal="@dimen/dialog_categories_rv_pad_hor"
+                android:paddingTop="@dimen/dialog_categories_rv_pad_top"
+                android:paddingBottom="@dimen/dialog_categories_rv_pad_bottom"
                 app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
                 app:spanCount="3" />
 
@@ -49,7 +49,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginBottom="20dp"
+            android:layout_marginBottom="@dimen/dialog_categories_btn_add_new_margin_bottom"
             android:text="@string/expense_add_new_category"
             android:visibility="gone" />
 

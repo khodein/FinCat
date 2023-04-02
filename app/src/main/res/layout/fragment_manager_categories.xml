@@ -38,7 +38,7 @@
                 android:id="@+id/rvManagerCategories"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:paddingVertical="20dp"
+                android:paddingVertical="@dimen/manager_categories_rv_pad_hor"
                 android:orientation="vertical"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 
@@ -48,7 +48,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center|bottom"
-                android:layout_marginBottom="20dp"
+                android:layout_marginBottom="@dimen/manager_categories_btn_add_new_margin_bottom"
                 android:text="@string/manager_categories_add_new"
                 android:textAppearance="@style/ButtonTextStyle"
                 app:icon="@drawable/ic_add_plus_circle" />

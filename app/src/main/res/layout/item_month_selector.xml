@@ -5,14 +5,14 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
-    android:paddingHorizontal="12dp">
+    android:paddingHorizontal="@dimen/item_month_selector_root_pad_hor">
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btnLeftMonthSelector"
         style="@style/Only.IconButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:padding="12dp"
+        android:padding="@dimen/item_month_selector_btn_left_pad"
         app:icon="@drawable/ic_arrow_left"
         app:rippleColor="@color/grey_100" />
 
@@ -30,10 +30,10 @@
             android:textAppearance="@style/ButtonTextStyle"
             android:textColor="@color/grey_800"
             app:chipBackgroundColor="@color/grey_100"
-            app:chipEndPadding="12dp"
+            app:chipEndPadding="@dimen/item_month_selector_chip_date_pad_end"
             app:chipIcon="@drawable/ic_calendar"
-            app:chipIconSize="16dp"
-            app:chipStartPadding="12dp"
+            app:chipIconSize="@dimen/item_month_selector_chip_date_icon_size"
+            app:chipStartPadding="@dimen/item_month_selector_chip_date_start_pad"
             app:rippleColor="@color/blue_500"
             tools:text="May, 2021" />
 
@@ -44,7 +44,7 @@
         style="@style/Only.IconButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:padding="12dp"
+        android:padding="@dimen/item_month_selector_btn_right_pad"
         app:icon="@drawable/ic_arrow_right"
         app:rippleColor="@color/grey_100" />
 

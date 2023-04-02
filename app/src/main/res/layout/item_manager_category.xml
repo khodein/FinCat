@@ -4,10 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginStart="16dp"
-    android:layout_marginEnd="6dp"
-    android:layout_marginBottom="20dp"
-    app:cardCornerRadius="10dp"
+    android:layout_marginStart="@dimen/item_manager_category_margin_start"
+    android:layout_marginEnd="@dimen/item_manager_category_margin_end"
+    android:layout_marginBottom="@dimen/item_manager_category_margin_bottom"
+    app:cardCornerRadius="@dimen/item_manager_category_corner"
     app:cardElevation="0dp">
 
     <LinearLayout
@@ -28,7 +28,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginStart="10dp"
+            android:layout_marginStart="@dimen/item_manager_category_name_margin_start"
             android:layout_weight="1"
             android:textAppearance="@style/Body2Style"
             android:textColor="@color/black"
@@ -40,7 +40,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:padding="10dp"
+            android:padding="@dimen/item_manager_category_btn_edit_padding"
             android:text="@string/manager_categories_edit"
             android:textColor="@color/blue_600" />
 
@@ -50,7 +50,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:padding="10dp"
+            android:padding="@dimen/item_manager_category_btn_drag_and_drop_padding"
             app:icon="@drawable/ic_drag_and_drop" />
 
     </LinearLayout>

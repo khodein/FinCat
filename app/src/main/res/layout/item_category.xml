@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="100dp"
-    android:layout_height="100dp">
+    android:layout_width="@dimen/item_category_root_size"
+    android:layout_height="@dimen/item_category_root_size">
 
     <LinearLayout
         android:id="@+id/llColumnIncome"
@@ -23,7 +23,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="@dimen/item_category_income_margin_top"
             android:textAlignment="center"
             android:ellipsize="end"
             android:maxLines="1"

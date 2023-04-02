@@ -4,13 +4,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_marginTop="20dp"
+    android:layout_marginTop="@dimen/item_wallet_header_root_margin_top"
     android:layout_height="wrap_content">
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/cardWalletHeader"
         android:layout_width="match_parent"
-        app:strokeWidth="1dp"
+        app:strokeWidth="@dimen/item_wallet_header_card_stroke"
         app:strokeColor="@color/grey_300"
         android:layout_height="wrap_content"
         app:cardCornerRadius="0dp"
@@ -21,9 +21,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:paddingHorizontal="16dp"
-            android:paddingTop="16dp"
-            android:paddingBottom="8dp">
+            android:paddingHorizontal="@dimen/item_wallet_header_cnl_pad_hor"
+            android:paddingTop="@dimen/item_wallet_header_cnl_pad_top"
+            android:paddingBottom="@dimen/item_wallet_header_cnl_pad_bottom">
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/txtDateWallet"

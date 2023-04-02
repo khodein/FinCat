@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:paddingVertical="20dp">
+    android:paddingVertical="@dimen/currency_root_pad_ver">
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/txtTitleCurrency"
@@ -19,24 +19,24 @@
         layout="@layout/item_currency"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="20dp"
-        android:layout_marginTop="20dp" />
+        android:layout_marginHorizontal="@dimen/currency_inc_dollar_mar_hor"
+        android:layout_marginTop="@dimen/currency_inc_dollar_mar_top" />
 
     <include
         android:id="@+id/incRubleCurrency"
         layout="@layout/item_currency"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="20dp"
-        android:layout_marginTop="20dp" />
+        android:layout_marginHorizontal="@dimen/currency_inc_ruble_mar_hor"
+        android:layout_marginTop="@dimen/currency_inc_ruble_mar_top" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btnCurrency"
         style="@style/DefaultButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="20dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginHorizontal="@dimen/currency_btn_mar_hor"
+        android:layout_marginTop="@dimen/currency_btn_mar_top"
         android:enabled="false"
         android:text="@string/currency_save" />
 

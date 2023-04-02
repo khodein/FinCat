@@ -37,24 +37,26 @@
                     app:titleTextAppearance="@style/TitleStyle" />
 
                 <LinearLayout
+                    android:id="@+id/llColumnSettings"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    android:paddingHorizontal="16dp"
-                    android:paddingTop="30dp"
-                    android:paddingBottom="25dp">
+                    android:paddingHorizontal="@dimen/user_ll_column_settings_pad_hor"
+                    android:paddingTop="@dimen/user_ll_column_settings_pad_top"
+                    android:paddingBottom="@dimen/user_ll_column_settings_pad_bottom">
 
                     <com.android.pokhodai.expensemanagement.utils.view.avatar.AvatarView
                         android:id="@+id/avSetting"
-                        android:layout_width="48dp"
-                        android:layout_height="48dp"
+                        android:layout_width="@dimen/user_av_settings_size"
+                        android:layout_height="@dimen/user_av_settings_size"
                         android:layout_gravity="center" />
 
                     <LinearLayout
+                        android:id="@+id/llColumnUserSettings"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:layout_marginStart="10dp"
+                        android:layout_marginStart="@dimen/user_ll_column_user_settings_margin_start"
                         android:orientation="vertical">
 
                         <com.google.android.material.textview.MaterialTextView

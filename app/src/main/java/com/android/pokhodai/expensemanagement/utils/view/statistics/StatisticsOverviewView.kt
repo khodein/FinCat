@@ -16,8 +16,8 @@ import kotlin.math.roundToInt
 
 class StatisticsOverviewView : View {
 
-    private val heightView = 36.dp
-    private val radius = 8.dp
+    private val heightView = context.resources.getDimension(R.dimen.statistics_height)
+    private val radius = context.resources.getDimension(R.dimen.statistics_radius)
 
     private val colorGroceries = ContextCompat.getColor(context, R.color.icons_C8E6C9)
     private val colorCafe = ContextCompat.getColor(context, R.color.icons_FFECB3)

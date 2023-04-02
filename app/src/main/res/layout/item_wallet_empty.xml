@@ -3,14 +3,14 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:tools="http://schemas.android.com/tools"
-    android:paddingVertical="16dp">
+    android:paddingVertical="@dimen/item_wallet_empty_root_pad_hor">
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/txtWalletEmpty"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:paddingHorizontal="16dp"
+        android:paddingHorizontal="@dimen/item_wallet_empty_txt_pad_hor"
         tools:text="Empty"
         android:textAlignment="center"
         android:textAppearance="@style/CaptionStyle"

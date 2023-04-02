@@ -13,13 +13,14 @@
         app:cardElevation="0dp"
         app:rippleColor="@color/grey_300"
         app:strokeColor="@color/grey_300"
-        app:strokeWidth="1dp">
+        app:strokeWidth="@dimen/item_wallet_card_stroke">
 
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/clWallet"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingHorizontal="16dp"
-            android:paddingVertical="8dp">
+            android:paddingHorizontal="@dimen/item_wallet_pad_hor"
+            android:paddingVertical="@dimen/item_wallet_pad_ver">
 
             <ImageView
                 android:id="@+id/ivAmount"
@@ -59,8 +60,8 @@
                 android:id="@+id/txtNameAmount"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginEnd="20dp"
+                android:layout_marginStart="@dimen/item_wallet_name_margin_start"
+                android:layout_marginEnd="@dimen/item_wallet_name_margin_end"
                 android:textAppearance="@style/Body2Style"
                 android:textColor="@color/grey_900"
                 app:layout_constraintEnd_toStartOf="@+id/txtAmount"

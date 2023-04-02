@@ -18,14 +18,14 @@
         android:layout_gravity="center"
         android:alpha="0"
         android:indeterminate="true"
-        app:indicatorSize="32dp"
+        app:indicatorSize="@dimen/network_btn_cpi_indicator_size"
         app:indicatorColor="@color/white"
-        app:trackThickness="4dp" />
+        app:trackThickness="@dimen/network_btn_cpi_track" />
 
     <ImageView
         android:id="@+id/ivCustom"
-        android:layout_width="35dp"
-        android:layout_height="35dp"
+        android:layout_width="@dimen/network_btn_iv_size"
+        android:layout_height="@dimen/network_btn_iv_size"
         android:layout_gravity="center"
         android:alpha="0"
         android:src="@drawable/ic_cant_send"

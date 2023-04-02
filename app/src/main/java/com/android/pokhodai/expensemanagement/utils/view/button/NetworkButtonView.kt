@@ -26,8 +26,8 @@ class NetworkButtonView : FrameLayout {
 
     private var progressWidth: Int = 0
     private var btnWidth: Int = 0
-    private var normalCorners = 40.dp
-    private var loadingCorners = 40.dp
+    private var normalCorners = context.resources.getDimension(R.dimen.network_btn_normal_corner)
+    private var loadingCorners = context.resources.getDimension(R.dimen.network_btn_loading_corner)
     private val doneDrawable = R.drawable.ic_send
     private val errorDrawable = R.drawable.ic_cant_send
     private var onEndAnimateDoneListener: (() -> Unit)? = null

@@ -1,0 +1,279 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- SearchTextInput  -->
+    <dimen name="search_text_input_box_corner">8dp</dimen>
+    <dimen name="search_text_input_box_stroke">1dp</dimen>
+    <!-- /SearchTextInput  -->
+
+    <!-- DropDownText  -->
+    <dimen name="drop_down_text_box_corner">5dp</dimen>
+    <dimen name="drop_down_text_box_stroke">1dp</dimen>
+    <!-- /DropDownText  -->
+
+    <!-- OutlineBtn  -->
+    <dimen name="outline_btn_corner">4dp</dimen>
+    <dimen name="outline_btn_min_height">32dp</dimen>
+    <dimen name="outline_btn_stroke_width">1dp</dimen>
+    <!-- /OutlineBtn  -->
+
+    <!-- DefaultBtn  -->
+    <dimen name="default_btn_corner">40dp</dimen>
+    <dimen name="default_btn_min_height">40dp</dimen>
+    <!-- /DefaultBtn  -->
+
+    <!-- User  -->
+    <dimen name="user_ll_column_user_pad_hor">20dp</dimen>
+    <dimen name="user_txt_first_name_margin_top">20dp</dimen>
+    <dimen name="user_til_second_name_margin_top">10dp</dimen>
+    <dimen name="user_cg_margin_top">10dp</dimen>
+    <dimen name="user_chip_lang_padding">20dp</dimen>
+    <dimen name="user_chip_currency_padding">20dp</dimen>
+    <dimen name="user_chip_birth_padding">20dp</dimen>
+    <dimen name="user_til_email_margin_top">10dp</dimen>
+    <dimen name="user_btn_creater_margin_vert">20dp</dimen>
+    <dimen name="user_view_min_height">20dp</dimen>
+    <!--  /User -->
+
+    <!-- Settings  -->
+    <dimen name="user_ll_column_settings_pad_hor">16dp</dimen>
+    <dimen name="user_ll_column_settings_pad_top">30dp</dimen>
+    <dimen name="user_ll_column_settings_pad_bottom">25dp</dimen>
+    <dimen name="user_av_settings_size">48dp</dimen>
+    <dimen name="user_ll_column_user_settings_margin_start">10dp</dimen>
+    
+    <dimen name="item_setting_ll_column_pad_hor">20dp</dimen>
+    <dimen name="item_setting_ll_column_pad_ver">15dp</dimen>
+    <dimen name="item_setting_iv_margin_end">10dp</dimen>
+    <dimen name="item_setting_name_margin_end">10dp</dimen>
+    <!-- /Settings  -->
+
+    <!-- Asked Quest  -->
+    <dimen name="dialog_asked_quest_root_pad_ver">20dp</dimen>
+    <dimen name="dialog_title_asked_quest_pad_hor">20dp</dimen>
+    <dimen name="dialog_subtitle_asked_quest_margin_top">5dp</dimen>
+    <dimen name="dialog_til_topic_asked_quest_mar_hor">20dp</dimen>
+    <dimen name="dialog_til_topic_asked_quest_mar_top">10dp</dimen>
+    <dimen name="dialog_til_descr_asked_quest_mar_hor">20dp</dimen>
+    <dimen name="dialog_til_descr_asked_quest_mar_top">20dp</dimen>
+    <dimen name="dialog_btn_asked_quest_mar_hor">20dp</dimen>
+    <dimen name="dialog_btn_asked_quest_mar_top">20dp</dimen>
+    <!-- /Asked Quest  -->
+
+    <!-- Manager Categories -->
+    <dimen name="manager_categories_rv_pad_hor">20dp</dimen>
+    <dimen name="manager_categories_btn_add_new_margin_bottom">20dp</dimen>
+    
+    <dimen name="item_manager_category_margin_start">16dp</dimen>
+    <dimen name="item_manager_category_margin_end">6dp</dimen>
+    <dimen name="item_manager_category_margin_bottom">20dp</dimen>
+    <dimen name="item_manager_category_corner">10dp</dimen>
+    <dimen name="item_manager_category_name_margin_start">10dp</dimen>
+    <dimen name="item_manager_category_btn_edit_padding">10dp</dimen>
+    <dimen name="item_manager_category_btn_drag_and_drop_padding">10dp</dimen>
+    <!-- /Manager Categories -->
+
+    <!-- Search -->
+    <dimen name="search_rv_categories_padding_start">54dp</dimen>
+    <dimen name="search_rv_categories_padding_top">20dp</dimen>
+    <dimen name="search_rv_categories_padding_bottom">10dp</dimen>
+    <dimen name="search_rv_wallets_pad_hor">16dp</dimen>
+    <dimen name="search_rv_wallets_pad_ver">16dp</dimen>
+
+    <dimen name="item_tip_root_corner">6dp</dimen>
+    <dimen name="item_tip_root_stroke">1dp</dimen>
+    <dimen name="item_tip_root_margin_end">8dp</dimen>
+    <dimen name="item_tip_column_pad_hor">8dp</dimen>
+    <dimen name="item_tip_column_pad_ver">6dp</dimen>
+    <dimen name="item_tip_size">20dp</dimen>
+    <dimen name="item_tip_name_pad_start">6dp</dimen>
+
+    <dimen name="item_wallet_card_stroke">1dp</dimen>
+    <dimen name="item_wallet_pad_hor">16dp</dimen>
+    <dimen name="item_wallet_pad_ver">8dp</dimen>
+    <dimen name="item_wallet_name_margin_start">10dp</dimen>
+    <dimen name="item_wallet_name_margin_end">20dp</dimen>
+    <!-- /Search -->
+
+    <!-- Report -->
+    <dimen name="report_overview_margin_top">10dp</dimen>
+    <dimen name="report_overview_pad_hor">16dp</dimen>
+    <dimen name="report_sov_margin_hor">16dp</dimen>
+    <dimen name="report_sov_margin_top">10dp</dimen>
+    <dimen name="report_txt_details_margin_top">20dp</dimen>
+    <dimen name="report_txt_details_pad_hor">16dp</dimen>
+    <dimen name="report_rv_pad_hor">16dp</dimen>
+    <dimen name="report_rv_pad_ver">20dp</dimen>
+
+    <dimen name="item_report_root_pad_ver">8dp</dimen>
+    <dimen name="item_report_ll_column_text_pad_hor">10dp</dimen>
+    <!-- /Report -->
+
+    <!-- Pin Code -->
+    <dimen name="pin_code_title_margin_top">50dp</dimen>
+    <dimen name="pin_code_ll_column_dots_margin_top">20dp</dimen>
+    <dimen name="pin_code_dot_size">30dp</dimen>
+    <dimen name="pin_code_dot_pad">10dp</dimen>
+    <dimen name="pin_code_cl_margin_top">20dp</dimen>
+    <dimen name="pin_code_four_margin_top">20dp</dimen>
+    <dimen name="pin_code_seven_margin_top">20dp</dimen>
+    <dimen name="pin_code_exit_margin_top">20dp</dimen>
+    <dimen name="pin_code_btn_finger_pad">20dp</dimen>
+    <dimen name="pin_code_backspace_pad">20dp</dimen>
+    <dimen name="pin_code_btn_next_margin_top">20dp</dimen>
+    <dimen name="pin_code_btn_next_margin_hor">40dp</dimen>
+    <dimen name="pin_code_min_height">20dp</dimen>
+    <!-- /Pin Code -->
+
+    <!-- Language -->
+    <dimen name="lang_root_pad_ver">20dp</dimen>
+    <dimen name="lang_ll_column_margin_top">20dp</dimen>
+    <dimen name="lang_ll_column_pad_hor">20dp</dimen>
+    <dimen name="lang_inc_ru_margin_end">10dp</dimen>
+    <dimen name="lang_inc_eu_margin_start">10dp</dimen>
+    <dimen name="lang_btn_mar_hor">20dp</dimen>
+    <dimen name="lang_btn_mar_top">40dp</dimen>
+
+    <dimen name="item_lang_root_corner">10dp</dimen>
+    <dimen name="item_lang_root_stroke">1dp</dimen>
+    <dimen name="item_lang_ll_column_pad_hor">20dp</dimen>
+    <dimen name="item_lang_ll_column_pad_ver">10dp</dimen>
+    <dimen name="item_lang_name_margin_top">5dp</dimen>
+    <!-- /Language -->
+
+    <!-- Home -->
+    <dimen name="home_ll_row_margin_end">16dp</dimen>
+    <dimen name="home_btn_search_margin_end">10dp</dimen>
+    <dimen name="home_btn_search_padding">10dp</dimen>
+    <dimen name="home_av_size">40dp</dimen>
+    <dimen name="home_inc_status_mar_hor">16dp</dimen>
+    <dimen name="home_inc_status_mar_top">20dp</dimen>
+    <dimen name="home_rv_pad_hor">16dp</dimen>
+    <dimen name="home_rv_pad_bottom">80dp</dimen>
+    <dimen name="home_btn_add_mar_bottom">20dp</dimen>
+    <!-- /Home -->
+
+    <!-- Dialog Categories -->
+    <dimen name="dialog_categories_title_margin_top">25dp</dimen>
+    <dimen name="dialog_categories_rv_pad_hor">40dp</dimen>
+    <dimen name="dialog_categories_rv_pad_top">20dp</dimen>
+    <dimen name="dialog_categories_rv_pad_bottom">20dp</dimen>
+    <dimen name="dialog_categories_btn_add_new_margin_bottom">20dp</dimen>
+    <!-- /Dialog Categories -->
+
+    <!-- Creater Category -->
+    <dimen name="creater_category_ll_row_margin_top">30dp</dimen>
+    <dimen name="creater_category_ll_row_pad_hor">16dp</dimen>
+    <dimen name="creater_category_iv_size">50dp</dimen>
+    <dimen name="creater_category_name_margin_top">20dp</dimen>
+    <dimen name="creater_category_btn_margin_bottom">20dp</dimen>
+    <dimen name="creater_category_btn_margin_hor">16dp</dimen>
+
+    <dimen name="item_category_root_size">100dp</dimen>
+    <dimen name="item_category_income_margin_top">5dp</dimen>
+    <!-- /Creater Category -->
+
+    <!-- Currency -->
+    <dimen name="currency_root_pad_ver">20dp</dimen>
+    <dimen name="currency_inc_dollar_mar_hor">20dp</dimen>
+    <dimen name="currency_inc_dollar_mar_top">20dp</dimen>
+    <dimen name="currency_inc_ruble_mar_hor">20dp</dimen>
+    <dimen name="currency_inc_ruble_mar_top">20dp</dimen>
+    <dimen name="currency_btn_mar_hor">20dp</dimen>
+    <dimen name="currency_btn_mar_top">40dp</dimen>
+
+    <dimen name="item_currency_root_corner">10dp</dimen>
+    <dimen name="item_currency_root_stroke">1dp</dimen>
+    <dimen name="item_currency_ll_row_pad">5dp</dimen>
+    <dimen name="item_currency_name_pad_hor">20dp</dimen>
+    <!-- /Currency -->
+
+    <!-- CreaterWallet -->
+    <dimen name="creater_wallet_til_type_mar_hor">16dp</dimen>
+    <dimen name="creater_wallet_til_type_mar_top">20dp</dimen>
+    <dimen name="creater_wallet_txt_type_pad_hor">16dp</dimen>
+    <dimen name="creater_wallet_ll_row_margin_top">16dp</dimen>
+    <dimen name="creater_wallet_ll_row_pad_hor">16dp</dimen>
+    <dimen name="creater_wallet_iv_size">50dp</dimen>
+    <dimen name="creater_wallet_iv_margin_end">20dp</dimen>
+    <dimen name="creater_wallet_txt_name_pad_hor">16dp</dimen>
+    <dimen name="creater_wallet_txt_name_pad_ver">16dp</dimen>
+    <dimen name="creater_wallet_til_date_pad_hor">16dp</dimen>
+    <dimen name="creater_wallet_til_date_margin_top">16dp</dimen>
+    <dimen name="creater_wallet_txt_date_pad_hor">16dp</dimen>
+    <dimen name="creater_wallet_txt_date_pad_ver">16dp</dimen>
+    <dimen name="creater_wallet_til_amount_mar_hor">16dp</dimen>
+    <dimen name="creater_wallet_til_amount_mar_top">12dp</dimen>
+    <dimen name="creater_wallet_til_descr_mar_hor">16dp</dimen>
+    <dimen name="creater_wallet_til_descr_mar_top">12dp</dimen>
+    <dimen name="creater_wallet_btn_mar_top">40dp</dimen>
+    <dimen name="creater_wallet_btn_mar_hor">16dp</dimen>
+    <!-- /CreaterWallet -->
+
+    <!-- Empty -->
+    <dimen name="empty_pad">10dp</dimen>
+    <!-- /Empty -->
+
+    <!-- Month Selector -->
+    <dimen name="item_month_selector_root_pad_hor">12dp</dimen>
+    <dimen name="item_month_selector_btn_left_pad">12dp</dimen>
+    <dimen name="item_month_selector_chip_date_pad_end">12dp</dimen>
+    <dimen name="item_month_selector_chip_date_icon_size">16dp</dimen>
+    <dimen name="item_month_selector_chip_date_start_pad">12dp</dimen>
+    <dimen name="item_month_selector_btn_right_pad">12dp</dimen>
+    <!-- /Month Selector -->
+
+    <!-- Spin -->
+    <dimen name="item_spin_root_pad">10dp</dimen>
+    <!-- /Spin -->
+
+    <!-- Status -->
+    <dimen name="item_status_root_corner">8dp</dimen>
+    <dimen name="item_status_root_stroke">1dp</dimen>
+    <dimen name="item_status_ll_row_pad_hor">24dp</dimen>
+    <dimen name="item_status_ll_row_pad_ver">16dp</dimen>
+    <dimen name="item_status_txt_expense_mar_top">6dp</dimen>
+    <dimen name="item_status_txt_balance_mar_top">6dp</dimen>
+    <dimen name="item_status_txt_income_mar_top">6dp</dimen>
+    <dimen name="item_status_min_width_first">10dp</dimen>
+    <dimen name="item_status_min_width_second">30dp</dimen>
+    <!-- /Status -->
+
+    <!-- WalletEmpty -->
+    <dimen name="item_wallet_empty_root_pad_hor">16dp</dimen>
+    <dimen name="item_wallet_empty_txt_pad_hor">16dp</dimen>
+    <!-- /WalletEmpty -->
+
+    <!-- Wallet Header -->
+    <dimen name="item_wallet_header_root_margin_top">20dp</dimen>
+    <dimen name="item_wallet_header_card_stroke">1dp</dimen>
+    <dimen name="item_wallet_header_cnl_pad_hor">16dp</dimen>
+    <dimen name="item_wallet_header_cnl_pad_top">16dp</dimen>
+    <dimen name="item_wallet_header_cnl_pad_bottom">8dp</dimen>
+    <!-- /Wallet Header -->
+
+    <!-- Month Picker -->
+    <dimen name="month_picker_root_pad_top">16dp</dimen>
+    <dimen name="month_picker_root_pad_bottom">20dp</dimen>
+    <dimen name="month_picker_row_pad_hor">40dp</dimen>
+    <dimen name="month_picker_btn_left_pad">10dp</dimen>
+    <dimen name="month_picker_btn_icon_size">12dp</dimen>
+    <dimen name="month_picker_btn_right_pad">10dp</dimen>
+    <dimen name="month_picker_btn_right_icon_size">12dp</dimen>
+    <dimen name="month_picker_rv_margin_top">10dp</dimen>
+    <dimen name="month_picker_rv_pad_hor">20dp</dimen>
+    <!-- /Month Picker -->
+
+    <!-- Network btn -->
+    <dimen name="network_btn_cpi_indicator_size">32dp</dimen>
+    <dimen name="network_btn_cpi_track">4dp</dimen>
+    <dimen name="network_btn_iv_size">35dp</dimen>
+    <dimen name="network_btn_normal_corner">40dp</dimen>
+    <dimen name="network_btn_loading_corner">40dp</dimen>
+    <!-- /Network btn -->
+
+    <!-- StatisticsOverView -->
+    <dimen name="statistics_height">36dp</dimen>
+    <dimen name="statistics_radius">8dp</dimen>
+    <!-- /StatisticsOverView -->
+</resources>

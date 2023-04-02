@@ -51,9 +51,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    android:paddingStart="54dp"
-                    android:paddingTop="20dp"
-                    android:paddingBottom="10dp"
+                    android:paddingStart="@dimen/search_rv_categories_padding_start"
+                    android:paddingTop="@dimen/search_rv_categories_padding_top"
+                    android:paddingBottom="@dimen/search_rv_categories_padding_bottom"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                     tools:ignore="RtlSymmetry" />
 
@@ -74,8 +74,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:paddingHorizontal="16dp"
-        android:paddingVertical="16dp"
+        android:paddingHorizontal="@dimen/search_rv_wallets_pad_hor"
+        android:paddingVertical="@dimen/search_rv_wallets_pad_ver"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior" />
 

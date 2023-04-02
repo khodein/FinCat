@@ -18,13 +18,13 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
-            android:paddingHorizontal="20dp">
+            android:paddingHorizontal="@dimen/user_ll_column_user_pad_hor">
 
             <View
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
-                android:minHeight="20dp" />
+                android:minHeight="@dimen/user_view_min_height" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -44,7 +44,7 @@
                     style="@style/TextInputLayoutStyle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp">
+                    android:layout_marginTop="@dimen/user_txt_first_name_margin_top">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/txtFirstNameUser"
@@ -61,7 +61,7 @@
                     style="@style/TextInputLayoutStyle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp">
+                    android:layout_marginTop="@dimen/user_til_second_name_margin_top">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/txtSecondNameUser"
@@ -77,7 +77,7 @@
                     android:id="@+id/cgUser"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp">
+                    android:layout_marginTop="@dimen/user_cg_margin_top">
 
                     <com.google.android.material.chip.Chip
                         android:id="@+id/chipLanguage"
@@ -87,8 +87,8 @@
                         android:textAppearance="@style/ButtonTextStyle"
                         android:textColor="@color/grey_800"
                         app:chipBackgroundColor="@color/grey_100"
-                        app:chipEndPadding="20dp"
-                        app:chipStartPadding="20dp"
+                        app:chipEndPadding="@dimen/user_chip_lang_padding"
+                        app:chipStartPadding="@dimen/user_chip_lang_padding"
                         app:rippleColor="@color/blue_500"
                         tools:text="Russian" />
 
@@ -100,8 +100,8 @@
                         android:textAppearance="@style/ButtonTextStyle"
                         android:textColor="@color/grey_800"
                         app:chipBackgroundColor="@color/grey_100"
-                        app:chipEndPadding="20dp"
-                        app:chipStartPadding="20dp"
+                        app:chipEndPadding="@dimen/user_chip_currency_padding"
+                        app:chipStartPadding="@dimen/user_chip_currency_padding"
                         app:rippleColor="@color/blue_500"
                         tools:text="Dollar" />
 
@@ -113,8 +113,8 @@
                         android:textAppearance="@style/ButtonTextStyle"
                         android:textColor="@color/grey_800"
                         app:chipBackgroundColor="@color/grey_100"
-                        app:chipEndPadding="20dp"
-                        app:chipStartPadding="20dp"
+                        app:chipEndPadding="@dimen/user_chip_birth_padding"
+                        app:chipStartPadding="@dimen/user_chip_birth_padding"
                         app:rippleColor="@color/blue_500"
                         tools:text="20.05.1996" />
 
@@ -125,7 +125,7 @@
                     style="@style/TextInputLayoutStyle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp">
+                    android:layout_marginTop="@dimen/user_til_email_margin_top">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/txtEmailUser"
@@ -143,14 +143,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
-                android:minHeight="20dp" />
+                android:minHeight="@dimen/user_view_min_height" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnCreaterUser"
                 style="@style/DefaultButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginVertical="20dp"
+                android:layout_marginVertical="@dimen/user_btn_creater_margin_vert"
                 android:enabled="false"
                 android:text="@string/user_create" />
 

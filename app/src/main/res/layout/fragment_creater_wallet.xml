@@ -43,8 +43,8 @@
                 style="@style/DropDownTextInputLayoutStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginHorizontal="16dp"
-                android:layout_marginTop="20dp"
+                android:layout_marginHorizontal="@dimen/creater_wallet_til_type_mar_hor"
+                android:layout_marginTop="@dimen/creater_wallet_til_type_mar_top"
                 app:hintEnabled="false">
 
                 <com.google.android.material.textfield.MaterialAutoCompleteTextView
@@ -56,7 +56,7 @@
                     android:dropDownSelector="@drawable/custom_popup_background"
                     android:inputType="none"
                     android:text="@string/add_new_wallet_income"
-                    android:paddingHorizontal="16dp" />
+                    android:paddingHorizontal="@dimen/creater_wallet_txt_type_pad_hor" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -64,19 +64,19 @@
                 android:id="@+id/llRowCreaterWallet"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="@dimen/creater_wallet_ll_row_margin_top"
                 android:animateLayoutChanges="true"
                 android:clickable="false"
                 android:focusable="false"
                 android:orientation="horizontal"
-                android:paddingHorizontal="16dp">
+                android:paddingHorizontal="@dimen/creater_wallet_ll_row_pad_hor">
 
                 <ImageView
                     android:id="@+id/ivCreaterWallet"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
+                    android:layout_width="@dimen/creater_wallet_iv_size"
+                    android:layout_height="@dimen/creater_wallet_iv_size"
                     android:layout_gravity="center"
-                    android:layout_marginEnd="20dp"
+                    android:layout_marginEnd="@dimen/creater_wallet_iv_margin_end"
                     android:visibility="gone"
                     tools:ignore="ContentDescription" />
 
@@ -99,8 +99,8 @@
                         android:focusableInTouchMode="true"
                         android:hint="@string/add_new_wallet_category_name"
                         android:inputType="none"
-                        android:paddingHorizontal="16dp"
-                        android:paddingVertical="16dp"
+                        android:paddingHorizontal="@dimen/creater_wallet_txt_name_pad_hor"
+                        android:paddingVertical="@dimen/creater_wallet_txt_name_pad_ver"
                         tools:ignore="KeyboardInaccessibleWidget" />
 
                 </com.google.android.material.textfield.TextInputLayout>
@@ -112,8 +112,8 @@
                 style="@style/TextInputLayoutStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:paddingHorizontal="16dp"
+                android:layout_marginTop="@dimen/creater_wallet_til_date_margin_top"
+                android:paddingHorizontal="@dimen/creater_wallet_til_date_pad_hor"
                 app:hintEnabled="false">
 
                 <com.google.android.material.textfield.MaterialAutoCompleteTextView
@@ -127,8 +127,8 @@
                     android:descendantFocusability="beforeDescendants"
                     android:focusableInTouchMode="true"
                     android:inputType="none"
-                    android:paddingHorizontal="16dp"
-                    android:paddingVertical="16dp"
+                    android:paddingHorizontal="@dimen/creater_wallet_txt_date_pad_hor"
+                    android:paddingVertical="@dimen/creater_wallet_txt_date_pad_ver"
                     tools:ignore="KeyboardInaccessibleWidget" />
 
             </com.google.android.material.textfield.TextInputLayout>
@@ -138,8 +138,8 @@
                 style="@style/TextInputLayoutStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginHorizontal="16dp"
-                android:layout_marginTop="12dp">
+                android:layout_marginHorizontal="@dimen/creater_wallet_til_amount_mar_hor"
+                android:layout_marginTop="@dimen/creater_wallet_til_amount_mar_top">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/txtAmountCreaterWallet"
@@ -157,8 +157,8 @@
                 style="@style/TextInputLayoutStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginHorizontal="16dp"
-                android:layout_marginTop="12dp">
+                android:layout_marginHorizontal="@dimen/creater_wallet_til_descr_mar_hor"
+                android:layout_marginTop="@dimen/creater_wallet_til_descr_mar_top">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/txtDescriptionCreaterWallet"
@@ -177,8 +177,8 @@
                 style="@style/DefaultButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="40dp"
-                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="@dimen/creater_wallet_btn_mar_top"
+                android:layout_marginHorizontal="@dimen/creater_wallet_btn_mar_hor"
                 android:enabled="false" />
 
         </LinearLayout>

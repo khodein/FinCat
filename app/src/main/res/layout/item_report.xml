@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
-    android:paddingVertical="8dp">
+    android:paddingVertical="@dimen/item_report_root_pad_ver">
 
     <ImageView
         android:id="@+id/ivReport"
@@ -19,7 +19,7 @@
         android:layout_height="match_parent"
         android:layout_weight="1"
         android:orientation="vertical"
-        android:paddingHorizontal="10dp">
+        android:paddingHorizontal="@dimen/item_report_ll_column_text_pad_hor">
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/txtNameReport"

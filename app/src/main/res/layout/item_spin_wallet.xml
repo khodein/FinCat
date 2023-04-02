@@ -4,5 +4,5 @@
     android:background="@drawable/custom_popup_background"
     android:textAppearance="@style/Body2Style"
     android:textColor="@color/black"
-    android:padding="10dp"
+    android:padding="@dimen/item_spin_root_pad"
     android:layout_height="wrap_content" />

@@ -40,14 +40,14 @@
                 android:id="@+id/llRowCreaterCategory"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="30dp"
+                android:layout_marginTop="@dimen/creater_category_ll_row_margin_top"
                 android:orientation="horizontal"
-                android:paddingHorizontal="16dp">
+                android:paddingHorizontal="@dimen/creater_category_ll_row_pad_hor">
 
                 <ImageView
                     android:id="@+id/ivCreaterCategory"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
+                    android:layout_width="@dimen/creater_category_iv_size"
+                    android:layout_height="@dimen/creater_category_iv_size"
                     android:layout_gravity="center"
                     android:src="@drawable/ic_add_new_category"
                     tools:ignore="ContentDescription" />
@@ -58,7 +58,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:layout_marginStart="20dp"
+                    android:layout_marginStart="@dimen/creater_category_name_margin_top"
                     app:hintEnabled="false">
 
                     <com.google.android.material.textfield.TextInputEditText
@@ -84,8 +84,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
-        android:layout_marginHorizontal="16dp"
-        android:layout_marginBottom="20dp"
+        android:layout_marginHorizontal="@dimen/creater_category_btn_margin_hor"
+        android:layout_marginBottom="@dimen/creater_category_btn_margin_bottom"
         android:enabled="false"
         android:text="@string/creater_category_title_add" />
 

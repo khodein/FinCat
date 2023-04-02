@@ -72,8 +72,8 @@
                         android:id="@+id/txtOverviewReport"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        android:paddingHorizontal="16dp"
+                        android:layout_marginTop="@dimen/report_overview_margin_top"
+                        android:paddingHorizontal="@dimen/report_overview_pad_hor"
                         android:text="@string/report_overview"
                         android:textAppearance="@style/OverlineTextStyle" />
 
@@ -81,14 +81,15 @@
                         android:id="@+id/sovReport"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginHorizontal="16dp"
-                        android:layout_marginTop="10dp" />
+                        android:layout_marginHorizontal="@dimen/report_sov_margin_hor"
+                        android:layout_marginTop="@dimen/report_sov_margin_top" />
 
                     <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/txtDetailsReport"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="20dp"
-                        android:paddingHorizontal="16dp"
+                        android:layout_marginTop="@dimen/report_txt_details_margin_top"
+                        android:paddingHorizontal="@dimen/report_txt_details_pad_hor"
                         android:text="@string/report_details"
                         android:textAppearance="@style/OverlineTextStyle" />
 
@@ -99,8 +100,8 @@
                         android:clipToPadding="false"
                         android:orientation="vertical"
                         android:overScrollMode="never"
-                        android:paddingHorizontal="16dp"
-                        android:paddingVertical="20dp"
+                        android:paddingHorizontal="@dimen/report_rv_pad_hor"
+                        android:paddingVertical="@dimen/report_rv_pad_ver"
                         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                         app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
