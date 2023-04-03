@@ -19,7 +19,7 @@ output.json
 
 # IntelliJ
 *.iml
-.idea/
+.idea
 misc.xml
 deploymentTargetDropDown.xml
 render.experimental.xml
@@ -29,6 +29,7 @@ render.experimental.xml
 *.keystore
 *.pepk
 *.json
+*.class
 
 # Google Services (e.g. APIs or Firebase)
 google-services.json
