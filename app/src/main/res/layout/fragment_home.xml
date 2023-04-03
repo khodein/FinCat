@@ -35,6 +35,14 @@
                     android:orientation="horizontal"
                     tools:ignore="RtlSymmetry">
 
+                    <ImageView
+                        android:id="@+id/ivHome"
+                        android:layout_width="@dimen/home_iv_size"
+                        android:layout_height="@dimen/home_iv_size"
+                        android:layout_gravity="center"
+                        android:layout_marginStart="@dimen/home_iv_mar_start"
+                        android:src="@mipmap/ic_launcher_round"/>
+
                     <com.google.android.material.appbar.MaterialToolbar
                         android:id="@+id/tbHome"
                         style="@style/Expense.Toolbar"

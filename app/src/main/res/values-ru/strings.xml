@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">ExpenseManagement</string>
+    <string name="app_name">FinCat</string>
     <string name="today">СЕГОДНЯ</string>
     <string name="yesterday">ВЧЕРА</string>
     <string name="delete">Удалить</string>
@@ -30,6 +30,21 @@
     <string name="report_title">Отчет</string>
     <string name="home_title">Главная</string>
     <string name="settings_title">Настройки</string>
+
+    <!--  Months -->
+    <string name="month_january">Январь</string>
+    <string name="month_february">Февраль</string>
+    <string name="month_march">Март</string>
+    <string name="month_april">Апрель</string>
+    <string name="month_may">Май</string>
+    <string name="month_june">Июнь</string>
+    <string name="month_jule">Июль</string>
+    <string name="month_august">Август</string>
+    <string name="month_sempember">Сентябрь</string>
+    <string name="month_october">Октябрь</string>
+    <string name="month_november">Ноябрь</string>
+    <string name="month_december">Декабрь</string>
+    <!--  /Months -->
 
     <!--  PinCode  -->
     <string name="pin_code_bio_title">Вход в Управление расходами</string>

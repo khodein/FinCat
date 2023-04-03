@@ -40,14 +40,21 @@ class ManagerCategoriesFragment :
             )
         }
 
-        adapter.setOnClickEditActionListener {
-            navigationController.navigateSafe(
-                ManagerCategoriesFragmentDirections.actionManagerCategoriesFragmentToCreaterCategoryNavGraph(
-                    type = Creater.EDIT,
-                    expense = it
-                )
-            )
-            viewModel.onSwipeRefresh()
+        adapter.setOnClickEditOrDeleteActionListener {  action ->
+            when(action) {
+                is ManagerCategoriesAdapter.ActionManagerCategories.ActionEditManagerCategories -> {
+                    navigationController.navigateSafe(
+                        ManagerCategoriesFragmentDirections.actionManagerCategoriesFragmentToCreaterCategoryNavGraph(
+                            type = Creater.EDIT,
+                            expense = action.expenseEntity
+                        )
+                    )
+                    viewModel.onSwipeRefresh()
+                }
+                is ManagerCategoriesAdapter.ActionManagerCategories.ActionDeleteManagerCategories -> {
+                    viewModel.onClickDeleteExpense(action.id)
+                }
+            }
         }
 
         tbManagerCategories.setNavigationOnClickListener {
@@ -66,7 +73,6 @@ class ManagerCategoriesFragment :
 
         setFragmentResultListener(CreaterCategoryFragment.UPDATE_CATEGORY_SUCCESS) { _, _ ->
             viewModel.onSwipeRefresh()
-            clearFragmentResult(CreaterCategoryFragment.UPDATE_CATEGORY_SUCCESS)
         }
     }
 

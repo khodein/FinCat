@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">ExpenseManagement</string>
+    <string name="app_name">FinCat</string>
     <string name="today">TODAY</string>
     <string name="yesterday">YESTERDAY</string>
     <string name="delete">Delete</string>
@@ -27,12 +27,27 @@
     <string name="nine">9</string>
     <string name="zero">0</string>
 
+    <!--  Months -->
+    <string name="month_january">January</string>
+    <string name="month_february">February</string>
+    <string name="month_march">March</string>
+    <string name="month_april">April</string>
+    <string name="month_may">May</string>
+    <string name="month_june">June</string>
+    <string name="month_jule">July</string>
+    <string name="month_august">August</string>
+    <string name="month_sempember">September</string>
+    <string name="month_october">October</string>
+    <string name="month_november">November</string>
+    <string name="month_december">December</string>
+    <!--  /Months -->
+
     <string name="report_title">Report</string>
     <string name="home_title">Home</string>
     <string name="settings_title">Settings</string>
 
     <!--  PinCode  -->
-    <string name="pin_code_bio_title">Entrance to ExpenseManagement</string>
+    <string name="pin_code_bio_title">Entrance to FinCat</string>
     <string name="pin_code_title">Enter a code</string>
     <string name="pin_code_set">Set code</string>
     <string name="pin_code_repeat">Repeat code</string>

@@ -7,6 +7,7 @@ import android.view.Window
 import android.widget.ArrayAdapter
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.core.os.bundleOf
+import androidx.core.text.isDigitsOnly
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.isVisible
 import androidx.core.widget.doAfterTextChanged
@@ -62,7 +63,9 @@ class CreaterWalletFragment :
         }
 
         txtAmountCreaterWallet.doAfterTextChanged {
-            viewModel.onChangeAmount(it.toString())
+            if (it?.isDigitsOnly() == true) {
+                viewModel.onChangeAmount(it.toString())
+            }
         }
 
         txtDescriptionCreaterWallet.doAfterTextChanged {

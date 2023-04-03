@@ -1,5 +1,6 @@
 package com.android.pokhodai.expensemanagement.ui.report
 
+import android.annotation.SuppressLint
 import androidx.core.view.isVisible
 import androidx.fragment.app.setFragmentResultListener
 import androidx.fragment.app.viewModels
@@ -9,6 +10,7 @@ import com.android.pokhodai.expensemanagement.repositories.LanguageRepository
 import com.android.pokhodai.expensemanagement.ui.date_picker.MonthPickerDialog
 import com.android.pokhodai.expensemanagement.ui.report.adapter.ReportAdapter
 import com.android.pokhodai.expensemanagement.utils.LocalDateFormatter
+import com.android.pokhodai.expensemanagement.utils.getMonthLocalization
 import com.android.pokhodai.expensemanagement.utils.navigateSafe
 import com.android.pokhodai.expensemanagement.utils.observe
 import dagger.hilt.android.AndroidEntryPoint
@@ -63,10 +65,11 @@ class ReportFragment : BaseFragment<FragmentReportBinding>(FragmentReportBinding
         }
     }
 
+    @SuppressLint("SetTextI18n")
     override fun setObservable() = with(viewModel) {
         dateFlow.observe(viewLifecycleOwner) {
             binding.incMonthSelectorReport.run {
-                chipDateMonthSelector.text = it.MMMM_yyyy(languageRepository.getLanguage())
+                chipDateMonthSelector.text = "${it.getMonthLocalization(requireContext())} ${it.yyyy(languageRepository.getLanguage())}"
             }
         }
 

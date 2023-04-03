@@ -66,4 +66,19 @@ class ManagerCategoriesViewModel @Inject constructor(
             }
         }
     }
+
+    fun onClickDeleteExpense(
+        id: Int,
+        coroutineDispatcher: CoroutineDispatcher = Dispatchers.IO
+    ) {
+        viewModelScope.launch(coroutineDispatcher) {
+            expenseRepository.deleteById(id)
+            _expensesFlow.update {  list ->
+                list.toMutableList().apply {
+                    val index = indexOfFirst { expenseEntity ->  expenseEntity.id == id }
+                    removeAt(index)
+                }
+            }
+        }
+    }
 }

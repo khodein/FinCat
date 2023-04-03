@@ -17,3 +17,5 @@ fun TextView.getTextDate(date: LocalDateFormatter, today: LocalDateFormatter, la
         }
     }
 }
+
+fun CharSequence?.takeIfNotEmpty() = takeIf { !it.isNullOrEmpty() }?.toString()

@@ -151,6 +151,8 @@
     <dimen name="home_rv_pad_hor">16dp</dimen>
     <dimen name="home_rv_pad_bottom">80dp</dimen>
     <dimen name="home_btn_add_mar_bottom">20dp</dimen>
+    <dimen name="home_iv_size">40dp</dimen>
+    <dimen name="home_iv_mar_start">16dp</dimen>
     <!-- /Home -->
 
     <!-- Dialog Categories -->

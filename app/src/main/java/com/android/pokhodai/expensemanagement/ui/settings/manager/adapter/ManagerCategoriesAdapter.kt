@@ -6,17 +6,17 @@ import com.android.pokhodai.expensemanagement.base.ui.adapter.BaseListAdapter
 import com.android.pokhodai.expensemanagement.data.room.entities.ExpenseEntity
 import com.android.pokhodai.expensemanagement.databinding.ItemEmptyBinding
 import com.android.pokhodai.expensemanagement.databinding.ItemManagerCategoryBinding
-import com.android.pokhodai.expensemanagement.ui.home.creater.adapter.CategoriesAdapter
 import com.android.pokhodai.expensemanagement.utils.ClickUtils.setOnThrottleClickListener
-import java.util.*
+import com.android.pokhodai.expensemanagement.utils.enums.Creater
+import com.android.pokhodai.expensemanagement.utils.showMenu
 import javax.inject.Inject
 
 class ManagerCategoriesAdapter @Inject constructor(): BaseListAdapter<ManagerCategoriesAdapter.ItemManagerCategories>() {
 
-    private var onClickEditActionListener: ((ExpenseEntity) -> Unit)? = null
+    private var onClickEditOrDeleteActionListener: ((ActionManagerCategories) -> Unit)? = null
 
-    fun setOnClickEditActionListener(action: (ExpenseEntity) -> Unit) {
-        onClickEditActionListener = action
+    fun setOnClickEditOrDeleteActionListener(action: (ActionManagerCategories) -> Unit) {
+        onClickEditOrDeleteActionListener = action
     }
 
     override fun build() {
@@ -24,8 +24,16 @@ class ManagerCategoriesAdapter @Inject constructor(): BaseListAdapter<ManagerCat
             binding.run {
                 txtNameManagerCategory.text = item.expenseEntity.name
                 ivManagerCategory.setImageResource(item.expenseEntity.icon.resId)
-                btnEditManagerCategory.setOnThrottleClickListener {
-                    onClickEditActionListener?.invoke(item.expenseEntity)
+                btnDragAndDropManagerCategory.setOnThrottleClickListener {
+                    root.context.showMenu(it) { creater ->
+                        onClickEditOrDeleteActionListener?.invoke(
+                            if (creater == Creater.EDIT) {
+                                ActionManagerCategories.ActionEditManagerCategories(item.expenseEntity)
+                            } else {
+                                ActionManagerCategories.ActionDeleteManagerCategories(item.expenseEntity.id ?: 0)
+                            }
+                        )
+                    }
                 }
             }
         }
@@ -41,5 +49,10 @@ class ManagerCategoriesAdapter @Inject constructor(): BaseListAdapter<ManagerCat
     sealed class ItemManagerCategories {
         data class WrapManagerCategory(val expenseEntity: ExpenseEntity): ItemManagerCategories()
         object ItemEmpty: ItemManagerCategories()
+    }
+
+    sealed class ActionManagerCategories {
+        data class ActionEditManagerCategories(val expenseEntity: ExpenseEntity): ActionManagerCategories()
+        data class ActionDeleteManagerCategories(val id: Int) :ActionManagerCategories()
     }
 }

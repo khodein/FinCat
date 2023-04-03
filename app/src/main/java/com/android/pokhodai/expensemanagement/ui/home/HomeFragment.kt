@@ -2,6 +2,7 @@ package com.android.pokhodai.expensemanagement.ui.home
 
 import android.annotation.SuppressLint
 import android.os.Bundle
+import android.view.Gravity
 import android.view.View
 import androidx.core.net.toUri
 import androidx.fragment.app.setFragmentResultListener
@@ -18,6 +19,7 @@ import com.android.pokhodai.expensemanagement.ui.date_picker.MonthPickerDialog
 import com.android.pokhodai.expensemanagement.utils.*
 import com.android.pokhodai.expensemanagement.utils.ClickUtils.setOnThrottleClickListener
 import com.android.pokhodai.expensemanagement.utils.enums.Creater
+import com.skydoves.balloon.*
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.distinctUntilChangedBy
 import kotlinx.coroutines.flow.filter
@@ -87,6 +89,27 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
             }
         }
 
+        adapter.setOnClickActionListener { view: View, descr: String ->
+            val balloon = Balloon.Builder(requireContext())
+                .setHeight(BalloonSizeSpec.WRAP)
+                .setText(descr)
+                .setArrowPositionRules(ArrowPositionRules.ALIGN_BALLOON)
+                .setArrowSize(10)
+                .setArrowOrientation(ArrowOrientation.TOP)
+                .setDismissWhenTouchOutside(true)
+                .setDismissWhenClicked(true)
+                .setTextGravity(Gravity.START)
+                .setCornerRadius(10f)
+                .setPadding(10.dp.toInt())
+                .setTextSize(14.dp)
+                .setTextColor(requireContext().getColor(R.color.black))
+                .setBackgroundColorResource(R.color.grey_100)
+                .setBalloonAnimation(BalloonAnimation.OVERSHOOT)
+                .setLifecycleOwner(viewLifecycleOwner)
+                .build()
+            balloon.showAlignBottom(view)
+        }
+
         adapter.setOnLongClickActionListener { action ->
             when (action) {
                 is WalletAdapter.ActionWallet.ActionDeleteWallet -> {
@@ -121,7 +144,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
     override fun setObservable() = with(viewModel) {
         dateFlow.observe(viewLifecycleOwner) {
             binding.incMonthSelectorHome.run {
-                chipDateMonthSelector.text = it.MMMM_yyyy(language = languageRepository.getLanguage())
+                chipDateMonthSelector.text = "${it.getMonthLocalization(requireContext())} ${it.yyyy(languageRepository.getLanguage())}"
             }
         }
 

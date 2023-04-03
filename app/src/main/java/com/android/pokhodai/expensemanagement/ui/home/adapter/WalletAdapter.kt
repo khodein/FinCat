@@ -19,11 +19,10 @@ import com.android.pokhodai.expensemanagement.databinding.ItemWalletBinding
 import com.android.pokhodai.expensemanagement.databinding.ItemWalletEmptyBinding
 import com.android.pokhodai.expensemanagement.databinding.ItemWalletHeaderBinding
 import com.android.pokhodai.expensemanagement.repositories.LanguageRepository
-import com.android.pokhodai.expensemanagement.utils.LocalDateFormatter
-import com.android.pokhodai.expensemanagement.utils.dp
+import com.android.pokhodai.expensemanagement.utils.*
+import com.android.pokhodai.expensemanagement.utils.ClickUtils.setOnThrottleClickListener
 import com.android.pokhodai.expensemanagement.utils.enums.Creater
 import com.android.pokhodai.expensemanagement.utils.enums.Currency
-import com.android.pokhodai.expensemanagement.utils.getTextDate
 import com.google.android.material.shape.CornerFamily
 import javax.inject.Inject
 
@@ -39,6 +38,12 @@ class WalletAdapter @Inject constructor(
 
     fun setOnLongClickActionListener(action: (ActionWallet) -> Unit) {
         onLongClickActionListener = action
+    }
+
+    private var onClickActionListener: ((View, String) -> Unit)? = null
+
+    fun setOnClickActionListener(action: (View, String) -> Unit) {
+        onClickActionListener = action
     }
 
     @SuppressLint("SetTextI18n")
@@ -60,7 +65,7 @@ class WalletAdapter @Inject constructor(
                 cardWallet.shapeAppearanceModel = builderShapeModel.build()
 
                 cardWallet.setOnLongClickListener {
-                    showMenu(txtAmount, txtAmount.context) {creater ->
+                    txtAmount.context.showMenu(txtAmount) { creater ->
                         val action = if (creater == Creater.EDIT) {
                             ActionWallet.ActionEditWallet(item.wallet)
                         } else {
@@ -69,6 +74,12 @@ class WalletAdapter @Inject constructor(
                         onLongClickActionListener?.invoke(action)
                     }
                     true
+                }
+
+                cardWallet.setOnThrottleClickListener {
+                    item.wallet.description.takeIfNotEmpty()?.let {
+                        onClickActionListener?.invoke(cardWallet, it)
+                    }
                 }
             }
         }
@@ -88,41 +99,6 @@ class WalletAdapter @Inject constructor(
         baseViewHolder(ItemWallet.EmptyWallet::class, ItemWalletEmptyBinding::inflate) { _ ->
             binding.txtWalletEmpty.text = binding.root.context.getString(R.string.home_item_wallet_empty)
         }
-    }
-
-    @SuppressLint("RestrictedApi")
-    fun showMenu(
-        v: View,
-        context: Context,
-        action: (Creater) -> Unit,
-    ) {
-        val popup = PopupMenu(context, v).apply {
-            menuInflater.inflate(R.menu.wallet_attach_menu, menu)
-            gravity = Gravity.END
-        }
-
-        val menuBuilder = popup.menu as MenuBuilder
-
-        menuBuilder[0].setOnMenuItemClickListener {
-            action.invoke(Creater.EDIT)
-            true
-        }
-
-        val titleDelete = context.getString(R.string.delete)
-        val titleDeleteSpan = SpannableString(titleDelete)
-        titleDeleteSpan.setSpan(
-            ForegroundColorSpan(context.getColor(R.color.red_600)),
-            0,
-            titleDelete.length,
-            Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
-        )
-        menuBuilder[1].title = titleDeleteSpan
-        menuBuilder[1].setOnMenuItemClickListener {
-            action.invoke(Creater.DELETE)
-            true
-        }
-
-        popup.show()
     }
 
     sealed class ActionWallet {

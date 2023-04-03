@@ -1,6 +1,8 @@
 package com.android.pokhodai.expensemanagement.utils
 
+import android.content.Context
 import android.os.Parcelable
+import com.android.pokhodai.expensemanagement.R
 import com.android.pokhodai.expensemanagement.utils.enums.Language
 import kotlinx.parcelize.IgnoredOnParcel
 import kotlinx.parcelize.Parcelize
@@ -83,4 +85,21 @@ class LocalDateFormatter(
             return LocalDateFormatter(localDateTime)
         }
     }
+}
+
+fun LocalDateFormatter.getMonthLocalization(context: Context): String {
+    return context.getString(when (this.localDateTime.month) {
+        Month.JANUARY -> R.string.month_january
+        Month.FEBRUARY -> R.string.month_february
+        Month.MARCH -> R.string.month_march
+        Month.APRIL -> R.string.month_april
+        Month.MAY -> R.string.month_may
+        Month.JUNE -> R.string.month_june
+        Month.JULY -> R.string.month_jule
+        Month.AUGUST -> R.string.month_august
+        Month.SEPTEMBER -> R.string.month_sempember
+        Month.OCTOBER -> R.string.month_october
+        Month.NOVEMBER -> R.string.month_november
+        Month.DECEMBER -> R.string.month_december
+    })
 }

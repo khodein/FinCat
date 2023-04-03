@@ -35,16 +35,6 @@
             tools:text="Groceries" />
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/btnEditManagerCategory"
-            style="@style/Only.TextButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:padding="@dimen/item_manager_category_btn_edit_padding"
-            android:text="@string/manager_categories_edit"
-            android:textColor="@color/blue_600" />
-
-        <com.google.android.material.button.MaterialButton
             android:id="@+id/btnDragAndDropManagerCategory"
             style="@style/Only.IconButton"
             android:layout_width="wrap_content"
