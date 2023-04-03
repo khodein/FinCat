@@ -32,7 +32,8 @@
             android:launchMode="singleTop"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.ExpenseManager.Launch"
-            android:windowSoftInputMode="adjustResize|stateAlwaysHidden">
+            android:windowSoftInputMode="adjustResize|stateAlwaysHidden"
+            tools:ignore="LockedOrientationActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
