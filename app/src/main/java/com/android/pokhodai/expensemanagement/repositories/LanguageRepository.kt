@@ -10,8 +10,9 @@ import com.android.pokhodai.expensemanagement.utils.enums.Language
 import dagger.hilt.android.qualifiers.ApplicationContext
 import java.util.*
 import javax.inject.Inject
+import javax.inject.Singleton
 
-
+@Singleton
 class LanguageRepository @Inject constructor(
     private val userDataSource: UserDataSource,
 ) {

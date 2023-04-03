@@ -17,17 +17,20 @@ import androidx.fragment.app.viewModels
 import com.android.pokhodai.expensemanagement.R
 import com.android.pokhodai.expensemanagement.base.ui.fragments.BaseFragment
 import com.android.pokhodai.expensemanagement.databinding.FragmentCreaterWalletBinding
+import com.android.pokhodai.expensemanagement.repositories.LanguageRepository
 import com.android.pokhodai.expensemanagement.source.UserDataSource
 import com.android.pokhodai.expensemanagement.ui.home.creater.adapter.CategoriesAdapter
 import com.android.pokhodai.expensemanagement.ui.home.creater.expense.creater_category.CreaterCategoryFragment
 import com.android.pokhodai.expensemanagement.ui.home.creater.income.IncomeDialog
 import com.android.pokhodai.expensemanagement.utils.ClickUtils.setOnThrottleClickListener
 import com.android.pokhodai.expensemanagement.utils.enums.Creater
+import com.android.pokhodai.expensemanagement.utils.enums.Language
 import com.android.pokhodai.expensemanagement.utils.masks.CreaterWalletMask
 import com.android.pokhodai.expensemanagement.utils.navigateSafe
 import com.android.pokhodai.expensemanagement.utils.observe
 import com.android.pokhodai.expensemanagement.utils.showDatePickerDialog
 import dagger.hilt.android.AndroidEntryPoint
+import java.util.*
 import javax.inject.Inject
 
 
@@ -41,6 +44,9 @@ class CreaterWalletFragment :
 
     @Inject
     lateinit var createrWalletMask: CreaterWalletMask
+
+    @Inject
+    lateinit var languageRepository: LanguageRepository
 
     override fun initToolbar() {
         binding.tbCreaterWallet.title = if (viewModel.editOrCreateType == Creater.CREATE) {
@@ -148,7 +154,7 @@ class CreaterWalletFragment :
         }
 
         dateFlow.observe(viewLifecycleOwner) {
-            binding.txtDateNameCreaterWallet.setText(it.dd_MMMM_yyyy())
+            binding.txtDateNameCreaterWallet.setText(it.dd_MMMM_yyyy(languageRepository.getLanguage()))
         }
 
         editWalletFlow.observe(viewLifecycleOwner) {
@@ -156,7 +162,7 @@ class CreaterWalletFragment :
                 ivCreaterWallet.isVisible = true
                 txtCategoryNameCreaterWallet.setText(categoryNameFlow.value.name)
                 ivCreaterWallet.setImageResource(categoryNameFlow.value.icon.resId)
-                txtDateNameCreaterWallet.setText(dateFlow.value.dd_MM_yyyy())
+                txtDateNameCreaterWallet.setText(dateFlow.value.dd_MM_yyyy(languageRepository.getLanguage()))
                 txtAmountCreaterWallet.setText(amountFlow.value)
                 txtDescriptionCreaterWallet.setText(descriptionFlow.value)
                 txtTypeCreaterWallet.setText(typeFlow.value)

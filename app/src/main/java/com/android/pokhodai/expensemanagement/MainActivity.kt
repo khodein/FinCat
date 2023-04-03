@@ -31,14 +31,9 @@ class MainActivity : AppCompatActivity() {
     private val viewModel by viewModels<MainViewModel>()
     private val navigationViewModel by viewModels<NavigationViewModel>()
 
-    @Inject
-    lateinit var languageRepository: LanguageRepository
-
     override fun onCreate(savedInstanceState: Bundle?) {
         installSplashScreen()
         super.onCreate(savedInstanceState)
-        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
-        languageRepository.setLanguage()
         _binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         setObservable()

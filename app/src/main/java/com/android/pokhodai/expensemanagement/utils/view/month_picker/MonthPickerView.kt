@@ -7,16 +7,21 @@ import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.widget.FrameLayout
 import androidx.core.os.bundleOf
+import com.android.pokhodai.expensemanagement.LanguageService
 import com.android.pokhodai.expensemanagement.R
 import com.android.pokhodai.expensemanagement.base.ui.adapter.BaseListAdapter
 import com.android.pokhodai.expensemanagement.databinding.ItemMonthBinding
 import com.android.pokhodai.expensemanagement.databinding.ViewMonthPickerBinding
+import com.android.pokhodai.expensemanagement.repositories.LanguageRepository
 import com.android.pokhodai.expensemanagement.utils.LocalDateFormatter
 import com.android.pokhodai.expensemanagement.utils.decorations.GridSpacingItemDecoration
+import com.android.pokhodai.expensemanagement.utils.enums.Language
+import com.android.pokhodai.expensemanagement.utils.getApplicationService
 
 class MonthPickerView : FrameLayout {
 
     private val binding = ViewMonthPickerBinding.inflate(LayoutInflater.from(context), this, true)
+    private lateinit var languageRepository: LanguageRepository
     private val adapter by lazy { MonthAdapter() }
 
     private var onClickMonthActionListener: ((LocalDateFormatter) -> Unit)? = null
@@ -25,12 +30,19 @@ class MonthPickerView : FrameLayout {
         onClickMonthActionListener = action
     }
 
+    private val language: Language
+
+    init {
+        initLanguageService()
+        language = languageRepository.getLanguage()
+    }
+
     private val today = LocalDateFormatter.today()
 
     private var yearNow: LocalDateFormatter = today
         set(value) {
             field = value
-            binding.txtYearMonthPicker.text = value.yyyy()
+            binding.txtYearMonthPicker.text = value.yyyy(language)
             genMonths()
         }
 
@@ -69,8 +81,14 @@ class MonthPickerView : FrameLayout {
         setListeners()
     }
 
+    private fun initLanguageService() {
+        context.getApplicationService<LanguageService> {
+            languageRepository = getLanguagePreparation()
+        }
+    }
+
     private fun setTitle() {
-        binding.txtYearMonthPicker.text = yearNow.yyyy()
+        binding.txtYearMonthPicker.text = yearNow.yyyy(language)
     }
 
     private fun setListeners() = with(binding) {
@@ -89,13 +107,13 @@ class MonthPickerView : FrameLayout {
     }
 
     private fun genMonths() {
-        val list = mutableListOf<MonthAdapter.Month>()
+        val list = mutableListOf<Month>()
         var date = yearNow
         repeat(12) {
             list.add(
-                MonthAdapter.Month(
+                Month(
                     date,
-                    check = actualMonth.MMMM_yyyy() == date.MMMM_yyyy()
+                    check = actualMonth.MMMM_yyyy(language) == date.MMMM_yyyy(language)
                 )
             )
             date = date.update { plusMonths(1) }
@@ -112,7 +130,7 @@ class MonthPickerView : FrameLayout {
         }
     }
 
-    private class MonthAdapter : BaseListAdapter<MonthAdapter.Month>() {
+    private inner class MonthAdapter : BaseListAdapter<Month>() {
 
         private var onClickMonthActionListener: ((LocalDateFormatter) -> Unit)? = null
 
@@ -123,7 +141,7 @@ class MonthPickerView : FrameLayout {
         override fun build() {
             baseViewHolder(Month::class, ItemMonthBinding::inflate) { item ->
                 binding.run {
-                    txtMonth.text = item.date.MMMM()
+                    txtMonth.text = item.date.MMMM(language)
 
                     if (item.check) {
                         root.setCardBackgroundColor(root.context.getColor(R.color.blue_500))
@@ -144,12 +162,12 @@ class MonthPickerView : FrameLayout {
                 }
             }
         }
-
-        data class Month(
-            val date: LocalDateFormatter,
-            val check: Boolean
-        )
     }
+
+    data class Month(
+        val date: LocalDateFormatter,
+        val check: Boolean
+    )
 
     companion object {
         private const val SUPER_STATE = "SUPER_STATE"

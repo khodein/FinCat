@@ -15,6 +15,7 @@ import com.android.pokhodai.expensemanagement.MainViewModel
 import com.android.pokhodai.expensemanagement.base.ui.fragments.BaseFragment
 import com.android.pokhodai.expensemanagement.data.models.User
 import com.android.pokhodai.expensemanagement.databinding.FragmentUserBinding
+import com.android.pokhodai.expensemanagement.repositories.LanguageRepository
 import com.android.pokhodai.expensemanagement.ui.currency.CurrencyDialog
 import com.android.pokhodai.expensemanagement.ui.language.LanguageDialog
 import com.android.pokhodai.expensemanagement.ui.settings.SettingsViewModel
@@ -24,12 +25,16 @@ import com.android.pokhodai.expensemanagement.utils.observe
 import com.android.pokhodai.expensemanagement.utils.setUniqueText
 import com.android.pokhodai.expensemanagement.utils.showDatePickerDialog
 import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class UserFragment : BaseFragment<FragmentUserBinding>(FragmentUserBinding::inflate) {
 
     private val viewModel by viewModels<UserViewModel>()
     private val mainViewModel by activityViewModels<MainViewModel>()
+
+    @Inject
+    lateinit var languageRepository: LanguageRepository
 
     override fun onStart() {
         super.onStart()
@@ -134,7 +139,7 @@ class UserFragment : BaseFragment<FragmentUserBinding>(FragmentUserBinding::infl
         }
 
         birthFlow.observe(viewLifecycleOwner) {
-            binding.chipBirth.text = it.dd_MM_yyyy()
+            binding.chipBirth.text = it.dd_MM_yyyy(languageRepository.getLanguage())
         }
 
         validate.observe(viewLifecycleOwner) {

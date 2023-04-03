@@ -1,6 +1,7 @@
 package com.android.pokhodai.expensemanagement.utils
 
 import android.os.Parcelable
+import com.android.pokhodai.expensemanagement.utils.enums.Language
 import kotlinx.parcelize.IgnoredOnParcel
 import kotlinx.parcelize.Parcelize
 import java.time.*
@@ -13,21 +14,18 @@ class LocalDateFormatter(
     val localDateTime: LocalDateTime
 ) : Parcelable, Comparable<LocalDateFormatter> {
 
-    @IgnoredOnParcel
-    private val localeEu = Locale("en")
-
-    fun format(pattern: String): String {
-        val formatter = DateTimeFormatter.ofPattern(pattern).withLocale(localeEu)
+    fun format(pattern: String, locale: Locale = Locale(Language.EU.calendarLocale)): String {
+        val formatter = DateTimeFormatter.ofPattern(pattern).withLocale(locale)
         return  localDateTime.format(formatter)
     }
 
     fun isItThisYear() = now().localDateTime.year == localDateTime.year
 
-    fun dd_MM_yyyy() = format("dd.MM.yyyy")
-    fun MMMM_yyyy() = format("MMMM yyyy")
-    fun yyyy() = format("yyyy")
-    fun MMMM() = format("MMMM")
-    fun dd_MMMM_yyyy() = format("dd MMMM yyyy")
+    fun dd_MM_yyyy(language: Language) = format("dd.MM.yyyy", Locale(language.calendarLocale))
+    fun MMMM_yyyy(language: Language) = format("MMMM yyyy",  Locale(language.calendarLocale))
+    fun yyyy(language: Language) = format("yyyy",  Locale(language.calendarLocale))
+    fun MMMM(language: Language) = format("MMMM",  Locale(language.calendarLocale))
+    fun dd_MMMM_yyyy(language: Language) = format("dd MMMM yyyy",  Locale(language.calendarLocale))
     fun toIsoFormatWithoutTZ() = format(ISO_FORMAT)
 
     fun timeInMillis() = localDateTime.atZone(ZoneOffset.UTC).toInstant().toEpochMilli()

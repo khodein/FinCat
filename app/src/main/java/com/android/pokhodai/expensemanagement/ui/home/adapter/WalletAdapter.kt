@@ -18,6 +18,7 @@ import com.android.pokhodai.expensemanagement.data.room.entities.WalletEntity
 import com.android.pokhodai.expensemanagement.databinding.ItemWalletBinding
 import com.android.pokhodai.expensemanagement.databinding.ItemWalletEmptyBinding
 import com.android.pokhodai.expensemanagement.databinding.ItemWalletHeaderBinding
+import com.android.pokhodai.expensemanagement.repositories.LanguageRepository
 import com.android.pokhodai.expensemanagement.utils.LocalDateFormatter
 import com.android.pokhodai.expensemanagement.utils.dp
 import com.android.pokhodai.expensemanagement.utils.enums.Creater
@@ -26,9 +27,13 @@ import com.android.pokhodai.expensemanagement.utils.getTextDate
 import com.google.android.material.shape.CornerFamily
 import javax.inject.Inject
 
-class WalletAdapter @Inject constructor(): BasePagingAdapter<WalletAdapter.ItemWallet>() {
+class WalletAdapter @Inject constructor(
+    private val languageRepository: LanguageRepository
+): BasePagingAdapter<WalletAdapter.ItemWallet>() {
 
     private val today = LocalDateFormatter.today()
+
+    private val language = languageRepository.getLanguage()
 
     private var onLongClickActionListener: ((ActionWallet) -> Unit)? = null
 
@@ -75,7 +80,7 @@ class WalletAdapter @Inject constructor(): BasePagingAdapter<WalletAdapter.ItemW
                     setTopRightCorner(CornerFamily.ROUNDED, 8.dp)
                 }
                 cardWalletHeader.shapeAppearanceModel = builderShapeModel.build()
-                txtDateWallet.getTextDate(item.date, today)
+                txtDateWallet.getTextDate(item.date, today, language)
                 txtCountWallet.text = "${item.count}${root.context.getString(item.currency.resId)}"
             }
         }

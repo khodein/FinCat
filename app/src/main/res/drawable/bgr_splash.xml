@@ -3,7 +3,7 @@
     <item android:drawable="@color/splash" />
 
     <item
-        android:drawable="@drawable/ic_mini_logo"
+        android:drawable="@mipmap/ic_launcher"
         android:gravity="center" />
 
 </layer-list>

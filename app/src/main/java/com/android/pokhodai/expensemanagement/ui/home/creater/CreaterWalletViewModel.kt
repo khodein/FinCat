@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.android.pokhodai.expensemanagement.R
 import com.android.pokhodai.expensemanagement.data.room.entities.WalletEntity
+import com.android.pokhodai.expensemanagement.repositories.LanguageRepository
 import com.android.pokhodai.expensemanagement.repositories.WalletRepository
 import com.android.pokhodai.expensemanagement.source.UserDataSource
 import com.android.pokhodai.expensemanagement.ui.home.creater.adapter.CategoriesAdapter
@@ -30,10 +31,13 @@ class CreaterWalletViewModel @Inject constructor(
     savedStateHandle: SavedStateHandle,
     private val walletRepository: WalletRepository,
     private val userDataSource: UserDataSource,
+    private val languageRepository: LanguageRepository
 ) : ViewModel() {
 
     val editOrCreateType = CreaterWalletFragmentArgs.fromSavedStateHandle(savedStateHandle).type
     private var editWallet = CreaterWalletFragmentArgs.fromSavedStateHandle(savedStateHandle).wallet
+
+    private val language = languageRepository.getLanguage()
 
     private val _dateFlow = MutableStateFlow(LocalDateFormatter.today())
     val dateFlow = _dateFlow.asStateFlow()
@@ -136,8 +140,8 @@ class CreaterWalletViewModel @Inject constructor(
                 description = _descriptionFlow.value,
                 type = typeFlow.value,
                 publicatedAt = dateFlow.value,
-                monthAndYear = dateFlow.value.MMMM_yyyy(),
-                dateFormat = dateFlow.value.dd_MMMM_yyyy(),
+                monthAndYear = dateFlow.value.MMMM_yyyy(language = language),
+                dateFormat = dateFlow.value.dd_MMMM_yyyy(language = language),
                 currency = userDataSource.currency ?: Currency.DOLLAR
             )
 

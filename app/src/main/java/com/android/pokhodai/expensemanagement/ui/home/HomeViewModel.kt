@@ -6,6 +6,7 @@ import androidx.lifecycle.viewModelScope
 import androidx.paging.*
 import com.android.pokhodai.expensemanagement.data.room.entities.WalletEntity
 import com.android.pokhodai.expensemanagement.data.service.WalletDao
+import com.android.pokhodai.expensemanagement.repositories.LanguageRepository
 import com.android.pokhodai.expensemanagement.repositories.WalletRepository
 import com.android.pokhodai.expensemanagement.source.UserDataSource
 import com.android.pokhodai.expensemanagement.ui.home.adapter.WalletAdapter
@@ -26,10 +27,12 @@ class HomeViewModel @Inject constructor(
     private val walletRepository: WalletRepository,
     managerUtils: ManagerUtils,
     val userDataSource: UserDataSource,
+    private val languageRepository: LanguageRepository
 ) : ViewModel() {
 
     val currency = userDataSource.currency ?: Currency.DOLLAR
 
+    private val language = languageRepository.getLanguage()
     private val _dateFlow = MutableStateFlow(LocalDateFormatter.now())
     val dateFlow = _dateFlow.asStateFlow()
 
@@ -47,7 +50,7 @@ class HomeViewModel @Inject constructor(
         _dateFlow,
         _refreshFlow
     ) { date, _ ->
-        walletRepository.getPaginationWalletsByDate(date.MMMM_yyyy())
+        walletRepository.getPaginationWalletsByDate(date.MMMM_yyyy(language = language))
     }.flatMapLatest { pager ->
         pager.flow.map { pagerData ->
             pagerData.map<WalletEntity, WalletAdapter.ItemWallet> { wallet ->
@@ -64,7 +67,7 @@ class HomeViewModel @Inject constructor(
                             )
                         }
                         before is WalletAdapter.ItemWallet.WrapWallet && after is WalletAdapter.ItemWallet.WrapWallet -> {
-                            if (before.wallet.publicatedAt.dd_MM_yyyy() != after.wallet.publicatedAt.dd_MM_yyyy()) {
+                            if (before.wallet.publicatedAt != after.wallet.publicatedAt) {
                                 val count =
                                     walletRepository.sumByPublicatedAt(after.wallet.dateFormat)
                                 before.bottom = true
@@ -117,13 +120,13 @@ class HomeViewModel @Inject constructor(
             val income = async {
                 walletRepository.sumByType(
                     type = income,
-                    date = dateFlow.value.MMMM_yyyy()
+                    date = dateFlow.value.MMMM_yyyy(language)
                 )
             }
             val expense = async {
                 walletRepository.sumByType(
                     type = expense,
-                    date = dateFlow.value.MMMM_yyyy()
+                    date = dateFlow.value.MMMM_yyyy(language)
                 )
             }
             onChangeBalance(income.await(), expense.await())

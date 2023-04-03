@@ -5,6 +5,7 @@ import androidx.fragment.app.setFragmentResultListener
 import androidx.fragment.app.viewModels
 import com.android.pokhodai.expensemanagement.base.ui.fragments.BaseFragment
 import com.android.pokhodai.expensemanagement.databinding.FragmentReportBinding
+import com.android.pokhodai.expensemanagement.repositories.LanguageRepository
 import com.android.pokhodai.expensemanagement.ui.date_picker.MonthPickerDialog
 import com.android.pokhodai.expensemanagement.ui.report.adapter.ReportAdapter
 import com.android.pokhodai.expensemanagement.utils.LocalDateFormatter
@@ -20,6 +21,9 @@ class ReportFragment : BaseFragment<FragmentReportBinding>(FragmentReportBinding
 
     @Inject
     lateinit var adapter: ReportAdapter
+
+    @Inject
+    lateinit var languageRepository: LanguageRepository
 
     override fun onBackPressed() {
         requireActivity().finishAndRemoveTask()
@@ -62,7 +66,7 @@ class ReportFragment : BaseFragment<FragmentReportBinding>(FragmentReportBinding
     override fun setObservable() = with(viewModel) {
         dateFlow.observe(viewLifecycleOwner) {
             binding.incMonthSelectorReport.run {
-                chipDateMonthSelector.text = it.MMMM_yyyy()
+                chipDateMonthSelector.text = it.MMMM_yyyy(languageRepository.getLanguage())
             }
         }
 

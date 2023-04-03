@@ -11,6 +11,7 @@ import androidx.paging.LoadState
 import com.android.pokhodai.expensemanagement.R
 import com.android.pokhodai.expensemanagement.base.ui.fragments.BaseFragment
 import com.android.pokhodai.expensemanagement.databinding.FragmentHomeBinding
+import com.android.pokhodai.expensemanagement.repositories.LanguageRepository
 import com.android.pokhodai.expensemanagement.ui.home.adapter.WalletAdapter
 import com.android.pokhodai.expensemanagement.ui.home.creater.CreaterWalletFragment
 import com.android.pokhodai.expensemanagement.ui.date_picker.MonthPickerDialog
@@ -29,6 +30,9 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
 
     @Inject
     lateinit var adapter: WalletAdapter
+
+    @Inject
+    lateinit var languageRepository: LanguageRepository
 
     override fun onBackPressed() {
         navViewModel.onClickHardDeepLink("".toUri(), R.id.report_nav_graph)
@@ -117,7 +121,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
     override fun setObservable() = with(viewModel) {
         dateFlow.observe(viewLifecycleOwner) {
             binding.incMonthSelectorHome.run {
-                chipDateMonthSelector.text = it.MMMM_yyyy()
+                chipDateMonthSelector.text = it.MMMM_yyyy(language = languageRepository.getLanguage())
             }
         }
 

@@ -18,6 +18,7 @@ class MonthPickerDialog :
     BaseBottomSheetDialogFragment<DialogMonthPickerBinding>(DialogMonthPickerBinding::inflate) {
 
     private val args by navArgs<MonthPickerDialogArgs>()
+
     override fun setListeners() = with(binding) {
         mpvDatePicker.setOnClickMonthActionListener {
             setFragmentResult(CHANGE_DATE, bundleOf(DATE to it.timeInMillis()))

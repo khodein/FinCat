@@ -2,6 +2,7 @@ package com.android.pokhodai.expensemanagement.ui.report
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.android.pokhodai.expensemanagement.repositories.LanguageRepository
 import com.android.pokhodai.expensemanagement.repositories.WalletRepository
 import com.android.pokhodai.expensemanagement.ui.home.HomeFragment
 import com.android.pokhodai.expensemanagement.ui.report.adapter.ReportAdapter
@@ -22,6 +23,7 @@ import javax.inject.Inject
 @HiltViewModel
 class ReportViewModel @Inject constructor(
     private val repository: WalletRepository,
+    private val languageRepository: LanguageRepository,
     managerUtils: ManagerUtils
 ) : ViewModel() {
 
@@ -53,7 +55,7 @@ class ReportViewModel @Inject constructor(
         dispatcher: CoroutineDispatcher = Dispatchers.IO
     ) {
         viewModelScope.launch(dispatcher) {
-            val date = dateFlow.value.MMMM_yyyy()
+            val date = dateFlow.value.MMMM_yyyy(language = languageRepository.getLanguage())
             val allTotalByExpense =
                 repository.getWalletsCountByMonthAndYear(type = expense, date = date)
 
