@@ -4,7 +4,7 @@ __________________________________
 FinCat is a tool for tracking expenses and budget income! This is a simple tool that will help you keep track of your spending, keep track of your statistics! The tool is simple and intuitive! This application is completely free and stores all the data on your android smartphone and you can not be afraid for your safety!
 __________________________________
 
-Stack of technologies used in the project: Kotlin, MVVM, Okhttp3, Retrofit, Room, Hilt, Pagination3, Moshi, Biometry, NavigationGraph, Balloon.
+Stack of technologies used in the project: Kotlin, MVVM, Okhttp3, Retrofit2, Coroutines, Room, Hilt, Pagination3, Moshi, Biometry, NavigationGraph, Balloon.
 Design in the project Material like!
 
 __________________________________
