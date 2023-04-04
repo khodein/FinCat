@@ -65,12 +65,6 @@ android {
         jvmTarget = '1.8'
     }
 
-    def branch = ""
-    def proc = "git rev-parse --abbrev-ref HEAD".execute()
-    proc.in.eachLine { line -> branch = line }
-    proc.err.eachLine { line -> println line }
-    proc.waitFor()
-
     applicationVariants.all { variant ->
         variant.outputs.all { output ->
             outputFileName = "fincat_${APP_VERSION_NAME}(${getBuildVersion()}).apk"
