@@ -27,8 +27,6 @@ import com.android.pokhodai.expensemanagement.ui.home.creater.expense.creater_ca
 import com.android.pokhodai.expensemanagement.ui.home.creater.income.IncomeDialog
 import com.android.pokhodai.expensemanagement.utils.ClickUtils.setOnThrottleClickListener
 import com.android.pokhodai.expensemanagement.utils.enums.Creater
-import com.android.pokhodai.expensemanagement.utils.enums.Language
-import com.android.pokhodai.expensemanagement.utils.masks.CreaterWalletMask
 import com.android.pokhodai.expensemanagement.utils.navigateSafe
 import com.android.pokhodai.expensemanagement.utils.observe
 import com.android.pokhodai.expensemanagement.utils.showDatePickerDialog
@@ -44,9 +42,6 @@ class CreaterWalletFragment :
     override val isBnvVisible: Boolean = false
 
     private val viewModel by viewModels<CreaterWalletViewModel>()
-
-    @Inject
-    lateinit var createrWalletMask: CreaterWalletMask
 
     @Inject
     lateinit var languageRepository: LanguageRepository
@@ -95,7 +90,6 @@ class CreaterWalletFragment :
 
     private fun onOpenIncomeOrExpenseDialog() {
         windowInsetsController.hide(WindowInsetsCompat.Type.ime())
-        
         val navigateTo = if (viewModel.typeFlow.value == viewModel.income) {
             CreaterWalletFragmentDirections.actionCreaterWalletFragmentToIncomeDialog()
         } else {
@@ -121,19 +115,8 @@ class CreaterWalletFragment :
         }
 
         typeFlow.observe(viewLifecycleOwner) {
-            if (it == viewModel.income) {
-                binding.txtAmountCreaterWallet.inputType = InputType.TYPE_CLASS_NUMBER
-                binding.txtAmountCreaterWallet.keyListener = DigitsKeyListener.getInstance("0123456789")
-                binding.txtAmountCreaterWallet.removeTextChangedListener(createrWalletMask)
-            } else {
-                binding.txtAmountCreaterWallet.inputType = InputType.TYPE_CLASS_NUMBER
-                binding.txtAmountCreaterWallet.keyListener = DigitsKeyListener.getInstance("0123456789-")
-                binding.txtAmountCreaterWallet.addTextChangedListener(createrWalletMask)
-            }
-
             val (addOrEditIncome, addOrEditExpense) =
                 if (viewModel.editOrCreateType == Creater.CREATE) {
-                    binding.txtAmountCreaterWallet.setText("")
                     Pair(
                         getString(R.string.add_new_wallet_btn_income),
                         getString(R.string.add_new_wallet_btn_expense)
@@ -195,11 +178,6 @@ class CreaterWalletFragment :
             onOpenIncomeOrExpenseDialog()
             clearFragmentResult(CreaterCategoryFragment.UPDATE_CATEGORY_SUCCESS)
         }
-    }
-
-    override fun onDestroyView() {
-        binding.txtAmountCreaterWallet.removeTextChangedListener(createrWalletMask)
-        super.onDestroyView()
     }
 
     companion object {

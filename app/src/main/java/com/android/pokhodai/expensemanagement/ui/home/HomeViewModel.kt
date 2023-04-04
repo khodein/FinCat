@@ -67,7 +67,7 @@ class HomeViewModel @Inject constructor(
                             )
                         }
                         before is WalletAdapter.ItemWallet.WrapWallet && after is WalletAdapter.ItemWallet.WrapWallet -> {
-                            if (before.wallet.publicatedAt != after.wallet.publicatedAt) {
+                            if (before.wallet.publicatedAt.dd_MMMM_yyyy(language) != after.wallet.publicatedAt.dd_MMMM_yyyy(language)) {
                                 val count =
                                     walletRepository.sumByPublicatedAt(after.wallet.dateFormat)
                                 before.bottom = true

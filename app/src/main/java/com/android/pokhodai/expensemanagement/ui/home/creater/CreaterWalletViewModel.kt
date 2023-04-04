@@ -66,27 +66,22 @@ class CreaterWalletViewModel @Inject constructor(
     val navigatePopFlow = _navigatePopFlow.receiveAsFlow()
 
     private val _editWalletFlow =
-        MutableSharedFlow<Unit>(replay = 1, onBufferOverflow = BufferOverflow.DROP_LATEST)
+        MutableSharedFlow<Unit>(replay = 1, onBufferOverflow = BufferOverflow.DROP_OLDEST)
     val editWalletFlow = _editWalletFlow.asSharedFlow()
 
     init {
         editWallet?.let {
-            var wallet = it
-            if (it.type == expense) {
-                wallet = it.copy(amount = it.amount.toString().drop(0).toLong())
-            }
-            _dateFlow.value = wallet.publicatedAt
-            _typeFlow.value = wallet.type
-            _amountFlow.value = wallet.amount.toString()
-            _descriptionFlow.value = wallet.description
+            _dateFlow.value = it.publicatedAt
+            _typeFlow.value = it.type
+            _amountFlow.value = it.amount.toString().filter { amount -> amount.isDigit() }
+            _descriptionFlow.value = it.description
             _categoryNameFlow.value =
                 CategoriesAdapter.Categories(
-                    name = wallet.categoryName,
-                    icon = wallet.icons,
+                    name = it.categoryName,
+                    icon = it.icons,
                     id = -1
                 )
             _editWalletFlow.tryEmit(Unit)
-            editWallet = wallet
         }
     }
 
@@ -132,11 +127,17 @@ class CreaterWalletViewModel @Inject constructor(
         dispatcher: CoroutineDispatcher = Dispatchers.IO
     ) {
         viewModelScope.launch(dispatcher) {
+            val amount = if (typeFlow.value == income) {
+                amountFlow.value
+            } else {
+                "-${amountFlow.value}"
+            }.toLong()
+
             val wallet = WalletEntity(
                 id = editWallet?.id,
                 categoryName = categoryNameFlow.value.name,
                 icons = categoryNameFlow.value.icon,
-                amount = _amountFlow.value.toLong(),
+                amount = amount,
                 description = _descriptionFlow.value,
                 type = typeFlow.value,
                 publicatedAt = dateFlow.value,

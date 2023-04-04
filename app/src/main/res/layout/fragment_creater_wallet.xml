@@ -147,8 +147,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:hint="@string/add_new_wallet_amount_hint"
-                    android:maxLength="10"
-                    android:digits="0123456789-"
+                    android:maxLength="8"
                     android:inputType="number" />
 
             </com.google.android.material.textfield.TextInputLayout>

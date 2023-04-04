@@ -73,7 +73,7 @@ android {
 
     applicationVariants.all { variant ->
         variant.outputs.all { output ->
-            outputFileName = "emanager_${APP_VERSION_NAME}(${getBuildVersion()}).apk"
+            outputFileName = "fincat_${APP_VERSION_NAME}(${getBuildVersion()}).apk"
         }
     }
 }
