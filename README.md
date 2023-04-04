@@ -9,9 +9,9 @@ Design in the project Material like!
 
 __________________________________
 
-![Alt-текст](https://github.com/pokhodai/ExpenseManagement/blob/main/images/2023-04-04%2022.58.11.jpg "") ![Alt-текст](https://github.com/pokhodai/ExpenseManagement/blob/main/images/2023-04-04%2022.58.16.jpg "") ![Alt-текст](https://github.com/pokhodai/ExpenseManagement/blob/main/images/2023-04-04%2022.58.22.jpg "") 
-![Alt-текст](https://github.com/pokhodai/ExpenseManagement/blob/main/images/2023-04-04%2022.58.28.jpg "")
+# Preview
 
+<img src="https://github.com/pokhodai/ExpenseManagement/blob/main/images/2023-04-04%2022.58.11.jpg" width="100" height="200"> <img src="https://github.com/pokhodai/ExpenseManagement/blob/main/images/2023-04-04%2022.58.16.jpg" width="100" height="200"> <img src="https://github.com/pokhodai/ExpenseManagement/blob/main/images/2023-04-04%2022.58.22.jpg" width="100" height="200"> <img src="https://github.com/pokhodai/ExpenseManagement/blob/main/images/2023-04-04%2022.58.28.jpg" width="100" height="200"> <img src="https://github.com/pokhodai/ExpenseManagement/blob/main/images/2023-04-04%2023.26.40.jpg" width="100" height="200"> <img src="https://github.com/pokhodai/ExpenseManagement/blob/main/images/2023-04-04%2023.26.45.jpg" width="100" height="200"> <img src="https://github.com/pokhodai/ExpenseManagement/blob/main/images/2023-04-04%2023.26.50.jpg" width="100" height="200"> <img src="https://github.com/pokhodai/ExpenseManagement/blob/main/images/2023-04-04%2023.26.55.jpg" width="100" height="200">
 
 ## For all questions, additions or found bugs, please contact sergei.pokhodai@gmail.com
 
