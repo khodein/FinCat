@@ -2,8 +2,6 @@ package com.android.pokhodai.expensemanagement.utils.masks
 
 import android.text.Editable
 import android.text.TextWatcher
-import com.android.pokhodai.expensemanagement.source.UserDataSource
-import com.android.pokhodai.expensemanagement.utils.ManagerUtils
 import javax.inject.Inject
 
 class CreaterWalletMask @Inject constructor(
@@ -18,7 +16,18 @@ class CreaterWalletMask @Inject constructor(
             return
         }
 
-        val enteredValue = s.toString()
+        var enteredValue = s.toString()
+        var count = 0
+        enteredValue.forEachIndexed { index, c ->
+            if (c.toString() == "-") {
+                count++
+                if (count == 2) {
+                    enteredValue  = StringBuffer(enteredValue).apply {
+                        delete(index, index+1)
+                    }.toString()
+                }
+            }
+        }
         val newValue = buildString {
             if (enteredValue.isEmpty()) {
                 append("-")

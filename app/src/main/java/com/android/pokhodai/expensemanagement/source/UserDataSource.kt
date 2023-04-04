@@ -11,6 +11,8 @@ class UserDataSource(
     sharedPreferences: SharedPreferences
 ) : PrefDelegateModel(sharedPreferences) {
 
+    var isFirstEntry by booleanPref()
+
     var user by objPref<User>()
 
     var currency by objPref<Currency>()

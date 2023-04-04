@@ -17,7 +17,15 @@ class App: Application(), LanguageService {
 
     override fun onCreate() {
         super.onCreate()
+        initTheme()
+        initLang()
+    }
+
+    private fun initLang() {
         languageRepository.setLanguage()
+    }
+
+    private fun initTheme() {
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
     }
 

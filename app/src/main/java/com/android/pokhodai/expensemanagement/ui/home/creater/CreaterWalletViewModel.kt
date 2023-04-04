@@ -98,7 +98,7 @@ class CreaterWalletViewModel @Inject constructor(
         _descriptionFlow
     ) { type, category, amount, date, description ->
         if (editOrCreateType == Creater.CREATE) {
-            type.trim().isNotEmpty() && category.name.isNotEmpty() && amount.isNotEmpty()
+            type.isNotEmpty() && category.name.isNotEmpty() && amount.isNotEmpty()
         } else {
             category.name != editWallet?.categoryName
                     || date != editWallet?.publicatedAt

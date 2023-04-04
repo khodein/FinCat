@@ -1,6 +1,8 @@
 package com.android.pokhodai.expensemanagement.ui.home.creater
 
 import android.os.Bundle
+import android.text.InputType
+import android.text.method.DigitsKeyListener
 import android.view.View
 import android.view.ViewGroup
 import android.view.Window
@@ -63,9 +65,7 @@ class CreaterWalletFragment :
         }
 
         txtAmountCreaterWallet.doAfterTextChanged {
-            if (it?.isDigitsOnly() == true) {
-                viewModel.onChangeAmount(it.toString())
-            }
+            viewModel.onChangeAmount(it.toString())
         }
 
         txtDescriptionCreaterWallet.doAfterTextChanged {
@@ -122,8 +122,12 @@ class CreaterWalletFragment :
 
         typeFlow.observe(viewLifecycleOwner) {
             if (it == viewModel.income) {
+                binding.txtAmountCreaterWallet.inputType = InputType.TYPE_CLASS_NUMBER
+                binding.txtAmountCreaterWallet.keyListener = DigitsKeyListener.getInstance("0123456789")
                 binding.txtAmountCreaterWallet.removeTextChangedListener(createrWalletMask)
             } else {
+                binding.txtAmountCreaterWallet.inputType = InputType.TYPE_CLASS_NUMBER
+                binding.txtAmountCreaterWallet.keyListener = DigitsKeyListener.getInstance("0123456789-")
                 binding.txtAmountCreaterWallet.addTextChangedListener(createrWalletMask)
             }
 

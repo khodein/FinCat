@@ -101,7 +101,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
                 .setTextGravity(Gravity.START)
                 .setCornerRadius(10f)
                 .setPadding(10.dp.toInt())
-                .setTextSize(14.dp)
+                .setTextSize(10.dp)
                 .setTextColor(requireContext().getColor(R.color.black))
                 .setBackgroundColorResource(R.color.grey_100)
                 .setBalloonAnimation(BalloonAnimation.OVERSHOOT)

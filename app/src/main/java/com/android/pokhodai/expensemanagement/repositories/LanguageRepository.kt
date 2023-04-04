@@ -1,13 +1,9 @@
 package com.android.pokhodai.expensemanagement.repositories
 
-import android.content.Context
-import android.content.res.Configuration
-import android.content.res.Resources
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.os.LocaleListCompat
 import com.android.pokhodai.expensemanagement.source.UserDataSource
 import com.android.pokhodai.expensemanagement.utils.enums.Language
-import dagger.hilt.android.qualifiers.ApplicationContext
 import java.util.*
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -19,7 +15,16 @@ class LanguageRepository @Inject constructor(
     fun getLanguage() = userDataSource.language ?: Language.EU
 
     fun setLanguage(language: Language? = getLanguage()) {
-        userDataSource.language = language
+        if (!userDataSource.isFirstEntry) {
+            userDataSource.language = if (Locale.getDefault().language == "ru") {
+                    Language.RU
+                } else {
+                    Language.EU
+                }
+            userDataSource.isFirstEntry = true
+        } else {
+            userDataSource.language = language
+        }
         setLocale()
     }
 
