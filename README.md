@@ -7,6 +7,6 @@ FinCat is a tool for tracking expenses and budget income! This is a simple tool 
 ![Alt-текст](https://github.com/pokhodai/ExpenseManagement/blob/main/images/2023-04-04%2022.58.28.jpg "")
 
 
-## For all questions, additions or found bugs, please contact sergei.pokhodaigmail.com
+## For all questions, additions or found bugs, please contact sergei.pokhodai@gmail.com
 
 Thanks for viewing the app!
