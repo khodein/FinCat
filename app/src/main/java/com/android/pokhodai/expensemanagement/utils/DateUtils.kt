@@ -4,7 +4,6 @@ import android.content.Context
 import android.os.Parcelable
 import com.android.pokhodai.expensemanagement.R
 import com.android.pokhodai.expensemanagement.utils.enums.Language
-import kotlinx.parcelize.IgnoredOnParcel
 import kotlinx.parcelize.Parcelize
 import java.time.*
 import java.time.format.DateTimeFormatter
@@ -97,7 +96,7 @@ fun LocalDateFormatter.getMonthLocalization(context: Context): String {
         Month.JUNE -> R.string.month_june
         Month.JULY -> R.string.month_jule
         Month.AUGUST -> R.string.month_august
-        Month.SEPTEMBER -> R.string.month_sempember
+        Month.SEPTEMBER -> R.string.month_september
         Month.OCTOBER -> R.string.month_october
         Month.NOVEMBER -> R.string.month_november
         Month.DECEMBER -> R.string.month_december

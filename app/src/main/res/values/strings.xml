@@ -27,6 +27,11 @@
     <string name="nine">9</string>
     <string name="zero">0</string>
 
+    <!--  Boarding -->
+    <string name="boarding_subtitle">Start by creating an account\nin the FinCat app!</string>
+    <string name="boarding_btn">Start</string>
+    <!--  /Boarding -->
+
     <!--  Months -->
     <string name="month_january">January</string>
     <string name="month_february">February</string>
@@ -36,7 +41,7 @@
     <string name="month_june">June</string>
     <string name="month_jule">July</string>
     <string name="month_august">August</string>
-    <string name="month_sempember">September</string>
+    <string name="month_september">September</string>
     <string name="month_october">October</string>
     <string name="month_november">November</string>
     <string name="month_december">December</string>
@@ -92,6 +97,7 @@
     <string name="report_overview">Overview</string>
     <string name="report_details">Details</string>
     <string name="report_transactions">%s transactions</string>
+    <string name="report_exit">To exit the application, press back again</string>
     <!--  /Report  -->
 
     <!--  Settings  -->

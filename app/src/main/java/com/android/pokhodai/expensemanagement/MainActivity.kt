@@ -42,6 +42,9 @@ class MainActivity : AppCompatActivity() {
     private fun setObservable() = with(viewModel) {
         navigateFlow.observe(this@MainActivity) { result ->
             when (result) {
+                is MainResult.BoardingResult -> {
+                    navController.navigateSafe(RootNavGraphDirections.actionGlobalBoardingFragment())
+                }
                 is MainResult.UserEmptyResult -> {
                     navController.navigateSafe(RootNavGraphDirections.actionGlobalUserNavGraph())
                 }
@@ -50,6 +53,9 @@ class MainActivity : AppCompatActivity() {
                 }
                 is MainResult.PassCodeResult -> {
                     navController.navigateSafe(RootNavGraphDirections.actionGlobalPinCodeFragment())
+                }
+                is MainResult.ExitResult -> {
+                    finishAndRemoveTask()
                 }
             }
         }

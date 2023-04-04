@@ -59,7 +59,7 @@ class UserFragment : BaseFragment<FragmentUserBinding>(FragmentUserBinding::infl
             viewModel.onChangeEmail(it.toString())
         }
 
-        btnCreaterUser.setOnClickListener {
+        btnCreaterUser.setOnThrottleClickListener {
             onChangeUser()
         }
 
@@ -76,14 +76,17 @@ class UserFragment : BaseFragment<FragmentUserBinding>(FragmentUserBinding::infl
         }
 
         chipCurrency.setOnClickListener {
+            windowInsetsController.hide(WindowInsetsCompat.Type.ime())
             navigationController.navigateSafe(UserFragmentDirections.actionUserFragmentToCurrencyDialog())
         }
 
         chipLanguage.setOnClickListener {
+            windowInsetsController.hide(WindowInsetsCompat.Type.ime())
             navigationController.navigateSafe(UserFragmentDirections.actionUserFragmentToLanguageDialog())
         }
 
         chipBirth.setOnClickListener {
+            windowInsetsController.hide(WindowInsetsCompat.Type.ime())
             childFragmentManager.showDatePickerDialog(
                 viewModel.birthFlow.value
             ) {
@@ -113,7 +116,7 @@ class UserFragment : BaseFragment<FragmentUserBinding>(FragmentUserBinding::infl
     }
 
     override fun onBackPressed() {
-        requireActivity().finishAndRemoveTask()
+        mainViewModel.onClickExitApp()
     }
 
     @SuppressLint("SetTextI18n")

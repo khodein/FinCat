@@ -49,7 +49,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        app:title="@string/home_title"
+                        app:title="@string/app_name"
                         app:titleTextAppearance="@style/TitleStyle" />
 
                     <com.google.android.material.button.MaterialButton

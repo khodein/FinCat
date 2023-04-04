@@ -1,5 +1,7 @@
 package com.android.pokhodai.expensemanagement.ui.settings
 
+import android.os.Bundle
+import android.view.View
 import androidx.core.net.toUri
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.setFragmentResultListener
@@ -53,6 +55,11 @@ class SettingsFragment : BaseFragment<FragmentSettingsBinding>(FragmentSettingsB
                 }
             }
         }
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        mainViewModel.onSkipExit()
     }
 
     override fun setListeners() = with(binding) {

@@ -21,7 +21,6 @@ class LanguageRepository @Inject constructor(
                 } else {
                     Language.EU
                 }
-            userDataSource.isFirstEntry = true
         } else {
             userDataSource.language = language
         }

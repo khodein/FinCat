@@ -31,6 +31,11 @@
     <string name="home_title">Главная</string>
     <string name="settings_title">Настройки</string>
 
+    <!--  Boarding -->
+    <string name="boarding_subtitle">Начните с создания учетной записи\nв приложении FinCat!</string>
+    <string name="boarding_btn">Вперед!</string>
+    <!--  /Boarding -->
+
     <!--  Months -->
     <string name="month_january">Январь</string>
     <string name="month_february">Февраль</string>
@@ -40,7 +45,7 @@
     <string name="month_june">Июнь</string>
     <string name="month_jule">Июль</string>
     <string name="month_august">Август</string>
-    <string name="month_sempember">Сентябрь</string>
+    <string name="month_september">Сентябрь</string>
     <string name="month_october">Октябрь</string>
     <string name="month_november">Ноябрь</string>
     <string name="month_december">Декабрь</string>
@@ -92,6 +97,7 @@
     <string name="report_overview">Обзор</string>
     <string name="report_details">Детали</string>
     <string name="report_transactions">%s операций</string>
+    <string name="report_exit">Чтобы выйти из приложения, снова нажмите назад</string>
     <!--  /Report  -->
 
     <!--  Settings  -->
@@ -110,7 +116,7 @@
     <!--  /ManagerCategories  -->
 
     <!--  AddNewWallet  -->
-    <string name="add_new_wallet_title_add_new">Добавить новую</string>
+    <string name="add_new_wallet_title_add_new">Добавить новый</string>
     <string name="add_new_wallet_title_edit">Редактировать</string>
     <string name="add_new_wallet_type">Тип</string>
 
