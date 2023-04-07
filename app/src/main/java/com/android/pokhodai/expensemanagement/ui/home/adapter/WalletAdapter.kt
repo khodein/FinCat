@@ -28,7 +28,7 @@ import javax.inject.Inject
 
 class WalletAdapter @Inject constructor(
     private val languageRepository: LanguageRepository
-): BasePagingAdapter<WalletAdapter.ItemWallet>() {
+) : BasePagingAdapter<WalletAdapter.ItemWallet>() {
 
     private val today = LocalDateFormatter.today()
 
@@ -53,7 +53,16 @@ class WalletAdapter @Inject constructor(
                 ivAmount.setImageResource(item.wallet.icons.resId)
                 txtNameAmount.text = item.wallet.categoryName
                 txtTypeAmount.text = item.wallet.type
-                txtAmount.text = "${item.wallet.amount}${root.context.getString(item.wallet.currency.resId)}"
+                txtAmount.text =
+                    "${item.wallet.amount}${root.context.getString(item.wallet.currency.resId)}"
+                txtAmount.setTextColor(
+                    root.context.getColor(
+                        if (item.wallet.type == root.context.getString(
+                                R.string.status_income
+                            )
+                        ) R.color.green_600 else R.color.red_600
+                    )
+                )
 
                 dividerBottomWallet.isVisible = !item.bottom
 
@@ -97,18 +106,24 @@ class WalletAdapter @Inject constructor(
         }
 
         baseViewHolder(ItemWallet.EmptyWallet::class, ItemWalletEmptyBinding::inflate) { _ ->
-            binding.txtWalletEmpty.text = binding.root.context.getString(R.string.home_item_wallet_empty)
+            binding.txtWalletEmpty.text =
+                binding.root.context.getString(R.string.home_item_wallet_empty)
         }
     }
 
     sealed class ActionWallet {
-        data class ActionDeleteWallet(val id: Int): ActionWallet()
-        data class ActionEditWallet(val wallet: WalletEntity): ActionWallet()
+        data class ActionDeleteWallet(val id: Int) : ActionWallet()
+        data class ActionEditWallet(val wallet: WalletEntity) : ActionWallet()
     }
 
     sealed class ItemWallet {
-        data class WrapWallet(val wallet: WalletEntity, var bottom: Boolean = false): ItemWallet()
-        data class WrapHeader(val date: LocalDateFormatter, val count: String, val currency: Currency): ItemWallet()
-        object EmptyWallet: ItemWallet()
+        data class WrapWallet(val wallet: WalletEntity, var bottom: Boolean = false) : ItemWallet()
+        data class WrapHeader(
+            val date: LocalDateFormatter,
+            val count: String,
+            val currency: Currency
+        ) : ItemWallet()
+
+        object EmptyWallet : ItemWallet()
     }
 }
