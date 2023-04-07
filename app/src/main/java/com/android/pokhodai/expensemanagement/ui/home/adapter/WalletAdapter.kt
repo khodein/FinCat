@@ -27,7 +27,7 @@ import com.google.android.material.shape.CornerFamily
 import javax.inject.Inject
 
 class WalletAdapter @Inject constructor(
-    private val languageRepository: LanguageRepository
+    languageRepository: LanguageRepository
 ) : BasePagingAdapter<WalletAdapter.ItemWallet>() {
 
     private val today = LocalDateFormatter.today()
