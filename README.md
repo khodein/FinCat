@@ -28,7 +28,7 @@ __________________________________
 
 # Preview
 
-<img src="https://github.com/pokhodai/ExpenseManagement/blob/main/images/Google_Play_1.png" width="100" height="200"> <img src="https://github.com/pokhodai/ExpenseManagement/blob/main/images/Google_Play_2.png" width="100" height="200"> <img src="https://github.com/pokhodai/ExpenseManagement/blob/main/images/Google_Play_3.png" width="100" height="200"> <img src="https://github.com/pokhodai/ExpenseManagement/blob/main/images/Google_Play_4.png" width="100" height="200"> <img src="https://github.com/pokhodai/ExpenseManagement/blob/main/images/Google_Play_5.png" width="100" height="200"> <img src="https://github.com/pokhodai/ExpenseManagement/blob/main/images/Google_Play_6.png" width="100" height="200">
+<img src="https://github.com/pokhodai/ExpenseManagement/blob/main/images/Google_Play_1.png" width="150" height="300"> <img src="https://github.com/pokhodai/ExpenseManagement/blob/main/images/Google_Play_2.png" width="150" height="300"> <img src="https://github.com/pokhodai/ExpenseManagement/blob/main/images/Google_Play_3.png" width="150" height="300"> <img src="https://github.com/pokhodai/ExpenseManagement/blob/main/images/Google_Play_4.png" width="150" height="300"> <img src="https://github.com/pokhodai/ExpenseManagement/blob/main/images/Google_Play_5.png" width="150" height="300"> <img src="https://github.com/pokhodai/ExpenseManagement/blob/main/images/Google_Play_6.png" width="150" height="300">
 
 ## For all questions, additions or found bugs, please contact sergei.pokhodai@gmail.com
 
