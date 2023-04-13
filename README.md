@@ -1,8 +1,10 @@
 # FinCat 
 ### Expense Management android app
 __________________________________
+
 # Google Play
 <img src="https://github.com/pokhodai/ExpenseManagement/blob/main/images/banner.png" width="1024" height="500">
+
 __________________________________
 # About
 
