@@ -77,7 +77,7 @@
                         android:text="@string/report_overview"
                         android:textAppearance="@style/OverlineTextStyle" />
 
-                    <com.android.pokhodai.expensemanagement.utils.view.statistics.StatisticsOverviewView
+                    <com.sergei.pokhodai.expensemanagement.utils.view.statistics.StatisticsOverviewView
                         android:id="@+id/sovReport"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"

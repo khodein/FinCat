@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/reportFragment"
-        android:name="com.android.pokhodai.expensemanagement.ui.report.ReportFragment"
+        android:name="com.sergei.pokhodai.expensemanagement.ui.report.ReportFragment"
         android:label="ReportFragment"
         tools:layout="@layout/fragment_report" >
         <action
@@ -17,7 +17,7 @@
 
     <dialog
         android:id="@+id/monthPickerDialog"
-        android:name="com.android.pokhodai.expensemanagement.ui.date_picker.MonthPickerDialog"
+        android:name="com.sergei.pokhodai.expensemanagement.ui.date_picker.MonthPickerDialog"
         android:label="MonthPickerDialog"
         tools:layout="@layout/dialog_month_picker">
 

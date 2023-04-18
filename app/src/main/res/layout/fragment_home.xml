@@ -62,7 +62,7 @@
                         android:padding="@dimen/home_btn_search_padding"
                         app:icon="@drawable/ic_search" />
 
-                    <com.android.pokhodai.expensemanagement.utils.view.avatar.AvatarView
+                    <com.sergei.pokhodai.expensemanagement.utils.view.avatar.AvatarView
                         android:id="@+id/avHome"
                         android:layout_width="@dimen/home_av_size"
                         android:layout_height="@dimen/home_av_size"

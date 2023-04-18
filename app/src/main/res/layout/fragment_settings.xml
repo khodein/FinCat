@@ -45,7 +45,7 @@
                     android:paddingTop="@dimen/user_ll_column_settings_pad_top"
                     android:paddingBottom="@dimen/user_ll_column_settings_pad_bottom">
 
-                    <com.android.pokhodai.expensemanagement.utils.view.avatar.AvatarView
+                    <com.sergei.pokhodai.expensemanagement.utils.view.avatar.AvatarView
                         android:id="@+id/avSetting"
                         android:layout_width="@dimen/user_av_settings_size"
                         android:layout_height="@dimen/user_av_settings_size"

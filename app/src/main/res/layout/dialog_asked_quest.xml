@@ -71,7 +71,7 @@
 
         </com.google.android.material.textfield.TextInputLayout>
 
-        <com.android.pokhodai.expensemanagement.utils.view.button.NetworkButtonView
+        <com.sergei.pokhodai.expensemanagement.utils.view.button.NetworkButtonView
             android:id="@+id/btnAskedQuest"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

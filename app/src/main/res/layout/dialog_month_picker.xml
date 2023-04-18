@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <com.android.pokhodai.expensemanagement.utils.view.month_picker.MonthPickerView
+    <com.sergei.pokhodai.expensemanagement.utils.view.month_picker.MonthPickerView
         android:id="@+id/mpvDatePicker"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />

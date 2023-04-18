@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/userFragment"
-        android:name="com.android.pokhodai.expensemanagement.ui.user.UserFragment"
+        android:name="com.sergei.pokhodai.expensemanagement.ui.user.UserFragment"
         android:label="UserFragment"
         tools:layout="@layout/fragment_user">
         <action
@@ -23,13 +23,13 @@
 
     <dialog
         android:id="@+id/currencyDialog"
-        android:name="com.android.pokhodai.expensemanagement.ui.currency.CurrencyDialog"
+        android:name="com.sergei.pokhodai.expensemanagement.ui.currency.CurrencyDialog"
         android:label="CurrencyDialog"
         tools:layout="@layout/dialog_currency" />
 
     <dialog
         android:id="@+id/languageDialog"
-        android:name="com.android.pokhodai.expensemanagement.ui.language.LanguageDialog"
+        android:name="com.sergei.pokhodai.expensemanagement.ui.language.LanguageDialog"
         android:label="LanguageDialog"
         tools:layout="@layout/dialog_language" />
 

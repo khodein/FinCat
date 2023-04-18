@@ -9,19 +9,19 @@
 
     <fragment
         android:id="@+id/tabsFragment"
-        android:name="com.android.pokhodai.expensemanagement.ui.TabsFragment"
+        android:name="com.sergei.pokhodai.expensemanagement.ui.TabsFragment"
         android:label="TabsFragment"
         tools:layout="@layout/fragment_tabs" />
 
     <fragment
         android:id="@+id/splashFragment"
-        android:name="com.android.pokhodai.expensemanagement.ui.splash.SplashFragment"
+        android:name="com.sergei.pokhodai.expensemanagement.ui.splash.SplashFragment"
         android:label="SplashFragment"
         tools:layout="@layout/fragment_splash" />
 
     <fragment
         android:id="@+id/boardingFragment"
-        android:name="com.android.pokhodai.expensemanagement.ui.boarding.BoardingFragment"
+        android:name="com.sergei.pokhodai.expensemanagement.ui.boarding.BoardingFragment"
         android:label="BoardingFragment"
         tools:layout="@layout/fragment_boarding" >
         <action
@@ -33,7 +33,7 @@
 
     <fragment
         android:id="@+id/pinCodeFragment"
-        android:name="com.android.pokhodai.expensemanagement.ui.pin_code.PinCodeFragment"
+        android:name="com.sergei.pokhodai.expensemanagement.ui.pin_code.PinCodeFragment"
         android:label="PinCodeFragment"
         tools:layout="@layout/fragment_pin_code">
         <action

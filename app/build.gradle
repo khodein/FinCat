@@ -10,7 +10,6 @@ plugins {
 
 android {
     compileSdk 33
-
     defaultConfig {
         applicationId APP_PACKAGE
         minSdk 24
