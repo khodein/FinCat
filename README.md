@@ -4,7 +4,9 @@ __________________________________
 
 # Google Play
 <img src="https://github.com/pokhodai/ExpenseManagement/blob/main/images/banner.png" width="1024" height="500">
+
 https://play.google.com/store/apps/details?id=com.sergei.pokhodai.expensemanagement
+
 __________________________________
 # About
 
