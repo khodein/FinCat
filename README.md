@@ -35,6 +35,6 @@ __________________________________
 
 <img src="https://github.com/pokhodai/ExpenseManagement/blob/main/images/Google_Play_1.png" width="150" height="300"> <img src="https://github.com/pokhodai/ExpenseManagement/blob/main/images/Google_Play_2.png" width="150" height="300"> <img src="https://github.com/pokhodai/ExpenseManagement/blob/main/images/Google_Play_3.png" width="150" height="300"> <img src="https://github.com/pokhodai/ExpenseManagement/blob/main/images/Google_Play_4.png" width="150" height="300"> <img src="https://github.com/pokhodai/ExpenseManagement/blob/main/images/Google_Play_5.png" width="150" height="300"> <img src="https://github.com/pokhodai/ExpenseManagement/blob/main/images/Google_Play_6.png" width="150" height="300">
 
-## For all questions, additions or found bugs, please contact sergei.pokhodai@gmail.com
+## For all questions, additions or found bugs, please contact sergei.pokhodai@gmail.com or https://www.linkedin.com/in/sergei-pokhodai-976669233/
 
 Thanks for viewing the app!
