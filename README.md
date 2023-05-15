@@ -9,7 +9,7 @@ https://play.google.com/store/apps/details?id=com.sergei.pokhodai.expensemanagem
 
 __________________________________
 
-#RuStore
+# RuStore
 https://apps.rustore.ru/app/com.sergei.pokhodai.expensemanagement
 
 __________________________________
