@@ -105,7 +105,7 @@ class StatisticsOverviewView : View {
 
     private val rectF: RectF = RectF()
 
-    override fun onDraw(canvas: Canvas?) {
+    override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
 
         if (reportWallets?.isEmpty() == true) {
