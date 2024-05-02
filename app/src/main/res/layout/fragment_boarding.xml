@@ -1,58 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <LinearLayout
+    <com.sergei.pokhodai.expensemanagement.ui.boarding.ui.BoardingItemView
+        android:id="@+id/boarding_item"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_gravity="center"
-        android:orientation="vertical">
+        android:layout_height="wrap_content"
+        android:layout_gravity="center" />
 
-        <View
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:minHeight="20dp"/>
+    <com.sergei.pokhodai.expensemanagement.uikit.button.ButtonItemView
+        android:id="@+id/boarding_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom" />
 
-        <ImageView
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:layout_gravity="center"
-            android:src="@drawable/bgr_splash" />
-
-        <com.google.android.material.textview.MaterialTextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="@string/app_name"
-            android:textAppearance="@style/Title1Style" />
-
-        <com.google.android.material.textview.MaterialTextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:textAlignment="center"
-            android:layout_gravity="center"
-            android:paddingHorizontal="20dp"
-            android:text="@string/boarding_subtitle"
-            android:textAppearance="@style/Body2Style" />
-
-        <View
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:minHeight="20dp"/>
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/btnStartBoarding"
-            style="@style/DefaultButton"
-            android:layout_width="match_parent"
-            android:text="@string/boarding_btn"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="20dp"
-            android:layout_marginBottom="20dp"/>
-
-    </LinearLayout>
-
-</FrameLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

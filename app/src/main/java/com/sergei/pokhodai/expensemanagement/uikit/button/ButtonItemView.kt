@@ -19,7 +19,7 @@ import com.sergei.pokhodai.expensemanagement.utils.getColorStateList
 import com.sergei.pokhodai.expensemanagement.utils.setAppearance
 import com.sergei.pokhodai.expensemanagement.utils.toPx
 
-class ButtonItemView  @JvmOverloads constructor(
+class ButtonItemView @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
     defStyleAttr: Int = 0
@@ -79,7 +79,7 @@ class ButtonItemView  @JvmOverloads constructor(
         buttonItemCard.radius = state.cornerRadius.value.toFloat()
         buttonItemText.setAppearance(state.style.textStyleRes)
 
-        if (state.isEnabled) {
+        if (!state.isEnabled) {
             buttonItemText.setTextColor(getColor(R.color.grey_400))
         }
     }
