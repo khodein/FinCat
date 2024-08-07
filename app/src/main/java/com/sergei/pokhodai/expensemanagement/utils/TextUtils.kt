@@ -1,8 +1,6 @@
 package com.sergei.pokhodai.expensemanagement.utils
 
 import android.widget.TextView
-import androidx.annotation.StyleRes
-import androidx.core.widget.TextViewCompat
 import com.sergei.pokhodai.expensemanagement.utils.enums.Language
 import com.sergei.pokhodai.expensemanagement.R
 
@@ -21,5 +19,3 @@ fun TextView.getTextDate(date: LocalDateFormatter, today: LocalDateFormatter, la
 }
 
 fun CharSequence?.takeIfNotEmpty() = takeIf { !it.isNullOrEmpty() }?.toString()
-
-fun TextView.setAppearance(@StyleRes textAppearance: Int) = TextViewCompat.setTextAppearance(this, textAppearance)

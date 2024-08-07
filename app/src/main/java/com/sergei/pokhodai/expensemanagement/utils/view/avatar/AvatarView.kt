@@ -61,7 +61,7 @@ class AvatarView : View {
         defStyleAttr
     )
 
-    override fun onDraw(canvas: Canvas) {
+    override fun onDraw(canvas: Canvas?) {
         super.onDraw(canvas)
         val halfWidth = width / 2f
         val halfHeight = height / 2f

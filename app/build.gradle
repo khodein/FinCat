@@ -9,11 +9,11 @@ plugins {
 }
 
 android {
-    compileSdk 34
+    compileSdk 33
     defaultConfig {
         applicationId APP_PACKAGE
         minSdk 24
-        targetSdk 34
+        targetSdk 33
         versionCode Integer.parseInt(APP_VERSION_CODE)
         versionName APP_VERSION_NAME
 
@@ -132,8 +132,6 @@ dependencies {
 
     //Balloon
     implementation "com.github.skydoves:balloon:$balloon_version"
-
-    implementation "androidx.compose.ui:ui:1.6.6"
 
     //Test
     testImplementation 'junit:junit:4.13.2'
