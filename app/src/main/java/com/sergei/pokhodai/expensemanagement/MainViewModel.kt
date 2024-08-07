@@ -1,28 +1,20 @@
 package com.sergei.pokhodai.expensemanagement
 
-import androidx.compose.ui.unit.DpRect
-import androidx.compose.ui.unit.dp
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.sergei.pokhodai.expensemanagement.data.models.User
-import com.sergei.pokhodai.expensemanagement.resourse.ResourceManager
 import com.sergei.pokhodai.expensemanagement.source.UserDataSource
-import com.sergei.pokhodai.expensemanagement.uikit.button.ButtonItem
-import com.sergei.pokhodai.expensemanagement.utils.ViewDimension
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.channels.Channel
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class MainViewModel @Inject constructor(
-    private val userDataSource: UserDataSource,
-    private val resourceManager: ResourceManager,
+    private val userDataSource: UserDataSource
 ) : ViewModel() {
 
     private val _navigateFlow = Channel<MainResult>(Channel.CONFLATED)
