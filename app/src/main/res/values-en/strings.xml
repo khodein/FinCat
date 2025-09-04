@@ -1,7 +1,5 @@
 <resources>
     <string name="app_name">FinCat</string>
-    <string name="today">TODAY</string>
-    <string name="yesterday">YESTERDAY</string>
     <string name="delete">Delete</string>
     <string name="edit">Edit</string>
     <string name="exit">Exit</string>
@@ -26,30 +24,13 @@
     <string name="eight">8</string>
     <string name="nine">9</string>
     <string name="zero">0</string>
-
-    <string name="report_title">Report</string>
-    <string name="home_title">Home</string>
-    <string name="settings_title">Settings</string>
+    <string name="reload">Try again</string>
+    <string name="global_error">An unknown error occurred</string>
 
     <!--  Boarding -->
     <string name="boarding_subtitle">Start by creating an account\nin the FinCat app!</string>
     <string name="boarding_btn">Start</string>
     <!--  /Boarding -->
-
-    <!--  Months -->
-    <string name="month_january">January</string>
-    <string name="month_february">February</string>
-    <string name="month_march">March</string>
-    <string name="month_april">April</string>
-    <string name="month_may">May</string>
-    <string name="month_june">June</string>
-    <string name="month_jule">July</string>
-    <string name="month_august">August</string>
-    <string name="month_september">September</string>
-    <string name="month_october">October</string>
-    <string name="month_november">November</string>
-    <string name="month_december">December</string>
-    <!--  /Months -->
 
     <!--  PinCode  -->
     <string name="pin_code_bio_title">Entrance to ExpenseManagement</string>
@@ -81,25 +62,6 @@
     <string name="asked_quest_send">Send</string>
     <!--  /Asked Quest  -->
 
-    <!--  Status  -->
-    <string name="status_expenses">Expense</string>
-    <string name="status_balance">Balance</string>
-    <string name="status_income">Income</string>
-    <!--  /Status  -->
-
-    <!--  Home  -->
-    <string name="home_add">Add new</string>
-    <string name="home_item_wallet_empty">History is empty!</string>
-    <!--  /Home  -->
-
-    <!--  Report  -->
-    <string name="report_statistics_title">Statistics</string>
-    <string name="report_overview">Overview</string>
-    <string name="report_details">Details</string>
-    <string name="report_transactions">%s transactions</string>
-    <string name="report_exit">To exit the application, press back again</string>
-    <!--  /Report  -->
-
     <!--  Settings  -->
     <string name="settings_manage">Manage categories</string>
     <string name="settings_currency">Choose currency</string>
@@ -115,67 +77,5 @@
     <string name="manager_categories_add_new">Add new category</string>
     <!--  /ManagerCategories  -->
 
-    <!--  AddNewWallet  -->
-    <string name="add_new_wallet_title_add_new">Add new</string>
-    <string name="add_new_wallet_title_edit">Edit</string>
-    <string name="add_new_wallet_type">Type</string>
 
-    <string name="add_new_wallet_income">Income</string>
-    <string name="add_new_wallet_expense">Expense</string>
-    <string name="add_new_wallet_category_name">Category name</string>
-
-    <string-array name="TypesWallet">
-        <item>Income</item>
-        <item>Expense</item>
-    </string-array>
-
-    <string name="add_new_wallet_amount_hint">Amount</string>
-    <string name="add_new_wallet_description_hint">Description (Optional)</string>
-    <string name="add_new_wallet_btn_income">Add an income</string>
-    <string name="add_new_wallet_btn_edit_income">Edit an income</string>
-    <string name="add_new_wallet_btn_expense">Add an expense</string>
-    <string name="add_new_wallet_btn_edit_expense">Edit an expense</string>
-    <!--  /AddNewWallet  -->
-
-    <!--  Income  -->
-    <string name="income_grocery">Grocery</string>
-    <string name="income_gifts">Gifts</string>
-    <string name="income_wages">Wages</string>
-    <string name="income_interest">Interest</string>
-    <string name="income_savings">Savings</string>
-    <string name="income_allowance">Allowance</string>
-
-    <string name="income_title">CHOOSE CATEGORY</string>
-    <!--  /Income  -->
-
-    <!--  Expense  -->
-    <string name="expense_empty">Empty, add a category!</string>
-    <string name="expense_add_new_category">Add new category</string>
-    <!--  /Expense  -->
-
-    <!--  AddNewCategory  -->
-    <string name="creater_category_title_add">Add new category</string>
-    <string name="creater_category_title_edit">Edit category</string>
-    <string name="creater_category_hint">Category name</string>
-    <string name="creater_category_name">This name already exists, please select a new one!</string>
-    <string name="create_amount_mask">-%s</string>
-    <!--  /AddNewCategory  -->
-
-    <!--  Icons  -->
-    <string name="icons_title">CHOOSE CATEGORY ICON</string>
-    <!--  /Icons  -->
-
-    <!--  MonthPicker  -->
-    <string name="month_picker_title">PICK A MONTH</string>
-    <!--  /MonthPicker  -->
-
-    <!--  Language  -->
-    <string name="language_title">Choose language</string>
-    <string name="language_save">Save</string>
-    <!--  /Language  -->
-
-    <!--  Currency  -->
-    <string name="currency_title">Choose currency</string>
-    <string name="currency_save">Save</string>
-    <!--  /Currency  -->
 </resources>

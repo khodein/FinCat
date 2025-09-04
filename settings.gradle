@@ -16,5 +16,33 @@ dependencyResolutionManagement {
 rootProject.name = "ExpenseManagement"
 include ':app'
 
-include ':core:data'
-include ':database'
+include ':core:uikit',
+        ':core:recycler',
+        ':core:base',
+        ':core:router',
+        ':core:formatter',
+        ':core:eventbus:impl',
+        ':core:eventbus:api',
+        ':core:support:impl',
+        ':core:support:api'
+
+include ':database:impl',
+        ':database:api'
+
+include ':feature:category:impl',
+        ':feature:category:api'
+
+include ':feature:eventeditor:impl',
+        ':feature:eventeditor:api'
+
+include ':feature:home:impl',
+        ':feature:home:api'
+
+include ':feature:report:impl',
+        ':feature:report:api'
+
+include ':feature:settings:impl',
+        ':feature:settings:api'
+
+include ':feature:user:impl',
+        ':feature:user:api'

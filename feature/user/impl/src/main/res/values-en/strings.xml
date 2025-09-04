@@ -1,0 +1,21 @@
+<resources>
+    <string name="user_title">User profile</string>
+    <string name="user_button_add">Add new User</string>
+    <string name="user_button_edit">Edit User</string>
+    <string name="user_hint_name">User name</string>
+    <string name="user_name_error">Name must be at least 2 characters long</string>
+    <string name="user_hint_email">Email</string>
+    <string name="user_email_error">Check the correct email</string>
+    <string name="user_ru_language">Russian</string>
+    <string name="user_eu_language">English</string>
+    <string name="user_language_button">Confirm</string>
+    <string name="user_language_title">Choose Language</string>
+    <string name="currency_rub_title">Russian ruble</string>
+    <string name="currency_byn_title">Belarusian ruble</string>
+    <string name="currency_usd_title">US dollar</string>
+    <string name="currency_eur_title">Euro</string>
+    <string name="currency_cny_title">Chinese yuan</string>
+    <string name="currency_kzt_title">Kazakhstani tenge</string>
+    <string name="user_currency_title">Choose Currency</string>
+</resources>
+

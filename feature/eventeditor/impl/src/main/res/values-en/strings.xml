@@ -1,0 +1,34 @@
+<resources>
+    <string name="event_editor_title_add_new">Add new</string>
+    <string name="event_editor_title_edit">Edit</string>
+    <string name="event_editor_type">Type</string>
+
+    <string name="event_editor_income">Income</string>
+    <string name="event_editor_expense">Expense</string>
+    <string name="event_editor_category_name">Category name</string>
+
+    <string-array name="TypesWallet">
+        <item>Income</item>
+        <item>Expense</item>
+    </string-array>
+
+    <string name="event_editor_amount_hint">Amount</string>
+    <string name="event_editor_description_hint">Description (Optional)</string>
+    <string name="event_editor_btn_income">Add an income</string>
+    <string name="event_editor_btn_edit_income">Edit an income</string>
+    <string name="event_editor_btn_expense">Add an expense</string>
+    <string name="event_editor_btn_edit_expense">Edit an expense</string>
+
+    <string name="event_editor_category_error">The category can\'t be empty</string>
+    <string name="event_editor_amount_error">The amount cannot be empty</string>
+    <string name="event_editor_save_add_success">New event addedd successfully!</string>
+    <string name="event_editor_save_edit_success">The event was successfully edited!</string>
+    <string name="event_editor_delete_question">Do you definitely want to delete the event?</string>
+    <string name="event_editor_delete_success">Event was successfully deleted!</string>
+    <string name="event_editor_save_error">An error occurred saving the event! Try again!</string>
+    <string name="event_editor_global_error">An unknown error occurred</string>
+
+    <string name="event_editor_question_confirm">Confirm</string>
+    <string name="event_editor_question_cancel">Cancel</string>
+</resources>
+

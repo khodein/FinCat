@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:parentTag="android.widget.FrameLayout"
+    android:layout_height="wrap_content"
+    android:layout_width="match_parent">
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/fieldItemContainer"
+        style="@style/TextInputLayoutStyle"
+        app:errorIconDrawable="@null"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/fieldItemText"
+            style="@style/TextEditTextStyle"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:autoLink="none"
+            android:gravity="top|start"
+            android:privateImeOptions="nm"
+            android:scrollHorizontally="true"
+            tools:hint="Hint"/>
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+</merge>

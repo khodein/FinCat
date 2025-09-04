@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="settings_tab">Настройки</string>
+    <string name="settings_title">Настройки</string>
+
+    <string name="settings_manage">Управление категориями</string>
+    <string name="settings_currency">Выберите валюту</string>
+    <string name="settings_exchange">Курс валют</string>
+    <string name="settings_language">Выберите язык</string>
+    <string name="settings_questions">Задаваемые вопросы</string>
+    <string name="settings_logout">Выйти</string>
+</resources>

@@ -1,0 +1,12 @@
+<resources>
+    <string name="home_add">Добавить новый</string>
+    <string name="home_items_empty">История пуста!</string>
+    <string name="home_status_expenses">Расходы</string>
+    <string name="home_status_balance">Баланс</string>
+    <string name="home_status_income">Прибыль</string>
+    <string name="home_item_header_today">СЕГОДНЯ</string>
+    <string name="home_item_header_yesterday">ВЧЕРА</string>
+    <string name="home_tab">Главная</string>
+    <string name="home_global_error">Произошла неизвестная ошибка</string>
+</resources>
+

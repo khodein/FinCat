@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/dropDownItemContainer"
+        style="@style/DropDownTextInputLayoutStyle"
+        app:errorIconDrawable="@null"
+        android:selectableItemBackground="@null"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <AutoCompleteTextView
+            android:id="@+id/dropDownItemText"
+            style="@style/AutoCompleteTextInputStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:hint="Hint"
+            android:clickable="true"
+            android:focusable="true"
+            android:textColorHighlight="@android:color/transparent"
+            android:descendantFocusability="beforeDescendants"
+            android:cursorVisible="false"
+            android:inputType="none"
+            tools:ignore="LabelFor" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+</merge>

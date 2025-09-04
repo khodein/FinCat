@@ -1,0 +1,34 @@
+<resources>
+    <string name="event_editor_title_add_new">Добавить новый</string>
+    <string name="event_editor_title_edit">Редактировать</string>
+    <string name="event_editor_type">Тип</string>
+
+    <string name="event_editor_income">Доход</string>
+    <string name="event_editor_expense">Расход</string>
+    <string name="event_editor_category_name">Имя</string>
+
+    <string-array name="TypesWallet">
+        <item>Доход</item>
+        <item>Расход</item>
+    </string-array>
+
+    <string name="event_editor_amount_hint">Сумма</string>
+    <string name="event_editor_description_hint">Описание (Необязательно)</string>
+    <string name="event_editor_btn_income">Добавить доход</string>
+    <string name="event_editor_btn_edit_income">Изменить доход</string>
+    <string name="event_editor_btn_expense">Добавить расход</string>
+    <string name="event_editor_btn_edit_expense">Изменить расход</string>
+
+    <string name="event_editor_category_error">Категория не может быть пустой!</string>
+    <string name="event_editor_amount_error">Сумма не может быть пустой!</string>
+    <string name="event_editor_save_add_success">Новое событие успешно добавлено!</string>
+    <string name="event_editor_save_edit_success">Событие успешно отредактировано!</string>
+    <string name="event_editor_delete_question">Вы точно хотите удалить событие?</string>
+    <string name="event_editor_delete_success">Событие успешно удалено!</string>
+    <string name="event_editor_save_error">Произошла ошибка при сохранении события! Попробуйте еще раз!</string>
+    <string name="event_editor_global_error">Произошла неизвестная ошибка</string>
+
+    <string name="event_editor_question_confirm">Подтвердить</string>
+    <string name="event_editor_question_cancel">Отменить</string>
+</resources>
+

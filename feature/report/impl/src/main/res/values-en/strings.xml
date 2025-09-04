@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="report_statistics_title">Statistics</string>
+    <string name="report_items_empty">History is empty!</string>
+    <string name="report_overview">Overview</string>
+    <string name="report_details">DETAILS</string>
+    <string name="report_income_details">INCOME DETAILS</string>
+    <string name="report_expense_details">EXPENSE_DETAILS</string>
+    <string name="report_transactions">%s transactions</string>
+    <string name="report_exit">To exit the application, press back again</string>
+    <string name="report_bottom">Download report</string>
+    <string name="report_tab">Report</string>
+    <string name="report_global_error">An unknown error occurred</string>
+</resources>

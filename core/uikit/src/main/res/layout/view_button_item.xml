@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    tools:parentTag="android.widget.FrameLayout">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/view_button_item_content"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:paddingVertical="6dp"
+        android:paddingHorizontal="12dp"
+        android:minWidth="130dp"
+        android:minHeight="32dp">
+
+        <com.google.android.material.progressindicator.CircularProgressIndicator
+            android:id="@+id/view_button_item_loading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            app:trackThickness="2dp"
+            app:indicatorSize="24dp"
+            android:indeterminate="true"
+            app:trackColor="@android:color/transparent"
+            tools:visibility="visible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/view_button_item_icon"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:visibility="gone"
+            tools:src="@tools:sample/avatars" />
+
+        <androidx.constraintlayout.helper.widget.Flow
+            android:id="@+id/view_button_item_flow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:flow_firstHorizontalStyle="packed"
+            app:flow_horizontalGap="6dp"
+            app:flow_horizontalBias="0"
+            app:flow_verticalBias="0"
+            app:constraint_referenced_ids="view_button_item_icon, view_button_item_text"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/view_button_item_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="@style/Regular.14"
+            tools:text="sdsdsdsd"
+            tools:ignore="MissingConstraints" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</merge>

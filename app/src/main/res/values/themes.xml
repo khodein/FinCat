@@ -1,49 +1,16 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Theme.Common.ExpenseManager" parent="Theme.MaterialComponents.DayNight.NoActionBar">
-        <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/purple_500</item>
-        <item name="colorPrimaryVariant">@color/purple_700</item>
-        <item name="colorOnPrimary">@color/white</item>
-        <!-- Secondary brand color. -->
-        <item name="colorSecondary">@color/teal_200</item>
-        <item name="colorSecondaryVariant">@color/teal_700</item>
-        <item name="colorOnSecondary">@color/black</item>
-        <!-- Status bar color. -->
-        <item name="android:statusBarColor">@color/grey_900_18</item>
-        <item name="android:windowLightStatusBar">false</item>
-        <!-- Customize your theme here. -->
+    <style name="Theme.ExpenseManager" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorSurface">@color/surface_normal</item>
+        <item name="colorOnSurface">@color/surface_dark_2</item>
         <item name="android:overScrollMode">never</item>
         <item name="android:scrollbars">none</item>
-
-        <item name="popupMenuStyle">@style/Widget.App.PopupMenu</item>
-        <item name="bottomSheetDialogTheme">@style/AppDialogTheme</item>
-    </style>
-
-    <style name="Theme.ExpenseManager" parent="Theme.Common.ExpenseManager"/>
-
-    <style name="Theme.ExpenseManager.Launch" parent="Theme.SplashScreen">
-        <item name="android:windowBackground">@drawable/bgr_splash</item>
-        <item name="postSplashScreenTheme">@style/Theme.ExpenseManager</item>
-    </style>
-
-    <style name="AppDialogTheme" parent="ThemeOverlay.MaterialComponents.BottomSheetDialog">
-        <item name="bottomSheetStyle">@style/AppModalStyle</item>
-        <item name="android:windowSoftInputMode">adjustResize|stateAlwaysHidden</item>
-        <item name="android:windowIsTranslucent">true</item>
-        <item name="android:windowFrame">@null</item>
-        <item name="android:backgroundDimEnabled">true</item>
-        <item name="android:windowBackground">@android:color/transparent</item>
-        <item name="android:windowMinWidthMajor">90%</item>
-        <item name="android:windowMinWidthMinor">90%</item>
-        <item name="colorPrimary">@color/purple_500</item>
-    </style>
-
-    <style name="Widget.App.PopupMenu" parent="Widget.MaterialComponents.PopupMenu">
-        <item name="android:background">@android:color/transparent</item>
-        <item name="android:popupBackground">@drawable/custom_popup_background</item>
-        <item name="overlapAnchor">false</item>
-        <item name="android:dropDownVerticalOffset">0dp</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:navigationBarColor">@android:color/transparent</item>
+        <item name="colorControlHighlight">@android:color/transparent</item>
+        <item name="android:windowFullscreen">false</item>
+        <item name="android:windowLayoutInDisplayCutoutMode" tools:targetApi="27">shortEdges</item>
     </style>
 
 </resources>

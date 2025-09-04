@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_height="56dp"
+    android:layout_width="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:paddingHorizontal="16dp"
+    android:paddingVertical="8dp"
+    tools:parentTag="androidx.constraintlayout.widget.ConstraintLayout">
+
+    <com.sergei.pokhodai.expensemanagement.uikit.kind.CategoryKindItemView
+        android:id="@+id/reportKindItem"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <LinearLayout
+        android:id="@+id/reportKindTextContainer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:minWidth="160dp"
+        android:paddingStart="8dp"
+        android:paddingEnd="0dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/reportKindItem"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/reportKindName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center|start"
+            android:ellipsize="end"
+            android:maxLines="1"
+            tools:text="Transportation"
+            android:textColor="@color/grey_800"
+            android:textAppearance="@style/Regular.14"/>
+
+        <TextView
+            android:id="@+id/reportKindCount"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center|start"
+            android:ellipsize="end"
+            android:maxLines="1"
+            tools:text="36 transactions"
+            android:textColor="@color/grey_700"
+            android:textAppearance="@style/Regular.12"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/reportKindAmountContainer"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/reportKindTextContainer"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/reportKindAmount"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center|start"
+            android:ellipsize="end"
+            android:maxLines="1"
+            tools:text="- ₹5300"
+            android:gravity="end"
+            android:textColor="@color/red_600"
+            android:textAppearance="@style/Regular.14"/>
+
+        <TextView
+            android:id="@+id/reportKindPercent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center|start"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:gravity="end"
+            tools:text="32%"
+            android:textColor="@color/grey_900"
+            android:textAppearance="@style/Regular.12"/>
+
+    </LinearLayout>
+
+</merge>

@@ -1,0 +1,45 @@
+<resources>
+    <string name="category_dialog_title">CHOOSE CATEGORY</string>
+    <string name="category_dialog_add_new">Add new category</string>
+
+    <string name="category_editor_title_add">Add new category</string>
+    <string name="category_editor_title_edit">Edit category</string>
+    <string name="category_editor_name_hint">Category name</string>
+    <string name="category_editor_name_exists">This name already exists, please select a new one!</string>
+    <string name="category_editor_name_error">The category name can\'t be empty</string>
+    <string name="category_editor_icon_error">The category icon can\'t be empty</string>
+    <string name="category_editor_save_add_success">New category addedd successfully!</string>
+    <string name="category_editor_save_edit_success">The category was successfully edited!</string>
+    <string name="category_editor_save_error">An error occurred saving the category! Try again!</string>
+
+    <string name="category_icon_title">CHOOSE CATEGORY ICON</string>
+
+    <string name="default_category_income_salary">Salary</string>
+    <string name="default_category_income_gift">Gift</string>
+    <string name="default_category_income_wages">Wages</string>
+    <string name="default_category_income_interest">Interest</string>
+    <string name="default_category_income_savings">Savings</string>
+    <string name="default_category_income_allowance">Allowance</string>
+
+    <string name="default_category_expense_grocery">Grocery</string>
+    <string name="default_category_expense_gift">Gifts</string>
+    <string name="default_category_expense_bar">Bar &amp; Cafe</string>
+    <string name="default_category_expense_health">Health</string>
+    <string name="default_category_expense_commute">Commute</string>
+    <string name="default_category_expense_electronics">Electronics</string>
+    <string name="default_category_expense_laundry">Laundry</string>
+    <string name="default_category_expense_liquor">Liquor</string>
+    <string name="default_category_expense_restaurant">Restaurant</string>
+
+    <string name="category_editor_color_picker_confirm">Oк</string>
+    <string name="category_editor_color_picker_cancel">Cancel</string>
+
+    <string name="category_editor_delete_success">Category was successfully deleted!</string>
+    <string name="category_editor_delete_category">Are you sure you want to delete the category?</string>
+
+    <string name="category_editor_global_error">An unknown error occurred</string>
+
+    <string name="category_editor_confirm">Confirm</string>
+    <string name="category_editor_cancel">Cancel</string>
+</resources>
+

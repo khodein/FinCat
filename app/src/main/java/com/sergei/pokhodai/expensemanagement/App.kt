@@ -2,33 +2,90 @@ package com.sergei.pokhodai.expensemanagement
 
 import android.app.Application
 import androidx.appcompat.app.AppCompatDelegate
-import com.sergei.pokhodai.expensemanagement.repositories.LanguageRepository
-import dagger.hilt.android.HiltAndroidApp
-import javax.inject.Inject
+import androidx.core.os.LocaleListCompat
+import com.sergei.pokhodai.expensemanagement.core.eventbus.impl.EventBusModule
+import com.sergei.pokhodai.expensemanagement.core.router.Router
+import com.sergei.pokhodai.expensemanagement.core.router.provider.BottomNavigationVisibleProvider
+import com.sergei.pokhodai.expensemanagement.core.router.provider.RouteProvider
+import com.sergei.pokhodai.expensemanagement.core.router.provider.TabProvider
+import com.sergei.pokhodai.expensemanagement.core.router.support.SupportRouter
+import com.sergei.pokhodai.expensemanagement.core.support.api.LocaleManager
+import com.sergei.pokhodai.expensemanagement.core.support.impl.SupportModule
+import com.sergei.pokhodai.expensemanagement.database.impl.RoomModule
+import com.sergei.pokhodai.expensemanagement.feature.category.impl.CategoryModule
+import com.sergei.pokhodai.expensemanagement.feature.eventeditor.impl.EventEditorModule
+import com.sergei.pokhodai.expensemanagement.feature.report.impl.ReportModule
+import com.sergei.pokhodai.expensemanagement.feature.settings.impl.SettingsModule
+import com.sergei.pokhodai.expensemanagement.feature.user.impl.UserModule
+import com.sergei.pokhodai.expensemanagement.home.impl.HomeModule
+import com.sergei.pokhodai.expensemanagement.main.MainViewModel
+import com.sergei.pokhodai.expensemanagement.router.RouterImpl
+import com.sergei.pokhodai.expensemanagement.router.SupportRouterImpl
+import com.sergei.pokhodai.expensemanagement.uikit.UikitModule
+import org.koin.android.ext.android.inject
+import org.koin.android.ext.koin.androidContext
+import org.koin.android.ext.koin.androidLogger
+import org.koin.androidx.fragment.koin.fragmentFactory
+import org.koin.core.context.startKoin
+import org.koin.core.module.Module
+import org.koin.core.module.dsl.singleOf
+import org.koin.core.module.dsl.viewModelOf
+import org.koin.dsl.bind
+import org.koin.dsl.module
 
-@HiltAndroidApp
-class App: Application(), LanguageService {
+internal class App : Application() {
 
-    @Inject
-    lateinit var languageRepository: LanguageRepository
+    private val localeManager by inject<LocaleManager>()
 
     override fun onCreate() {
         super.onCreate()
-        initTheme()
-        initLang()
-    }
-
-    private fun initLang() {
-        languageRepository.setLanguage()
-    }
-
-    private fun initTheme() {
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+
+        startKoin {
+            androidLogger()
+            androidContext(this@App)
+            fragmentFactory()
+
+            modules(
+                AppModule.get(),
+                SupportModule.get(),
+                EventBusModule.get(),
+                RoomModule.get(),
+                ReportModule.get(),
+                CategoryModule.get(),
+                EventEditorModule.get(),
+                HomeModule.get(),
+                UserModule.get(),
+                SettingsModule.get(),
+            )
+        }
+
+        localeManager.updateLanguage(localeManager.getLanguage())
     }
 
-    override fun getLanguagePreparation(): LanguageRepository = languageRepository
-}
+    private object AppModule {
 
-interface LanguageService {
-    fun getLanguagePreparation(): LanguageRepository
+        init {
+            UikitModule.register()
+        }
+
+        fun get(): Module {
+            return module {
+                single {
+                    val routeProviderList = getKoin().getAll<RouteProvider>()
+                    val tabProviderList = getKoin().getAll<TabProvider>()
+                    val bottomNavigationVisibleProviderList =
+                        getKoin().getAll<BottomNavigationVisibleProvider>()
+                    RouterImpl(
+                        bottomNavigationVisibleProviderList = bottomNavigationVisibleProviderList,
+                        routeProviderList = routeProviderList,
+                        tabProviderLis = tabProviderList
+                    )
+                } bind Router::class
+
+                viewModelOf(::MainViewModel)
+                singleOf(::SupportRouterImpl) bind SupportRouter::class
+            }
+        }
+    }
 }

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="report_statistics_title">Статистика</string>
+    <string name="report_items_empty">История пуста!</string>
+    <string name="report_overview">Обзор</string>
+    <string name="report_details">ДЕТАЛИ</string>
+    <string name="report_transactions">%s операций</string>
+    <string name="report_income_details">ДЕТАЛИ ПРИХОДА</string>
+    <string name="report_expense_details">ДЕТАЛИ РАСХОДА</string>
+    <string name="report_exit">Чтобы выйти из приложения, снова нажмите назад</string>
+    <string name="report_bottom">Скачать статистику</string>
+    <string name="report_tab">Отчет</string>
+    <string name="report_global_error">Произошла неизвестная ошибка</string>
+</resources>

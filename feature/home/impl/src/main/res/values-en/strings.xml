@@ -1,0 +1,12 @@
+<resources>
+    <string name="home_add">Add new</string>
+    <string name="home_items_empty">History is empty!</string>
+    <string name="home_status_expenses">Expense</string>
+    <string name="home_status_balance">Balance</string>
+    <string name="home_status_income">Income</string>
+    <string name="home_item_header_today">TODAY</string>
+    <string name="home_item_header_yesterday">YESTERDAY</string>
+    <string name="home_tab">Home</string>
+    <string name="home_global_error">An unknown error occurred</string>
+</resources>
+

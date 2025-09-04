@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="DropDownTextInputLayoutStyle" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu">
+        <item name="boxStrokeWidth">1dp</item>
+        <item name="boxStrokeColor">@color/background_text_input_layout</item>
+        <item name="boxCornerRadiusBottomEnd">5dp</item>
+        <item name="boxCornerRadiusBottomStart">5dp</item>
+        <item name="boxCornerRadiusTopEnd">5dp</item>
+        <item name="boxCornerRadiusTopStart">5dp</item>
+        <item name="boxStrokeErrorColor">@color/red_600</item>
+        <item name="hintTextAppearance">@style/Medium.16</item>
+        <item name="cursorErrorColor">@color/red_600</item>
+        <item name="errorIconTint">@color/red_600</item>
+        <item name="hintEnabled">false</item>
+        <item name="cursorColor">@color/blue_600</item>
+        <item name="android:textCursorDrawable">@color/blue_600</item>
+        <item name="errorTextAppearance">@style/TextInputErrorAppearance</item>
+    </style>
+
+    <style name="AutoCompleteTextInputStyle">
+        <item name="android:textAppearance">@style/Medium.16</item>
+        <item name="android:selectableItemBackground">@null</item>
+        <item name="android:selectableItemBackgroundBorderless">@null</item>
+        <item name="android:textColorHint">@color/grey_700</item>
+        <item name="android:textColor">@color/grey_900</item>
+        <item name="android:clickable">false</item>
+        <item name="android:focusable">false</item>
+        <item name="android:foreground">@null</item>
+    </style>
+</resources>

@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <declare-styleable name="NetworkButtonView">
-
-        <attr name="android:text" format="string" localization="suggested" />
-        <attr name="android:enabled" format="boolean" />
-    </declare-styleable>
-</resources>

@@ -1,0 +1,45 @@
+<resources>
+    <string name="category_dialog_title">ВЫБЕРИТЕ КАТЕГОРИЮ</string>
+    <string name="category_dialog_add_new">Добавить новую категорию</string>
+
+    <string name="category_editor_title_add">Добавить новую категорию</string>
+    <string name="category_editor_title_edit">Изменить категорию</string>
+    <string name="category_editor_name_hint">Имя</string>
+    <string name="category_editor_name_exists">Это имя уже существует, выберите новое!</string>
+    <string name="category_editor_name_error">Название категории не может быть пустым</string>
+    <string name="category_editor_icon_error">Значок категории не может быть пустым</string>
+    <string name="category_editor_save_add_success">Новая категория успешно добавлена!</string>
+    <string name="category_editor_save_edit_success">Категория была успешно отредактирована!</string>
+    <string name="category_editor_save_error">Произошла ошибка при сохранении категории! Попробуйте еще раз!</string>
+
+    <string name="category_icon_title">ВЫБЕРИТЕ ЗНАЧОК КАТЕГОРИИ</string>
+
+    <string name="default_category_income_salary">Зарплата</string>
+    <string name="default_category_income_gift">Подарок</string>
+    <string name="default_category_income_wages">Подработка</string>
+    <string name="default_category_income_interest">Проценты</string>
+    <string name="default_category_income_savings">Сбережения</string>
+    <string name="default_category_income_allowance">Пособие</string>
+
+    <string name="default_category_expense_grocery">Продукты</string>
+    <string name="default_category_expense_gift">Подарки</string>
+    <string name="default_category_expense_bar">Бары и кафе</string>
+    <string name="default_category_expense_health">Здоровье</string>
+    <string name="default_category_expense_commute">Транспорт</string>
+    <string name="default_category_expense_electronics">Электроника</string>
+    <string name="default_category_expense_laundry">Прачечная</string>
+    <string name="default_category_expense_liquor">Алкоголь</string>
+    <string name="default_category_expense_restaurant">Рестораны</string>
+
+    <string name="category_editor_color_picker_confirm">Oк</string>
+    <string name="category_editor_color_picker_cancel">Отменить</string>
+
+    <string name="category_editor_delete_success">Категория успешно удалена!</string>
+    <string name="category_editor_delete_category">Вы точно хотите удалить категорию?</string>
+
+    <string name="category_editor_global_error">Произошла неизвестная ошибка</string>
+
+    <string name="category_editor_confirm">Подвердить</string>
+    <string name="category_editor_cancel">Отменить</string>
+</resources>
+
