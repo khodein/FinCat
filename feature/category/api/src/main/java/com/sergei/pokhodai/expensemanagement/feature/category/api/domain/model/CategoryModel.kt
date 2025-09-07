@@ -1,7 +1,7 @@
 package com.sergei.pokhodai.expensemanagement.feature.category.api.domain.model
 
 data class CategoryModel(
-    val id: Int? = null,
+    val id: Long? = null,
     val type: CategoryType?,
     val budgetType: BudgetType?,
     val colorName: String,

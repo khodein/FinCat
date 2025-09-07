@@ -4,12 +4,20 @@ import android.graphics.Color
 import android.graphics.ColorMatrix
 import android.graphics.ColorMatrixColorFilter
 import android.widget.ImageView
+import androidx.annotation.DrawableRes
+import coil3.ImageLoader
+import coil3.SingletonImageLoader
+import coil3.load
+import coil3.request.ImageRequest
+import coil3.request.crossfade
+import coil3.request.target
 import com.sergei.pokhodai.expensemanagement.core.base.image.ImageColorFilterValue
 import com.sergei.pokhodai.expensemanagement.core.base.image.ImageValue
 
 fun ImageView.load(value: ImageValue?) {
     when (value) {
         is ImageValue.Res -> setImageResource(value.value)
+        is ImageValue.Coil -> load(data = value.data)
         else -> setImageDrawable(null)
     }
 }

@@ -7,6 +7,6 @@ internal class IsUserDataStoreEmptyUseCaseImpl(
     private val userDataStoreRepository: UserDataStoreRepository,
 ) : IsUserDataStoreEmptyUseCase {
     override suspend fun invoke(): Boolean {
-        return userDataStoreRepository.getUserDataStore().isEmpty()
+        return userDataStoreRepository.getUserId() == null
     }
 }

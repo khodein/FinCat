@@ -12,6 +12,7 @@ import androidx.core.view.isVisible
 import com.google.android.material.progressindicator.CircularProgressIndicator
 import com.sergei.pokhodai.expensemanagement.core.base.dimension.ViewDimension
 import com.sergei.pokhodai.expensemanagement.core.base.utils.applyPadding
+import com.sergei.pokhodai.expensemanagement.core.base.utils.bindStateOptional
 import com.sergei.pokhodai.expensemanagement.core.base.utils.dp
 import com.sergei.pokhodai.expensemanagement.core.base.utils.getColor
 import com.sergei.pokhodai.expensemanagement.core.base.utils.resolveToLayoutParams
@@ -44,10 +45,29 @@ class RequestItemView @JvmOverloads constructor(
         )
     }
 
+    private val emptyState by lazy {
+        ButtonItem.State(
+            provideId = "request_empty_id",
+            radius = ViewDimension.Dp(12),
+            height = ViewDimension.Dp(40),
+            fill = ButtonItem.Fill.Outline(),
+            value = "",
+            onClick = ::onClickEmpty
+        )
+    }
+
     private fun onClickReload(state: ButtonItem.State) {
         this.state?.let {
             if (it is RequestItem.State.Error) {
                 it.onClickReload?.invoke()
+            }
+        }
+    }
+
+    private fun onClickEmpty(state: ButtonItem.State) {
+        this.state?.let {
+            if (it is RequestItem.State.Empty) {
+                it.onClickEmpty?.invoke()
             }
         }
     }
@@ -61,8 +81,6 @@ class RequestItemView @JvmOverloads constructor(
 
     override fun bindState(state: RequestItem.State) {
         this.state = state
-
-        bindContainer(state.container)
 
         removeAllViews()
         when (state) {
@@ -79,7 +97,12 @@ class RequestItemView @JvmOverloads constructor(
                 }
                 emptyBinding?.run {
                     requestErrorEmptyMessage.text = state.message
-                    requestErrorEmptyBtn.isVisible = false
+                    requestErrorEmptyBtn.bindStateOptional(
+                        state = state.buttonText,
+                        binder = {
+                            requestErrorEmptyBtn.bindState(emptyState.copy(value = it))
+                        }
+                    )
                 }
                 view
             }
@@ -137,14 +160,5 @@ class RequestItemView @JvmOverloads constructor(
                 gravity = Gravity.CENTER
             }
         }
-    }
-
-    private fun bindContainer(container: RequestItem.Container) {
-        resolveToLayoutParams(
-            width = container.width,
-            height = container.height,
-        )
-        setBackgroundColor(container.backgroundColor.getColor(context))
-        applyPadding(container.paddings)
     }
 }

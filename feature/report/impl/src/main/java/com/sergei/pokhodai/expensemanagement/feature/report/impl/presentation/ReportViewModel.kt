@@ -64,8 +64,8 @@ internal class ReportViewModel(
     }
 
     private fun fetchData(isLoading: Boolean = true) {
-        fetchJob?.cancel()
         updateBottom(isLoading)
+        fetchJob?.cancel()
         fetchJob = viewModelScope.launch {
             if (isLoading) {
                 updateLoading()
@@ -78,7 +78,6 @@ internal class ReportViewModel(
                     budgetType = BudgetType.EXPENSE
                 )
 
-                async {  }
                 val incomeData = getCategoryEventByMonthAndYearAndBudgetTypeUceCase.invoke(
                     date = focusDate,
                     budgetType = BudgetType.INCOME
@@ -122,16 +121,15 @@ internal class ReportViewModel(
             reportMapper.getItems(isExpense = true, data = expenseData).let(::addAll)
             reportMapper.getItems(isExpense = false, data = incomeData).let(::addAll)
         }.let {
+            _requestFlow.value = RequestItem.State.Idle
             _itemsFlow.value = it.ifEmpty {
                 _requestFlow.value = RequestItem.State.Empty(
-                    message = reportMapper.getEmptyText(),
-                    container = RequestItem.Container(paddings = P_0_0_0_64)
+                    message = reportMapper.getEmptyText()
                 )
                 emptyList()
             }
         }
 
-        _requestFlow.value = RequestItem.State.Idle
         updateBottom()
     }
 
@@ -145,7 +143,6 @@ internal class ReportViewModel(
         _itemsFlow.value = emptyList()
         _requestFlow.value = RequestItem.State.Error(
             message = reportMapper.getErrorText(),
-            container = RequestItem.Container(paddings = P_0_0_0_64),
             onClickReload = ::fetchData
         )
     }

@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.View
 import com.sergei.pokhodai.expensemanagement.core.base.dialog.BaseBottomSheetDialogFragment
 import com.sergei.pokhodai.expensemanagement.core.recycler.adapter.RecyclerAdapter
-import com.sergei.pokhodai.expensemanagement.core.base.utils.autoClean
 import com.sergei.pokhodai.expensemanagement.core.base.utils.observe
 import com.sergei.pokhodai.expensemanagement.core.base.utils.viewBinding
 import com.sergei.pokhodai.expensemanagement.feature.category.impl.R
@@ -16,7 +15,7 @@ internal class CategoryIconDialog : BaseBottomSheetDialogFragment(R.layout.dialo
 
     private val binding by viewBinding(init = DialogCategoryIconBinding::bind)
     private val viewModel by viewModel<CategoryIconViewModel>()
-    private val adapter by autoClean(init = ::RecyclerAdapter)
+    private var adapter: RecyclerAdapter? = null
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -25,10 +24,9 @@ internal class CategoryIconDialog : BaseBottomSheetDialogFragment(R.layout.dialo
     }
 
     private fun setObservable() = with(viewModel) {
-        itemsFlow.observe(
-            this@CategoryIconDialog,
-            adapter::submitList
-        )
+        itemsFlow.observe(this@CategoryIconDialog) { list ->
+            adapter?.submitList(list)
+        }
 
         topFlow
             .filterNotNull()
@@ -39,7 +37,13 @@ internal class CategoryIconDialog : BaseBottomSheetDialogFragment(R.layout.dialo
     }
 
     private fun setAdapter() {
+        this.adapter = RecyclerAdapter()
         binding.categoryIconDialogList.itemAnimator = null
         binding.categoryIconDialogList.adapter = adapter
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        adapter = null
     }
 }

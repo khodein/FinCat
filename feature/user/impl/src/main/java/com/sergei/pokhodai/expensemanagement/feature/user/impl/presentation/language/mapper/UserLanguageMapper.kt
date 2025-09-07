@@ -64,7 +64,7 @@ internal class UserLanguageMapper(
             LocaleLanguageModel.RU -> R.drawable.ic_russian
             LocaleLanguageModel.EN -> R.drawable.ic_english
         }
-        return ImageValue.Res(resId)
+        return ImageValue.Coil(resId)
     }
 
     fun getNameText(model: LocaleLanguageModel): String {

@@ -12,6 +12,7 @@ import dep.androidx.AndroidXDataStoreDep
 import dep.androidx.AndroidXNavigationFragmentKtxDep
 import dep.androidx.AndroidXRoomDep
 import dep.apache.ApachePoiDep
+import dep.coil.CoilDep
 import dep.github.GitHubSkydovesColorPickerDep
 import dep.koin.KoinAndroidDep
 import dep.kotlinx.KotlinXCoroutineAndroidDep
@@ -54,6 +55,7 @@ class AppPlugin : BasePlugin() {
             AndroidReviewKtxDep.invoke(libsVersionCatalog),
             SquareupLeakcanaryAndroidDep.invoke(libsVersionCatalog),
             GitHubSkydovesColorPickerDep.invoke(libsVersionCatalog),
+            CoilDep.invoke(libsVersionCatalog)
         ).flatten()
 
         project.applyDependencyList(dependencyList)

@@ -7,8 +7,8 @@ import com.sergei.pokhodai.expensemanagement.database.api.key.DatabaseKey
 
 @Entity(tableName = "${DatabaseKey.DATABASE_NAME}_Event_Table")
 class EventEntity(
-    @PrimaryKey(autoGenerate = true) @ColumnInfo("id") val primaryId: Int? = null,
-    @ColumnInfo("userId") val userId: Int,
+    @PrimaryKey(autoGenerate = true) @ColumnInfo("id") val primaryId: Long? = null,
+    @ColumnInfo("userId") val userId: Long,
     @ColumnInfo("budgetType") val budgetType: String,
     @ColumnInfo("categoryType") val categoryType: String,
     @ColumnInfo("categoryColorName") val categoryColorName: String,

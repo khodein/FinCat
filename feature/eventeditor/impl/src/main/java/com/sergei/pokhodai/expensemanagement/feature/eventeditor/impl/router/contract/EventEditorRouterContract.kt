@@ -5,5 +5,5 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 internal data class EventEditorRouterContract(
-    val eventId: Int?
+    val eventId: Long?
 ) : RouterContract

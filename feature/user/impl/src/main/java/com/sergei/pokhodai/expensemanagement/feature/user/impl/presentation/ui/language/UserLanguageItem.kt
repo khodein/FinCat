@@ -5,7 +5,7 @@ import com.sergei.pokhodai.expensemanagement.core.base.image.ImageValue
 import com.sergei.pokhodai.expensemanagement.core.base.utils.ZERO
 import com.sergei.pokhodai.expensemanagement.core.recycler.RecyclerState
 
-class UserLanguageItem {
+internal class UserLanguageItem {
 
     data class State(
         override val provideId: String,

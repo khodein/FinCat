@@ -41,5 +41,9 @@
 
     <string name="category_editor_confirm">Подвердить</string>
     <string name="category_editor_cancel">Отменить</string>
+
+    <string name="category_dialog_empty">Тут пусто!\nСоздать дефолтные категории?</string>
+    <string name="category_dialog_empty_btn">Создать</string>
+    <string name="category_dialog_global_error">Произошла неизвестная ошибка</string>
 </resources>
 

@@ -7,8 +7,8 @@ import com.sergei.pokhodai.expensemanagement.database.api.key.DatabaseKey
 
 @Entity(tableName = "${DatabaseKey.DATABASE_NAME}_Category_Table")
 class CategoryEntity(
-    @PrimaryKey(autoGenerate = true) @ColumnInfo("id") val primaryId: Int? = null,
-    @ColumnInfo("userId") val userId: Int,
+    @PrimaryKey(autoGenerate = true) @ColumnInfo("id") val primaryId: Long? = null,
+    @ColumnInfo("userId") val userId: Long,
     @ColumnInfo("type") val type: String,
     @ColumnInfo("name") val name: String,
     @ColumnInfo("colorName") val colorName: String,

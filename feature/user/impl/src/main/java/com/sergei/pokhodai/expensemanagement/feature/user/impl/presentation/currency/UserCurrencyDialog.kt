@@ -5,10 +5,8 @@ import android.view.View
 import androidx.core.view.doOnLayout
 import com.sergei.pokhodai.expensemanagement.core.base.dialog.BaseBottomSheetDialogFragment
 import com.sergei.pokhodai.expensemanagement.core.base.utils.applyPadding
-import com.sergei.pokhodai.expensemanagement.core.base.utils.autoClean
 import com.sergei.pokhodai.expensemanagement.core.base.utils.observe
 import com.sergei.pokhodai.expensemanagement.core.base.utils.viewBinding
-import com.sergei.pokhodai.expensemanagement.core.recycler.adapter.RecyclerAdapter
 import com.sergei.pokhodai.expensemanagement.feature.user.impl.R
 import com.sergei.pokhodai.expensemanagement.feature.user.impl.databinding.DialogUserCurrencyBinding
 import kotlinx.coroutines.flow.filterNotNull

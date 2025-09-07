@@ -21,10 +21,9 @@ dependencies {
     implementation(project(":core:router"))
 
     api(project(":database:api"))
-
     api(project(":core:eventbus:api"))
     api(project(":core:support:api"))
-
-    api(project(":feature:user:api"))
+    api(project(":feature:eventeditor:api"))
     api(project(":feature:category:api"))
+    api(project(":feature:user:api"))
 }

@@ -5,7 +5,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.navigation.toRoute
 import com.sergei.pokhodai.expensemanagement.core.eventbus.api.EventBus
-import com.sergei.pokhodai.expensemanagement.core.eventbus.api.EventBusKeys
 import com.sergei.pokhodai.expensemanagement.core.recycler.RecyclerState
 import com.sergei.pokhodai.expensemanagement.core.router.Router
 import com.sergei.pokhodai.expensemanagement.core.router.support.SupportRouter
@@ -13,9 +12,11 @@ import com.sergei.pokhodai.expensemanagement.feature.category.api.domain.model.B
 import com.sergei.pokhodai.expensemanagement.feature.category.api.domain.model.CategoryIconModel
 import com.sergei.pokhodai.expensemanagement.feature.category.api.domain.model.CategoryModel
 import com.sergei.pokhodai.expensemanagement.feature.category.api.router.CategoryRouter
+import com.sergei.pokhodai.expensemanagement.feature.category.impl.CategoryModule
 import com.sergei.pokhodai.expensemanagement.feature.category.impl.data.CategoryRepository
 import com.sergei.pokhodai.expensemanagement.feature.category.impl.presentation.editor.mapper.CategoryEditorMapper
 import com.sergei.pokhodai.expensemanagement.feature.category.impl.router.contract.CategoryEditorContract
+import com.sergei.pokhodai.expensemanagement.feature.eventeditor.api.EventKeys
 import com.sergei.pokhodai.expensemanagement.uikit.button.ButtonItem
 import com.sergei.pokhodai.expensemanagement.uikit.toolbar.ToolbarItem
 import kotlinx.coroutines.Job
@@ -56,83 +57,85 @@ internal class CategoryEditorViewModel(
 
     init {
         eventBus.subscribe<CategoryIconModel>(
-            key = EventBusKeys.CATEGORY_ICON,
+            key = CategoryModule.Keys.CATEGORY_ICON,
             event = CategoryIconModel::class.java,
-            callback = { model ->
+            callback = { event ->
                 categoryModel = categoryModel.copy(
-                    type = model.type,
-                    colorName = model.colorName
+                    type = event.type,
+                    colorName = event.colorName
                 )
                 updateSuccess()
             }
         )
 
-        updateToolbar()
-        loadData()
+        fetchData()
     }
 
-    private fun loadData() {
+    private fun fetchData() {
         updateButton(isLoading = true)
         loadJob?.cancel()
         loadJob = viewModelScope.launch {
-            runCatching {
-                categoryId?.let {
-                    categoryRepository.getCategoryById(it)
-                } ?: CategoryModel.getDefault()
-            }.onSuccess {
-                categoryModel = it.copy(budgetType = budgetType)
-                previousCategoryModel = categoryModel
-
-                updateSuccess()
-            }.onFailure {
-                updateButton()
-                supportRouter.showSnackBar(categoryEditorMapper.getGlobalError())
-            }
+            loadData()
         }
     }
 
-    private fun loadSave() {
+    private suspend fun loadData() {
+        runCatching {
+            categoryId?.let {
+                categoryRepository.getCategoryById(it)
+            } ?: CategoryModel.getDefault()
+        }.onSuccess {
+            categoryModel = it.copy(budgetType = budgetType)
+            previousCategoryModel = categoryModel
+            updateSuccess()
+        }.onFailure {
+            updateError(categoryEditorMapper.getGlobalError())
+        }
+    }
+
+    private fun fetchSaveOrDelete(isSave: Boolean) {
         updateButton(isLoading = true)
         loadJob?.cancel()
         loadJob = viewModelScope.launch {
             delay(LOADING_DEBOUNCE)
-            runCatching {
-                if (isEdit) {
-                    categoryRepository.updateCategory(categoryModel)
-                } else {
-                    categoryRepository.setCategories(categoryModel)
-                }
-            }.onSuccess {
-                updateButton()
-                supportRouter.showSnackBar(categoryEditorMapper.getCategoryMessageSuccess(isEdit))
-                router.pop()
-                if (isOpenFromDialog) {
-                    eventBus.push(categoryModel, EventBusKeys.NEW_CATEGORY_ADDED)
-                }
-            }.onFailure {
-                updateButton()
-                supportRouter.showSnackBar(categoryEditorMapper.getSaveErrorMessage())
+            if (isSave) {
+                loadSave()
+            } else {
+                loadDelete()
             }
         }
     }
 
-    private fun loadDelete() {
-        updateButton(isLoading = true)
-        loadJob?.cancel()
-        loadJob = viewModelScope.launch {
-            delay(LOADING_DEBOUNCE)
-            runCatching {
-                categoryId?.let {
-                    categoryRepository.setDeleteById(it)
-                } ?: throw Throwable()
-            }.onSuccess {
-                updateButton()
-                supportRouter.showSnackBar(categoryEditorMapper.getDeleteSuccessMessage())
-                router.pop()
-            }.onFailure {
-                updateButton()
-                supportRouter.showSnackBar(categoryEditorMapper.getGlobalError())
+    private suspend fun loadSave() {
+        runCatching {
+            if (isEdit) {
+                categoryRepository.updateCategory(categoryModel)
+            } else {
+                categoryRepository.setCategories(categoryModel)
             }
+        }.onSuccess {
+            updateButton()
+            supportRouter.showSnackBar(categoryEditorMapper.getCategoryMessageSuccess(isEdit))
+            router.pop()
+            if (isOpenFromDialog) {
+                eventBus.push(categoryModel, EventKeys.SHOW_CATEGORY)
+            }
+        }.onFailure {
+            updateError(categoryEditorMapper.getSaveErrorMessage())
+        }
+    }
+
+    private suspend fun loadDelete() {
+        runCatching {
+            categoryId?.let {
+                categoryRepository.setDeleteById(it)
+            } ?: throw Throwable()
+        }.onSuccess {
+            updateButton()
+            supportRouter.showSnackBar(categoryEditorMapper.getDeleteSuccessMessage())
+            router.pop()
+        }.onFailure {
+            updateError(categoryEditorMapper.getGlobalError())
         }
     }
 
@@ -148,7 +151,9 @@ internal class CategoryEditorViewModel(
         supportRouter.hideKeyboard()
         supportRouter.showAlert(
             categoryEditorMapper.getAlertQuastionDeleteModel(
-                onClickCancel = ::loadDelete,
+                onClickCancel = {
+                    fetchSaveOrDelete(false)
+                },
                 onClickConfirm = {}
             )
         )
@@ -183,8 +188,13 @@ internal class CategoryEditorViewModel(
         )?.let {
             supportRouter.showSnackBar(it.message)
         } ?: run {
-            loadSave()
+            fetchSaveOrDelete(true)
         }
+    }
+
+    private fun updateError(text: String) {
+        updateButton()
+        supportRouter.showSnackBar(text)
     }
 
     private fun onBackPressed() {
@@ -220,7 +230,7 @@ internal class CategoryEditorViewModel(
 
     override fun onCleared() {
         super.onCleared()
-        eventBus.unsubscribe(EventBusKeys.CATEGORY_ICON)
+        eventBus.unsubscribe(CategoryModule.Keys.CATEGORY_ICON)
     }
 
     private companion object {

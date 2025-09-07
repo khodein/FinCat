@@ -7,21 +7,20 @@ import com.sergei.pokhodai.expensemanagement.feature.category.api.domain.model.B
 import com.sergei.pokhodai.expensemanagement.feature.category.api.domain.model.CategoryModel
 import com.sergei.pokhodai.expensemanagement.feature.eventeditor.api.domain.model.DateModel
 import com.sergei.pokhodai.expensemanagement.feature.eventeditor.api.domain.model.EventModel
-import com.sergei.pokhodai.expensemanagement.feature.user.api.domain.GetUserIdUseCase
+import com.sergei.pokhodai.expensemanagement.feature.user.api.domain.GetUserDataIdUseCase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
 internal class EventRepository(
     private val eventEntityMapper: EventEntityMapper,
-    private val userIdUseCase: GetUserIdUseCase,
+    private val userIdUseCase: GetUserDataIdUseCase,
     private val eventDao: EventDao,
 ) {
     suspend fun setEvents(vararg models: EventModel) {
-        val userId = userIdUseCase.invoke() ?: throw Throwable()
         withContext(Dispatchers.IO) {
             val entities = models.map { model ->
                 eventEntityMapper.mapModelToEntity(
-                    userId = userId,
+                    userId = userIdUseCase.invoke(),
                     model = model,
                 )
             }
@@ -30,23 +29,21 @@ internal class EventRepository(
     }
 
     suspend fun updateEvent(model: EventModel) {
-        val userId = userIdUseCase.invoke() ?: throw Throwable()
         return withContext(Dispatchers.IO) {
             eventDao.update(
                 eventEntityMapper.mapModelToEntity(
-                    userId = userId,
+                    userId = userIdUseCase.invoke(),
                     model = model
                 )
             )
         }
     }
 
-    suspend fun getEventById(id: Int): EventModel? {
-        val userId = userIdUseCase.invoke() ?: throw Throwable()
+    suspend fun getEventById(id: Long): EventModel? {
         return withContext(Dispatchers.IO) {
             eventDao.getById(
                 id = id,
-                userId = userId,
+                userId = userIdUseCase.invoke(),
             )?.let(eventEntityMapper::mapEntityToModel)
         }
     }
@@ -54,15 +51,20 @@ internal class EventRepository(
     suspend fun getDateEventByMonthAndYear(
         date: LocalDateFormatter,
     ): Map<DateModel, List<EventModel>> {
-        val userId = userIdUseCase.invoke() ?: throw Throwable()
         return withContext(Dispatchers.IO) {
             eventDao.getEventByMonthAndYear(
                 dateMonth = date.MM(),
                 dateYear = date.yyyy(),
-                userId = userId,
+                userId = userIdUseCase.invoke(),
             )
                 .map(eventEntityMapper::mapEntityToModel)
                 .groupBy { it.dateModel }
+        }
+    }
+
+    suspend fun onDeleteAll() {
+        withContext(Dispatchers.IO) {
+            eventDao.deleteAllEvents()
         }
     }
 
@@ -70,25 +72,23 @@ internal class EventRepository(
         date: LocalDateFormatter,
         budgetType: BudgetType,
     ): Map<CategoryModel, List<EventModel>> {
-        val userId = userIdUseCase.invoke() ?: throw Throwable()
         return withContext(Dispatchers.IO) {
             eventDao.getEventByMonthAndYearAndBudgetType(
                 dateMonth = date.MM(),
                 dateYear = date.yyyy(),
                 budgetType = budgetType.name,
-                userId = userId
+                userId = userIdUseCase.invoke()
             )
                 .map(eventEntityMapper::mapEntityToModel)
                 .groupBy { it.categoryModel?.copy(budgetType = budgetType) as CategoryModel }
         }
     }
 
-    suspend fun setDelete(id: Int) {
-        val userId = userIdUseCase.invoke() ?: throw Throwable()
+    suspend fun setDeleteEventById(id: Long) {
         return withContext(Dispatchers.IO) {
             eventDao.deleteById(
                 id = id,
-                userId = userId
+                userId = userIdUseCase.invoke()
             )
         }
     }

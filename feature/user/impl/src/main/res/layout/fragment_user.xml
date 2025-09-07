@@ -13,7 +13,8 @@
         <com.sergei.pokhodai.expensemanagement.uikit.toolbar.ToolbarItemView
             android:id="@+id/user_tb"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            app:buttonGravity="center_vertical" />
 
     </com.google.android.material.appbar.AppBarLayout>
 

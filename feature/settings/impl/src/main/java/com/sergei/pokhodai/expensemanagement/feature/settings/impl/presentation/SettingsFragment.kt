@@ -3,7 +3,6 @@ package com.sergei.pokhodai.expensemanagement.feature.settings.impl.presentation
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
-import com.sergei.pokhodai.expensemanagement.core.base.utils.autoClean
 import com.sergei.pokhodai.expensemanagement.core.base.utils.observe
 import com.sergei.pokhodai.expensemanagement.core.base.utils.viewBinding
 import com.sergei.pokhodai.expensemanagement.core.recycler.adapter.RecyclerAdapter
@@ -16,22 +15,26 @@ internal class SettingsFragment : Fragment(R.layout.fragment_settings) {
 
     private val binding by viewBinding(init = FragmentSettingsBinding::bind)
     private val viewModel by viewModel<SettingsViewModel>()
-    private val adapter by autoClean(init = ::RecyclerAdapter)
+    private var adapter: RecyclerAdapter? = null
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel.onStart()
         setAdapter()
         setObservable()
+        viewModel.onStart()
     }
 
     private fun setObservable() = with(viewModel) {
-        itemsFlow.observe(
+        itemsFlow.observe(this@SettingsFragment) { list ->
+            adapter?.submitList(list)
+        }
+
+        requestFlow.observe(
             this@SettingsFragment,
-            adapter::submitList
+            binding.settingsRequest::bindState
         )
 
-        appBarFlow
+        topFlow
             .filterNotNull()
             .observe(
                 this@SettingsFragment,
@@ -40,6 +43,13 @@ internal class SettingsFragment : Fragment(R.layout.fragment_settings) {
     }
 
     private fun setAdapter() {
+        this.adapter = RecyclerAdapter()
         binding.settingsItems.adapter = adapter
+        binding.settingsItems.itemAnimator = null
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        adapter = null
     }
 }

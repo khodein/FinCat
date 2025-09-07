@@ -44,9 +44,9 @@ internal class CategoryEditorMapper(
         onClickBack: () -> Unit,
     ): ToolbarItem.State {
         val resId = if (isEdit) {
-            R.string.category_editor_title_add
-        } else {
             R.string.category_editor_title_edit
+        } else {
+            R.string.category_editor_title_add
         }
         return ToolbarItem.State(
             title = ToolbarItem.Title(

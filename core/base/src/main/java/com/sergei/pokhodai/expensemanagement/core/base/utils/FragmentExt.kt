@@ -80,28 +80,6 @@ inline fun Fragment.showAlert(
         .show()
 }
 
-fun <T> Fragment.autoClean(init: () -> T): ReadOnlyProperty<Fragment, T> = AutoClean(init)
-
-private class AutoClean<T>(private val init: () -> T) : ReadOnlyProperty<Fragment, T>,
-    LifecycleEventObserver {
-
-    private var cached: T? = null
-
-    override fun getValue(thisRef: Fragment, property: KProperty<*>): T {
-        return cached ?: init().also { newValue ->
-            cached = newValue
-            thisRef.viewLifecycleOwner.lifecycle.addObserver(this)
-        }
-    }
-
-    override fun onStateChanged(source: LifecycleOwner, event: Lifecycle.Event) {
-        if (event == Lifecycle.Event.ON_DESTROY) {
-            cached = null
-            source.lifecycle.removeObserver(this)
-        }
-    }
-}
-
 private class ViewBindingDelegate<VB : ViewBinding>(
     private val init: (View) -> VB,
     private val destroy: ((VB) -> Unit)?,

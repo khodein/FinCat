@@ -13,7 +13,7 @@ import com.sergei.pokhodai.expensemanagement.feature.eventeditor.api.domain.mode
 internal class EventEntityMapper {
 
     fun mapModelToEntity(
-        userId: Int,
+        userId: Long,
         model: EventModel
     ): EventEntity {
         return EventEntity(

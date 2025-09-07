@@ -17,6 +17,7 @@ dependencies {
     implementation(libs.androidx.viewbinding)
     implementation(libs.android.material)
     implementation(libs.kotlinx.datetime)
+    implementation(libs.coil)
 
     implementation(project(":core:formatter"))
 }

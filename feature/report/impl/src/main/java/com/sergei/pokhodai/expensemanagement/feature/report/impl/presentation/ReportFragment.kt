@@ -7,7 +7,6 @@ import androidx.core.content.FileProvider
 import androidx.fragment.app.Fragment
 import com.sergei.pokhodai.expensemanagement.core.base.utils.viewBinding
 import com.sergei.pokhodai.expensemanagement.core.recycler.adapter.RecyclerAdapter
-import com.sergei.pokhodai.expensemanagement.core.base.utils.autoClean
 import com.sergei.pokhodai.expensemanagement.core.base.utils.bindStateOptional
 import com.sergei.pokhodai.expensemanagement.core.base.utils.observe
 import com.sergei.pokhodai.expensemanagement.feature.report.impl.R
@@ -22,20 +21,19 @@ internal class ReportFragment : Fragment(R.layout.fragment_report) {
 
     private val binding by viewBinding(init = FragmentReportBinding::bind)
     private val viewModel by viewModel<ReportViewModel>()
-    private val adapter by autoClean(init = ::RecyclerAdapter)
+    private var adapter: RecyclerAdapter? = null
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel.onStart()
         setAdapter()
         setObservable()
+        viewModel.onStart()
     }
 
     private fun setObservable() = with(viewModel) {
-        itemsFlow.observe(
-            this@ReportFragment,
-            adapter::submitList
-        )
+        itemsFlow.observe(this@ReportFragment) { list ->
+            adapter?.submitList(list)
+        }
 
         bottomFlow.observe(this@ReportFragment) { state ->
             binding.reportBottom.bindStateOptional(
@@ -79,12 +77,19 @@ internal class ReportFragment : Fragment(R.layout.fragment_report) {
     }
 
     private fun setAdapter() {
+        adapter = RecyclerAdapter()
         binding.reportList.adapter = adapter
         binding.reportList.addItemDecoration(ReportDecoration())
         binding.reportList.itemAnimator = null
     }
 
+    override fun onDestroyView() {
+        super.onDestroyView()
+        adapter = null
+    }
+
     private companion object {
-        const val APPLICATION_EXCEL_TYPE = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+        const val APPLICATION_EXCEL_TYPE =
+            "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
     }
 }

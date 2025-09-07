@@ -18,12 +18,18 @@ interface UserDao {
     @Insert
     suspend fun insert(entity: UserSelfEntity)
 
+    @Query("DELETE FROM `fincatdatabase_user_table`")
+    suspend fun deleteAllUsers()
+
+    @Insert
+    suspend fun insertAndGet(entity: UserSelfEntity): Long
+
     @Update
     suspend fun update(entity: UserSelfEntity)
 
     @Query("DELETE FROM fincatdatabase_user_table WHERE id = :userId")
-    suspend fun deleteByUserId(userId: Int)
+    suspend fun deleteByUserId(userId: Long)
 
     @Query("SELECT * FROM fincatdatabase_user_table WHERE id = :userId")
-    suspend fun getByUserId(userId: Int): UserSelfEntity?
+    suspend fun getByUserId(userId: Long): UserSelfEntity?
 }

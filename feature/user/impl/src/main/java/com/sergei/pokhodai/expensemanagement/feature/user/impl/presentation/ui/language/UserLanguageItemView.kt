@@ -18,7 +18,7 @@ import com.sergei.pokhodai.expensemanagement.core.base.utils.setOnDebounceClick
 import com.sergei.pokhodai.expensemanagement.core.recycler.RecyclerItemView
 import com.sergei.pokhodai.expensemanagement.feature.user.impl.databinding.ViewUserLanguageItemBinding
 
-class UserLanguageItemView @JvmOverloads constructor(
+internal class UserLanguageItemView @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
     defStyleAttr: Int = 0

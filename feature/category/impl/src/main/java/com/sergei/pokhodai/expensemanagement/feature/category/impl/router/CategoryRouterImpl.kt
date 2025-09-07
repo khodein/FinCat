@@ -12,7 +12,7 @@ internal class CategoryRouterImpl(
 ) : CategoryRouter {
 
     override fun goToCategoryEditor(
-        id: Int?,
+        id: Long?,
         budgetType: String,
         isOpenFromDialog: Boolean
     ) {

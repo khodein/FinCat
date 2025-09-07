@@ -5,5 +5,5 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 internal data class UserRouterContract(
-    val userId: Int? = null
+    val userId: Long? = null
 ) : RouterContract

@@ -10,11 +10,16 @@ import com.sergei.pokhodai.expensemanagement.feature.settings.impl.domain.model.
 import com.sergei.pokhodai.expensemanagement.feature.settings.impl.presentation.ui.profile.SettingProfileItem
 import com.sergei.pokhodai.expensemanagement.feature.settings.impl.presentation.ui.settings.SettingItem
 import com.sergei.pokhodai.expensemanagement.feature.user.api.domain.model.UserSelfModel
+import com.sergei.pokhodai.expensemanagement.feature.user.api.presentation.mapper.UserAvatarArtMapper
+import com.sergei.pokhodai.expensemanagement.feature.user.api.presentation.mapper.UserCurrencyNameMapper
+import com.sergei.pokhodai.expensemanagement.uikit.request.RequestItem
 import com.sergei.pokhodai.expensemanagement.uikit.toolbar.ToolbarItem
 import com.sergei.pokhodai.expensemanagement.core.base.R as baseR
 
 internal class SettingsMapper(
-    private val resManager: ResManager
+    private val resManager: ResManager,
+    private val userAvatarArtMapper: UserAvatarArtMapper,
+    private val userCurrencyNameMapper: UserCurrencyNameMapper,
 ) {
     fun getToolbarItemState(): ToolbarItem.State {
         return ToolbarItem.State(
@@ -30,15 +35,19 @@ internal class SettingsMapper(
         list: List<SettingModel>,
         userSelfModel: UserSelfModel,
         onClickSetting: (state: SettingItem.State) -> Unit,
-        onClickProfile: () -> Unit,
+        onClickProfile: (state: SettingProfileItem.State) -> Unit,
     ): List<RecyclerState> {
         return buildList {
             add(
                 SettingProfileItem.State(
                     provideId = "settings_profile_item_id",
                     name = userSelfModel.name,
-                    email = userSelfModel.email,
-                    prefix = (userSelfModel.name.firstOrNull() ?: "").toString(),
+                    email = userSelfModel.email.ifEmpty { null },
+                    data = userSelfModel,
+                    currency = userSelfModel.currency?.let(userCurrencyNameMapper::getNameWithSymbol),
+                    art = userSelfModel.avatar
+                        ?.let(userAvatarArtMapper::getUserArtValue)
+                        ?.let(ImageValue::Coil),
                     onClick = onClickProfile
                 )
             )
@@ -57,5 +66,18 @@ internal class SettingsMapper(
                 ).let(::add)
             }
         }
+    }
+
+    fun getRequestError(
+        onReload: () -> Unit
+    ): RequestItem.State.Error {
+        return RequestItem.State.Error(
+            message = resManager.getString(R.string.settings_error),
+            onClickReload = onReload
+        )
+    }
+
+    fun getRequestEmpty(): RequestItem.State.Empty {
+        return RequestItem.State.Empty(resManager.getString(R.string.settings_empty))
     }
 }

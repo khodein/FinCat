@@ -33,7 +33,7 @@ internal class CategoryEditorItemView @JvmOverloads constructor(
             WRAP_CONTENT,
         )
 
-        binding.viewCategoryEditorLeadingItem.load(ImageValue.Res(R.drawable.ic_add_new_category))
+        binding.viewCategoryEditorLeadingItem.load(ImageValue.Coil(R.drawable.ic_add_new_category))
 
         binding.viewCategoryEditorLeadingItem.setOnDebounceClick {
             this.state?.onClickLeading?.invoke()

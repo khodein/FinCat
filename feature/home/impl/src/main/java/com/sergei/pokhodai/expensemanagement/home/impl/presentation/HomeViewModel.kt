@@ -95,8 +95,7 @@ internal class HomeViewModel(
             _requestFlow.value = RequestItem.State.Idle
         }.ifEmpty {
             _requestFlow.value = RequestItem.State.Empty(
-                message = homeMapper.getEmptyText(),
-                container = RequestItem.Container(paddings = P_0_0_0_64)
+                message = homeMapper.getEmptyText()
             )
             emptyList()
         }
@@ -105,7 +104,6 @@ internal class HomeViewModel(
     private fun updateError(throwable: Throwable) {
         _requestFlow.value = RequestItem.State.Error(
             message = homeMapper.getErrorText(),
-            container = RequestItem.Container(paddings = P_0_0_0_64),
             onClickReload = ::fetchData
         )
     }

@@ -41,7 +41,6 @@ internal class MainActivity : AppCompatActivity(),
     private val viewModel by viewModel<MainViewModel>()
     private val router by inject<Router>()
     private val supportRouter by inject<SupportRouter>()
-
     private val resManager by inject<ResManager>()
     private val navHostFragment by lazy {
         supportFragmentManager.findFragmentById(binding.contentMain.id) as NavHostFragment

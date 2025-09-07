@@ -5,7 +5,6 @@ import android.view.View
 import androidx.fragment.app.Fragment
 import com.sergei.pokhodai.expensemanagement.core.base.utils.viewBinding
 import com.sergei.pokhodai.expensemanagement.core.recycler.adapter.RecyclerAdapter
-import com.sergei.pokhodai.expensemanagement.core.base.utils.autoClean
 import com.sergei.pokhodai.expensemanagement.core.base.utils.observe
 import com.sergei.pokhodai.expensemanagement.feature.home.impl.R
 import com.sergei.pokhodai.expensemanagement.feature.home.impl.databinding.FragmentHomeBinding
@@ -17,7 +16,7 @@ internal class HomeFragment : Fragment(R.layout.fragment_home) {
 
     private val binding by viewBinding(init = FragmentHomeBinding::bind)
     private val viewModel by viewModel<HomeViewModel>()
-    private val adapter by autoClean(init = ::RecyclerAdapter)
+    private var adapter: RecyclerAdapter? = null
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -27,6 +26,7 @@ internal class HomeFragment : Fragment(R.layout.fragment_home) {
     }
 
     private fun setAdapter() {
+        this.adapter = RecyclerAdapter()
         binding.homeList.itemAnimator = null
         binding.homeList.addItemDecoration(HomeDecoration())
         binding.homeList.adapter = adapter
@@ -40,11 +40,9 @@ internal class HomeFragment : Fragment(R.layout.fragment_home) {
                 binding.homeBottom::bindState
             )
 
-        itemsFlow
-            .observe(
-                this@HomeFragment,
-                adapter::submitList
-            )
+        itemsFlow.observe(this@HomeFragment) { list ->
+            adapter?.submitList(list)
+        }
 
         requestFlow.observe(
             this@HomeFragment,
@@ -57,5 +55,10 @@ internal class HomeFragment : Fragment(R.layout.fragment_home) {
                 this@HomeFragment,
                 binding.homeCalendar::bindState
             )
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        adapter = null
     }
 }

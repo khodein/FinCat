@@ -6,4 +6,6 @@ sealed interface ImageValue {
     data class Res(
         @DrawableRes val value: Int,
     ) : ImageValue
+
+    data class Coil(val data: Any?) : ImageValue
 }

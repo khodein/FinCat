@@ -1,10 +1,11 @@
 package com.sergei.pokhodai.expensemanagement.feature.user.api.domain.model
 
 data class UserSelfModel(
-    val userId: Int? = null,
+    val userId: Long? = null,
     val name: String,
     val email: String,
-    val currency: UserCurrencyModel,
+    val avatar: UserAvatarModel? = null,
+    val currency: UserCurrencyModel? = null,
 ) {
     fun isEmpty(): Boolean {
         return this == getDefault()
@@ -16,7 +17,8 @@ data class UserSelfModel(
                 userId = null,
                 name = "",
                 email = "",
-                currency = UserCurrencyModel.USD
+                avatar = null,
+                currency = null
             )
         }
     }

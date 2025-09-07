@@ -4,18 +4,36 @@
     <string name="user_button_edit">Edit User</string>
     <string name="user_hint_name">User name</string>
     <string name="user_name_error">Name must be at least 2 characters long</string>
-    <string name="user_hint_email">Email</string>
+    <string name="user_hint_email">Email (optional)</string>
     <string name="user_email_error">Check the correct email</string>
     <string name="user_ru_language">Russian</string>
     <string name="user_eu_language">English</string>
     <string name="user_language_button">Confirm</string>
-    <string name="user_language_title">Choose Language</string>
+    <string name="user_language_title">CHOOSE LANGUAGE</string>
     <string name="currency_rub_title">Russian ruble</string>
     <string name="currency_byn_title">Belarusian ruble</string>
     <string name="currency_usd_title">US dollar</string>
     <string name="currency_eur_title">Euro</string>
     <string name="currency_cny_title">Chinese yuan</string>
     <string name="currency_kzt_title">Kazakhstani tenge</string>
-    <string name="user_currency_title">Choose Currency</string>
+    <string name="user_currency_title">CHOOSE CURRENCY</string>
+    <string name="user_avatar_edit">EDIT</string>
+    <string name="user_avatar_title">What kind of cat are you?</string>
+    <string name="user_avatar_button">Choose a cat</string>
+
+    <string name="user_load_error">An unknown error occurred, try again</string>
+    <string name="user_save_success">User saved successfully</string>
+    <string name="user_empty_data">You need to create a user! To exit the app, tap back again!</string>
+
+    <string name="user_list_title">List of users</string>
+    <string name="user_list_button">Add</string>
+    <string name="user_list_item_edit">Edit</string>
+    <string name="user_list_empty">The list of users is empty! Create a user!</string>
+    <string name="user_list_delete_error">User deletion error! Try again</string>
+    <string name="user_list_change_error">User change error! Try again</string>
+
+    <string name="user_list_delete_all_text">Delete all users and all data?</string>
+    <string name="user_list_delete_all_confirm">Confirm</string>
+    <string name="user_list_delete_all_no">No</string>
 </resources>
 

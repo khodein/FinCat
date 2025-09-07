@@ -16,22 +16,25 @@ interface EventDao {
     @Update
     suspend fun update(entity: EventEntity)
 
+    @Query("DELETE FROM `fincatdatabase_event_table`")
+    suspend fun deleteAllEvents()
+
     @Query("DELETE FROM fincatdatabase_event_table WHERE id = :id AND userId = :userId")
-    suspend fun deleteById(id: Int, userId: Int)
+    suspend fun deleteById(id: Long, userId: Long)
 
     @Query("SELECT * FROM fincatdatabase_event_table WHERE id = :id AND userId = :userId")
-    suspend fun getById(id: Int, userId: Int): EventEntity?
+    suspend fun getById(id: Long, userId: Long): EventEntity?
 
     @Query("SELECT * FROM fincatdatabase_event_table WHERE dateMonth = :dateMonth AND dateYear = :dateYear AND userId = :userId ORDER BY dateDay DESC")
     suspend fun getEventByMonthAndYear(
-        userId: Int,
+        userId: Long,
         dateMonth: String,
         dateYear: String,
     ): List<EventEntity>
 
     @Query("SELECT * FROM fincatdatabase_event_table WHERE dateMonth = :dateMonth AND dateYear = :dateYear AND budgetType = :budgetType AND userId = :userId ORDER BY dateDay DESC")
     suspend fun getEventByMonthAndYearAndBudgetType(
-        userId: Int,
+        userId: Long,
         dateMonth: String,
         dateYear: String,
         budgetType: String,

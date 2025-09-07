@@ -18,7 +18,7 @@ internal class CategoryEntityMapper {
     }
 
     fun mapModelToEntity(
-        userId: Int,
+        userId: Long,
         model: CategoryModel
     ): CategoryEntity {
         return CategoryEntity(

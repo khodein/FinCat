@@ -99,7 +99,7 @@ internal class ReportMapper(
     ): CategoryKindItem.State {
         return CategoryKindItem.State(
             provideId = "category_kind_item_id",
-            icon = model?.type?.let(categoryTypeMapper::getImageResId)?.let(ImageValue::Res),
+            icon = model?.type?.let(categoryTypeMapper::getImageResId)?.let(ImageValue::Coil),
             color = ColorValue.parseColor(model?.colorName),
         )
     }

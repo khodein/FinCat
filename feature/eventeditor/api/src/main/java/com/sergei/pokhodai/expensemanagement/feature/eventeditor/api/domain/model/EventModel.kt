@@ -5,7 +5,7 @@ import com.sergei.pokhodai.expensemanagement.feature.category.api.domain.model.B
 import com.sergei.pokhodai.expensemanagement.feature.category.api.domain.model.CategoryModel
 
 data class EventModel(
-    val id: Int? = null,
+    val id: Long? = null,
     val budgetType: BudgetType,
     val categoryModel: CategoryModel?,
     val dateModel: DateModel,

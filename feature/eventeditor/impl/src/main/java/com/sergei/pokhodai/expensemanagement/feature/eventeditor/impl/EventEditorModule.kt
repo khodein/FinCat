@@ -3,11 +3,13 @@ package com.sergei.pokhodai.expensemanagement.feature.eventeditor.impl
 import com.sergei.pokhodai.expensemanagement.core.recycler.register.RecyclerRegister
 import com.sergei.pokhodai.expensemanagement.core.router.provider.BottomNavigationVisibleProvider
 import com.sergei.pokhodai.expensemanagement.core.router.provider.RouteProvider
+import com.sergei.pokhodai.expensemanagement.feature.eventeditor.api.domain.usecase.DeleteAllCategoryUserCase
 import com.sergei.pokhodai.expensemanagement.feature.eventeditor.api.domain.usecase.GetCategoryEventByMonthAndYearAndBudgetTypeUceCase
 import com.sergei.pokhodai.expensemanagement.feature.eventeditor.api.domain.usecase.GetDateEventByMonthAndYearUseCase
 import com.sergei.pokhodai.expensemanagement.feature.eventeditor.api.router.EventEditorRouter
 import com.sergei.pokhodai.expensemanagement.feature.eventeditor.impl.data.EventRepository
 import com.sergei.pokhodai.expensemanagement.feature.eventeditor.impl.data.mapper.EventEntityMapper
+import com.sergei.pokhodai.expensemanagement.feature.eventeditor.impl.domain.usecase.DeleteAllCategoryUserCaseImpl
 import com.sergei.pokhodai.expensemanagement.feature.eventeditor.impl.domain.usecase.GetCategoryEventByMonthAndYearAndBudgetTypeImpl
 import com.sergei.pokhodai.expensemanagement.feature.eventeditor.impl.domain.usecase.GetDateEventByMonthAndYearUseCaseImpl
 import com.sergei.pokhodai.expensemanagement.feature.eventeditor.impl.presentation.EventEditorViewModel
@@ -44,6 +46,7 @@ object EventEditorModule {
 
             singleOf(::GetDateEventByMonthAndYearUseCaseImpl) bind GetDateEventByMonthAndYearUseCase::class
             singleOf(::GetCategoryEventByMonthAndYearAndBudgetTypeImpl) bind GetCategoryEventByMonthAndYearAndBudgetTypeUceCase::class
+            singleOf(::DeleteAllCategoryUserCaseImpl) bind DeleteAllCategoryUserCase::class
 
             singleOf(::EventEditorRouterImpl) bind EventEditorRouter::class
             singleOf(::EventEditorRouterProviderImpl) bind RouteProvider::class

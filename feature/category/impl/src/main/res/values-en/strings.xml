@@ -45,5 +45,9 @@
 
     <string name="category_editor_confirm">Confirm</string>
     <string name="category_editor_cancel">Cancel</string>
+
+    <string name="category_dialog_empty">Here is empty!\nСreate default categories?</string>
+    <string name="category_dialog_empty_btn">Create</string>
+    <string name="category_dialog_global_error">An unknown error occurred</string>
 </resources>
 

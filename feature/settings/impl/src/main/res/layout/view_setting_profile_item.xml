@@ -12,21 +12,18 @@
 
     <FrameLayout
         android:id="@+id/settings_profile_avatar"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
         android:background="@color/background"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <TextView
-            android:id="@+id/settings_profile_prefix"
-            android:textAppearance="@style/Regular.20"
-            tools:text="SP"
-            android:textAlignment="center"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"/>
+        <ImageView
+            android:id="@+id/settings_profile_art"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center" />
 
     </FrameLayout>
 
@@ -46,11 +43,17 @@
             android:id="@+id/settings_profile_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:ellipsize="end"
-            android:lines="1"
-            android:maxLines="1"
             android:textAppearance="@style/Medium.16"
             android:textColor="@color/grey_900"
+            tools:text="sdlkdksldklskls" />
+
+        <TextView
+            android:id="@+id/settings_profile_currency"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:textAppearance="@style/Regular.12"
+            android:textColor="@color/blue_500"
             tools:text="sdlkdksldklskls" />
 
         <TextView
@@ -61,8 +64,8 @@
             android:ellipsize="end"
             android:lines="1"
             android:maxLines="1"
-            android:textAppearance="@style/Regular.12"
-            android:textColor="@color/grey_900"
+            android:textAppearance="@style/Regular.10"
+            android:textColor="@color/grey_500"
             tools:text="sdlkdksldklskls" />
 
     </LinearLayout>

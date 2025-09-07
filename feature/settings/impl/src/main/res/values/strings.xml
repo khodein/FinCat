@@ -9,4 +9,7 @@
     <string name="settings_language">Choose language</string>
     <string name="settings_questions">Asked questions</string>
     <string name="settings_logout">Logout</string>
+
+    <string name="settings_error">An unknown error occurred</string>
+    <string name="settings_empty">Settings is Empty</string>
 </resources>

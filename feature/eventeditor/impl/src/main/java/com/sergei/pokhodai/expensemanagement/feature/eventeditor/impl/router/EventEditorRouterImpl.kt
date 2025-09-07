@@ -9,7 +9,7 @@ internal class EventEditorRouterImpl(
     private val router: Router,
 ) : EventEditorRouter {
 
-    override fun goToEventEditor(eventId: Int?) {
+    override fun goToEventEditor(eventId: Long?) {
         router.navigate(
             contract = EventEditorRouterContract(eventId = eventId),
             navAnimation = NavAnimation.FADE

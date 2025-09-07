@@ -4,17 +4,35 @@
     <string name="user_button_edit">Редактировать</string>
     <string name="user_hint_name">Имя пользователя</string>
     <string name="user_name_error">У имени должно быть минимум два символа</string>
-    <string name="user_hint_email">Email пользователя</string>
+    <string name="user_hint_email">Email (необязательно)</string>
     <string name="user_email_error">Проверьте правильность email</string>
     <string name="user_ru_language">Русский язык</string>
     <string name="user_eu_language">Английский язык</string>
     <string name="user_language_button">Подтвердить</string>
-    <string name="user_language_title">Выберете язык</string>
+    <string name="user_language_title">ВЫБЕРЕТЕ ЯЗЫК</string>
     <string name="currency_rub_title">Русский рубль</string>
     <string name="currency_byn_title">Белорусский рубль</string>
     <string name="currency_kzt_title">Казахстанский тенге</string>
     <string name="currency_usd_title">Доллар США</string>
     <string name="currency_eur_title">Евро</string>
     <string name="currency_cny_title">Китайский юань</string>
-    <string name="user_currency_title">Выберете вылюту</string>
+    <string name="user_currency_title">ВЫБЕРЕТЕ ВЫЛЮТУ</string>
+    <string name="user_avatar_edit">РЕДАКТИРОВАТЬ</string>
+    <string name="user_avatar_title">КАКОЙ ВЫ КОТИК?</string>
+    <string name="user_avatar_button">Выбрать котика</string>
+
+    <string name="user_load_error">Произошла неизвестная ошибка, попробуйте еще раз</string>
+    <string name="user_save_success">Пользователь успешно сохранен</string>
+    <string name="user_empty_data">Вам необходимо создать пользователя! Для выхода из приложения нажмите еще раз назад!</string>
+
+    <string name="user_list_title">Список пользователей</string>
+    <string name="user_list_button">Добавить</string>
+    <string name="user_list_item_edit">Изменить</string>
+    <string name="user_list_empty">Список пользователей пуст! Создайте пользователя!</string>
+    <string name="user_list_delete_error">Ошибка удаления пользователя! Попробуйте еще раз</string>
+    <string name="user_list_change_error">Ошибка смены пользователя! Попробуйте еще раз</string>
+
+    <string name="user_list_delete_all_text">Удалить всех пользователей и все данные?</string>
+    <string name="user_list_delete_all_confirm">Да</string>
+    <string name="user_list_delete_all_no">Нет</string>
 </resources>

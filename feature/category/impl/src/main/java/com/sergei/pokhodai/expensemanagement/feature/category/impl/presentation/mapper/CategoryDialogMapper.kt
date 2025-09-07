@@ -11,6 +11,7 @@ import com.sergei.pokhodai.expensemanagement.feature.category.impl.R
 import com.sergei.pokhodai.expensemanagement.feature.category.impl.domain.model.CategoryDefaultType
 import com.sergei.pokhodai.expensemanagement.uikit.button.ButtonItem
 import com.sergei.pokhodai.expensemanagement.uikit.kind.CategoryKindItem
+import com.sergei.pokhodai.expensemanagement.uikit.request.RequestItem
 
 internal class CategoryDialogMapper(
     private val categoryTypeMapper: CategoryTypeMapperImpl,
@@ -55,6 +56,25 @@ internal class CategoryDialogMapper(
             height = ViewDimension.Dp(40),
             radius = ViewDimension.Dp(12),
             onClick = onClick
+        )
+    }
+
+    fun getRequestEmpty(
+        onClickEmpty: () -> Unit
+    ): RequestItem.State.Empty {
+        return RequestItem.State.Empty(
+            message = resManager.getString(R.string.category_dialog_empty),
+            buttonText = resManager.getString(R.string.category_dialog_empty_btn),
+            onClickEmpty = onClickEmpty
+        )
+    }
+
+    fun getRequestError(
+        onClickReload: () -> Unit
+    ): RequestItem.State.Error {
+        return RequestItem.State.Error(
+            message = resManager.getString(R.string.category_dialog_global_error),
+            onClickReload = onClickReload
         )
     }
 }

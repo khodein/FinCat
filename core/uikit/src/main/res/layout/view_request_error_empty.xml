@@ -22,6 +22,7 @@
         android:paddingHorizontal="20dp"
         android:paddingVertical="10dp"
         android:textAlignment="center"
+        android:gravity="center"
         android:textAppearance="@style/Medium.16"
         android:textColor="@color/grey_800"
         app:layout_constraintEnd_toEndOf="parent"

@@ -8,6 +8,7 @@ val P_0_0_0_24 = ViewRect.Dp(0, 0, 0, 24)
 val P_0_8_0_24 = ViewRect.Dp(0, 8, 0, 24)
 
 val P_16_0_16_16 = ViewRect.Dp(16, 0, 16, 16)
+val P_0_16_0_0 = ViewRect.Dp(0, 16, 0, 0)
 val P_16_8_16_16 = ViewRect.Dp(16, 8, 16, 16)
 val P_16_16_16_16 = ViewRect.Dp(16, 16, 16, 16)
 val P_16_0_16_0 = ViewRect.Dp(16, 0, 16, 0)

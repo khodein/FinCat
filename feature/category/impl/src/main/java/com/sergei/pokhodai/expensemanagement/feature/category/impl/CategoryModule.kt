@@ -3,6 +3,7 @@ package com.sergei.pokhodai.expensemanagement.feature.category.impl
 import com.sergei.pokhodai.expensemanagement.core.recycler.register.RecyclerRegister
 import com.sergei.pokhodai.expensemanagement.core.router.provider.BottomNavigationVisibleProvider
 import com.sergei.pokhodai.expensemanagement.core.router.provider.RouteProvider
+import com.sergei.pokhodai.expensemanagement.feature.category.api.domain.usecase.DeleteAllCategoryUseCase
 import com.sergei.pokhodai.expensemanagement.feature.category.api.domain.usecase.GetCategoryDefaultListUseCase
 import com.sergei.pokhodai.expensemanagement.feature.category.api.domain.usecase.SetCategoriesUseCase
 import com.sergei.pokhodai.expensemanagement.feature.category.api.mapper.CategoryNameMapper
@@ -11,6 +12,7 @@ import com.sergei.pokhodai.expensemanagement.feature.category.api.router.Categor
 import com.sergei.pokhodai.expensemanagement.feature.category.impl.data.CategoryDefaultRepository
 import com.sergei.pokhodai.expensemanagement.feature.category.impl.data.CategoryRepository
 import com.sergei.pokhodai.expensemanagement.feature.category.impl.data.mapper.CategoryEntityMapper
+import com.sergei.pokhodai.expensemanagement.feature.category.impl.domain.DeleteAllCategoryUseCaseImpl
 import com.sergei.pokhodai.expensemanagement.feature.category.impl.presentation.category.CategoryDialogViewModel
 import com.sergei.pokhodai.expensemanagement.feature.category.impl.presentation.mapper.CategoryDialogMapper
 import com.sergei.pokhodai.expensemanagement.feature.category.impl.domain.GetCategoryDefaultListUseCaseImpl
@@ -37,6 +39,10 @@ import org.koin.dsl.module
 
 object CategoryModule {
 
+    internal object Keys {
+        const val CATEGORY_ICON = "CATEGORY_ICON"
+    }
+
     init {
         RecyclerRegister.Builder()
             .add(clazz = CategoryEditorItem.State::class.java, onView = ::CategoryEditorItemView)
@@ -55,6 +61,7 @@ object CategoryModule {
 
             singleOf(::GetCategoryDefaultListUseCaseImpl) bind GetCategoryDefaultListUseCase::class
             singleOf(::SetCategoriesUseCaseImpl) bind SetCategoriesUseCase::class
+            singleOf(::DeleteAllCategoryUseCaseImpl) bind DeleteAllCategoryUseCase::class
 
             singleOf(::CategoryEntityMapper)
             singleOf(::CategoryDialogMapper)

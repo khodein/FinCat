@@ -9,4 +9,7 @@
     <string name="settings_language">Выберите язык</string>
     <string name="settings_questions">Задаваемые вопросы</string>
     <string name="settings_logout">Выйти</string>
+
+    <string name="settings_error">Произошла неизвестная ошибка</string>
+    <string name="settings_empty">Тут пусто</string>
 </resources>

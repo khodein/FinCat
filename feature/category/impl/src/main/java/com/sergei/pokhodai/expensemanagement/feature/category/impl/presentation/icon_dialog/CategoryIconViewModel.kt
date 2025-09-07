@@ -2,11 +2,12 @@ package com.sergei.pokhodai.expensemanagement.feature.category.impl.presentation
 
 import androidx.lifecycle.ViewModel
 import com.sergei.pokhodai.expensemanagement.core.eventbus.api.EventBus
-import com.sergei.pokhodai.expensemanagement.core.eventbus.api.EventBusKeys
 import com.sergei.pokhodai.expensemanagement.core.recycler.RecyclerState
 import com.sergei.pokhodai.expensemanagement.core.router.Router
 import com.sergei.pokhodai.expensemanagement.feature.category.api.domain.model.CategoryIconModel
+import com.sergei.pokhodai.expensemanagement.feature.category.impl.CategoryModule
 import com.sergei.pokhodai.expensemanagement.feature.category.impl.presentation.icon_dialog.mapper.CategoryIconMapper
+import com.sergei.pokhodai.expensemanagement.feature.eventeditor.api.EventKeys
 import com.sergei.pokhodai.expensemanagement.uikit.kind.CategoryKindItem
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -38,7 +39,7 @@ internal class CategoryIconViewModel(
     private fun onClickIcon(state: CategoryKindItem.State) {
         val data = state.data
         if (data is CategoryIconModel) {
-            eventBus.push(data, EventBusKeys.CATEGORY_ICON)
+            eventBus.push(data, CategoryModule.Keys.CATEGORY_ICON)
         }
         router.pop()
     }

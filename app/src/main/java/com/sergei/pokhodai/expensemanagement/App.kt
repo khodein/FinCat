@@ -1,8 +1,14 @@
 package com.sergei.pokhodai.expensemanagement
 
 import android.app.Application
+import android.content.Context
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.os.LocaleListCompat
+import coil3.ImageLoader
+import coil3.PlatformContext
+import coil3.SingletonImageLoader
+import coil3.memory.MemoryCache
+import coil3.request.crossfade
 import com.sergei.pokhodai.expensemanagement.core.eventbus.impl.EventBusModule
 import com.sergei.pokhodai.expensemanagement.core.router.Router
 import com.sergei.pokhodai.expensemanagement.core.router.provider.BottomNavigationVisibleProvider
@@ -33,7 +39,7 @@ import org.koin.core.module.dsl.viewModelOf
 import org.koin.dsl.bind
 import org.koin.dsl.module
 
-internal class App : Application() {
+internal class App : Application(), SingletonImageLoader.Factory {
 
     private val localeManager by inject<LocaleManager>()
 
@@ -63,6 +69,10 @@ internal class App : Application() {
         localeManager.updateLanguage(localeManager.getLanguage())
     }
 
+    override fun newImageLoader(context: Context): ImageLoader {
+        return AppModule.newImageLoader(context)
+    }
+
     private object AppModule {
 
         init {
@@ -86,6 +96,19 @@ internal class App : Application() {
                 viewModelOf(::MainViewModel)
                 singleOf(::SupportRouterImpl) bind SupportRouter::class
             }
+        }
+
+        fun newImageLoader(
+            context: PlatformContext,
+        ): ImageLoader {
+            return ImageLoader.Builder(context)
+                .memoryCache {
+                    MemoryCache.Builder()
+                        .maxSizePercent(context, percent = 0.25)
+                        .build()
+                }
+                .crossfade(true)
+                .build()
         }
     }
 }

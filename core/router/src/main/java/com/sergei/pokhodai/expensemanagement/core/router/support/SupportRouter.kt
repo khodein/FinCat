@@ -12,6 +12,7 @@ interface SupportRouter {
     fun showColorPicker(model: ColorRouterModel)
     fun showSnackBar(message: String)
     fun showAlert(model: AlertRouterModel)
+    fun exitApp()
     fun hideKeyboard()
     interface Provider {
         fun getSupportRouterNavHostFragment(): Fragment

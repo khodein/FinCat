@@ -3,8 +3,10 @@ package com.sergei.pokhodai.expensemanagement.feature.user.impl.router
 import android.annotation.SuppressLint
 import androidx.navigation.serialization.generateHashCode
 import com.sergei.pokhodai.expensemanagement.core.router.provider.BottomNavigationVisibleProvider
+import com.sergei.pokhodai.expensemanagement.feature.user.impl.router.contract.UserAvatarContract
 import com.sergei.pokhodai.expensemanagement.feature.user.impl.router.contract.UserCurrencyContract
 import com.sergei.pokhodai.expensemanagement.feature.user.impl.router.contract.UserLanguageContract
+import com.sergei.pokhodai.expensemanagement.feature.user.impl.router.contract.UserListContract
 import com.sergei.pokhodai.expensemanagement.feature.user.impl.router.contract.UserRouterContract
 
 internal class UserBottomNavigationVisibilityProviderImpl : BottomNavigationVisibleProvider {
@@ -15,6 +17,8 @@ internal class UserBottomNavigationVisibilityProviderImpl : BottomNavigationVisi
             UserRouterContract.serializer().generateHashCode(),
             UserLanguageContract.serializer().generateHashCode(),
             UserCurrencyContract.serializer().generateHashCode(),
+            UserAvatarContract.serializer().generateHashCode(),
+            UserListContract.serializer().generateHashCode(),
         )
     }
 }

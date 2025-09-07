@@ -1,5 +1,6 @@
 package com.sergei.pokhodai.expensemanagement.core.base.utils
 
+import android.util.Patterns
 import java.math.BigDecimal
 import java.math.RoundingMode
 import java.text.NumberFormat
@@ -25,3 +26,6 @@ fun String.getFormatCurrency(locale: Locale = Locale.getDefault()): Pair<String,
         getZero()
     }
 }
+
+fun String.isEmailValid(): Boolean =
+    Patterns.EMAIL_ADDRESS.matcher(this).matches()

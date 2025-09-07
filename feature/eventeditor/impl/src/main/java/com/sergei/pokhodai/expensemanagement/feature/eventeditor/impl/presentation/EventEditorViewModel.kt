@@ -5,16 +5,15 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.navigation.toRoute
 import com.sergei.pokhodai.expensemanagement.core.eventbus.api.EventBus
-import com.sergei.pokhodai.expensemanagement.core.eventbus.api.EventBusKeys
 import com.sergei.pokhodai.expensemanagement.core.formatter.LocalDateFormatter
 import com.sergei.pokhodai.expensemanagement.core.recycler.RecyclerState
 import com.sergei.pokhodai.expensemanagement.core.router.Router
 import com.sergei.pokhodai.expensemanagement.core.router.support.calendar.CalendarRouterModel
 import com.sergei.pokhodai.expensemanagement.core.router.support.SupportRouter
-import com.sergei.pokhodai.expensemanagement.core.router.support.alert.AlertRouterModel
 import com.sergei.pokhodai.expensemanagement.feature.category.api.domain.model.BudgetType
 import com.sergei.pokhodai.expensemanagement.feature.category.api.domain.model.CategoryModel
 import com.sergei.pokhodai.expensemanagement.feature.category.api.router.CategoryRouter
+import com.sergei.pokhodai.expensemanagement.feature.eventeditor.api.EventKeys
 import com.sergei.pokhodai.expensemanagement.feature.eventeditor.api.domain.model.AmountModel
 import com.sergei.pokhodai.expensemanagement.feature.eventeditor.api.domain.model.DateModel
 import com.sergei.pokhodai.expensemanagement.feature.eventeditor.api.domain.model.EventModel
@@ -59,19 +58,19 @@ internal class EventEditorViewModel(
 
     init {
         eventBus.subscribe<CategoryModel>(
-            key = EventBusKeys.CATEGORY,
+            key = EventKeys.SHOW_CATEGORY,
             event = CategoryModel::class.java,
             callback = { model ->
-                eventModel = eventModel.copy(categoryModel = model)
-                updateSuccess()
+                onClickCategory()
             }
         )
 
         eventBus.subscribe<CategoryModel>(
-            key = EventBusKeys.NEW_CATEGORY_ADDED,
+            key = EventKeys.NEW_CATEGORY_ADDED,
             event = CategoryModel::class.java,
-            callback = {
-                onClickCategory()
+            callback = { model ->
+                eventModel = eventModel.copy(categoryModel = model)
+                updateSuccess()
             }
         )
 
@@ -127,7 +126,7 @@ internal class EventEditorViewModel(
             delay(LOADING_DEBOUNCE)
             runCatching {
                 editorId?.let {
-                    eventRepository.setDelete(it)
+                    eventRepository.setDeleteEventById(it)
                 } ?: throw Throwable()
             }.onSuccess {
                 updateButton()
@@ -135,7 +134,7 @@ internal class EventEditorViewModel(
                 router.pop()
             }.onFailure {
                 updateButton()
-                supportRouter.showSnackBar(eventEditorMapper.getSaveErrorMessage())
+                supportRouter.showSnackBar(eventEditorMapper.getGlobalError())
             }
         }
     }
@@ -262,8 +261,8 @@ internal class EventEditorViewModel(
 
     override fun onCleared() {
         super.onCleared()
-        eventBus.unsubscribe(EventBusKeys.CATEGORY)
-        eventBus.unsubscribe(EventBusKeys.NEW_CATEGORY_ADDED)
+        eventBus.unsubscribe(EventKeys.SHOW_CATEGORY)
+        eventBus.unsubscribe(EventKeys.NEW_CATEGORY_ADDED)
     }
 
     private companion object {

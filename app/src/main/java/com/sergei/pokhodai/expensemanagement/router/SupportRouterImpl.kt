@@ -60,6 +60,11 @@ internal class SupportRouterImpl : SupportRouter {
         }
     }
 
+    override fun exitApp() {
+        val navHostFragment = provider?.getSupportRouterNavHostFragment() ?: return
+        navHostFragment.requireActivity().finishAndRemoveTask()
+    }
+
     override fun showColorPicker(model: ColorRouterModel) {
         val activityContext = provider?.getSupportActivityContext() ?: return
         val showColorPickerRunnable = Runnable {

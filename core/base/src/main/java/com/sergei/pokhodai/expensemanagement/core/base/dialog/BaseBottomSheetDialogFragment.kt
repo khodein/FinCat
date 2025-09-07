@@ -49,7 +49,7 @@ open class BaseBottomSheetDialogFragment(
             roundMode = RoundMode.TOP
         ).resolve(
             view = sheetContainer,
-            backgroundColorInt = backgroundColor.getColor(requireContext())
+            backgroundColorInt = backgroundColor.getColor(sheetContainer.context)
         )
     }
 
