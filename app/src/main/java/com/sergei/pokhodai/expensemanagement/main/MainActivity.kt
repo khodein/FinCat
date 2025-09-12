@@ -1,18 +1,27 @@
 package com.sergei.pokhodai.expensemanagement.main
 
+import android.animation.Animator
+import android.animation.AnimatorListenerAdapter
+import android.animation.ObjectAnimator
+import android.animation.ValueAnimator
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.res.Configuration
 import android.os.Build
 import android.os.Bundle
 import android.view.Menu
+import android.view.animation.AccelerateInterpolator
+import android.view.animation.DecelerateInterpolator
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.animation.doOnEnd
+import androidx.core.animation.doOnStart
 import androidx.core.os.LocaleListCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.ViewGroupCompat
 import androidx.core.view.WindowCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.core.view.doOnLayout
 import androidx.core.view.forEach
 import androidx.core.view.isEmpty
 import androidx.core.view.isNotEmpty
@@ -32,6 +41,9 @@ import org.koin.android.ext.android.inject
 import org.koin.androidx.fragment.android.setupKoinFragmentFactory
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import androidx.core.view.get
+import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.sergei.pokhodai.expensemanagement.core.base.utils.applyPadding
+import com.sergei.pokhodai.expensemanagement.core.base.utils.dp
 import com.sergei.pokhodai.expensemanagement.core.router.destination.TabDestination
 
 internal class MainActivity : AppCompatActivity(),
@@ -49,7 +61,57 @@ internal class MainActivity : AppCompatActivity(),
 
     private val onDestinationChangedListener by lazy {
         NavController.OnDestinationChangedListener { controller, destination, arguments ->
-            binding.bnvMain.isVisible = router.onDestinationChangedListener(destination.id)
+            if (router.onDestinationChangedListener(destination.id)) {
+                showBottomNavigationView()
+            } else {
+                hideBottomNavigationView()
+            }
+        }
+    }
+
+    private fun hideBottomNavigationView() {
+        val container = binding.contentMain
+        val bottomNav = binding.bnvMain
+
+        if (bottomNav.translationY == 0f) {
+            val bottomNavHeight = DEFAULT_BNV_HEIGHT
+
+            bottomNav.animate()
+                .translationY(bottomNavHeight.toFloat())
+                .setDuration(DEFAULT_BNV_DURATION)
+                .setInterpolator(AccelerateInterpolator())
+                .withStartAction {
+                    bottomNav.isClickable = false
+                }
+                .withEndAction {
+                    bottomNav.isVisible = false
+                }
+                .start()
+
+            container.updatePadding(bottom = 0)
+        }
+    }
+
+    private fun showBottomNavigationView() {
+        val container = binding.contentMain
+        val bottomNav = binding.bnvMain
+        if (bottomNav.translationY > 0f) {
+            val bottomNavHeight = DEFAULT_BNV_HEIGHT
+
+            bottomNav.animate()
+                .translationY(0f)
+                .setDuration(DEFAULT_BNV_DURATION)
+                .setInterpolator(DecelerateInterpolator())
+                .withStartAction {
+                    bottomNav.isVisible = true
+                }
+                .withEndAction {
+                    bottomNav.isClickable = true
+                    bottomNav.isVisible = true
+                }
+                .start()
+
+            container.updatePadding(bottom = bottomNavHeight)
         }
     }
 
@@ -60,6 +122,8 @@ internal class MainActivity : AppCompatActivity(),
         setContentView(binding.root)
         WindowCompat.setDecorFitsSystemWindows(window, false)
         ViewGroupCompat.installCompatInsetsDispatch(binding.root)
+
+        binding.contentMain.updatePadding(bottom = DEFAULT_BNV_HEIGHT)
 
         setRootInsets()
 
@@ -152,4 +216,9 @@ internal class MainActivity : AppCompatActivity(),
 
     override fun getSupportRouterNavHostFragment() = navHostFragment
     override fun getSupportActivityContext(): Context = this
+
+    private companion object {
+        const val DEFAULT_BNV_DURATION = 200L
+        val DEFAULT_BNV_HEIGHT = 56.dp
+    }
 }

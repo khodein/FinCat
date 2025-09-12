@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="exchange_rate_title">Exchange rate</string>
+    <string name="exchange_rate_error">An error has occurred loading the exchange rate. Try again</string>
+    <string name="exchange_rate_empty">The exchange rate is empty</string>
+    <string name="exchange_rate_header_name">Valute</string>
+    <string name="exchange_rate_header_nominal">Nominal</string>
+    <string name="exchange_rate_header_rate">Rate</string>
+</resources>

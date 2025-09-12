@@ -4,7 +4,7 @@ import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import com.sergei.pokhodai.expensemanagement.feature.settings.impl.R
 
-enum class SettingModel(
+internal enum class SettingModel(
     @StringRes val nameResId: Int,
     @DrawableRes val leadingIconRes: Int,
 ) {

@@ -1,4 +1,4 @@
-package com.sergei.pokhodai.expensemanagement.feature.category.impl.presentation.mapper
+package com.sergei.pokhodai.expensemanagement.feature.category.impl.presentation.category.mapper
 
 import com.sergei.pokhodai.expensemanagement.core.base.color.ColorValue
 import com.sergei.pokhodai.expensemanagement.core.base.dimension.ViewDimension
@@ -9,6 +9,7 @@ import com.sergei.pokhodai.expensemanagement.feature.category.api.domain.model.B
 import com.sergei.pokhodai.expensemanagement.feature.category.api.domain.model.CategoryModel
 import com.sergei.pokhodai.expensemanagement.feature.category.impl.R
 import com.sergei.pokhodai.expensemanagement.feature.category.impl.domain.model.CategoryDefaultType
+import com.sergei.pokhodai.expensemanagement.feature.category.impl.presentation.mapper.CategoryTypeMapperImpl
 import com.sergei.pokhodai.expensemanagement.uikit.button.ButtonItem
 import com.sergei.pokhodai.expensemanagement.uikit.kind.CategoryKindItem
 import com.sergei.pokhodai.expensemanagement.uikit.request.RequestItem

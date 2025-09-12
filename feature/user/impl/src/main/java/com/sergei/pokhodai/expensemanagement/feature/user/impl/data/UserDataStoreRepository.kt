@@ -41,29 +41,39 @@ internal class UserDataStoreRepository(
         }
     }
 
-    suspend fun isFirstEnterApp(): Boolean {
-        return withContext(Dispatchers.IO) {
-            isFirstEnterAppFlow.firstOrNull() ?: false
+    private val exchangeDateLoadFlow: Flow<String> = dataStore.data.catch {
+        if (it is IOException) {
+            emit(emptyPreferences())
+        } else {
+            throw it
         }
+    }.map { preferences ->
+        preferences[DataStoreKey.USER_EXCHANGE_DATE_LOAD_APP] ?: ""
+    }
+
+    suspend fun isFirstEnterApp(): Boolean {
+        return isFirstEnterAppFlow.firstOrNull() ?: false
     }
 
     suspend fun enabledFirstEnterApp() {
-        withContext(Dispatchers.IO) {
-            dataStore.edit { preferences -> preferences[DataStoreKey.FIRST_ENTER_APP] = true }
-        }
+        dataStore.edit { preferences -> preferences[DataStoreKey.FIRST_ENTER_APP] = true }
     }
 
     suspend fun getUserId(): Long? {
-        return withContext(Dispatchers.IO) {
-            return@withContext userIdFlow.firstOrNull()
-        }
+        return userIdFlow.firstOrNull()
     }
 
     suspend fun setUserData(userId: Long?) {
-        withContext(Dispatchers.IO) {
-            dataStore.edit { preferences ->
-                preferences[DataStoreKey.USER_ID_APP] = userId ?: 0L
-            }
+        dataStore.edit { preferences ->
+            preferences[DataStoreKey.USER_ID_APP] = userId ?: 0L
         }
+    }
+
+    suspend fun setExchangeDateLoad(date: String) {
+        dataStore.edit { preferences -> preferences[DataStoreKey.USER_EXCHANGE_DATE_LOAD_APP] = date }
+    }
+
+    suspend fun getExchangeDateLoad(): String {
+        return exchangeDateLoadFlow.firstOrNull() ?: ""
     }
 }

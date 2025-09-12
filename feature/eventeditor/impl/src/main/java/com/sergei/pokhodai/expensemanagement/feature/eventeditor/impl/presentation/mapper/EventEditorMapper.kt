@@ -11,6 +11,7 @@ import com.sergei.pokhodai.expensemanagement.core.router.support.alert.AlertRout
 import com.sergei.pokhodai.expensemanagement.core.support.api.ResManager
 import com.sergei.pokhodai.expensemanagement.feature.category.api.domain.model.BudgetType
 import com.sergei.pokhodai.expensemanagement.feature.category.api.domain.model.CategoryModel
+import com.sergei.pokhodai.expensemanagement.feature.category.api.mapper.CategoryBudgetTypeMapper
 import com.sergei.pokhodai.expensemanagement.feature.category.api.mapper.CategoryNameMapper
 import com.sergei.pokhodai.expensemanagement.feature.category.api.mapper.CategoryTypeMapper
 import com.sergei.pokhodai.expensemanagement.feature.eventeditor.api.domain.model.AmountModel
@@ -30,6 +31,7 @@ import java.math.BigDecimal
 internal class EventEditorMapper(
     private val categoryTypeMapper: CategoryTypeMapper,
     private val categoryNameMapper: CategoryNameMapper,
+    private val categoryBudgetTypeMapper: CategoryBudgetTypeMapper,
     private val resManager: ResManager,
 ) {
     fun getItems(
@@ -155,7 +157,7 @@ internal class EventEditorMapper(
     ): DropDownItem.State {
         val items = BudgetType.entries.map {
             DropDownItem.Item(
-                value = getBudgetTextValue(it),
+                value = categoryBudgetTypeMapper.getBudgetName(it),
                 data = it
             )
         }
@@ -164,7 +166,7 @@ internal class EventEditorMapper(
             container = DropDownItem.Container(
                 paddings = P_16_0_16_16
             ),
-            value = getBudgetTextValue(budgetType),
+            value = categoryBudgetTypeMapper.getBudgetName(budgetType),
             items = items,
             onClickItem = onClick,
         )
@@ -235,7 +237,7 @@ internal class EventEditorMapper(
     ): SelectItem.State {
         return SelectItem.State(
             provideId = "editor_create_date_item_id",
-            value = createDate.value.dd_MM_yyyy(),
+            value = createDate.value.yyyy_MM_dd(),
             container = SelectItem.Container(
                 paddings = P_16_0_16_16,
             ),
@@ -265,14 +267,6 @@ internal class EventEditorMapper(
             onAfterTextChanger = onAfterTextChange,
             hint = resManager.getString(R.string.event_editor_description_hint),
         )
-    }
-
-    private fun getBudgetTextValue(budgetType: BudgetType): String {
-        val valueResId = when (budgetType) {
-            BudgetType.EXPENSE -> R.string.event_editor_expense
-            BudgetType.INCOME -> R.string.event_editor_income
-        }
-        return resManager.getString(valueResId)
     }
 
     fun getSaveMessageSuccess(isEdit: Boolean): String {

@@ -45,5 +45,21 @@
     <string name="category_dialog_empty">Here is empty!\nСreate default categories?</string>
     <string name="category_dialog_empty_btn">Create</string>
     <string name="category_dialog_global_error">An unknown error occurred</string>
+
+    <string name="category_manager_button_add">Add</string>
+    <string name="category_manager_global_error">An unknown error occurred</string>
+    <string name="category_manager_title">Manage categories</string>
+    <string name="category_manager_empty">Category is empty</string>
+    <string name="category_manager_delete_all_success">All categories have been successfully deleted</string>
+    <string name="category_manager_delete_all_question">Are you sure you want to remove all categories?</string>
+    <string name="category_manager_income">Income</string>
+    <string name="category_manager_expense">Expense</string>
+    <string name="category_manager_delete_id_success">Category removed successfully!</string>
+    <string name="category_manager_delete_id_error">Category removal error</string>
+    <string name="category_manager_delete_id_question">Do you definitely want to remove category?</string>
+    <string name="category_manager_item_edit">Edit</string>
+
+    <string name="category_manager_confirm">Confirm</string>
+    <string name="category_manager_cancel">Cancel</string>
 </resources>
 

@@ -3,10 +3,11 @@ package com.sergei.pokhodai.expensemanagement.home.impl.presentation
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.sergei.pokhodai.expensemanagement.core.recycler.RecyclerState
-import com.sergei.pokhodai.expensemanagement.core.base.utils.P_0_0_0_64
+import com.sergei.pokhodai.expensemanagement.core.eventbus.api.EventBus
 import com.sergei.pokhodai.expensemanagement.core.formatter.LocalDateFormatter
-import com.sergei.pokhodai.expensemanagement.core.router.support.calendar.CalendarRouterModel
-import com.sergei.pokhodai.expensemanagement.core.router.support.SupportRouter
+import com.sergei.pokhodai.expensemanagement.feature.calendar.CalendarMonthKeys
+import com.sergei.pokhodai.expensemanagement.feature.calendar.api.CalendarMonthRouter
+import com.sergei.pokhodai.expensemanagement.feature.calendar.domain.model.CalendarMonthModel
 import com.sergei.pokhodai.expensemanagement.feature.eventeditor.api.domain.model.DateModel
 import com.sergei.pokhodai.expensemanagement.feature.eventeditor.api.domain.model.EventModel
 import com.sergei.pokhodai.expensemanagement.feature.eventeditor.api.domain.usecase.GetDateEventByMonthAndYearUseCase
@@ -21,12 +22,14 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
+import kotlinx.datetime.number
 
 internal class HomeViewModel(
     private val getDateEventByMonthAndYearUseCase: GetDateEventByMonthAndYearUseCase,
     private val homeMapper: HomeMapper,
-    private val supportRouter: SupportRouter,
     private val eventEditorRouter: EventEditorRouter,
+    private val calendarMonthRouter: CalendarMonthRouter,
+    private val eventBus: EventBus,
 ) : ViewModel() {
 
     private var fetchJob: Job? = null
@@ -45,6 +48,21 @@ internal class HomeViewModel(
     private var focusDate = LocalDateFormatter.today()
 
     private var isFirstLoading = true
+
+    init {
+        eventBus.subscribe(
+            key = CalendarMonthKeys.CHANGE_CALENDAR_MONTH_HOME,
+            event = CalendarMonthModel::class.java,
+            callback = ::onChangeMonth
+        )
+    }
+
+    private fun onChangeMonth(model: CalendarMonthModel) {
+        val index = CalendarMonthModel.entries.indexOf(model) + 1
+        focusDate = focusDate.changeMonth(index)
+        updateTop()
+        fetchData()
+    }
 
     fun onStart() {
         updateBottom()
@@ -136,18 +154,14 @@ internal class HomeViewModel(
     }
 
     private fun onClickCalendar() {
-        supportRouter.showCalendar(
-            CalendarRouterModel(
-                value = focusDate,
-                start = LocalDateFormatter.today().minusYears(2),
-                end = LocalDateFormatter.today().plusYears(2),
-                onClick = {
-                    focusDate = it
-                    updateTop()
-                    fetchData(true)
-                }
-            )
-        )
+        CalendarMonthModel.entries.getOrNull(focusDate.month.number - 1)?.let {
+            calendarMonthRouter.goToCalendarMonth(month = it, isHome = true)
+        }
+    }
+
+    override fun onCleared() {
+        super.onCleared()
+        eventBus.unsubscribe(CalendarMonthKeys.CHANGE_CALENDAR_MONTH_HOME)
     }
 
     private companion object {

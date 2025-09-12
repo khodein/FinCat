@@ -65,7 +65,10 @@ object UserModule {
 
     init {
         RecyclerRegister.Builder()
-            .add(clazz = UserTagsContainerItem.State::class.java, onView = ::UserTagsContainerItemView)
+            .add(
+                clazz = UserTagsContainerItem.State::class.java,
+                onView = ::UserTagsContainerItemView
+            )
             .add(clazz = UserLanguageItem.State::class.java, onView = ::UserLanguageItemView)
             .add(clazz = UserAvatarItem.State::class.java, onView = ::UserAvatarItemView)
             .add(clazz = UserAvatarListItem.State::class.java, onView = ::UserAvatarListItemView)

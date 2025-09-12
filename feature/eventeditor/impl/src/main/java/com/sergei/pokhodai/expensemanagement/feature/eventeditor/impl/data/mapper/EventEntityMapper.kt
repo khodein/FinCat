@@ -24,7 +24,7 @@ internal class EventEntityMapper {
             categoryType = model.categoryModel?.type?.name.orEmpty(),
             categoryColorName = model.categoryModel?.colorName.orEmpty(),
             amountValue = model.amountModel.value.toString(),
-            date = model.dateModel.value.dd_MM_yyyy(),
+            date = model.dateModel.value.yyyy_MM_dd(),
             day = model.dateModel.value.dd(),
             dateMonth = model.dateModel.value.MM(),
             dateYear = model.dateModel.value.yyyy(),

@@ -6,6 +6,7 @@ import com.sergei.pokhodai.expensemanagement.core.router.provider.BottomNavigati
 import com.sergei.pokhodai.expensemanagement.feature.category.impl.router.contract.CategoryDialogContract
 import com.sergei.pokhodai.expensemanagement.feature.category.impl.router.contract.CategoryEditorContract
 import com.sergei.pokhodai.expensemanagement.feature.category.impl.router.contract.CategoryIconDialogContract
+import com.sergei.pokhodai.expensemanagement.feature.category.impl.router.contract.CategoryManagerContract
 
 internal class CategoryBottomNavigationVisibleProviderImpl : BottomNavigationVisibleProvider {
 
@@ -15,6 +16,7 @@ internal class CategoryBottomNavigationVisibleProviderImpl : BottomNavigationVis
             CategoryDialogContract.serializer().generateHashCode(),
             CategoryEditorContract.serializer().generateHashCode(),
             CategoryIconDialogContract.serializer().generateHashCode(),
+            CategoryManagerContract.serializer().generateHashCode(),
         )
     }
 }

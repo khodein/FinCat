@@ -28,4 +28,5 @@ dependencies {
 
     api(project(":feature:eventeditor:api"))
     api(project(":feature:home:api"))
+    api(project(":feature:calendar:api"))
 }

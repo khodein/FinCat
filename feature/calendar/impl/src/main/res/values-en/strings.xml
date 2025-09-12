@@ -1,0 +1,17 @@
+<resources>
+    <string name="calendar_month_title">PICK A MONTH</string>
+    <string name="calendar_month_january_short">Jan</string>
+    <string name="calendar_month_february_short">Feb</string>
+    <string name="calendar_month_march_short">Mar</string>
+    <string name="calendar_month_april_short">Apr</string>
+    <string name="calendar_month_may_short">May</string>
+    <string name="calendar_month_june_short">June</string>
+    <string name="calendar_month_july_short">July</string>
+    <string name="calendar_month_august_short">Aug</string>
+    <string name="calendar_month_september_short">Sep</string>
+    <string name="calendar_month_october_short">Oct</string>
+    <string name="calendar_month_november_short">Nov</string>
+    <string name="calendar_month_december_short">Dec</string>
+    <string name="calendar_month_button_edit">Edit</string>
+</resources>
+

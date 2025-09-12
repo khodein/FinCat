@@ -8,7 +8,6 @@ object GraphicUtils {
     @Throws(Exception::class)
     @ColorInt
     private fun parse(colorString: String): Int {
-        // Поддержка цветов вида #FFF.
         val string = if (colorString.length == 4) {
             "#" + colorString.substring(1, 2).repeat(2) +
                     colorString.substring(2, 3).repeat(2) +

@@ -31,4 +31,5 @@ dependencies {
     api(project(":feature:eventeditor:api"))
     api(project(":feature:category:api"))
     api(project(":feature:report:api"))
+    api(project(":feature:calendar:api"))
 }

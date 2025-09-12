@@ -21,10 +21,15 @@ include ':core:uikit',
         ':core:base',
         ':core:router',
         ':core:formatter',
+
         ':core:eventbus:impl',
         ':core:eventbus:api',
+
         ':core:support:impl',
-        ':core:support:api'
+        ':core:support:api',
+        
+        ':core:network:api',
+        ':core:network:impl'
 
 include ':database:impl',
         ':database:api'
@@ -46,3 +51,9 @@ include ':feature:settings:impl',
 
 include ':feature:user:impl',
         ':feature:user:api'
+
+include ':feature:calendar:impl',
+        ':feature:calendar:api'
+
+include ':feature:exchangerate:impl',
+        ':feature:exchangerate:api'

@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:parentTag="android.widget.FrameLayout">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/category_manager_item_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.sergei.pokhodai.expensemanagement.uikit.kind.CategoryKindItemView
+            android:id="@+id/category_manager_item_king"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <LinearLayout
+            android:id="@+id/category_manager_item_text_container"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="16dp"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/category_manager_item_edit"
+            app:layout_constraintStart_toEndOf="@+id/category_manager_item_king"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/category_manager_item_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center|start"
+                android:textAppearance="@style/Regular.14"
+                android:textColor="@color/grey_900"
+                tools:text="name\nsdklsdkl\nskjdjkds\nksdklds" />
+
+            <TextView
+                android:id="@+id/category_manager_item_budget"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center|start"
+                android:textAppearance="@style/Regular.12"
+                android:textColor="@color/blue_500"
+                tools:text="name" />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/category_manager_item_edit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center|start"
+            android:padding="16dp"
+            android:text="@string/category_manager_item_edit"
+            android:textAppearance="@style/Regular.14"
+            android:textColor="@color/blue_500"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/category_manager_item_delete"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Edit" />
+
+        <ImageView
+            android:id="@+id/category_manager_item_delete"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingStart="12dp"
+            android:paddingVertical="16dp"
+            android:src="@drawable/ic_delete"
+            app:tint="@color/red_600"
+            android:visibility="gone"
+            tools:visibility="visible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <View
+            android:id="@+id/category_manager_click"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="@+id/category_manager_item_text_container"
+            app:layout_constraintEnd_toEndOf="@+id/category_manager_item_text_container"
+            app:layout_constraintStart_toStartOf="@+id/category_manager_item_king"
+            app:layout_constraintTop_toTopOf="@+id/category_manager_item_text_container" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</merge>

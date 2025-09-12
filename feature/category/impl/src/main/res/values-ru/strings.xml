@@ -45,5 +45,21 @@
     <string name="category_dialog_empty">Тут пусто!\nСоздать дефолтные категории?</string>
     <string name="category_dialog_empty_btn">Создать</string>
     <string name="category_dialog_global_error">Произошла неизвестная ошибка</string>
+
+    <string name="category_manager_button_add">Добавить</string>
+    <string name="category_manager_global_error">Произошла неизвестная ошибка</string>
+    <string name="category_manager_title">Менеджер категорий</string>
+    <string name="category_manager_empty">Тут пусто</string>
+    <string name="category_manager_delete_all_success">Все категории успешно удалены!</string>
+    <string name="category_manager_delete_all_question">Вы точно хотите удалить все категории?</string>
+    <string name="category_manager_income">Доход</string>
+    <string name="category_manager_expense">Расход</string>
+    <string name="category_manager_delete_id_success">Категория удалена успешно!</string>
+    <string name="category_manager_delete_id_error">Ошибка удаления категории!</string>
+    <string name="category_manager_delete_id_question">Вы точно хотите удалить категорию?</string>
+    <string name="category_manager_item_edit">Изменить</string>
+
+    <string name="category_manager_confirm">Да</string>
+    <string name="category_manager_cancel">Отменить</string>
 </resources>
 

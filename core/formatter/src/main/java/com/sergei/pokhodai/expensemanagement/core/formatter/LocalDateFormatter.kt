@@ -74,9 +74,9 @@ value class LocalDateFormatter(
 
     fun yyyy(): String = getPattern("yyyy")
 
-    fun MM_yyyy(): String = getPattern("MM.yyyy")
+    fun yyyy_MM(): String = getPattern("yyyy_MM")
 
-    fun dd_MM_yyyy() = getPattern(BASE_FORMAT)
+    fun yyyy_MM_dd() = getPattern(BASE_FORMAT)
 
     private fun getPattern(
         pattern: String
@@ -205,6 +205,20 @@ value class LocalDateFormatter(
         return LocalDateFormatter(minusDays)
     }
 
+    fun changeMonth(newMonth: Int): LocalDateFormatter {
+        val localDateTime = LocalDateTime(
+            year = localDateTime.year,
+            month = newMonth,
+            day = localDateTime.day,
+            hour = localDateTime.hour,
+            minute =localDateTime.minute,
+            second = localDateTime.second,
+            nanosecond = localDateTime.nanosecond
+        )
+
+        return LocalDateFormatter(localDateTime)
+    }
+
     /**Возвращает дату с прибалением кол-вом месяцев*/
     fun plusMonths(
         quantity: Int,
@@ -265,12 +279,12 @@ value class LocalDateFormatter(
 
     fun isYesterday(): Boolean {
         val yesterday = today().yesterday()
-        return this.dd_MM_yyyy() == yesterday.dd_MM_yyyy()
+        return this.yyyy_MM_dd() == yesterday.yyyy_MM_dd()
     }
 
     fun isToday(): Boolean {
         val today = today()
-        return this.dd_MM_yyyy() == today.dd_MM_yyyy()
+        return this.yyyy_MM_dd() == today.yyyy_MM_dd()
     }
 
     fun between(
@@ -306,7 +320,7 @@ value class LocalDateFormatter(
     }
 
     companion object {
-        private const val BASE_FORMAT = "dd.MM.yyyy"
+        private const val BASE_FORMAT = "yyyy-MM-dd"
 
         @OptIn(ExperimentalTime::class)
         private fun LocalDateFormatter.setOperation(
@@ -353,6 +367,16 @@ value class LocalDateFormatter(
             }
             val localDate = LocalDate.Companion.parse(input = date, format = format)
             return LocalDateFormatter(localDate.atTime(0, 0))
+        }
+
+        @OptIn(FormatStringsInDatetimeFormats::class)
+        fun exchangeFormatParse(date: String): LocalDateFormatter {
+            val format = LocalDate.Companion.Format {
+                byUnicodePattern(BASE_FORMAT)
+            }
+            val localDate = LocalDate.Companion.parse(input = date.substringBefore("T"), format = format)
+
+            return LocalDateFormatter(localDateTime = localDate.atTime(0, 0))
         }
 
         /**Возвращает дату сегодня в начале дня*/

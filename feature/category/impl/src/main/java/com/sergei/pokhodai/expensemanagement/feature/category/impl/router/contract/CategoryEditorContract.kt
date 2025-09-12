@@ -6,6 +6,6 @@ import kotlinx.serialization.Serializable
 @Serializable
 internal data class CategoryEditorContract(
     val id: Long? = null,
-    val budgetType: String,
+    val budgetType: String? = null,
     val isOpenFromDialog: Boolean = false,
 ) : RouterContract

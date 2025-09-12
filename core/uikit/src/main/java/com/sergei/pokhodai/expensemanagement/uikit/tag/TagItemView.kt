@@ -17,6 +17,7 @@ import com.sergei.pokhodai.expensemanagement.core.base.utils.bindStateOptional
 import com.sergei.pokhodai.expensemanagement.core.base.utils.dp
 import com.sergei.pokhodai.expensemanagement.core.base.utils.getColor
 import com.sergei.pokhodai.expensemanagement.core.base.utils.load
+import com.sergei.pokhodai.expensemanagement.core.base.utils.resolveToLayoutParams
 import com.sergei.pokhodai.expensemanagement.core.base.utils.setColorFilter
 import com.sergei.pokhodai.expensemanagement.core.base.utils.setOnDebounceClick
 import com.sergei.pokhodai.expensemanagement.core.recycler.RecyclerItemView
@@ -52,6 +53,8 @@ class TagItemView @JvmOverloads constructor(
 
     override fun bindState(state: TagItem.State) {
         this.state = state
+        resolveToLayoutParams(state.container.width, state.container.height)
+
         bindIcon(state.icon)
         bindText(state.value)
 

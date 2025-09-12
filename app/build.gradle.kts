@@ -22,6 +22,9 @@ dependencies {
     implementation(project(":core:router"))
     implementation(project(":core:formatter"))
 
+    implementation(project(":core:network:impl"))
+    api(project(":core:network:api"))
+
     implementation(project(":core:eventbus:impl"))
     api(project(":core:eventbus:api"))
 
@@ -48,5 +51,11 @@ dependencies {
 
     implementation(project(":feature:user:impl"))
     api(project(":feature:user:api"))
+
+    implementation(project(":feature:calendar:impl"))
+    api(project(":feature:calendar:api"))
+
+    implementation(project(":feature:exchangerate:impl"))
+    api(project(":feature:exchangerate:api"))
 }
 

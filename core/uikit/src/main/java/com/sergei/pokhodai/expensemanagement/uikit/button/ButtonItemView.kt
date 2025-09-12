@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup.LayoutParams.WRAP_CONTENT
 import android.widget.FrameLayout
+import androidx.core.view.isInvisible
 import androidx.core.view.isVisible
 import com.sergei.pokhodai.expensemanagement.core.base.R
 import com.sergei.pokhodai.expensemanagement.core.base.color.ColorValue
@@ -69,14 +70,18 @@ class ButtonItemView @JvmOverloads constructor(
             fill = state.fill,
             radius = state.radius
         )
-        bindLoading(state.isLoading)
         bindIcon(state.icon)
+        bindLoading(state.isLoading, state.icon)
     }
 
-    private fun bindLoading(isLoading: Boolean) {
-        binding.viewButtonItemFlow.isVisible = !isLoading
-        binding.viewButtonItemText.isVisible = !isLoading
-        binding.viewButtonItemIcon.isVisible = !isLoading
+    private fun bindLoading(isLoading: Boolean, icon: ImageValue?) {
+        binding.viewButtonItemFlow.isInvisible= isLoading
+        binding.viewButtonItemText.isInvisible = isLoading
+        if (icon != null) {
+            binding.viewButtonItemIcon.isInvisible = isLoading
+        } else {
+            binding.viewButtonItemIcon.isVisible = false
+        }
         binding.viewButtonItemLoading.isVisible = isLoading
     }
 

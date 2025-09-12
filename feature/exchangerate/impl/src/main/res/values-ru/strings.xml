@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="exchange_rate_title">Курс валют</string>
+    <string name="exchange_rate_error">Произошла ошибка загрузки курса валют. Попробуйте еще раз</string>
+    <string name="exchange_rate_empty">Курс валют пуст</string>
+    <string name="exchange_rate_header_name">Валюта</string>
+    <string name="exchange_rate_header_nominal">Единиц</string>
+    <string name="exchange_rate_header_rate">Курс</string>
+</resources>

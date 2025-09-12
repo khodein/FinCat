@@ -13,7 +13,7 @@ import com.sergei.pokhodai.expensemanagement.feature.category.api.domain.usecase
 import com.sergei.pokhodai.expensemanagement.feature.category.api.domain.usecase.SetCategoriesUseCase
 import com.sergei.pokhodai.expensemanagement.feature.category.api.router.CategoryRouter
 import com.sergei.pokhodai.expensemanagement.feature.category.impl.data.CategoryRepository
-import com.sergei.pokhodai.expensemanagement.feature.category.impl.presentation.mapper.CategoryDialogMapper
+import com.sergei.pokhodai.expensemanagement.feature.category.impl.presentation.category.mapper.CategoryDialogMapper
 import com.sergei.pokhodai.expensemanagement.feature.category.impl.router.contract.CategoryDialogContract
 import com.sergei.pokhodai.expensemanagement.feature.eventeditor.api.EventKeys
 import com.sergei.pokhodai.expensemanagement.feature.eventeditor.api.domain.usecase.DeleteAllCategoryUserCase

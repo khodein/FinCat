@@ -4,6 +4,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.sergei.pokhodai.expensemanagement.core.recycler.RecyclerState
 import com.sergei.pokhodai.expensemanagement.core.support.api.LocaleManager
+import com.sergei.pokhodai.expensemanagement.feature.category.api.router.CategoryRouter
+import com.sergei.pokhodai.expensemanagement.feature.exchangerate.api.router.ExchangeRateRouter
 import com.sergei.pokhodai.expensemanagement.feature.settings.impl.data.SettingsRepository
 import com.sergei.pokhodai.expensemanagement.feature.settings.impl.domain.model.SettingModel
 import com.sergei.pokhodai.expensemanagement.feature.settings.impl.presentation.mapper.SettingsMapper
@@ -26,6 +28,8 @@ internal class SettingsViewModel(
     private val settingsRepository: SettingsRepository,
     private val localeManager: LocaleManager,
     private val userRouter: UserRouter,
+    private val categoryRouter: CategoryRouter,
+    private val exchangeRateRouter: ExchangeRateRouter,
 ) : ViewModel() {
 
     private var loadingJob: Job? = null
@@ -129,21 +133,13 @@ internal class SettingsViewModel(
         val data = state.data
         if (data is SettingModel) {
             when (data) {
-                SettingModel.MANAGER_CATEGORY -> {
-
-                }
-
+                SettingModel.MANAGER_CATEGORY -> categoryRouter.goToCategoryManager()
+                SettingModel.LOGOUT -> userRouter.goToUserList()
+                SettingModel.LANGUAGE -> userRouter.goToUserLanguage()
+                SettingModel.VALUTE -> exchangeRateRouter.goToExchangeRate()
                 SettingModel.ASKED_QUESTION -> {
 
                 }
-
-                SettingModel.LOGOUT -> userRouter.goToUserList()
-
-                SettingModel.VALUTE -> {
-
-                }
-
-                SettingModel.LANGUAGE -> userRouter.goToUserLanguage()
             }
         }
     }

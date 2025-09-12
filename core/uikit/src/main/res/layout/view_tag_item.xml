@@ -22,14 +22,15 @@
         android:id="@+id/tag_item_value"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAlignment="gravity"
-        android:gravity="center|start"
+        android:gravity="center"
         android:lines="1"
         android:maxLines="1"
-        tools:text="sdlkdslkdslk"
+        android:textAlignment="gravity"
         android:textAppearance="@style/Regular.14"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/tag_item_icon"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="sdlkdslkdslk" />
 
 </merge>

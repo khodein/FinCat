@@ -196,7 +196,7 @@ internal class HomeMapper(
             dateModel.value.isYesterday() -> resManager.getString(R.string.home_item_header_yesterday)
             dateModel.value.isToday() -> resManager.getString(R.string.home_item_header_today)
 
-            else -> dateModel.value.dd_MM_yyyy()
+            else -> dateModel.value.yyyy_MM_dd()
         }
     }
 

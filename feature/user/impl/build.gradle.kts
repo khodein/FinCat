@@ -19,6 +19,7 @@ dependencies {
     implementation(project(":core:recycler"))
     implementation(project(":core:uikit"))
     implementation(project(":core:router"))
+    implementation(project(":core:formatter"))
 
     api(project(":database:api"))
     api(project(":core:eventbus:api"))

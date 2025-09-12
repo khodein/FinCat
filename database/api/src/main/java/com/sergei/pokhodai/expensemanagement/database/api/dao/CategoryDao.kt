@@ -5,6 +5,7 @@ import androidx.room.Insert
 import androidx.room.Query
 import androidx.room.Update
 import com.sergei.pokhodai.expensemanagement.database.api.entity.CategoryEntity
+import com.sergei.pokhodai.expensemanagement.database.api.entity.UserSelfEntity
 
 @Dao
 interface CategoryDao {
@@ -16,6 +17,9 @@ interface CategoryDao {
     ): List<CategoryEntity>
     @Insert
     suspend fun insertAll(vararg entities: CategoryEntity)
+
+    @Query("SELECT * FROM `fincatdatabase_category_table` ORDER BY id DESC")
+    suspend fun getAll(): List<CategoryEntity>
 
     @Query("DELETE FROM `fincatdatabase_category_table`")
     suspend fun deleteAll()

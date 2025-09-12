@@ -17,7 +17,7 @@
         android:clipToPadding="false"
         android:background="@color/surface_dark"
         app:defaultNavHost="true"
-        app:layout_constraintBottom_toTopOf="@+id/bnvMain"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -25,11 +25,10 @@
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bnvMain"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="56dp"
         android:layout_gravity="bottom"
         android:elevation="4dp"
         app:labelVisibilityMode="labeled"
-        android:visibility="gone"
         tools:visibility="visible"
         app:itemTextColor="@color/grey_800"
         app:itemTextAppearanceActive="@style/BottomTextAppearanceActive"

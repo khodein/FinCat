@@ -6,6 +6,7 @@ import com.sergei.pokhodai.expensemanagement.feature.category.api.router.Categor
 import com.sergei.pokhodai.expensemanagement.feature.category.impl.router.contract.CategoryDialogContract
 import com.sergei.pokhodai.expensemanagement.feature.category.impl.router.contract.CategoryEditorContract
 import com.sergei.pokhodai.expensemanagement.feature.category.impl.router.contract.CategoryIconDialogContract
+import com.sergei.pokhodai.expensemanagement.feature.category.impl.router.contract.CategoryManagerContract
 
 internal class CategoryRouterImpl(
     private val router: Router
@@ -13,7 +14,7 @@ internal class CategoryRouterImpl(
 
     override fun goToCategoryEditor(
         id: Long?,
-        budgetType: String,
+        budgetType: String?,
         isOpenFromDialog: Boolean
     ) {
         router.navigate(
@@ -32,5 +33,12 @@ internal class CategoryRouterImpl(
 
     override fun goToCategoryIcon() {
         router.navigate(contract = CategoryIconDialogContract)
+    }
+
+    override fun goToCategoryManager() {
+        router.navigate(
+            contract = CategoryManagerContract(),
+            navAnimation = NavAnimation.FADE
+        )
     }
 }

@@ -1,0 +1,17 @@
+<resources>
+    <string name="calendar_month_title">ВЫБОР МЕСЯЦА</string>
+    <string name="calendar_month_january_short">Янв</string>
+    <string name="calendar_month_february_short">Февр</string>
+    <string name="calendar_month_march_short">Март</string>
+    <string name="calendar_month_april_short">Апр</string>
+    <string name="calendar_month_may_short">Май</string>
+    <string name="calendar_month_june_short">Июнь</string>
+    <string name="calendar_month_july_short">Июль</string>
+    <string name="calendar_month_august_short">Авг</string>
+    <string name="calendar_month_september_short">Сент</string>
+    <string name="calendar_month_october_short">Окт</string>
+    <string name="calendar_month_november_short">Нояб</string>
+    <string name="calendar_month_december_short">Дек</string>
+    <string name="calendar_month_button_edit">Изменить</string>
+</resources>
+

@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:parentTag="androidx.constraintlayout.widget.ConstraintLayout">
+
+    <TextView
+        android:id="@+id/exchange_rate_name"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:gravity="start|center"
+        android:paddingVertical="8dp"
+        android:paddingStart="16dp"
+        android:textAlignment="gravity"
+        android:textAppearance="@style/Regular.14"
+        android:textColor="@color/grey_900"
+        android:textIsSelectable="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/exchange_rate_guideline_first"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Новый туркменский манатjlsdklsdklklsdkldskldsklsdlksывдлдлвыдлывдлывдлывдлыв" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/exchange_rate_guideline_first"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.40"/>
+
+    <TextView
+        android:id="@+id/exchange_rate_nominal"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_gravity="center"
+        android:paddingVertical="8dp"
+        android:gravity="center"
+        android:textAlignment="gravity"
+        android:textIsSelectable="true"
+        android:textAppearance="@style/Regular.14"
+        android:textColor="@color/grey_900"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/exchange_rate_guideline_second"
+        app:layout_constraintStart_toStartOf="@+id/exchange_rate_guideline_first"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Номинал" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/exchange_rate_guideline_second"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.70"/>
+
+    <TextView
+        android:id="@+id/exchange_rate_rate"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_gravity="center"
+        android:gravity="center|end"
+        android:paddingVertical="8dp"
+        android:paddingEnd="16dp"
+        android:textAlignment="gravity"
+        android:textAppearance="@style/Regular.14"
+        android:textColor="@color/grey_900"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:textIsSelectable="true"
+        app:layout_constraintStart_toStartOf="@+id/exchange_rate_guideline_second"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="68,7334" />
+
+    <com.google.android.material.divider.MaterialDivider
+        android:id="@+id/exchange_rate_divider"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_gravity="bottom"
+        app:dividerColor="@color/grey_300"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/exchange_rate_name" />
+
+</merge>

@@ -9,21 +9,26 @@ import com.sergei.pokhodai.expensemanagement.core.base.dimension.ViewDimension
 import com.sergei.pokhodai.expensemanagement.core.router.support.alert.AlertRouterModel
 import com.sergei.pokhodai.expensemanagement.core.router.support.color.ColorRouterModel
 import com.sergei.pokhodai.expensemanagement.core.support.api.ResManager
+import com.sergei.pokhodai.expensemanagement.feature.category.api.domain.model.BudgetType
 import com.sergei.pokhodai.expensemanagement.feature.category.api.domain.model.CategoryModel
 import com.sergei.pokhodai.expensemanagement.feature.category.api.domain.model.CategoryType
+import com.sergei.pokhodai.expensemanagement.feature.category.api.mapper.CategoryBudgetTypeMapper
+import com.sergei.pokhodai.expensemanagement.feature.category.api.mapper.CategoryNameMapper
 import com.sergei.pokhodai.expensemanagement.feature.category.impl.R
 import com.sergei.pokhodai.expensemanagement.feature.category.impl.presentation.editor.state.CategoryEditorErrorState
 import com.sergei.pokhodai.expensemanagement.feature.category.impl.presentation.editor.ui.category_editor.CategoryEditorItem
-import com.sergei.pokhodai.expensemanagement.feature.category.impl.presentation.mapper.CategoryKindMapper
+import com.sergei.pokhodai.expensemanagement.feature.category.impl.presentation.editor.mapper.CategoryKindMapper
 import com.sergei.pokhodai.expensemanagement.feature.category.impl.presentation.mapper.CategoryNameMapperImpl
 import com.sergei.pokhodai.expensemanagement.uikit.button.ButtonItem
 import com.sergei.pokhodai.expensemanagement.feature.category.impl.presentation.editor.ui.color_picker.ColorPickerItem
+import com.sergei.pokhodai.expensemanagement.uikit.dropdown.DropDownItem
 import com.sergei.pokhodai.expensemanagement.uikit.field.TextFieldItem
 import com.sergei.pokhodai.expensemanagement.uikit.toolbar.ToolbarItem
 
 internal class CategoryEditorMapper(
     private val categoryKindMapper: CategoryKindMapper,
-    private val categoryNameMapperImpl: CategoryNameMapperImpl,
+    private val categoryNameMapper: CategoryNameMapper,
+    private val categoryBudgetTypeMapper: CategoryBudgetTypeMapper,
     private val resManager: ResManager,
 ) {
     fun getGlobalError(): String {
@@ -62,9 +67,9 @@ internal class CategoryEditorMapper(
         isEdit: Boolean
     ): String {
         val resId = if (isEdit) {
-            R.string.category_editor_save_add_success
-        } else {
             R.string.category_editor_save_edit_success
+        } else {
+            R.string.category_editor_save_add_success
         }
         return resManager.getString(resId)
     }
@@ -105,6 +110,10 @@ internal class CategoryEditorMapper(
                 onAfterTextChange = itemListProvider::onChangeName,
                 onClickLeading = itemListProvider::onClickIcon
             ),
+            getBudgetItemState(
+                budgetType = categoryModel.budgetType ?: BudgetType.INCOME,
+                onClick = itemListProvider::onClickDropDown,
+            ),
             getColorPickerItemState(
                 model = categoryModel,
                 onClick = itemListProvider::onClickColorPicker
@@ -135,12 +144,33 @@ internal class CategoryEditorMapper(
         )
     }
 
+    private fun getBudgetItemState(
+        budgetType: BudgetType,
+        onClick: (item: DropDownItem.Item) -> Unit
+    ): DropDownItem.State {
+        val items = BudgetType.entries.map {
+            DropDownItem.Item(
+                value = categoryBudgetTypeMapper.getBudgetName(it),
+                data = it
+            )
+        }
+        return DropDownItem.State(
+            provideId = "category_editor_editor_budget_item_id",
+            container = DropDownItem.Container(
+                paddings = P_16_0_16_16
+            ),
+            value = categoryBudgetTypeMapper.getBudgetName(budgetType),
+            items = items,
+            onClickItem = onClick,
+        )
+    }
+
     private fun getCategoryEditorItemState(
         model: CategoryModel,
         onAfterTextChange: ((value: String) -> Unit)? = null,
         onClickLeading: (() -> Unit)? = null
     ): CategoryEditorItem.State {
-        val name = categoryNameMapperImpl.getName(model)
+        val name = categoryNameMapper.getName(model)
         val kindItemState = categoryKindMapper.mapCategoryKindItemState(model)
         val textFieldItemState = TextFieldItem.State(
             provideId = "category_editor_field_item_id",
@@ -197,5 +227,6 @@ internal class CategoryEditorMapper(
         fun onClickColorPicker()
         fun onChangeName(value: String)
         fun onClickIcon()
+        fun onClickDropDown(item: DropDownItem.Item)
     }
 }

@@ -5,6 +5,7 @@ import com.sergei.pokhodai.expensemanagement.core.base.color.ColorValue
 import com.sergei.pokhodai.expensemanagement.core.base.dimension.ViewDimension
 import com.sergei.pokhodai.expensemanagement.core.base.image.ImageValue
 import com.sergei.pokhodai.expensemanagement.core.base.utils.P_16_4_16_16
+import com.sergei.pokhodai.expensemanagement.core.base.utils.P_24_4_24_16
 import com.sergei.pokhodai.expensemanagement.core.recycler.RecyclerState
 import com.sergei.pokhodai.expensemanagement.core.support.api.ResManager
 import com.sergei.pokhodai.expensemanagement.feature.user.api.domain.model.UserAvatarModel
@@ -44,7 +45,7 @@ internal class UserAvatarMapper(
             height = ViewDimension.Dp(40),
             radius = ViewDimension.Dp(84),
             container = ButtonItem.Container(
-                paddings = P_16_4_16_16,
+                paddings = P_24_4_24_16,
                 backgroundColor = ColorValue.Res(baseR.color.background)
             ),
             fill = ButtonItem.Fill.Filled,

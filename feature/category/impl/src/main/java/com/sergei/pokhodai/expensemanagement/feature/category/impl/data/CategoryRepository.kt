@@ -24,6 +24,12 @@ internal class CategoryRepository(
         }
     }
 
+    suspend fun getAllCategories(): List<CategoryModel> {
+        return withContext(Dispatchers.IO) {
+            categoryDao.getAll().map(categoryEntityMapper::mapEntityToModel)
+        }
+    }
+
     suspend fun getCategoryListByBudgetType(
         budgetType: String
     ): List<CategoryModel> {

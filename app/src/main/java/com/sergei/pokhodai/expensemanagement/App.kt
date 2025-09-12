@@ -10,6 +10,7 @@ import coil3.SingletonImageLoader
 import coil3.memory.MemoryCache
 import coil3.request.crossfade
 import com.sergei.pokhodai.expensemanagement.core.eventbus.impl.EventBusModule
+import com.sergei.pokhodai.expensemanagement.core.network.NetworkModule
 import com.sergei.pokhodai.expensemanagement.core.router.Router
 import com.sergei.pokhodai.expensemanagement.core.router.provider.BottomNavigationVisibleProvider
 import com.sergei.pokhodai.expensemanagement.core.router.provider.RouteProvider
@@ -18,8 +19,10 @@ import com.sergei.pokhodai.expensemanagement.core.router.support.SupportRouter
 import com.sergei.pokhodai.expensemanagement.core.support.api.LocaleManager
 import com.sergei.pokhodai.expensemanagement.core.support.impl.SupportModule
 import com.sergei.pokhodai.expensemanagement.database.impl.RoomModule
+import com.sergei.pokhodai.expensemanagement.feature.calendar.impl.CalendarMonthModule
 import com.sergei.pokhodai.expensemanagement.feature.category.impl.CategoryModule
 import com.sergei.pokhodai.expensemanagement.feature.eventeditor.impl.EventEditorModule
+import com.sergei.pokhodai.expensemanagement.feature.exchangerate.impl.ExchangeRateModule
 import com.sergei.pokhodai.expensemanagement.feature.report.impl.ReportModule
 import com.sergei.pokhodai.expensemanagement.feature.settings.impl.SettingsModule
 import com.sergei.pokhodai.expensemanagement.feature.user.impl.UserModule
@@ -54,8 +57,11 @@ internal class App : Application(), SingletonImageLoader.Factory {
 
             modules(
                 AppModule.get(),
+                CalendarMonthModule.get(),
+                ExchangeRateModule.get(),
                 SupportModule.get(),
                 EventBusModule.get(),
+                NetworkModule.get(),
                 RoomModule.get(),
                 ReportModule.get(),
                 CategoryModule.get(),
@@ -101,12 +107,14 @@ internal class App : Application(), SingletonImageLoader.Factory {
         fun newImageLoader(
             context: PlatformContext,
         ): ImageLoader {
-            return ImageLoader.Builder(context)
-                .memoryCache {
-                    MemoryCache.Builder()
-                        .maxSizePercent(context, percent = 0.25)
-                        .build()
-                }
+            return ImageLoader.Builder(context).memoryCache {
+                MemoryCache.Builder()
+                    .maxSizePercent(
+                        context = context,
+                        percent = 0.25
+                    )
+                    .build()
+            }
                 .crossfade(true)
                 .build()
         }

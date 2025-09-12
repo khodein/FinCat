@@ -1,4 +1,4 @@
-package com.sergei.pokhodai.expensemanagement.feature.category.impl.presentation.mapper
+package com.sergei.pokhodai.expensemanagement.feature.category.impl.presentation.editor.mapper
 
 import com.sergei.pokhodai.expensemanagement.core.base.color.ColorValue
 import com.sergei.pokhodai.expensemanagement.core.base.image.ImageValue
@@ -18,7 +18,7 @@ internal class CategoryKindMapper(
                 provideId = "category_kind_item_id",
 
                 icon = categoryTypeMapper.getImageResId(it).let(ImageValue::Res),
-                color = ColorValue.parseColor(model.colorName),
+                color = ColorValue.Companion.parseColor(model.colorName),
                 onClick = onClickKind
             )
         }

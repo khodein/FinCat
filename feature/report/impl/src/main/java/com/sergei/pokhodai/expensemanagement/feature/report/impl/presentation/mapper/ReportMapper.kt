@@ -173,7 +173,7 @@ internal class ReportMapper(
             reports = list.map {
                 ReportModel(
                     name = categoryNameMapper.getName(it.categoryModel?.name),
-                    date = it.dateModel.value.dd_MM_yyyy(),
+                    date = it.dateModel.value.yyyy_MM_dd(),
                     amount = it.amountModel.format,
                     type = it.budgetType.name,
                     description = it.description

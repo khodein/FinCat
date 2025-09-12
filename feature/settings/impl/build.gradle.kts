@@ -25,5 +25,7 @@ dependencies {
     api(project(":core:support:api"))
 
     api(project(":feature:settings:api"))
+    api(project(":feature:category:api"))
     api(project(":feature:user:api"))
+    api(project(":feature:exchangerate:api"))
 }

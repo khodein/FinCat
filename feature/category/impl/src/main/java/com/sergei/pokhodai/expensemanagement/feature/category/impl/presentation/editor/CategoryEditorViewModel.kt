@@ -18,6 +18,7 @@ import com.sergei.pokhodai.expensemanagement.feature.category.impl.presentation.
 import com.sergei.pokhodai.expensemanagement.feature.category.impl.router.contract.CategoryEditorContract
 import com.sergei.pokhodai.expensemanagement.feature.eventeditor.api.EventKeys
 import com.sergei.pokhodai.expensemanagement.uikit.button.ButtonItem
+import com.sergei.pokhodai.expensemanagement.uikit.dropdown.DropDownItem
 import com.sergei.pokhodai.expensemanagement.uikit.toolbar.ToolbarItem
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
@@ -40,7 +41,7 @@ internal class CategoryEditorViewModel(
     private val route = savedStateHandle.toRoute<CategoryEditorContract>()
     private val categoryId = route.id
     private val isOpenFromDialog = route.isOpenFromDialog
-    private val budgetType = BudgetType.valueOf(route.budgetType)
+    private val budgetType = route.budgetType?.let(BudgetType::valueOf) ?: BudgetType.INCOME
     private val isEdit = categoryId != null
 
     private val _topFlow = MutableStateFlow<ToolbarItem.State?>(null)
@@ -116,10 +117,11 @@ internal class CategoryEditorViewModel(
         }.onSuccess {
             updateButton()
             supportRouter.showSnackBar(categoryEditorMapper.getCategoryMessageSuccess(isEdit))
-            router.pop()
             if (isOpenFromDialog) {
                 eventBus.push(categoryModel, EventKeys.SHOW_CATEGORY)
             }
+            eventBus.push(categoryModel, CategoryModule.Keys.NEW_CATEGORY_CREATED_OR_EDIT)
+            router.pop()
         }.onFailure {
             updateError(categoryEditorMapper.getSaveErrorMessage())
         }
@@ -226,6 +228,15 @@ internal class CategoryEditorViewModel(
     override fun onClickIcon() {
         supportRouter.hideKeyboard()
         categoryRouter.goToCategoryIcon()
+    }
+
+    override fun onClickDropDown(item: DropDownItem.Item) {
+        supportRouter.hideKeyboard()
+        val data = item.data
+        if (data is BudgetType) {
+            categoryModel = categoryModel.copy(budgetType = data)
+            updateSuccess()
+        }
     }
 
     override fun onCleared() {

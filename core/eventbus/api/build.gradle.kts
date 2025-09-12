@@ -1,5 +1,5 @@
 plugins {
-    id("core-plugin")
+    id("api-plugin")
 }
 
 android {

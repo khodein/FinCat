@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/manager_category_abl"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.sergei.pokhodai.expensemanagement.uikit.toolbar.ToolbarItemView
+            android:id="@+id/manager_category_tb"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:buttonGravity="center_vertical" />
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/manager_category_items"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clipToPadding="false"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior" />
+
+    <com.sergei.pokhodai.expensemanagement.uikit.button.ButtonItemView
+        android:id="@+id/manager_category_bottom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom" />
+
+    <com.sergei.pokhodai.expensemanagement.uikit.request.RequestItemView
+        android:id="@+id/manager_request_item"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior" />
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

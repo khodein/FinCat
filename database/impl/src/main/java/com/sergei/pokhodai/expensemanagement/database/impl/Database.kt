@@ -14,7 +14,7 @@ import com.sergei.pokhodai.expensemanagement.database.api.entity.UserSelfEntity
     entities = [
         CategoryEntity::class,
         EventEntity::class,
-        UserSelfEntity::class
+        UserSelfEntity::class,
     ],
 )
 internal abstract class Database : RoomDatabase() {
