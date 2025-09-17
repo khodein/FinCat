@@ -171,7 +171,6 @@ internal class EventEditorViewModel(
     }
 
     override fun onClickCategory() {
-        supportRouter.hideKeyboard()
         categoryRouter.goToCategoryDialog(eventModel.budgetType.name)
     }
 

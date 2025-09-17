@@ -21,7 +21,6 @@ internal class SettingsFragment : Fragment(R.layout.fragment_settings) {
         super.onViewCreated(view, savedInstanceState)
         setAdapter()
         setObservable()
-        viewModel.onStart()
     }
 
     private fun setObservable() = with(viewModel) {

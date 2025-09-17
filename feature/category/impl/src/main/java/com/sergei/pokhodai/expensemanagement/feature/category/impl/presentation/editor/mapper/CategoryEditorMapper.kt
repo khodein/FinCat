@@ -102,6 +102,7 @@ internal class CategoryEditorMapper(
 
     fun getItems(
         categoryModel: CategoryModel,
+        isOpenFromDialog: Boolean,
         itemListProvider: Provider
     ): List<RecyclerState> {
         return listOfNotNull(
@@ -111,6 +112,7 @@ internal class CategoryEditorMapper(
                 onClickLeading = itemListProvider::onClickIcon
             ),
             getBudgetItemState(
+                isOpenFromDialog = isOpenFromDialog,
                 budgetType = categoryModel.budgetType ?: BudgetType.INCOME,
                 onClick = itemListProvider::onClickDropDown,
             ),
@@ -145,9 +147,13 @@ internal class CategoryEditorMapper(
     }
 
     private fun getBudgetItemState(
+        isOpenFromDialog: Boolean,
         budgetType: BudgetType,
         onClick: (item: DropDownItem.Item) -> Unit
-    ): DropDownItem.State {
+    ): DropDownItem.State? {
+        if (isOpenFromDialog) {
+            return null
+        }
         val items = BudgetType.entries.map {
             DropDownItem.Item(
                 value = categoryBudgetTypeMapper.getBudgetName(it),

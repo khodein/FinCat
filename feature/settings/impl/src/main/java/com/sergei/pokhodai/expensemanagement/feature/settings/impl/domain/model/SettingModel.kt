@@ -4,32 +4,14 @@ import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import com.sergei.pokhodai.expensemanagement.feature.settings.impl.R
 
-internal enum class SettingModel(
-    @StringRes val nameResId: Int,
-    @DrawableRes val leadingIconRes: Int,
-) {
-    MANAGER_CATEGORY(
-        nameResId = R.string.settings_manage,
-        leadingIconRes = R.drawable.ic_manager_category,
-    ),
+internal enum class SettingModel {
+    MANAGER_CATEGORY,
 
-    VALUTE(
-        nameResId = R.string.settings_exchange,
-        leadingIconRes = R.drawable.ic_attach_money
-    ),
+    VALUTE,
 
-    ASKED_QUESTION(
-        nameResId = R.string.settings_questions,
-        leadingIconRes = R.drawable.ic_quiz
-    ),
+    FAQ,
 
-    LANGUAGE(
-        nameResId = R.string.settings_language,
-        leadingIconRes = R.drawable.ic_language
-    ),
+    LANGUAGE,
 
-    LOGOUT(
-        nameResId = R.string.settings_logout,
-        leadingIconRes = R.drawable.ic_logout,
-    )
+    LOGOUT
 }

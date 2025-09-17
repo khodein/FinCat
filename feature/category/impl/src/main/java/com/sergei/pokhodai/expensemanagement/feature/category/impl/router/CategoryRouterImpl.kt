@@ -3,10 +3,10 @@ package com.sergei.pokhodai.expensemanagement.feature.category.impl.router
 import com.sergei.pokhodai.expensemanagement.core.router.Router
 import com.sergei.pokhodai.expensemanagement.core.router.animation.NavAnimation
 import com.sergei.pokhodai.expensemanagement.feature.category.api.router.CategoryRouter
-import com.sergei.pokhodai.expensemanagement.feature.category.impl.router.contract.CategoryDialogContract
-import com.sergei.pokhodai.expensemanagement.feature.category.impl.router.contract.CategoryEditorContract
-import com.sergei.pokhodai.expensemanagement.feature.category.impl.router.contract.CategoryIconDialogContract
-import com.sergei.pokhodai.expensemanagement.feature.category.impl.router.contract.CategoryManagerContract
+import com.sergei.pokhodai.expensemanagement.feature.category.impl.presentation.category.contract.CategoryDialogContract
+import com.sergei.pokhodai.expensemanagement.feature.category.impl.presentation.editor.contract.CategoryEditorContract
+import com.sergei.pokhodai.expensemanagement.feature.category.impl.presentation.icon_dialog.contract.CategoryIconDialogContract
+import com.sergei.pokhodai.expensemanagement.feature.category.impl.presentation.manager.contract.CategoryManagerContract
 
 internal class CategoryRouterImpl(
     private val router: Router
@@ -32,7 +32,7 @@ internal class CategoryRouterImpl(
     }
 
     override fun goToCategoryIcon() {
-        router.navigate(contract = CategoryIconDialogContract)
+        router.navigate(contract = CategoryIconDialogContract())
     }
 
     override fun goToCategoryManager() {

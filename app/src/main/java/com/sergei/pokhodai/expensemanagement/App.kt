@@ -23,6 +23,7 @@ import com.sergei.pokhodai.expensemanagement.feature.calendar.impl.CalendarMonth
 import com.sergei.pokhodai.expensemanagement.feature.category.impl.CategoryModule
 import com.sergei.pokhodai.expensemanagement.feature.eventeditor.impl.EventEditorModule
 import com.sergei.pokhodai.expensemanagement.feature.exchangerate.impl.ExchangeRateModule
+import com.sergei.pokhodai.expensemanagement.feature.faq.impl.FaqModule
 import com.sergei.pokhodai.expensemanagement.feature.report.impl.ReportModule
 import com.sergei.pokhodai.expensemanagement.feature.settings.impl.SettingsModule
 import com.sergei.pokhodai.expensemanagement.feature.user.impl.UserModule
@@ -57,6 +58,7 @@ internal class App : Application(), SingletonImageLoader.Factory {
 
             modules(
                 AppModule.get(),
+                FaqModule.get(),
                 CalendarMonthModule.get(),
                 ExchangeRateModule.get(),
                 SupportModule.get(),

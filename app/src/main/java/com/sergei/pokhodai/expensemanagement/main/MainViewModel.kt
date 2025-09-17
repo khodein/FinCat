@@ -3,26 +3,28 @@ package com.sergei.pokhodai.expensemanagement.main
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.sergei.pokhodai.expensemanagement.core.support.api.LocaleManager
-import com.sergei.pokhodai.expensemanagement.feature.user.api.domain.IsUserDataStoreEmptyUseCase
+import com.sergei.pokhodai.expensemanagement.feature.user.api.domain.GetUserIdFlowUseCase
 import com.sergei.pokhodai.expensemanagement.feature.user.api.router.UserRouter
 import kotlinx.coroutines.launch
 
 internal class MainViewModel(
-    private val isUserDataStoreEmptyUseCase: IsUserDataStoreEmptyUseCase,
-    private val localeManager: LocaleManager,
+    private val getUserIdFlowUseCase: GetUserIdFlowUseCase,
     private val userRouter: UserRouter,
+    localeManager: LocaleManager,
 ) : ViewModel() {
 
     val languageFlow = localeManager.getLanguageFlow()
 
     init {
-        loadData()
+        onCheckUserId()
     }
 
-    private fun loadData() {
+    private fun onCheckUserId() {
         viewModelScope.launch {
-            if (isUserDataStoreEmptyUseCase.invoke()) {
-                userRouter.goToUser()
+            getUserIdFlowUseCase.invoke().collect { userId ->
+                if (userId == null) {
+                    userRouter.goToUser()
+                }
             }
         }
     }

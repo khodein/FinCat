@@ -29,6 +29,10 @@
         <item name="android:textSize">20sp</item>
     </style>
 
+    <style name="Bold.18">
+        <item name="android:textSize">18sp</item>
+    </style>
+
     <style name="Bold.14">
         <item name="android:textSize">14sp</item>
     </style>

@@ -1,5 +1,7 @@
 package com.sergei.pokhodai.expensemanagement.feature.settings.impl.presentation.mapper
 
+import androidx.annotation.DrawableRes
+import androidx.annotation.StringRes
 import com.sergei.pokhodai.expensemanagement.core.base.color.ColorValue
 import com.sergei.pokhodai.expensemanagement.core.base.image.ImageValue
 import com.sergei.pokhodai.expensemanagement.core.base.utils.P_16_0_16_0
@@ -54,17 +56,39 @@ internal class SettingsMapper(
             list.forEachIndexed { index, model ->
                 SettingItem.State(
                     provideId = model.name,
-                    leadingIcon = ImageValue.Res(model.leadingIconRes),
+                    leadingIcon = ImageValue.Res(getLeadingIcon(model)),
                     trailingIcon = if (index == list.lastIndex) {
                         null
                     } else {
                         ImageValue.Res(R.drawable.ic_arrow_setting)
                     },
-                    name = resManager.getString(model.nameResId),
+                    name = resManager.getString(getName(model)),
                     data = model,
                     onClick = onClickSetting
                 ).let(::add)
             }
+        }
+    }
+
+    @DrawableRes
+    private fun getLeadingIcon(model: SettingModel): Int {
+        return when(model) {
+            SettingModel.MANAGER_CATEGORY -> R.drawable.ic_manager_category
+            SettingModel.FAQ -> R.drawable.ic_quiz
+            SettingModel.LOGOUT -> R.drawable.ic_logout
+            SettingModel.VALUTE -> R.drawable.ic_attach_money
+            SettingModel.LANGUAGE -> R.drawable.ic_language
+        }
+    }
+
+    @StringRes
+    private fun getName(model: SettingModel): Int {
+        return when(model) {
+            SettingModel.MANAGER_CATEGORY -> R.string.settings_manage
+            SettingModel.FAQ -> R.string.settings_questions
+            SettingModel.LOGOUT -> R.string.settings_logout
+            SettingModel.VALUTE -> R.string.settings_exchange
+            SettingModel.LANGUAGE -> R.string.settings_language
         }
     }
 

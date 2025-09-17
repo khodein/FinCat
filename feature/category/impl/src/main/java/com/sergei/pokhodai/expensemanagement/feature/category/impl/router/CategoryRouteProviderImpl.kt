@@ -6,13 +6,12 @@ import com.sergei.pokhodai.expensemanagement.feature.category.impl.presentation.
 import com.sergei.pokhodai.expensemanagement.feature.category.impl.presentation.editor.CategoryEditorFragment
 import com.sergei.pokhodai.expensemanagement.feature.category.impl.presentation.icon_dialog.CategoryIconDialog
 import com.sergei.pokhodai.expensemanagement.feature.category.impl.presentation.manager.CategoryManagerFragment
-import com.sergei.pokhodai.expensemanagement.feature.category.impl.router.contract.CategoryDialogContract
-import com.sergei.pokhodai.expensemanagement.feature.category.impl.router.contract.CategoryEditorContract
-import com.sergei.pokhodai.expensemanagement.feature.category.impl.router.contract.CategoryIconDialogContract
-import com.sergei.pokhodai.expensemanagement.feature.category.impl.router.contract.CategoryManagerContract
+import com.sergei.pokhodai.expensemanagement.feature.category.impl.presentation.category.contract.CategoryDialogContract
+import com.sergei.pokhodai.expensemanagement.feature.category.impl.presentation.editor.contract.CategoryEditorContract
+import com.sergei.pokhodai.expensemanagement.feature.category.impl.presentation.icon_dialog.contract.CategoryIconDialogContract
+import com.sergei.pokhodai.expensemanagement.feature.category.impl.presentation.manager.contract.CategoryManagerContract
 
-class CategoryRouteProviderImpl : RouteProvider {
-
+internal class CategoryRouteProviderImpl : RouteProvider {
     override fun getDestination(): List<RouteDestination> {
         return listOf(
             RouteDestination(

@@ -7,13 +7,13 @@ import com.sergei.pokhodai.expensemanagement.feature.category.api.domain.model.B
 import com.sergei.pokhodai.expensemanagement.feature.category.api.domain.model.CategoryModel
 import com.sergei.pokhodai.expensemanagement.feature.eventeditor.api.domain.model.DateModel
 import com.sergei.pokhodai.expensemanagement.feature.eventeditor.api.domain.model.EventModel
-import com.sergei.pokhodai.expensemanagement.feature.user.api.domain.GetUserDataIdUseCase
+import com.sergei.pokhodai.expensemanagement.feature.user.api.domain.GetUserIdUseCase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
 internal class EventRepository(
     private val eventEntityMapper: EventEntityMapper,
-    private val userIdUseCase: GetUserDataIdUseCase,
+    private val userIdUseCase: GetUserIdUseCase,
     private val eventDao: EventDao,
 ) {
     suspend fun setEvents(vararg models: EventModel) {

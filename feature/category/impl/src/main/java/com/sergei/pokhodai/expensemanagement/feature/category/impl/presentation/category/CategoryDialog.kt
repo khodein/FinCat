@@ -43,11 +43,11 @@ internal class CategoryDialog : BaseBottomSheetDialogFragment(R.layout.dialog_ca
                     binder = ButtonItemView::bindState
                 )
                 if (state == null) {
-                    binding.categoryDialogList.applyPadding(bottom = 0)
+                    binding.categoryDialogContainer.applyPadding(bottom = 0)
                     binding.categoryDialogRequest.applyPadding(bottom = 0)
                 } else {
                     binding.categoryDialogCreate.doOnLayout {
-                        binding.categoryDialogList.applyPadding(bottom = it.height)
+                        binding.categoryDialogContainer.applyPadding(bottom = it.height)
                         binding.categoryDialogRequest.applyPadding(bottom = it.height)
                     }
                 }
@@ -64,7 +64,6 @@ internal class CategoryDialog : BaseBottomSheetDialogFragment(R.layout.dialog_ca
                 binding.categoryDialogTitle.text = text
                 binding.categoryDialogTitle.doOnLayout {
                     binding.categoryDialogRequest.applyPadding(top = it.height)
-                    binding.categoryDialogList.applyPadding(top = it.height)
                 }
             }
 

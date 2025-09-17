@@ -57,5 +57,8 @@ dependencies {
 
     implementation(project(":feature:exchangerate:impl"))
     api(project(":feature:exchangerate:api"))
+
+    implementation(project(":feature:faq:impl"))
+    api(project(":feature:faq:api"))
 }
 

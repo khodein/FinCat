@@ -15,16 +15,18 @@ import com.sergei.pokhodai.expensemanagement.feature.category.api.router.Categor
 import com.sergei.pokhodai.expensemanagement.feature.category.impl.CategoryModule
 import com.sergei.pokhodai.expensemanagement.feature.category.impl.data.CategoryRepository
 import com.sergei.pokhodai.expensemanagement.feature.category.impl.presentation.editor.mapper.CategoryEditorMapper
-import com.sergei.pokhodai.expensemanagement.feature.category.impl.router.contract.CategoryEditorContract
+import com.sergei.pokhodai.expensemanagement.feature.category.impl.presentation.editor.contract.CategoryEditorContract
 import com.sergei.pokhodai.expensemanagement.feature.eventeditor.api.EventKeys
 import com.sergei.pokhodai.expensemanagement.uikit.button.ButtonItem
 import com.sergei.pokhodai.expensemanagement.uikit.dropdown.DropDownItem
 import com.sergei.pokhodai.expensemanagement.uikit.toolbar.ToolbarItem
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 internal class CategoryEditorViewModel(
     private val categoryRepository: CategoryRepository,
@@ -116,12 +118,14 @@ internal class CategoryEditorViewModel(
             }
         }.onSuccess {
             updateButton()
-            supportRouter.showSnackBar(categoryEditorMapper.getCategoryMessageSuccess(isEdit))
-            if (isOpenFromDialog) {
-                eventBus.push(categoryModel, EventKeys.SHOW_CATEGORY)
+            withContext(Dispatchers.Main) {
+                supportRouter.showSnackBar(categoryEditorMapper.getCategoryMessageSuccess(isEdit))
+                router.pop()
+                if (isOpenFromDialog) {
+                    eventBus.push(categoryModel, EventKeys.SHOW_CATEGORY)
+                }
+                eventBus.push(categoryModel, CategoryModule.Keys.NEW_CATEGORY_CREATED_OR_EDIT)
             }
-            eventBus.push(categoryModel, CategoryModule.Keys.NEW_CATEGORY_CREATED_OR_EDIT)
-            router.pop()
         }.onFailure {
             updateError(categoryEditorMapper.getSaveErrorMessage())
         }
@@ -178,18 +182,21 @@ internal class CategoryEditorViewModel(
     private fun updateItems() {
         _itemsFlow.value = categoryEditorMapper.getItems(
             categoryModel = categoryModel,
+            isOpenFromDialog = isOpenFromDialog,
             itemListProvider = this
         )
     }
 
     private fun onClickButton(state: ButtonItem.State) {
         supportRouter.hideKeyboard()
-        categoryEditorMapper.getCategoryEditorErrorState(
+        val errorState = categoryEditorMapper.getCategoryEditorErrorState(
             name = categoryModel.name,
             type = categoryModel.type
-        )?.let {
-            supportRouter.showSnackBar(it.message)
-        } ?: run {
+        )
+
+        if (errorState != null) {
+            supportRouter.showSnackBar(errorState.message)
+        } else {
             fetchSaveOrDelete(true)
         }
     }

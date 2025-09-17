@@ -9,7 +9,7 @@ import com.sergei.pokhodai.expensemanagement.feature.category.api.domain.usecase
 import com.sergei.pokhodai.expensemanagement.feature.eventeditor.api.domain.usecase.DeleteAllCategoryUserCase
 import com.sergei.pokhodai.expensemanagement.feature.user.api.domain.model.UserSelfModel
 import com.sergei.pokhodai.expensemanagement.feature.user.api.router.UserRouter
-import com.sergei.pokhodai.expensemanagement.feature.user.impl.data.UserDataStoreRepository
+import com.sergei.pokhodai.expensemanagement.feature.user.impl.data.UserIdRepository
 import com.sergei.pokhodai.expensemanagement.feature.user.impl.data.UserRepository
 import com.sergei.pokhodai.expensemanagement.feature.user.impl.presentation.list.mapper.UserListMapper
 import com.sergei.pokhodai.expensemanagement.feature.user.impl.presentation.ui.user.UserListItem
@@ -26,7 +26,7 @@ import kotlinx.coroutines.launch
 
 internal class UserListViewModel(
     private val userRepository: UserRepository,
-    private val userDataStoreRepository: UserDataStoreRepository,
+    private val userDataStoreRepository: UserIdRepository,
     private val userListMapper: UserListMapper,
     private val userRouter: UserRouter,
     private val router: Router,
@@ -111,7 +111,7 @@ internal class UserListViewModel(
         loadingJob?.cancel()
         loadingJob = viewModelScope.launch {
             runCatching {
-                userDataStoreRepository.setUserData(userId)
+                userDataStoreRepository.setUserId(userId)
             }.onSuccess {
                 loadUserData()
             }.onFailure {
@@ -163,17 +163,12 @@ internal class UserListViewModel(
                     loadAllDeleteCategory()
                 }
 
-                val deleteDataStoreAsync = async {
-                    loadDeleteDataStoreUserId()
-                }
-
                 listOf(
-                    deleteDataStoreAsync,
                     deleteCategoryAsync,
                     deleteEventAsync
                 ).awaitAll()
 
-                userRouter.goToUser()
+                loadDeleteDataStoreUserId()
             }.onFailure {
                 updateError()
             }
@@ -182,7 +177,7 @@ internal class UserListViewModel(
 
     private suspend fun loadDeleteDataStoreUserId(): Result<Unit> {
         return runCatching {
-            userDataStoreRepository.setUserData(null)
+            userDataStoreRepository.setUserId(null)
         }
     }
 

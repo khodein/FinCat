@@ -57,3 +57,6 @@ include ':feature:calendar:impl',
 
 include ':feature:exchangerate:impl',
         ':feature:exchangerate:api'
+
+include ':feature:faq:impl',
+        ':feature:faq:api'

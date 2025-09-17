@@ -21,8 +21,8 @@ dependencies {
     implementation(project(":core:router"))
     implementation(project(":core:formatter"))
 
-
     api(project(":core:eventbus:api"))
     api(project(":core:support:api"))
+
     api(project(":feature:calendar:api"))
 }

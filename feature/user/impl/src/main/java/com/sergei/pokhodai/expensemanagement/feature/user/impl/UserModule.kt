@@ -7,21 +7,19 @@ import androidx.datastore.preferences.preferencesDataStore
 import com.sergei.pokhodai.expensemanagement.core.recycler.register.RecyclerRegister
 import com.sergei.pokhodai.expensemanagement.core.router.provider.BottomNavigationVisibleProvider
 import com.sergei.pokhodai.expensemanagement.core.router.provider.RouteProvider
-import com.sergei.pokhodai.expensemanagement.feature.user.api.domain.GetUserDataIdUseCase
-import com.sergei.pokhodai.expensemanagement.feature.user.api.domain.GetUserSelf
-import com.sergei.pokhodai.expensemanagement.feature.user.api.domain.IsFirstEntryAppUseCase
-import com.sergei.pokhodai.expensemanagement.feature.user.api.domain.IsUserDataStoreEmptyUseCase
+import com.sergei.pokhodai.expensemanagement.feature.user.api.domain.GetUserIdUseCase
+import com.sergei.pokhodai.expensemanagement.feature.user.api.domain.GetUserIdFlowUseCase
+import com.sergei.pokhodai.expensemanagement.feature.user.api.domain.GetUserSelfUseCase
 import com.sergei.pokhodai.expensemanagement.feature.user.api.presentation.mapper.UserAvatarArtMapper
 import com.sergei.pokhodai.expensemanagement.feature.user.api.presentation.mapper.UserCurrencyNameMapper
 import com.sergei.pokhodai.expensemanagement.feature.user.api.router.UserRouter
-import com.sergei.pokhodai.expensemanagement.feature.user.impl.data.UserDataStoreRepository
+import com.sergei.pokhodai.expensemanagement.feature.user.impl.data.UserIdRepository
 import com.sergei.pokhodai.expensemanagement.feature.user.impl.data.UserRepository
 import com.sergei.pokhodai.expensemanagement.feature.user.impl.data.mapper.UserEntityMapper
 import com.sergei.pokhodai.expensemanagement.feature.user.impl.data.store.DataStoreKey
+import com.sergei.pokhodai.expensemanagement.feature.user.impl.domain.usecase.GetUserIdFlowUseCaseImpl
 import com.sergei.pokhodai.expensemanagement.feature.user.impl.domain.usecase.GetUserIdUseCaseImpl
-import com.sergei.pokhodai.expensemanagement.feature.user.impl.domain.usecase.GetUserSelfImpl
-import com.sergei.pokhodai.expensemanagement.feature.user.impl.domain.usecase.IsFirstEntryAppUseCaseImpl
-import com.sergei.pokhodai.expensemanagement.feature.user.impl.domain.usecase.IsUserDataStoreEmptyUseCaseImpl
+import com.sergei.pokhodai.expensemanagement.feature.user.impl.domain.usecase.GetUserSelfUseCaseImpl
 import com.sergei.pokhodai.expensemanagement.feature.user.impl.presentation.avatar.UserAvatarViewModel
 import com.sergei.pokhodai.expensemanagement.feature.user.impl.presentation.currency.UserCurrencyViewModel
 import com.sergei.pokhodai.expensemanagement.feature.user.impl.presentation.currency.mapper.UserCurrencyMapper
@@ -79,17 +77,16 @@ object UserModule {
     fun get(): Module {
         return module {
             single {
-                UserDataStoreRepository(dataStore = androidContext().dataStore)
+                UserIdRepository(dataStore = androidContext().dataStore)
             }
 
             singleOf(::UserRouterProviderImpl) bind RouteProvider::class
             singleOf(::UserRouterImpl) bind UserRouter::class
             singleOf(::UserBottomNavigationVisibilityProviderImpl) bind BottomNavigationVisibleProvider::class
+            singleOf(::GetUserIdFlowUseCaseImpl) bind GetUserIdFlowUseCase::class
 
-            singleOf(::IsUserDataStoreEmptyUseCaseImpl) bind IsUserDataStoreEmptyUseCase::class
-            singleOf(::IsFirstEntryAppUseCaseImpl) bind IsFirstEntryAppUseCase::class
-            singleOf(::GetUserIdUseCaseImpl) bind GetUserDataIdUseCase::class
-            singleOf(::GetUserSelfImpl) bind GetUserSelf::class
+            singleOf(::GetUserIdUseCaseImpl) bind GetUserIdUseCase::class
+            singleOf(::GetUserSelfUseCaseImpl) bind GetUserSelfUseCase::class
 
             singleOf(::UserRepository)
 

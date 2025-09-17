@@ -7,7 +7,7 @@
     <string name="settings_currency">Choose currency</string>
     <string name="settings_exchange">Exchange rate</string>
     <string name="settings_language">Choose language</string>
-    <string name="settings_questions">Asked questions</string>
+    <string name="settings_questions">FAQ</string>
     <string name="settings_logout">Logout</string>
 
     <string name="settings_error">An unknown error occurred</string>

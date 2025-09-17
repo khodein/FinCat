@@ -17,7 +17,7 @@ import com.sergei.pokhodai.expensemanagement.feature.user.impl.data.UserReposito
 import com.sergei.pokhodai.expensemanagement.feature.user.api.domain.model.UserSelfModel
 import com.sergei.pokhodai.expensemanagement.feature.user.api.router.UserRouter
 import com.sergei.pokhodai.expensemanagement.feature.user.impl.UserModule
-import com.sergei.pokhodai.expensemanagement.feature.user.impl.data.UserDataStoreRepository
+import com.sergei.pokhodai.expensemanagement.feature.user.impl.data.UserIdRepository
 import com.sergei.pokhodai.expensemanagement.feature.user.impl.presentation.self.mapper.UserMapper
 import com.sergei.pokhodai.expensemanagement.feature.user.impl.presentation.self.state.UserErrorState
 import com.sergei.pokhodai.expensemanagement.feature.user.impl.presentation.self.state.UserSettingState
@@ -35,7 +35,7 @@ internal class UserViewModel(
     private val userRouter: UserRouter,
     private val userMapper: UserMapper,
     private val userRepository: UserRepository,
-    private val userDataStoreRepository: UserDataStoreRepository,
+    private val userDataStoreRepository: UserIdRepository,
     private val eventBus: EventBus,
     private val supportRouter: SupportRouter,
     private val router: Router,
@@ -158,7 +158,7 @@ internal class UserViewModel(
 
     private suspend fun loadDataStoreUser(userId: Long?) {
         runCatching {
-            userDataStoreRepository.setUserData(userId)
+            userDataStoreRepository.setUserId(userId)
         }.onSuccess {
             updateSaveSuccess()
         }.onFailure {

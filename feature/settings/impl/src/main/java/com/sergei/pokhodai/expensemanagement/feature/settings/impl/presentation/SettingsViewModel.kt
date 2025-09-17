@@ -11,7 +11,8 @@ import com.sergei.pokhodai.expensemanagement.feature.settings.impl.domain.model.
 import com.sergei.pokhodai.expensemanagement.feature.settings.impl.presentation.mapper.SettingsMapper
 import com.sergei.pokhodai.expensemanagement.feature.settings.impl.presentation.ui.profile.SettingProfileItem
 import com.sergei.pokhodai.expensemanagement.feature.settings.impl.presentation.ui.settings.SettingItem
-import com.sergei.pokhodai.expensemanagement.feature.user.api.domain.GetUserSelf
+import com.sergei.pokhodai.expensemanagement.feature.user.api.domain.GetUserIdFlowUseCase
+import com.sergei.pokhodai.expensemanagement.feature.user.api.domain.GetUserSelfUseCase
 import com.sergei.pokhodai.expensemanagement.feature.user.api.domain.model.UserSelfModel
 import com.sergei.pokhodai.expensemanagement.feature.user.api.router.UserRouter
 import com.sergei.pokhodai.expensemanagement.uikit.request.RequestItem
@@ -23,7 +24,8 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 
 internal class SettingsViewModel(
-    private val getUserSelf: GetUserSelf,
+    private val getUserSelfUseCase: GetUserSelfUseCase,
+    private val getUserIdFlowUseCase: GetUserIdFlowUseCase,
     private val settingsMapper: SettingsMapper,
     private val settingsRepository: SettingsRepository,
     private val localeManager: LocaleManager,
@@ -48,13 +50,15 @@ internal class SettingsViewModel(
         updateTop()
         viewModelScope.launch {
             localeManager.getLanguageFlow().collect {
-                onStart()
+                fetchData()
             }
         }
-    }
 
-    fun onStart() {
-        fetchData()
+        viewModelScope.launch {
+            getUserIdFlowUseCase.invoke().collect {
+                fetchData()
+            }
+        }
     }
 
     private fun updateTop() {
@@ -75,7 +79,7 @@ internal class SettingsViewModel(
 
     private suspend fun loadUser() {
         runCatching {
-            getUserSelf.invoke()
+            getUserSelfUseCase.invoke()
         }.onSuccess { model ->
             loadSettingList(model)
         }.onFailure {
@@ -137,7 +141,7 @@ internal class SettingsViewModel(
                 SettingModel.LOGOUT -> userRouter.goToUserList()
                 SettingModel.LANGUAGE -> userRouter.goToUserLanguage()
                 SettingModel.VALUTE -> exchangeRateRouter.goToExchangeRate()
-                SettingModel.ASKED_QUESTION -> {
+                SettingModel.FAQ -> {
 
                 }
             }

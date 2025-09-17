@@ -36,6 +36,8 @@ open class BaseBottomSheetDialogFragment(
         setCorner(sheetContainer)
         with(dialog) {
             behavior.isHideable = true
+            behavior.isFitToContents = true
+            behavior.hideFriction = 1f
             behavior.significantVelocityThreshold = Int.MAX_VALUE
             behavior.skipCollapsed = false
             behavior.state = BottomSheetBehavior.STATE_EXPANDED
