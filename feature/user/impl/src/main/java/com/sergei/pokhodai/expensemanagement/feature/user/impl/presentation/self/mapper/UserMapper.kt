@@ -9,17 +9,15 @@ import com.sergei.pokhodai.expensemanagement.core.base.utils.P_16_0_16_16
 import com.sergei.pokhodai.expensemanagement.core.base.utils.P_16_16_16_16
 import com.sergei.pokhodai.expensemanagement.core.base.utils.P_16_4_16_16
 import com.sergei.pokhodai.expensemanagement.core.recycler.RecyclerState
-import com.sergei.pokhodai.expensemanagement.core.support.api.ResManager
-import com.sergei.pokhodai.expensemanagement.core.support.api.model.LocaleLanguageModel
+import com.sergei.pokhodai.expensemanagement.core.support.api.manager.ResManager
+import com.sergei.pokhodai.expensemanagement.core.support.api.model.LocalModel
 import com.sergei.pokhodai.expensemanagement.feature.user.api.domain.model.UserAvatarModel
 import com.sergei.pokhodai.expensemanagement.feature.user.api.domain.model.UserCurrencyModel
 import com.sergei.pokhodai.expensemanagement.feature.user.api.domain.model.UserSelfModel
 import com.sergei.pokhodai.expensemanagement.feature.user.api.presentation.mapper.UserAvatarArtMapper
 import com.sergei.pokhodai.expensemanagement.feature.user.api.presentation.mapper.UserCurrencyNameMapper
 import com.sergei.pokhodai.expensemanagement.feature.user.impl.R
-import com.sergei.pokhodai.expensemanagement.feature.user.impl.presentation.currency.mapper.UserCurrencyMapper
 import com.sergei.pokhodai.expensemanagement.feature.user.impl.presentation.language.mapper.UserLanguageMapper
-import com.sergei.pokhodai.expensemanagement.feature.user.impl.presentation.self.state.UserErrorState
 import com.sergei.pokhodai.expensemanagement.feature.user.impl.presentation.self.state.UserSettingState
 import com.sergei.pokhodai.expensemanagement.feature.user.impl.presentation.ui.avatar.UserAvatarItem
 import com.sergei.pokhodai.expensemanagement.feature.user.impl.presentation.ui.tags_container.UserTagsContainerItem
@@ -79,7 +77,7 @@ internal class UserMapper(
 
     fun getItems(
         userModel: UserSelfModel,
-        language: LocaleLanguageModel,
+        language: LocalModel,
         isEdit: Boolean,
         isEmptyDataStoreUser: Boolean,
         provider: ItemListProvider,
@@ -166,7 +164,7 @@ internal class UserMapper(
 
     private fun getSettingsTags(
         currency: UserCurrencyModel?,
-        language: LocaleLanguageModel,
+        language: LocalModel,
         isEmptyDataStoreUser: Boolean,
         isEdit: Boolean,
         provider: ItemListProvider,

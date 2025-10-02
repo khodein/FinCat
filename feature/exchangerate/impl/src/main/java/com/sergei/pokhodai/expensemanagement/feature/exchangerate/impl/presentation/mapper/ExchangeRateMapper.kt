@@ -1,7 +1,7 @@
 package com.sergei.pokhodai.expensemanagement.feature.exchangerate.impl.presentation.mapper
 
 import com.sergei.pokhodai.expensemanagement.core.recycler.RecyclerState
-import com.sergei.pokhodai.expensemanagement.core.support.api.ResManager
+import com.sergei.pokhodai.expensemanagement.core.support.api.manager.ResManager
 import com.sergei.pokhodai.expensemanagement.feature.exchangerate.api.domain.model.CbrDailyModel
 import com.sergei.pokhodai.expensemanagement.feature.exchangerate.impl.R
 import com.sergei.pokhodai.expensemanagement.feature.exchangerate.impl.presentation.ui.exchange_rate.ExchangeRateItem

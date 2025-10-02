@@ -58,6 +58,7 @@ class TextFieldItemView @JvmOverloads constructor(
         binding.fieldItemText.setUniqueText(state.value)
 
         binding.fieldItemText.hint = state.hint
+        binding.fieldItemText.setSelection(state.value.length)
 
         binding.fieldItemContainer.isEnabled = state.isEnabled
 

@@ -8,7 +8,7 @@ internal class StatisticItem {
     data class State(
         override val provideId: String,
         val cells: List<Cell>
-    ): RecyclerState
+    ) : RecyclerState
 
     data class Cell(
         val color: ColorValue,

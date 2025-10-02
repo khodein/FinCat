@@ -27,7 +27,6 @@
         android:layout_width="0dp"
         android:layout_height="56dp"
         android:layout_gravity="bottom"
-        android:elevation="4dp"
         app:labelVisibilityMode="labeled"
         tools:visibility="visible"
         app:itemTextColor="@color/grey_800"

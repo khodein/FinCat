@@ -1,4 +1,41 @@
 <resources>
-    <string name="faq_top_title">Faq</string>
+    <string name="faq_top_title">FAQ</string>
+
+    <string name="faq_credit_title">Where can I get a loan? Lend me money</string>
+    <string name="faq_credit_description">The FinCat app does not issue loans or microloans. Our goal is to help you manage your finances. FinCat is your personal assistant for tracking income and expenses.</string>
+
+    <string name="faq_users_title">Why create a user? Why can there be multiple users?</string>
+    <string name="faq_users_description">A "User" in the app is essentially a separate wallet or account for keeping records. You can create multiple users to separate your finances. For example, you can set up separate accounts for the family budget, personal expenses, calculations in different currencies, etc.</string>
+
+    <string name="faq_exchange_rate_title">Is only the Central Bank of Russia exchange rate available in the app?</string>
+    <string name="faq_exchange_rate_description">Currently, we use the official exchange rate from the Central Bank of the Russian Federation. If you need an exchange rate from another country, please contact support. We will consider your suggestions and try to add the required exchange rates in future updates.</string>
+
+    <string name="faq_category_title">How many categories can I create? Will old transactions be deleted if I remove a category?</string>
+    <string name="faq_category_description">You can create an unlimited number of categories—it only depends on the free memory of your device. When you delete a category, it will disappear from the selection list, but all transactions linked to it will remain unchanged in the history.</string>
+
+    <string name="faq_enter_currency_title">What is the maximum amount I can enter for income or expenses?</string>
+    <string name="faq_enter_currency_description">The maximum amount is limited to 12 digits.</string>
+
+    <string name="faq_language_title">The app has only two languages, and the English translation is not perfect</string>
+    <string name="faq_language_description">Yes, currently two languages are available. We use automated translation, so inaccuracies are possible. If you need another language or would like to help improve the translation and are a native speaker, please contact support. We welcome any help!</string>
+
+    <string name="faq_button_question">Ask a question</string>
+
+    <string name="faq_question_title">Ask a question</string>
+
+    <string name="faq_question_name_hint">Name (optional)</string>
+    <string name="faq_question_email_hint">Email (optional)</string>
+    <string name="faq_question_title_hint">Title (optional)</string>
+    <string name="faq_question_message_hint">Message…</string>
+    <string name="faq_question_send">Send</string>
+    <string name="faq_question_develop_email">By mail to the developer</string>
+
+    <string name="faq_question_email_error">Please check that the email is correct</string>
+    <string name="faq_question_name_error">The name must be at least two characters long</string>
+    <string name="faq_question_title_error">The title must be at least two characters long</string>
+    <string name="faq_question_message_error">The message field is empty</string>
+    <string name="faq_question_choose_mail_client">Choose an email app</string>
+    <string name="faq_question_send_success"> Support message successfully sent</string>
+    <string name="faq_question_send_error">There was an error sending the message, try again</string>
 </resources>
 

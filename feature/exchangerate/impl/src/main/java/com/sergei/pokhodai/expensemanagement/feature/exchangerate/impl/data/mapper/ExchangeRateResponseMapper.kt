@@ -13,8 +13,8 @@ internal class ExchangeRateResponseMapper {
         response: CbrDailyResponse
     ): CbrDailyModel {
         return CbrDailyModel(
-            date = response.date?.let(LocalDateFormatter::exchangeFormatParse),
-            previousDate = response.previousDate?.let(LocalDateFormatter::exchangeFormatParse),
+            date = response.date?.let(LocalDateFormatter::parseExchangeFormat),
+            previousDate = response.previousDate?.let(LocalDateFormatter::parseExchangeFormat),
             valuteModelList = mapValuteResponseToModelList(response.valute)
         )
     }

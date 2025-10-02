@@ -7,6 +7,7 @@ import com.sergei.pokhodai.expensemanagement.feature.category.api.domain.model.B
 import com.sergei.pokhodai.expensemanagement.feature.category.api.domain.model.CategoryModel
 import com.sergei.pokhodai.expensemanagement.feature.eventeditor.api.domain.model.DateModel
 import com.sergei.pokhodai.expensemanagement.feature.eventeditor.api.domain.model.EventModel
+import com.sergei.pokhodai.expensemanagement.feature.user.api.domain.GetUserCurrencyUseCase
 import com.sergei.pokhodai.expensemanagement.feature.user.api.domain.GetUserIdUseCase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
@@ -14,6 +15,7 @@ import kotlinx.coroutines.withContext
 internal class EventRepository(
     private val eventEntityMapper: EventEntityMapper,
     private val userIdUseCase: GetUserIdUseCase,
+    private val userCurrencyUseCase: GetUserCurrencyUseCase,
     private val eventDao: EventDao,
 ) {
     suspend fun setEvents(vararg models: EventModel) {
@@ -41,10 +43,17 @@ internal class EventRepository(
 
     suspend fun getEventById(id: Long): EventModel? {
         return withContext(Dispatchers.IO) {
+            val userId = userIdUseCase.invoke()
+            val currency = userCurrencyUseCase.invoke(userId)
             eventDao.getById(
                 id = id,
-                userId = userIdUseCase.invoke(),
-            )?.let(eventEntityMapper::mapEntityToModel)
+                userId = userId,
+            )?.let { entity ->
+                eventEntityMapper.mapEntityToModel(
+                    entity = entity,
+                    currencyModel = currency
+                )
+            }
         }
     }
 
@@ -52,12 +61,19 @@ internal class EventRepository(
         date: LocalDateFormatter,
     ): Map<DateModel, List<EventModel>> {
         return withContext(Dispatchers.IO) {
+            val userId = userIdUseCase.invoke()
+            val currency = userCurrencyUseCase.invoke(userId)
             eventDao.getEventByMonthAndYear(
                 dateMonth = date.MM(),
                 dateYear = date.yyyy(),
                 userId = userIdUseCase.invoke(),
             )
-                .map(eventEntityMapper::mapEntityToModel)
+                .map { entity ->
+                    eventEntityMapper.mapEntityToModel(
+                        entity = entity,
+                        currencyModel = currency
+                    )
+                }
                 .groupBy { it.dateModel }
         }
     }
@@ -73,13 +89,20 @@ internal class EventRepository(
         budgetType: BudgetType,
     ): Map<CategoryModel, List<EventModel>> {
         return withContext(Dispatchers.IO) {
+            val userId = userIdUseCase.invoke()
+            val currency = userCurrencyUseCase.invoke(userId)
             eventDao.getEventByMonthAndYearAndBudgetType(
                 dateMonth = date.MM(),
                 dateYear = date.yyyy(),
                 budgetType = budgetType.name,
                 userId = userIdUseCase.invoke()
             )
-                .map(eventEntityMapper::mapEntityToModel)
+                .map { entity ->
+                    eventEntityMapper.mapEntityToModel(
+                        currencyModel = currency,
+                        entity = entity
+                    )
+                }
                 .groupBy { it.categoryModel?.copy(budgetType = budgetType) as CategoryModel }
         }
     }

@@ -3,15 +3,13 @@ package com.sergei.pokhodai.expensemanagement.feature.user.impl.presentation.lis
 import com.sergei.pokhodai.expensemanagement.core.base.dimension.ViewDimension
 import com.sergei.pokhodai.expensemanagement.core.base.image.ImageValue
 import com.sergei.pokhodai.expensemanagement.core.base.utils.P_0_0_0_24
-import com.sergei.pokhodai.expensemanagement.core.base.utils.P_16_0_16_0
 import com.sergei.pokhodai.expensemanagement.core.base.utils.P_8_0_8_0
-import com.sergei.pokhodai.expensemanagement.core.router.support.alert.AlertRouterModel
-import com.sergei.pokhodai.expensemanagement.core.support.api.ResManager
+import com.sergei.pokhodai.expensemanagement.core.support.api.model.alert.AlertRouterModel
+import com.sergei.pokhodai.expensemanagement.core.support.api.manager.ResManager
 import com.sergei.pokhodai.expensemanagement.feature.user.api.domain.model.UserSelfModel
 import com.sergei.pokhodai.expensemanagement.feature.user.api.presentation.mapper.UserAvatarArtMapper
 import com.sergei.pokhodai.expensemanagement.feature.user.api.presentation.mapper.UserCurrencyNameMapper
 import com.sergei.pokhodai.expensemanagement.feature.user.impl.R
-import com.sergei.pokhodai.expensemanagement.feature.user.impl.presentation.avatar.mapper.UserAvatarMapper
 import com.sergei.pokhodai.expensemanagement.feature.user.impl.presentation.ui.user.UserListItem
 import com.sergei.pokhodai.expensemanagement.uikit.button.ButtonItem
 import com.sergei.pokhodai.expensemanagement.uikit.request.RequestItem

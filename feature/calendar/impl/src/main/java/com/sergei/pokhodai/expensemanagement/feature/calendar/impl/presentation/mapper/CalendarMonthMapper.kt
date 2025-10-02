@@ -5,7 +5,7 @@ import com.sergei.pokhodai.expensemanagement.core.base.color.ColorValue
 import com.sergei.pokhodai.expensemanagement.core.base.dimension.ViewDimension
 import com.sergei.pokhodai.expensemanagement.core.base.utils.P_16_4_16_16
 import com.sergei.pokhodai.expensemanagement.core.recycler.RecyclerState
-import com.sergei.pokhodai.expensemanagement.core.support.api.ResManager
+import com.sergei.pokhodai.expensemanagement.core.support.api.manager.ResManager
 import com.sergei.pokhodai.expensemanagement.feature.calendar.domain.model.CalendarMonthModel
 import com.sergei.pokhodai.expensemanagement.feature.calendar.impl.R
 import com.sergei.pokhodai.expensemanagement.feature.calendar.impl.ui.CalendarMonthItem

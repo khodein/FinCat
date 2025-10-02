@@ -1,12 +1,7 @@
 package com.sergei.pokhodai.expensemanagement.main
 
-import android.animation.Animator
-import android.animation.AnimatorListenerAdapter
-import android.animation.ObjectAnimator
-import android.animation.ValueAnimator
 import android.annotation.SuppressLint
 import android.content.Context
-import android.content.res.Configuration
 import android.os.Build
 import android.os.Bundle
 import android.view.Menu
@@ -14,15 +9,10 @@ import android.view.animation.AccelerateInterpolator
 import android.view.animation.DecelerateInterpolator
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.animation.doOnEnd
-import androidx.core.animation.doOnStart
-import androidx.core.os.LocaleListCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.ViewGroupCompat
 import androidx.core.view.WindowCompat
 import androidx.core.view.WindowInsetsCompat
-import androidx.core.view.doOnLayout
-import androidx.core.view.forEach
 import androidx.core.view.isEmpty
 import androidx.core.view.isNotEmpty
 import androidx.core.view.isVisible
@@ -33,16 +23,13 @@ import androidx.navigation.ui.setupWithNavController
 import com.sergei.pokhodai.expensemanagement.core.base.utils.observe
 import com.sergei.pokhodai.expensemanagement.core.router.Router
 import com.sergei.pokhodai.expensemanagement.core.base.utils.setLightNavigationAndStatusBars
-import com.sergei.pokhodai.expensemanagement.core.router.support.SupportRouter
-import com.sergei.pokhodai.expensemanagement.core.support.api.ResManager
+import com.sergei.pokhodai.expensemanagement.core.support.api.router.SupportRouter
+import com.sergei.pokhodai.expensemanagement.core.support.api.manager.ResManager
 import com.sergei.pokhodai.expensemanagement.databinding.ActivityMainBinding
 import kotlinx.serialization.InternalSerializationApi
 import org.koin.android.ext.android.inject
 import org.koin.androidx.fragment.android.setupKoinFragmentFactory
 import org.koin.androidx.viewmodel.ext.android.viewModel
-import androidx.core.view.get
-import com.google.android.material.bottomnavigation.BottomNavigationView
-import com.sergei.pokhodai.expensemanagement.core.base.utils.applyPadding
 import com.sergei.pokhodai.expensemanagement.core.base.utils.dp
 import com.sergei.pokhodai.expensemanagement.core.router.destination.TabDestination
 

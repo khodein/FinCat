@@ -7,7 +7,7 @@ import androidx.navigation.toRoute
 import com.sergei.pokhodai.expensemanagement.core.eventbus.api.EventBus
 import com.sergei.pokhodai.expensemanagement.core.recycler.RecyclerState
 import com.sergei.pokhodai.expensemanagement.core.router.Router
-import com.sergei.pokhodai.expensemanagement.core.router.support.SupportRouter
+import com.sergei.pokhodai.expensemanagement.core.support.api.router.SupportRouter
 import com.sergei.pokhodai.expensemanagement.feature.category.api.domain.model.BudgetType
 import com.sergei.pokhodai.expensemanagement.feature.category.api.domain.model.CategoryIconModel
 import com.sergei.pokhodai.expensemanagement.feature.category.api.domain.model.CategoryModel
@@ -100,7 +100,6 @@ internal class CategoryEditorViewModel(
         updateButton(isLoading = true)
         loadJob?.cancel()
         loadJob = viewModelScope.launch {
-            delay(LOADING_DEBOUNCE)
             if (isSave) {
                 loadSave()
             } else {
@@ -226,7 +225,7 @@ internal class CategoryEditorViewModel(
     override fun onChangeName(value: String) {
         nameJob?.cancel()
         nameJob = viewModelScope.launch {
-            delay(NAME_DEBOUNCE)
+            delay(EDITABLE_DEBOUNCE)
             categoryModel = categoryModel.copy(name = value)
             updateSuccess()
         }
@@ -252,7 +251,6 @@ internal class CategoryEditorViewModel(
     }
 
     private companion object {
-        const val NAME_DEBOUNCE = 300L
-        const val LOADING_DEBOUNCE = 300L
+        const val EDITABLE_DEBOUNCE = 300L
     }
 }

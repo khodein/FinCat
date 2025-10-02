@@ -4,12 +4,11 @@ import com.sergei.pokhodai.expensemanagement.core.base.R as baseR
 import com.sergei.pokhodai.expensemanagement.core.base.color.ColorValue
 import com.sergei.pokhodai.expensemanagement.core.base.dimension.ViewDimension
 import com.sergei.pokhodai.expensemanagement.core.base.image.ImageValue
-import com.sergei.pokhodai.expensemanagement.core.base.utils.P_16_0_16_0
 import com.sergei.pokhodai.expensemanagement.core.base.utils.P_16_0_16_16
 import com.sergei.pokhodai.expensemanagement.core.base.utils.P_16_0_16_8
 import com.sergei.pokhodai.expensemanagement.core.base.utils.P_16_4_16_16
-import com.sergei.pokhodai.expensemanagement.core.support.api.ResManager
-import com.sergei.pokhodai.expensemanagement.core.support.api.model.LocaleLanguageModel
+import com.sergei.pokhodai.expensemanagement.core.support.api.manager.ResManager
+import com.sergei.pokhodai.expensemanagement.core.support.api.model.LocalModel
 import com.sergei.pokhodai.expensemanagement.feature.user.impl.R
 import com.sergei.pokhodai.expensemanagement.feature.user.impl.presentation.ui.language.UserLanguageItem
 import com.sergei.pokhodai.expensemanagement.uikit.button.ButtonItem
@@ -18,8 +17,8 @@ internal class UserLanguageMapper(
     private val resManager: ResManager
 ) {
     fun getItems(
-        localeLanguageModel: LocaleLanguageModel,
-        list: List<LocaleLanguageModel>,
+        localeLanguageModel: LocalModel,
+        list: List<LocalModel>,
         onClick: (state: UserLanguageItem.State) -> Unit
     ): List<UserLanguageItem.State> {
         return list.mapIndexed { index, model ->
@@ -59,18 +58,18 @@ internal class UserLanguageMapper(
         )
     }
 
-    private fun getIcon(model: LocaleLanguageModel): ImageValue {
+    private fun getIcon(model: LocalModel): ImageValue {
         val resId = when(model) {
-            LocaleLanguageModel.RU -> R.drawable.ic_russian
-            LocaleLanguageModel.EN -> R.drawable.ic_english
+            LocalModel.RU -> R.drawable.ic_russian
+            LocalModel.EN -> R.drawable.ic_english
         }
         return ImageValue.Coil(resId)
     }
 
-    fun getNameText(model: LocaleLanguageModel): String {
+    fun getNameText(model: LocalModel): String {
         val resId = when(model) {
-            LocaleLanguageModel.EN -> R.string.user_eu_language
-            LocaleLanguageModel.RU -> R.string.user_ru_language
+            LocalModel.EN -> R.string.user_eu_language
+            LocalModel.RU -> R.string.user_ru_language
         }
         return resManager.getString(resId)
     }

@@ -2,27 +2,27 @@
 <merge xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:parentTag="android.widget.FrameLayout"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_width="match_parent">
+    tools:parentTag="android.widget.FrameLayout">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/faq_item_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingVertical="8dp"
-        android:paddingHorizontal="16dp">
+        android:paddingHorizontal="16dp"
+        android:paddingVertical="8dp">
 
         <TextView
             android:id="@+id/faq_item_title"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:textAppearance="@style/Bold.18"
+            android:textAppearance="@style/Bold.14"
             android:textColor="@color/grey_900"
-            tools:text="Заголовок"
             app:layout_constraintEnd_toStartOf="@+id/faq_item_expanded"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Заголовок" />
 
         <ImageView
             android:id="@+id/faq_item_expanded"
@@ -43,18 +43,26 @@
             app:layout_constraintStart_toStartOf="@+id/faq_item_title"
             app:layout_constraintTop_toTopOf="@+id/faq_item_title" />
 
-        <TextView
-            android:id="@+id/faq_item_description"
-            android:layout_width="0dp"
-            android:visibility="gone"
+        <com.sergei.pokhodai.expensemanagement.uikit.support.ExpandableLayout
+            android:id="@+id/faq_item_expanded_description"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingTop="8dp"
-            android:textAppearance="@style/Medium.16"
-            android:textColor="@color/grey_600"
+            app:orientation="vertical"
+            app:duration="200"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/faq_item_title"
-            tools:text="Описание" />
+            app:layout_constraintTop_toBottomOf="@+id/faq_item_title">
+
+            <TextView
+                android:id="@+id/faq_item_description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="4dp"
+                android:textAppearance="@style/Regular.14"
+                android:textColor="@color/grey_600"
+                tools:text="Описание" />
+
+        </com.sergei.pokhodai.expensemanagement.uikit.support.ExpandableLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

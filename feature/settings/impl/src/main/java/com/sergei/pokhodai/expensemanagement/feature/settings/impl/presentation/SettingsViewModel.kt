@@ -3,9 +3,11 @@ package com.sergei.pokhodai.expensemanagement.feature.settings.impl.presentation
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.sergei.pokhodai.expensemanagement.core.recycler.RecyclerState
-import com.sergei.pokhodai.expensemanagement.core.support.api.LocaleManager
+import com.sergei.pokhodai.expensemanagement.core.support.api.manager.LocaleManager
 import com.sergei.pokhodai.expensemanagement.feature.category.api.router.CategoryRouter
 import com.sergei.pokhodai.expensemanagement.feature.exchangerate.api.router.ExchangeRateRouter
+import com.sergei.pokhodai.expensemanagement.feature.faq.api.FaqRouter
+import com.sergei.pokhodai.expensemanagement.feature.pincode.api.PinCodeRouter
 import com.sergei.pokhodai.expensemanagement.feature.settings.impl.data.SettingsRepository
 import com.sergei.pokhodai.expensemanagement.feature.settings.impl.domain.model.SettingModel
 import com.sergei.pokhodai.expensemanagement.feature.settings.impl.presentation.mapper.SettingsMapper
@@ -18,7 +20,6 @@ import com.sergei.pokhodai.expensemanagement.feature.user.api.router.UserRouter
 import com.sergei.pokhodai.expensemanagement.uikit.request.RequestItem
 import com.sergei.pokhodai.expensemanagement.uikit.toolbar.ToolbarItem
 import kotlinx.coroutines.Job
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
@@ -32,6 +33,8 @@ internal class SettingsViewModel(
     private val userRouter: UserRouter,
     private val categoryRouter: CategoryRouter,
     private val exchangeRateRouter: ExchangeRateRouter,
+    private val faqRouter: FaqRouter,
+    private val pinCodeRouter: PinCodeRouter,
 ) : ViewModel() {
 
     private var loadingJob: Job? = null
@@ -72,7 +75,6 @@ internal class SettingsViewModel(
         }
         loadingJob?.cancel()
         loadingJob = viewModelScope.launch {
-            delay(LOADING_DEBOUNCE)
             loadUser()
         }
     }
@@ -81,19 +83,9 @@ internal class SettingsViewModel(
         runCatching {
             getUserSelfUseCase.invoke()
         }.onSuccess { model ->
-            loadSettingList(model)
-        }.onFailure {
-            updateError()
-        }
-    }
-
-    private fun loadSettingList(userSelfModel: UserSelfModel) {
-        runCatching {
-            settingsRepository.getSettingList()
-        }.onSuccess { list ->
             updateSuccess(
-                list = list,
-                userSelfModel = userSelfModel
+                list =  settingsRepository.getSettingList(),
+                userSelfModel = model
             )
         }.onFailure {
             updateError()
@@ -141,14 +133,12 @@ internal class SettingsViewModel(
                 SettingModel.LOGOUT -> userRouter.goToUserList()
                 SettingModel.LANGUAGE -> userRouter.goToUserLanguage()
                 SettingModel.VALUTE -> exchangeRateRouter.goToExchangeRate()
-                SettingModel.FAQ -> {
+                SettingModel.PIN_CODE -> pinCodeRouter.goToPinCode()
+                SettingModel.DONATE -> {
 
                 }
+                SettingModel.FAQ -> faqRouter.goToFaq()
             }
         }
-    }
-
-    private companion object {
-        const val LOADING_DEBOUNCE = 300L
     }
 }

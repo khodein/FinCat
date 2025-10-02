@@ -12,6 +12,5 @@ internal class FaqItem {
         val description: String,
         val padding: ViewRect.Dp = ZERO,
         var isExpanded: Boolean = false,
-        val onClickExpanded: ((state: State) -> Unit)? = null
     ) : RecyclerState
 }

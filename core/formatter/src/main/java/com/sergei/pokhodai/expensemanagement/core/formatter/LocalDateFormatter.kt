@@ -76,7 +76,7 @@ value class LocalDateFormatter(
 
     fun yyyy_MM(): String = getPattern("yyyy_MM")
 
-    fun yyyy_MM_dd() = getPattern(BASE_FORMAT)
+    fun yyyy_MM_dd() = getPattern(CALENDAR_FORMAT)
 
     private fun getPattern(
         pattern: String
@@ -320,7 +320,7 @@ value class LocalDateFormatter(
     }
 
     companion object {
-        private const val BASE_FORMAT = "yyyy-MM-dd"
+        private const val CALENDAR_FORMAT = "yyyy-MM-dd"
 
         @OptIn(ExperimentalTime::class)
         private fun LocalDateFormatter.setOperation(
@@ -361,18 +361,18 @@ value class LocalDateFormatter(
         }
 
         @OptIn(FormatStringsInDatetimeFormats::class)
-        fun baseFormatParse(date: String): LocalDateFormatter {
+        fun parseCalendarFormat(date: String): LocalDateFormatter {
             val format = LocalDate.Companion.Format {
-                byUnicodePattern(BASE_FORMAT)
+                byUnicodePattern(CALENDAR_FORMAT)
             }
             val localDate = LocalDate.Companion.parse(input = date, format = format)
             return LocalDateFormatter(localDate.atTime(0, 0))
         }
 
         @OptIn(FormatStringsInDatetimeFormats::class)
-        fun exchangeFormatParse(date: String): LocalDateFormatter {
+        fun parseExchangeFormat(date: String): LocalDateFormatter {
             val format = LocalDate.Companion.Format {
-                byUnicodePattern(BASE_FORMAT)
+                byUnicodePattern(CALENDAR_FORMAT)
             }
             val localDate = LocalDate.Companion.parse(input = date.substringBefore("T"), format = format)
 

@@ -11,9 +11,7 @@
         android:id="@+id/reportAbl"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:elevation="4dp"
-        app:elevation="4dp"
-        android:background="@color/background">
+        android:background="@color/surface_normal">
 
         <com.sergei.pokhodai.expensemanagement.uikit.calendar.CalendarItemView
             android:id="@+id/reportCalendar"

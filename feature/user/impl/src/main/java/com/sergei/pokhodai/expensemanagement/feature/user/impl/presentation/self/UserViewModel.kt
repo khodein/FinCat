@@ -8,9 +8,9 @@ import com.sergei.pokhodai.expensemanagement.core.base.utils.isEmailValid
 import com.sergei.pokhodai.expensemanagement.core.eventbus.api.EventBus
 import com.sergei.pokhodai.expensemanagement.core.recycler.RecyclerState
 import com.sergei.pokhodai.expensemanagement.core.router.Router
-import com.sergei.pokhodai.expensemanagement.core.router.support.SupportRouter
-import com.sergei.pokhodai.expensemanagement.core.support.api.LocaleManager
-import com.sergei.pokhodai.expensemanagement.core.support.api.model.LocaleLanguageModel
+import com.sergei.pokhodai.expensemanagement.core.support.api.router.SupportRouter
+import com.sergei.pokhodai.expensemanagement.core.support.api.manager.LocaleManager
+import com.sergei.pokhodai.expensemanagement.core.support.api.model.LocalModel
 import com.sergei.pokhodai.expensemanagement.feature.user.api.domain.model.UserAvatarModel
 import com.sergei.pokhodai.expensemanagement.feature.user.api.domain.model.UserCurrencyModel
 import com.sergei.pokhodai.expensemanagement.feature.user.impl.data.UserRepository
@@ -68,7 +68,7 @@ internal class UserViewModel(
     )
     private var isEmptyDataStoreUser = false
 
-    private var localeLanguageModel: LocaleLanguageModel = localeManager.getLanguage()
+    private var localeLanguageModel: LocalModel = localeManager.getLanguage()
 
     init {
         viewModelScope.launch {
@@ -113,7 +113,7 @@ internal class UserViewModel(
             userId?.let {
                 userRepository.getUserById(it)
             } ?: UserSelfModel.getDefault().copy(
-                currency = if (localeLanguageModel == LocaleLanguageModel.RU) {
+                currency = if (localeLanguageModel == LocalModel.RU) {
                     UserCurrencyModel.RUB
                 } else {
                     UserCurrencyModel.USD
@@ -135,7 +135,6 @@ internal class UserViewModel(
         updateBottom(isLoading = true)
         loadJob?.cancel()
         loadJob = viewModelScope.launch {
-            delay(LOADING_DEBOUNCE)
             runCatching {
                 if (isEdit) {
                     userRepository.setUpdateAndGetUser(userModel)
@@ -304,7 +303,6 @@ internal class UserViewModel(
     }
 
     private companion object {
-        const val LOADING_DEBOUNCE = 300L
-        const val EDITABLE_DEBOUNCE = 300L
+        const val EDITABLE_DEBOUNCE = 200L
     }
 }

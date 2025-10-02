@@ -4,9 +4,8 @@ import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import com.sergei.pokhodai.expensemanagement.core.base.color.ColorValue
 import com.sergei.pokhodai.expensemanagement.core.base.image.ImageValue
-import com.sergei.pokhodai.expensemanagement.core.base.utils.P_16_0_16_0
 import com.sergei.pokhodai.expensemanagement.core.recycler.RecyclerState
-import com.sergei.pokhodai.expensemanagement.core.support.api.ResManager
+import com.sergei.pokhodai.expensemanagement.core.support.api.manager.ResManager
 import com.sergei.pokhodai.expensemanagement.feature.settings.impl.R
 import com.sergei.pokhodai.expensemanagement.feature.settings.impl.domain.model.SettingModel
 import com.sergei.pokhodai.expensemanagement.feature.settings.impl.presentation.ui.profile.SettingProfileItem
@@ -76,7 +75,9 @@ internal class SettingsMapper(
             SettingModel.MANAGER_CATEGORY -> R.drawable.ic_manager_category
             SettingModel.FAQ -> R.drawable.ic_quiz
             SettingModel.LOGOUT -> R.drawable.ic_logout
+            SettingModel.DONATE -> R.drawable.ic_donate
             SettingModel.VALUTE -> R.drawable.ic_attach_money
+            SettingModel.PIN_CODE -> R.drawable.ic_pincode
             SettingModel.LANGUAGE -> R.drawable.ic_language
         }
     }
@@ -89,6 +90,8 @@ internal class SettingsMapper(
             SettingModel.LOGOUT -> R.string.settings_logout
             SettingModel.VALUTE -> R.string.settings_exchange
             SettingModel.LANGUAGE -> R.string.settings_language
+            SettingModel.DONATE -> R.string.settings_support_us
+            SettingModel.PIN_CODE -> R.string.settings_pin_code
         }
     }
 
@@ -102,6 +105,8 @@ internal class SettingsMapper(
     }
 
     fun getRequestEmpty(): RequestItem.State.Empty {
-        return RequestItem.State.Empty(resManager.getString(R.string.settings_empty))
+        return RequestItem.State.Empty(
+            resManager.getString(R.string.settings_empty)
+        )
     }
 }

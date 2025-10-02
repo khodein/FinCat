@@ -1,5 +1,5 @@
 plugins {
-    id("core-plugin")
+    id("api-plugin")
 }
 
 android {
@@ -7,4 +7,6 @@ android {
 }
 
 dependencies {
+    implementation(project.libs.androidx.navigation.fragment.ktx)
+    implementation(project(":core:formatter"))
 }

@@ -19,8 +19,7 @@ dependencies {
     implementation(project(":core:uikit"))
     implementation(project(":core:router"))
 
-    api(project(":database:api"))
-
+    api(project(":core:database:api"))
     api(project(":core:eventbus:api"))
     api(project(":core:support:api"))
 
@@ -28,4 +27,6 @@ dependencies {
     api(project(":feature:category:api"))
     api(project(":feature:user:api"))
     api(project(":feature:exchangerate:api"))
+    api(project(":feature:faq:api"))
+    api(project(":feature:pincode:api"))
 }

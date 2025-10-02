@@ -3,6 +3,8 @@ package com.sergei.pokhodai.expensemanagement.core.network
 import android.util.Log
 import com.sergei.pokhodai.expensemanagement.core.network.api.CbrDailyApiService
 import com.sergei.pokhodai.expensemanagement.core.network.api.CbrDailyApiServiceImpl
+import com.sergei.pokhodai.expensemanagement.core.network.api.QuestionApiService
+import com.sergei.pokhodai.expensemanagement.core.network.api.QuestionApiServiceImpl
 import io.ktor.client.HttpClient
 import io.ktor.client.engine.android.Android
 import io.ktor.client.engine.cio.CIO
@@ -33,6 +35,7 @@ object NetworkModule {
         singleOf(::getClient)
 
         singleOf(::CbrDailyApiServiceImpl) bind CbrDailyApiService::class
+        singleOf(::QuestionApiServiceImpl) bind QuestionApiService::class
     }
 
     private fun getJson(): Json {

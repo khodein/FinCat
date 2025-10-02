@@ -1,4 +1,40 @@
 <resources>
-    <string name="faq_top_title">Faq</string>
+    <string name="faq_top_title">FAQ</string>
+
+    <string name="faq_credit_title">Где взять кредит? Дайте денег в долг</string>
+    <string name="faq_credit_description">Приложение FinCat не выдает кредиты и микрозаймы. Наша задача — помочь вам в учёте финансов. FinCat это ваш личный помощник для контроля доходов и расходов.</string>
+
+    <string name="faq_users_title">Зачем создавать пользователя? Почему пользователей может быть несколько?</string>
+    <string name="faq_users_description">«Пользователь» в приложении — это, по сути, отдельный кошелёк или счёт для ведения учета. Вы можете создать несколько пользователей, чтобы разделять финансы. Например, завести отдельные счеты для семейного бюджета, личных трат, расчётов в разных валютах и т.д.</string>
+
+    <string name="faq_exchange_rate_title">В приложении только курс ЦБ РФ?</string>
+    <string name="faq_exchange_rate_description">На данный момент мы используем официальный курс валют от Центрального банка Российской Федерации. Если вам необходим курс другой страны, пожалуйста, напишите в поддержку. Мы учтём ваши пожелания и постараемся добавить нужные курсы в следующих обновлениях.</string>
+
+    <string name="faq_category_title">Сколько категорий можно создать? Удалятся ли старые операции при удалении категории?</string>
+    <string name="faq_category_description">Вы можете создать неограниченное количество категорий — всё зависит только от свободной памяти вашего устройства. При удалении категории она пропадёт из списка для выбора, но все операции, которые к ней привязаны, останутся в истории без изменений.</string>
+
+    <string name="faq_enter_currency_title">Какую максимальную сумму можно внести в доход или расход?</string>
+    <string name="faq_enter_currency_description">Максимальная сумма ограничена 12 знаками (цифрами).</string>
+
+    <string name="faq_language_title">В приложении всего два языка, и английский перевод неидеальный</string>
+    <string name="faq_language_description">Да, сейчас доступно два языка. Мы используем автоматизированный перевод, поэтому возможны неточности. Если вам не хватает другого языка или вы хотите помочь улучшить перевод и являетесь носителем языка, пожалуйста, обратитесь в поддержку. Мы будем рады любой помощи!</string>
+
+    <string name="faq_button_question">Задайте вопрос</string>
+
+    <string name="faq_question_title">Задайте вопрос</string>
+    <string name="faq_question_name_hint">Имя (необязательно)</string>
+    <string name="faq_question_email_hint">Email (необязательно)</string>
+    <string name="faq_question_title_hint">Заголовок (необязательно)</string>
+    <string name="faq_question_message_hint">Сообщение…</string>
+    <string name="faq_question_send">Отправить</string>
+    <string name="faq_question_develop_email">На почту к разработчику</string>
+
+    <string name="faq_question_email_error">Проверьте правильность email</string>
+    <string name="faq_question_name_error">У имени должно быть минимум два символа</string>
+    <string name="faq_question_title_error">У заголовка должно быть минимум два символа</string>
+    <string name="faq_question_message_error">Поле сообщения пустое</string>
+    <string name="faq_question_choose_mail_client">Выберите почтовое приложение</string>
+    <string name="faq_question_send_success">Сообщение в поддержку успешно отправлено</string>
+    <string name="faq_question_send_error">Произошла ошибка отправки сообщения, попробуйте еще раз</string>
 </resources>
 

@@ -2,6 +2,8 @@ package com.sergei.pokhodai.expensemanagement.feature.faq.impl.presentation
 
 import android.os.Bundle
 import android.view.View
+import androidx.core.view.doOnLayout
+import androidx.core.view.updatePadding
 import androidx.fragment.app.Fragment
 import com.sergei.pokhodai.expensemanagement.core.base.utils.observe
 import com.sergei.pokhodai.expensemanagement.core.base.utils.viewBinding
@@ -32,6 +34,15 @@ internal class FaqFragment : Fragment(R.layout.fragment_faq) {
         topFlow
             .filterNotNull()
             .observe(this@FaqFragment, binding.faqTop::bindState)
+
+        bottomFlow
+            .filterNotNull()
+            .observe(this@FaqFragment) { state ->
+                binding.faqBottom.bindState(state)
+                binding.faqBottom.doOnLayout {
+                    binding.faqItems.updatePadding(bottom = it.height)
+                }
+            }
     }
 
     private fun setAdapter() {

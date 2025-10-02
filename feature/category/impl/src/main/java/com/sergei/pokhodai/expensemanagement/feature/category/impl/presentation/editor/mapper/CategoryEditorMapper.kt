@@ -6,9 +6,9 @@ import com.sergei.pokhodai.expensemanagement.core.base.utils.P_16_0_16_16
 import com.sergei.pokhodai.expensemanagement.core.base.utils.P_16_4_16_16
 import com.sergei.pokhodai.expensemanagement.core.base.color.ColorValue
 import com.sergei.pokhodai.expensemanagement.core.base.dimension.ViewDimension
-import com.sergei.pokhodai.expensemanagement.core.router.support.alert.AlertRouterModel
-import com.sergei.pokhodai.expensemanagement.core.router.support.color.ColorRouterModel
-import com.sergei.pokhodai.expensemanagement.core.support.api.ResManager
+import com.sergei.pokhodai.expensemanagement.core.support.api.model.alert.AlertRouterModel
+import com.sergei.pokhodai.expensemanagement.core.support.api.model.color.ColorRouterModel
+import com.sergei.pokhodai.expensemanagement.core.support.api.manager.ResManager
 import com.sergei.pokhodai.expensemanagement.feature.category.api.domain.model.BudgetType
 import com.sergei.pokhodai.expensemanagement.feature.category.api.domain.model.CategoryModel
 import com.sergei.pokhodai.expensemanagement.feature.category.api.domain.model.CategoryType
@@ -17,8 +17,6 @@ import com.sergei.pokhodai.expensemanagement.feature.category.api.mapper.Categor
 import com.sergei.pokhodai.expensemanagement.feature.category.impl.R
 import com.sergei.pokhodai.expensemanagement.feature.category.impl.presentation.editor.state.CategoryEditorErrorState
 import com.sergei.pokhodai.expensemanagement.feature.category.impl.presentation.editor.ui.category_editor.CategoryEditorItem
-import com.sergei.pokhodai.expensemanagement.feature.category.impl.presentation.editor.mapper.CategoryKindMapper
-import com.sergei.pokhodai.expensemanagement.feature.category.impl.presentation.mapper.CategoryNameMapperImpl
 import com.sergei.pokhodai.expensemanagement.uikit.button.ButtonItem
 import com.sergei.pokhodai.expensemanagement.feature.category.impl.presentation.editor.ui.color_picker.ColorPickerItem
 import com.sergei.pokhodai.expensemanagement.uikit.dropdown.DropDownItem
@@ -127,8 +125,8 @@ internal class CategoryEditorMapper(
         onClickColor: (hex: String) -> Unit
     ): ColorRouterModel {
         return ColorRouterModel(
-            cancelText = resManager.getString(R.string.category_editor_color_picker_confirm),
-            confirmText = resManager.getString(R.string.category_editor_color_picker_cancel),
+            cancelText = resManager.getString(R.string.category_editor_color_picker_cancel),
+            confirmText = resManager.getString(R.string.category_editor_color_picker_confirm),
             onClickColor = onClickColor
         )
     }

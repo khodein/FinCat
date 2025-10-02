@@ -4,7 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.sergei.pokhodai.expensemanagement.core.recycler.RecyclerState
 import com.sergei.pokhodai.expensemanagement.core.router.Router
-import com.sergei.pokhodai.expensemanagement.core.router.support.SupportRouter
+import com.sergei.pokhodai.expensemanagement.core.support.api.router.SupportRouter
 import com.sergei.pokhodai.expensemanagement.feature.category.api.domain.usecase.DeleteAllCategoryUseCase
 import com.sergei.pokhodai.expensemanagement.feature.eventeditor.api.domain.usecase.DeleteAllCategoryUserCase
 import com.sergei.pokhodai.expensemanagement.feature.user.api.domain.model.UserSelfModel
@@ -57,7 +57,6 @@ internal class UserListViewModel(
         updateLoading()
         loadingJob?.cancel()
         loadingJob = viewModelScope.launch {
-            delay(LOADING_DEBOUNCE)
             loadUserData()
         }
     }
@@ -124,7 +123,6 @@ internal class UserListViewModel(
         updateLoading()
         loadingJob?.cancel()
         loadingJob = viewModelScope.launch {
-            delay(LOADING_DEBOUNCE)
             runCatching {
                 userRepository.deleteUserById(userId)
             }.onSuccess {
@@ -151,7 +149,6 @@ internal class UserListViewModel(
         updateLoading()
         loadingJob?.cancel()
         loadingJob = viewModelScope.launch {
-            delay(LOADING_DEBOUNCE)
             runCatching {
                 userRepository.deleteAll()
             }.onSuccess {
@@ -240,9 +237,5 @@ internal class UserListViewModel(
         if (data is UserSelfModel) {
             userRouter.goToUser(data.userId)
         }
-    }
-
-    private companion object {
-        const val LOADING_DEBOUNCE = 300L
     }
 }

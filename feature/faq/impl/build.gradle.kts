@@ -20,6 +20,9 @@ dependencies {
     implementation(project(":core:router"))
 
     api(project(":core:support:api"))
+    api(project(":core:network:api"))
+    api(project(":core:configprovider"))
 
     api(project(":feature:faq:api"))
+    api(project(":feature:user:api"))
 }

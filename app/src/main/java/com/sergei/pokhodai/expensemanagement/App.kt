@@ -3,20 +3,20 @@ package com.sergei.pokhodai.expensemanagement
 import android.app.Application
 import android.content.Context
 import androidx.appcompat.app.AppCompatDelegate
-import androidx.core.os.LocaleListCompat
 import coil3.ImageLoader
 import coil3.PlatformContext
 import coil3.SingletonImageLoader
 import coil3.memory.MemoryCache
 import coil3.request.crossfade
+import com.sergei.pokhodai.expensemanagement.config.ConfigProviderImpl
+import com.sergei.pokhodai.expensemanagement.core.configprovider.ConfigProvider
 import com.sergei.pokhodai.expensemanagement.core.eventbus.impl.EventBusModule
 import com.sergei.pokhodai.expensemanagement.core.network.NetworkModule
 import com.sergei.pokhodai.expensemanagement.core.router.Router
 import com.sergei.pokhodai.expensemanagement.core.router.provider.BottomNavigationVisibleProvider
 import com.sergei.pokhodai.expensemanagement.core.router.provider.RouteProvider
 import com.sergei.pokhodai.expensemanagement.core.router.provider.TabProvider
-import com.sergei.pokhodai.expensemanagement.core.router.support.SupportRouter
-import com.sergei.pokhodai.expensemanagement.core.support.api.LocaleManager
+import com.sergei.pokhodai.expensemanagement.core.support.api.manager.LocaleManager
 import com.sergei.pokhodai.expensemanagement.core.support.impl.SupportModule
 import com.sergei.pokhodai.expensemanagement.database.impl.RoomModule
 import com.sergei.pokhodai.expensemanagement.feature.calendar.impl.CalendarMonthModule
@@ -24,13 +24,13 @@ import com.sergei.pokhodai.expensemanagement.feature.category.impl.CategoryModul
 import com.sergei.pokhodai.expensemanagement.feature.eventeditor.impl.EventEditorModule
 import com.sergei.pokhodai.expensemanagement.feature.exchangerate.impl.ExchangeRateModule
 import com.sergei.pokhodai.expensemanagement.feature.faq.impl.FaqModule
+import com.sergei.pokhodai.expensemanagement.feature.pincode.impl.PinCodeModule
 import com.sergei.pokhodai.expensemanagement.feature.report.impl.ReportModule
 import com.sergei.pokhodai.expensemanagement.feature.settings.impl.SettingsModule
 import com.sergei.pokhodai.expensemanagement.feature.user.impl.UserModule
 import com.sergei.pokhodai.expensemanagement.home.impl.HomeModule
 import com.sergei.pokhodai.expensemanagement.main.MainViewModel
 import com.sergei.pokhodai.expensemanagement.router.RouterImpl
-import com.sergei.pokhodai.expensemanagement.router.SupportRouterImpl
 import com.sergei.pokhodai.expensemanagement.uikit.UikitModule
 import org.koin.android.ext.android.inject
 import org.koin.android.ext.koin.androidContext
@@ -71,6 +71,7 @@ internal class App : Application(), SingletonImageLoader.Factory {
                 HomeModule.get(),
                 UserModule.get(),
                 SettingsModule.get(),
+                PinCodeModule.get()
             )
         }
 
@@ -102,7 +103,7 @@ internal class App : Application(), SingletonImageLoader.Factory {
                 } bind Router::class
 
                 viewModelOf(::MainViewModel)
-                singleOf(::SupportRouterImpl) bind SupportRouter::class
+                singleOf(::ConfigProviderImpl) bind ConfigProvider::class
             }
         }
 

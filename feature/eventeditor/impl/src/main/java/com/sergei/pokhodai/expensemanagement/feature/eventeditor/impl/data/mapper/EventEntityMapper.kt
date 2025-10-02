@@ -9,6 +9,7 @@ import com.sergei.pokhodai.expensemanagement.feature.category.api.domain.model.C
 import com.sergei.pokhodai.expensemanagement.feature.eventeditor.api.domain.model.AmountModel
 import com.sergei.pokhodai.expensemanagement.feature.eventeditor.api.domain.model.DateModel
 import com.sergei.pokhodai.expensemanagement.feature.eventeditor.api.domain.model.EventModel
+import com.sergei.pokhodai.expensemanagement.feature.user.api.domain.model.UserCurrencyModel
 
 internal class EventEntityMapper {
 
@@ -32,7 +33,10 @@ internal class EventEntityMapper {
         )
     }
 
-    fun mapEntityToModel(entity: EventEntity): EventModel {
+    fun mapEntityToModel(
+        currencyModel: UserCurrencyModel?,
+        entity: EventEntity
+    ): EventModel {
         return EventModel(
             id = entity.primaryId,
             budgetType = BudgetType.valueOf(entity.budgetType),
@@ -43,7 +47,8 @@ internal class EventEntityMapper {
             ),
             dateModel = mapDate(date = entity.date),
             amountModel = mapAmount(amountValue = entity.amountValue),
-            description = entity.description
+            description = entity.description,
+            currencySymbol = currencyModel?.symbol
         )
     }
 
@@ -51,7 +56,7 @@ internal class EventEntityMapper {
         date: String,
     ): DateModel {
         return DateModel(
-            value = LocalDateFormatter.baseFormatParse(date),
+            value = LocalDateFormatter.parseCalendarFormat(date),
         )
     }
 

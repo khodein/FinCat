@@ -5,7 +5,11 @@ import com.sergei.pokhodai.expensemanagement.core.router.provider.BottomNavigati
 import com.sergei.pokhodai.expensemanagement.core.router.provider.RouteProvider
 import com.sergei.pokhodai.expensemanagement.feature.faq.api.FaqRouter
 import com.sergei.pokhodai.expensemanagement.feature.faq.impl.data.repository.FaqRepository
+import com.sergei.pokhodai.expensemanagement.feature.faq.impl.data.repository.QuestionRepository
 import com.sergei.pokhodai.expensemanagement.feature.faq.impl.presentation.FaqViewModel
+import com.sergei.pokhodai.expensemanagement.feature.faq.impl.presentation.mapper.FaqMapper
+import com.sergei.pokhodai.expensemanagement.feature.faq.impl.presentation.question.QuestionViewModel
+import com.sergei.pokhodai.expensemanagement.feature.faq.impl.presentation.question.mapper.QuestionMapper
 import com.sergei.pokhodai.expensemanagement.feature.faq.impl.presentation.ui.FaqItem
 import com.sergei.pokhodai.expensemanagement.feature.faq.impl.presentation.ui.FaqItemView
 import com.sergei.pokhodai.expensemanagement.feature.faq.impl.router.FaqBottomNavigationVisibilityProviderImpl
@@ -32,7 +36,12 @@ object FaqModule {
             singleOf(::FaqRouterProviderImpl) bind RouteProvider::class
             singleOf(::FaqBottomNavigationVisibilityProviderImpl) bind BottomNavigationVisibleProvider::class
 
+            singleOf(::FaqMapper)
             viewModelOf(::FaqViewModel)
+
+            singleOf(::QuestionMapper)
+            singleOf(::QuestionRepository)
+            viewModelOf(::QuestionViewModel)
         }
     }
 }

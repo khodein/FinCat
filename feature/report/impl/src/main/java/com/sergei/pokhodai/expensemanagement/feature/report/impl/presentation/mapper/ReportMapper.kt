@@ -6,11 +6,12 @@ import com.sergei.pokhodai.expensemanagement.core.recycler.RecyclerState
 import com.sergei.pokhodai.expensemanagement.core.base.utils.P_0_0_0_24
 import com.sergei.pokhodai.expensemanagement.core.base.color.ColorValue
 import com.sergei.pokhodai.expensemanagement.core.base.dimension.ViewDimension
+import com.sergei.pokhodai.expensemanagement.core.base.dimension.ViewRect
 import com.sergei.pokhodai.expensemanagement.core.base.utils.getFormatCurrency
 import com.sergei.pokhodai.expensemanagement.core.base.image.ImageValue
 import com.sergei.pokhodai.expensemanagement.core.base.spanned.foreground
 import com.sergei.pokhodai.expensemanagement.core.formatter.LocalDateFormatter
-import com.sergei.pokhodai.expensemanagement.core.support.api.ResManager
+import com.sergei.pokhodai.expensemanagement.core.support.api.manager.ResManager
 import com.sergei.pokhodai.expensemanagement.feature.category.api.domain.model.BudgetType
 import com.sergei.pokhodai.expensemanagement.feature.category.api.domain.model.CategoryModel
 import com.sergei.pokhodai.expensemanagement.feature.eventeditor.api.domain.model.EventModel
@@ -24,6 +25,7 @@ import com.sergei.pokhodai.expensemanagement.feature.report.impl.presentation.ui
 import com.sergei.pokhodai.expensemanagement.uikit.button.ButtonItem
 import com.sergei.pokhodai.expensemanagement.uikit.header.HeaderItem
 import com.sergei.pokhodai.expensemanagement.uikit.kind.CategoryKindItem
+import com.sergei.pokhodai.expensemanagement.uikit.request.RequestItem
 import java.math.BigDecimal
 
 internal class ReportMapper(
@@ -31,6 +33,40 @@ internal class ReportMapper(
     private val categoryTypeMapper: CategoryTypeMapper,
     private val categoryNameMapper: CategoryNameMapper,
 ) {
+    private val emptyMapState by lazy {
+        mapOf(
+            CategoryModel(
+                type = null,
+                budgetType = null,
+                colorName = "#EEEEEE",
+                name = ""
+            ) to Pair(BigDecimal.ZERO, 20),
+            CategoryModel(
+                type = null,
+                budgetType = null,
+                colorName = "#E0E0E0",
+                name = ""
+            ) to Pair(BigDecimal.ZERO, 20),
+            CategoryModel(
+                type = null,
+                budgetType = null,
+                colorName = "#BDBDBD",
+                name = ""
+            ) to Pair(BigDecimal.ZERO, 20),
+            CategoryModel(
+                type = null,
+                budgetType = null,
+                colorName = "#9E9E9E",
+                name = ""
+            ) to Pair(BigDecimal.ZERO, 20),
+            CategoryModel(
+                type = null,
+                budgetType = null,
+                colorName = "#757575",
+                name = ""
+            ) to Pair(BigDecimal.ZERO, 20)
+        )
+    }
     fun getBottomButtonState(
         isLoading: Boolean,
         onClick: (state: ButtonItem.State) -> Unit
@@ -66,17 +102,16 @@ internal class ReportMapper(
         }
 
         return buildList {
-            add(
-                HeaderItem.State(
-                    provideId = "report_header_details_id${isExpense}",
-                    title = resManager.getString(reportRetailsRes)
-                )
-            )
+            getHeaderState(
+                id = "report_header_details_id${isExpense}",
+                text = resManager.getString(reportRetailsRes)
+            ).let(::add)
 
-            add(getStatisticState(isExpense = isExpense, percentMap = percentMap))
+            getStatisticState(isExpense = isExpense, percentMap = percentMap).let(::add)
 
             data.map {
                 val sum = percentMap[it.key]
+                val currencySymbol = it.value.firstOrNull()?.currencySymbol
                 ReportItem.State(
                     provideId = it.key.name,
                     categoryKindItemState = mapCategoryKindState(it.key),
@@ -86,12 +121,42 @@ internal class ReportMapper(
                         "${it.value.size}"
                     ),
                     amount = sum?.first?.let { sum ->
-                        getAmount(sum = sum, isExpense = isExpense)
+                        getAmount(
+                            sum = sum,
+                            isExpense = isExpense,
+                            currencySymbol = currencySymbol
+                        )
                     } ?: "",
                     percent = "${sum?.second}%"
                 )
             }.let(::addAll)
         }
+    }
+
+    fun getEmptyItems(): List<RecyclerState> {
+        return listOf(
+            getHeaderState(
+                id = "empty_header",
+                text = resManager.getString(R.string.report_header_empty)
+            ),
+            getStatisticState(
+                isExpense = false,
+                percentMap = emptyMapState
+            ),
+            RequestItem.State.Empty(
+                message = getEmptyText(),
+                container = RequestItem.State.Container(
+                    width = ViewDimension.MatchParent,
+                    height = ViewDimension.WrapContent,
+                    paddings = ViewRect.Dp(
+                        leftValue = 0,
+                        topValue = 24,
+                        rightValue = 0,
+                        bottomValue = 0
+                    )
+                )
+            )
+        )
     }
 
     private fun mapCategoryKindState(
@@ -104,7 +169,11 @@ internal class ReportMapper(
         )
     }
 
-    private fun getAmount(sum: BigDecimal, isExpense: Boolean): CharSequence {
+    private fun getAmount(
+        sum: BigDecimal,
+        isExpense: Boolean,
+        currencySymbol: String?
+    ): CharSequence {
         val text = sum
             .toString()
             .getFormatCurrency()
@@ -121,6 +190,7 @@ internal class ReportMapper(
                     append("-")
                 }
                 append(text.first)
+                currencySymbol?.let(::append)
             }
         }
     }
@@ -165,6 +235,16 @@ internal class ReportMapper(
         )
     }
 
+    private fun getHeaderState(
+        id: String,
+        text: String
+    ): HeaderItem.State {
+        return HeaderItem.State(
+            provideId = id,
+            title = text
+        )
+    }
+
     fun getReports(
         isExpense: Boolean,
         list: List<EventModel>
@@ -195,7 +275,7 @@ internal class ReportMapper(
         return date.formatDateToLocalizedMonthYear()
     }
 
-    fun getEmptyText(): String {
+    private fun getEmptyText(): String {
         return resManager.getString(R.string.report_items_empty)
     }
 

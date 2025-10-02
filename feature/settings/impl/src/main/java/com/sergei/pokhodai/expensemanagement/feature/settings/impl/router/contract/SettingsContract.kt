@@ -4,4 +4,4 @@ import com.sergei.pokhodai.expensemanagement.core.router.contract.RouterContract
 import kotlinx.serialization.Serializable
 
 @Serializable
-data object SettingsContract : RouterContract
+internal object SettingsContract : RouterContract

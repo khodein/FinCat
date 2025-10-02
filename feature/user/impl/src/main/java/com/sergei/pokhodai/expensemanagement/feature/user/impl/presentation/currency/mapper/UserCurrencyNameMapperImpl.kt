@@ -1,6 +1,6 @@
 package com.sergei.pokhodai.expensemanagement.feature.user.impl.presentation.currency.mapper
 
-import com.sergei.pokhodai.expensemanagement.core.support.api.ResManager
+import com.sergei.pokhodai.expensemanagement.core.support.api.manager.ResManager
 import com.sergei.pokhodai.expensemanagement.feature.user.api.domain.model.UserCurrencyModel
 import com.sergei.pokhodai.expensemanagement.feature.user.api.presentation.mapper.UserCurrencyNameMapper
 import com.sergei.pokhodai.expensemanagement.feature.user.impl.R

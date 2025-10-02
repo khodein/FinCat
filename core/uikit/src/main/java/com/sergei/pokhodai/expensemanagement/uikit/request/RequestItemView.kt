@@ -81,6 +81,11 @@ class RequestItemView @JvmOverloads constructor(
 
     override fun bindState(state: RequestItem.State) {
         this.state = state
+        applyPadding(state.container.paddings)
+        resolveToLayoutParams(
+            width = state.container.width,
+            height = state.container.height
+        )
 
         removeAllViews()
         when (state) {

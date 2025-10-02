@@ -88,7 +88,6 @@ internal class HomeViewModel(
         fetchJob = viewModelScope.launch {
             if (isLoading) {
                 updateLoading()
-                delay(LOADING_DEBOUNCE)
             }
             runCatching {
                 getDateEventByMonthAndYearUseCase.invoke(date = focusDate)
@@ -104,18 +103,13 @@ internal class HomeViewModel(
     }
 
     private fun updateSuccess(data: Map<DateModel, List<EventModel>>) {
-        val items = homeMapper.getEventStateList(
+        _requestFlow.value = RequestItem.State.Idle
+
+        _itemsFlow.value = homeMapper.getEventStateList(
             data = data,
             onClickEvent = ::onClickEvent
-        )
-
-        _itemsFlow.value = items.apply {
-            _requestFlow.value = RequestItem.State.Idle
-        }.ifEmpty {
-            _requestFlow.value = RequestItem.State.Empty(
-                message = homeMapper.getEmptyText()
-            )
-            emptyList()
+        ).ifEmpty {
+            homeMapper.getEmptyItems()
         }
     }
 
@@ -142,13 +136,13 @@ internal class HomeViewModel(
     }
 
     private fun onClickPlusFocusDate() {
-        focusDate = focusDate.minusMonths(1)
+        focusDate = focusDate.plusMonths(1)
         updateTop()
         fetchData(true)
     }
 
     private fun onClickMinusFocusDate() {
-        focusDate = focusDate.plusMonths(1)
+        focusDate = focusDate.minusMonths(1)
         updateTop()
         fetchData(true)
     }
@@ -162,9 +156,5 @@ internal class HomeViewModel(
     override fun onCleared() {
         super.onCleared()
         eventBus.unsubscribe(CalendarMonthKeys.CHANGE_CALENDAR_MONTH_HOME)
-    }
-
-    private companion object {
-        const val LOADING_DEBOUNCE = 300L
     }
 }

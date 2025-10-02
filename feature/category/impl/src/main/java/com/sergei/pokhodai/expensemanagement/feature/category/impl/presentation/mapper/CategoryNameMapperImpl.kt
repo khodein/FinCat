@@ -1,6 +1,6 @@
 package com.sergei.pokhodai.expensemanagement.feature.category.impl.presentation.mapper
 
-import com.sergei.pokhodai.expensemanagement.core.support.api.ResManager
+import com.sergei.pokhodai.expensemanagement.core.support.api.manager.ResManager
 import com.sergei.pokhodai.expensemanagement.feature.category.api.mapper.CategoryNameMapper
 import com.sergei.pokhodai.expensemanagement.feature.category.impl.domain.model.CategoryDefaultType
 import com.sergei.pokhodai.expensemanagement.feature.category.api.domain.model.CategoryModel

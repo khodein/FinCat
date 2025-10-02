@@ -5,7 +5,7 @@ import androidx.datastore.core.IOException
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.emptyPreferences
-import com.sergei.pokhodai.expensemanagement.feature.user.impl.data.store.DataStoreKey
+import com.sergei.pokhodai.expensemanagement.feature.user.impl.data.store.UserDataStoreKey
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.firstOrNull
@@ -21,7 +21,7 @@ internal class UserIdRepository(
             throw it
         }
     }.map { preferences ->
-        val id = preferences[DataStoreKey.USER_ID_APP]
+        val id = preferences[UserDataStoreKey.USER_ID_APP]
         if (id == 0L) {
             return@map null
         } else {
@@ -37,7 +37,7 @@ internal class UserIdRepository(
 
     suspend fun setUserId(userId: Long?) {
         dataStore.edit { preferences ->
-            preferences[DataStoreKey.USER_ID_APP] = userId ?: 0L
+            preferences[UserDataStoreKey.USER_ID_APP] = userId ?: 0L
         }
     }
 }

@@ -1,6 +1,6 @@
 package com.sergei.pokhodai.expensemanagement.feature.calendar.impl.presentation.mapper
 
-import com.sergei.pokhodai.expensemanagement.core.support.api.ResManager
+import com.sergei.pokhodai.expensemanagement.core.support.api.manager.ResManager
 import com.sergei.pokhodai.expensemanagement.feature.calendar.domain.model.CalendarMonthModel
 import com.sergei.pokhodai.expensemanagement.feature.calendar.impl.R
 import com.sergei.pokhodai.expensemanagement.feature.calendar.presentation.mapper.CalendarMonthNameMapper

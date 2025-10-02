@@ -11,4 +11,5 @@
     <string name="report_bottom">Скачать статистику</string>
     <string name="report_tab">Отчет</string>
     <string name="report_global_error">Произошла неизвестная ошибка</string>
+    <string name="report_header_empty">Отчет пуст</string>
 </resources>

@@ -21,18 +21,19 @@ include ':core:uikit',
         ':core:base',
         ':core:router',
         ':core:formatter',
+        ':core:configprovider'
 
-        ':core:eventbus:impl',
-        ':core:eventbus:api',
+include ':core:support:impl',
+        ':core:support:api'
 
-        ':core:support:impl',
-        ':core:support:api',
-        
-        ':core:network:api',
-        ':core:network:impl'
+include ':core:network:impl',
+        ':core:network:api'
 
-include ':database:impl',
-        ':database:api'
+include ':core:eventbus:impl',
+        ':core:eventbus:api'
+
+include ':core:database:impl',
+        ':core:database:api'
 
 include ':feature:category:impl',
         ':feature:category:api'
@@ -60,3 +61,6 @@ include ':feature:exchangerate:impl',
 
 include ':feature:faq:impl',
         ':feature:faq:api'
+
+include ':feature:pincode:impl',
+        ':feature:pincode:api'

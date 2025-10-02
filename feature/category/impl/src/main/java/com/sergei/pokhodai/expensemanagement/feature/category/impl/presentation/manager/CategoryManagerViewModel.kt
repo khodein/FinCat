@@ -5,7 +5,7 @@ import androidx.lifecycle.viewModelScope
 import com.sergei.pokhodai.expensemanagement.core.eventbus.api.EventBus
 import com.sergei.pokhodai.expensemanagement.core.recycler.RecyclerState
 import com.sergei.pokhodai.expensemanagement.core.router.Router
-import com.sergei.pokhodai.expensemanagement.core.router.support.SupportRouter
+import com.sergei.pokhodai.expensemanagement.core.support.api.router.SupportRouter
 import com.sergei.pokhodai.expensemanagement.feature.category.api.domain.model.CategoryModel
 import com.sergei.pokhodai.expensemanagement.feature.category.api.router.CategoryRouter
 import com.sergei.pokhodai.expensemanagement.feature.category.impl.CategoryModule
@@ -59,7 +59,6 @@ internal class CategoryManagerViewModel(
         updateLoading()
         loadingJob?.cancel()
         loadingJob = viewModelScope.launch {
-            delay(LOADING_DEBOUNCE)
             loadAllList()
         }
     }
@@ -178,7 +177,6 @@ internal class CategoryManagerViewModel(
                     updateLoading()
                     loadingJob?.cancel()
                     loadingJob = viewModelScope.launch {
-                        delay(LOADING_DEBOUNCE)
                         loadDeleteAll()
                     }
                 }
@@ -201,9 +199,5 @@ internal class CategoryManagerViewModel(
     override fun onCleared() {
         super.onCleared()
         eventBus.unsubscribe(CategoryModule.Keys.NEW_CATEGORY_CREATED_OR_EDIT)
-    }
-
-    private companion object {
-        const val LOADING_DEBOUNCE = 300L
     }
 }

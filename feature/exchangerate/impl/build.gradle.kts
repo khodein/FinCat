@@ -22,7 +22,7 @@ dependencies {
     implementation(project(":core:router"))
     implementation(project(":core:formatter"))
 
-    api(project(":database:api"))
+    api(project(":core:database:api"))
 
     api(project(":core:network:api"))
     api(project(":core:support:api"))

@@ -8,8 +8,8 @@ import com.sergei.pokhodai.expensemanagement.core.eventbus.api.EventBus
 import com.sergei.pokhodai.expensemanagement.core.formatter.LocalDateFormatter
 import com.sergei.pokhodai.expensemanagement.core.recycler.RecyclerState
 import com.sergei.pokhodai.expensemanagement.core.router.Router
-import com.sergei.pokhodai.expensemanagement.core.router.support.calendar.CalendarRouterModel
-import com.sergei.pokhodai.expensemanagement.core.router.support.SupportRouter
+import com.sergei.pokhodai.expensemanagement.core.support.api.model.calendar.CalendarRouterModel
+import com.sergei.pokhodai.expensemanagement.core.support.api.router.SupportRouter
 import com.sergei.pokhodai.expensemanagement.feature.category.api.domain.model.BudgetType
 import com.sergei.pokhodai.expensemanagement.feature.category.api.domain.model.CategoryModel
 import com.sergei.pokhodai.expensemanagement.feature.category.api.router.CategoryRouter
@@ -101,7 +101,6 @@ internal class EventEditorViewModel(
         updateButton(isLoading = true)
         loadJob?.cancel()
         loadJob = viewModelScope.launch {
-            delay(LOADING_DEBOUNCE)
             runCatching {
                 if (isEdit) {
                     eventRepository.updateEvent(eventModel)
@@ -123,7 +122,6 @@ internal class EventEditorViewModel(
         updateButton(isLoading = true)
         loadJob?.cancel()
         loadJob = viewModelScope.launch {
-            delay(LOADING_DEBOUNCE)
             runCatching {
                 editorId?.let {
                     eventRepository.setDeleteEventById(it)
@@ -265,7 +263,6 @@ internal class EventEditorViewModel(
     }
 
     private companion object {
-        const val EDITABLE_DEBOUNCE = 300L
-        const val LOADING_DEBOUNCE = 300L
+        const val EDITABLE_DEBOUNCE = 200L
     }
 }

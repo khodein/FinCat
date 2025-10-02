@@ -9,6 +9,8 @@
     <string name="settings_language">Choose language</string>
     <string name="settings_questions">FAQ</string>
     <string name="settings_logout">Logout</string>
+    <string name="settings_support_us">Support us</string>
+    <string name="settings_pin_code">Change pin code</string>
 
     <string name="settings_error">An unknown error occurred</string>
     <string name="settings_empty">Settings is Empty</string>

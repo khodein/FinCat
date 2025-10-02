@@ -3,8 +3,8 @@ package com.sergei.pokhodai.expensemanagement.feature.user.impl.presentation.lan
 import androidx.lifecycle.ViewModel
 import com.sergei.pokhodai.expensemanagement.core.recycler.RecyclerState
 import com.sergei.pokhodai.expensemanagement.core.router.Router
-import com.sergei.pokhodai.expensemanagement.core.support.api.LocaleManager
-import com.sergei.pokhodai.expensemanagement.core.support.api.model.LocaleLanguageModel
+import com.sergei.pokhodai.expensemanagement.core.support.api.manager.LocaleManager
+import com.sergei.pokhodai.expensemanagement.core.support.api.model.LocalModel
 import com.sergei.pokhodai.expensemanagement.feature.user.impl.presentation.language.mapper.UserLanguageMapper
 import com.sergei.pokhodai.expensemanagement.feature.user.impl.presentation.ui.language.UserLanguageItem
 import com.sergei.pokhodai.expensemanagement.uikit.button.ButtonItem
@@ -26,7 +26,7 @@ internal class UserLanguageViewModel(
     private val _topFlow = MutableStateFlow<String?>(null)
     val topFlow = _topFlow.asStateFlow()
 
-    private var localeLanguageModel: LocaleLanguageModel = localeManager.getLanguage()
+    private var localeLanguageModel: LocalModel = localeManager.getLanguage()
     private val previousLocaleLanguageModel = localeLanguageModel
 
     init {
@@ -37,7 +37,7 @@ internal class UserLanguageViewModel(
 
     private fun onClickLanguageItem(state: UserLanguageItem.State) {
         val data = state.data
-        if (data is LocaleLanguageModel) {
+        if (data is LocalModel) {
             localeLanguageModel = data
             updateItems()
         }
@@ -46,7 +46,7 @@ internal class UserLanguageViewModel(
     private fun updateItems() {
         _itemsFlow.value = userLanguageMapper.getItems(
             localeLanguageModel = localeLanguageModel,
-            list = LocaleLanguageModel.entries,
+            list = LocalModel.entries,
             onClick = ::onClickLanguageItem
         )
     }

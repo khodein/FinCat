@@ -7,6 +7,7 @@ import androidx.datastore.preferences.preferencesDataStore
 import com.sergei.pokhodai.expensemanagement.core.recycler.register.RecyclerRegister
 import com.sergei.pokhodai.expensemanagement.core.router.provider.BottomNavigationVisibleProvider
 import com.sergei.pokhodai.expensemanagement.core.router.provider.RouteProvider
+import com.sergei.pokhodai.expensemanagement.feature.user.api.domain.GetUserCurrencyUseCase
 import com.sergei.pokhodai.expensemanagement.feature.user.api.domain.GetUserIdUseCase
 import com.sergei.pokhodai.expensemanagement.feature.user.api.domain.GetUserIdFlowUseCase
 import com.sergei.pokhodai.expensemanagement.feature.user.api.domain.GetUserSelfUseCase
@@ -16,7 +17,8 @@ import com.sergei.pokhodai.expensemanagement.feature.user.api.router.UserRouter
 import com.sergei.pokhodai.expensemanagement.feature.user.impl.data.UserIdRepository
 import com.sergei.pokhodai.expensemanagement.feature.user.impl.data.UserRepository
 import com.sergei.pokhodai.expensemanagement.feature.user.impl.data.mapper.UserEntityMapper
-import com.sergei.pokhodai.expensemanagement.feature.user.impl.data.store.DataStoreKey
+import com.sergei.pokhodai.expensemanagement.feature.user.impl.data.store.UserDataStoreKey
+import com.sergei.pokhodai.expensemanagement.feature.user.impl.domain.usecase.GetUserCurrencyUseCaseImpl
 import com.sergei.pokhodai.expensemanagement.feature.user.impl.domain.usecase.GetUserIdFlowUseCaseImpl
 import com.sergei.pokhodai.expensemanagement.feature.user.impl.domain.usecase.GetUserIdUseCaseImpl
 import com.sergei.pokhodai.expensemanagement.feature.user.impl.domain.usecase.GetUserSelfUseCaseImpl
@@ -54,7 +56,7 @@ import org.koin.dsl.module
 
 object UserModule {
 
-    private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(DataStoreKey.DS_NAME)
+    private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(UserDataStoreKey.DS_NAME)
 
     internal object Keys {
         const val USER_CURRENCY = "USER_CURRENCY"
@@ -87,6 +89,7 @@ object UserModule {
 
             singleOf(::GetUserIdUseCaseImpl) bind GetUserIdUseCase::class
             singleOf(::GetUserSelfUseCaseImpl) bind GetUserSelfUseCase::class
+            singleOf(::GetUserCurrencyUseCaseImpl) bind GetUserCurrencyUseCase::class
 
             singleOf(::UserRepository)
 

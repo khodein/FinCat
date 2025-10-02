@@ -22,6 +22,8 @@ dependencies {
     implementation(project(":core:router"))
     implementation(project(":core:formatter"))
 
+    api(project(":core:configprovider"))
+
     implementation(project(":core:network:impl"))
     api(project(":core:network:api"))
 
@@ -31,8 +33,8 @@ dependencies {
     implementation(project(":core:support:impl"))
     api(project(":core:support:api"))
 
-    implementation(project(":database:impl"))
-    api(project(":database:api"))
+    implementation(project(":core:database:impl"))
+    api(project(":core:database:api"))
 
     implementation(project(":feature:category:impl"))
     api(project(":feature:category:api"))
@@ -60,5 +62,8 @@ dependencies {
 
     implementation(project(":feature:faq:impl"))
     api(project(":feature:faq:api"))
+
+    implementation(project(":feature:pincode:impl"))
+    api(project(":feature:pincode:api"))
 }
 

@@ -5,7 +5,7 @@ import androidx.lifecycle.viewModelScope
 import com.sergei.pokhodai.expensemanagement.core.recycler.RecyclerState
 import com.sergei.pokhodai.expensemanagement.core.eventbus.api.EventBus
 import com.sergei.pokhodai.expensemanagement.core.formatter.LocalDateFormatter
-import com.sergei.pokhodai.expensemanagement.core.router.support.SupportRouter
+import com.sergei.pokhodai.expensemanagement.core.support.api.router.SupportRouter
 import com.sergei.pokhodai.expensemanagement.feature.calendar.CalendarMonthKeys
 import com.sergei.pokhodai.expensemanagement.feature.calendar.api.CalendarMonthRouter
 import com.sergei.pokhodai.expensemanagement.feature.calendar.domain.model.CalendarMonthModel
@@ -88,7 +88,6 @@ internal class ReportViewModel(
         fetchJob = viewModelScope.launch {
             if (isLoading) {
                 updateLoading()
-                delay(LOADING_DEBOUNCE)
             }
 
             runCatching {
@@ -139,13 +138,10 @@ internal class ReportViewModel(
         buildList {
             reportMapper.getItems(isExpense = true, data = expenseData).let(::addAll)
             reportMapper.getItems(isExpense = false, data = incomeData).let(::addAll)
-        }.let {
+        }.let { items ->
             _requestFlow.value = RequestItem.State.Idle
-            _itemsFlow.value = it.ifEmpty {
-                _requestFlow.value = RequestItem.State.Empty(
-                    message = reportMapper.getEmptyText()
-                )
-                emptyList()
+            _itemsFlow.value = items.ifEmpty {
+                reportMapper.getEmptyItems()
             }
         }
 
@@ -174,7 +170,6 @@ internal class ReportViewModel(
         updateBottom(isLoading = true)
         loadingJob?.cancel()
         loadingJob = viewModelScope.launch {
-            delay(LOADING_DEBOUNCE)
             runCatching {
                 val fileName = "fincat_report_${focusDate.yyyy_MM()}"
                 val expenseEvents = expenseData.values.flatten()
@@ -218,9 +213,5 @@ internal class ReportViewModel(
         focusDate = focusDate.plusMonths(1)
         updateTop()
         fetchData(true)
-    }
-
-    private companion object {
-        const val LOADING_DEBOUNCE = 300L
     }
 }

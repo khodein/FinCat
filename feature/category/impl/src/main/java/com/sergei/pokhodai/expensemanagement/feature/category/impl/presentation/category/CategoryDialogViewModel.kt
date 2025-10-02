@@ -98,7 +98,6 @@ internal class CategoryDialogViewModel(
     private fun loadCreateDefault() {
         loadingJob?.cancel()
         loadingJob = viewModelScope.launch {
-            delay(LOADING_DEBOUNCE)
             runCatching {
                 setCategoriesUseCase.invoke(*getCategoryDefaultListUserCase.invoke().toTypedArray())
             }.onSuccess {
@@ -140,9 +139,5 @@ internal class CategoryDialogViewModel(
     private fun onClickButton(state: ButtonItem.State) {
         router.pop()
         categoryRouter.goToCategoryEditor(isOpenFromDialog = true, budgetType = budgetType.name)
-    }
-
-    private companion object {
-        const val LOADING_DEBOUNCE = 300L
     }
 }

@@ -11,4 +11,5 @@
     <string name="report_bottom">Download report</string>
     <string name="report_tab">Report</string>
     <string name="report_global_error">An unknown error occurred</string>
+    <string name="report_header_empty">The report is empty</string>
 </resources>

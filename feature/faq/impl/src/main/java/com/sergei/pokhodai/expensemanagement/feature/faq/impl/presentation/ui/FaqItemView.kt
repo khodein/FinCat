@@ -1,11 +1,17 @@
 package com.sergei.pokhodai.expensemanagement.feature.faq.impl.presentation.ui
 
 import android.content.Context
+import android.graphics.Paint
+import android.text.Layout
+import android.text.StaticLayout
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.ViewGroup.LayoutParams.MATCH_PARENT
 import android.view.ViewGroup.LayoutParams.WRAP_CONTENT
+import android.view.ViewTreeObserver
 import android.widget.FrameLayout
+import android.widget.TextView
+import androidx.core.view.isVisible
 import com.sergei.pokhodai.expensemanagement.core.base.corner.RoundMode
 import com.sergei.pokhodai.expensemanagement.core.base.corner.ViewCorner
 import com.sergei.pokhodai.expensemanagement.core.base.utils.P_16_8_16_8
@@ -30,6 +36,13 @@ internal class FaqItemView @JvmOverloads constructor(
     private val isExpanded: Boolean
         get() = state?.isExpanded ?: false
 
+    private val imageExpandRotation: Float
+        get() = if (isExpanded) {
+            EXPANDED_ROTATION
+        } else {
+            EXPANDED_COLLAPSE
+        }
+
     init {
         layoutParams = LayoutParams(
             MATCH_PARENT,
@@ -37,7 +50,7 @@ internal class FaqItemView @JvmOverloads constructor(
         )
 
         ViewCorner.Simple(
-            radius = 12.dp,
+            radius = 8.dp,
             roundMode = RoundMode.ALL
         ).resolve(
             view = binding.faqItemContainer,
@@ -46,14 +59,32 @@ internal class FaqItemView @JvmOverloads constructor(
 
         binding.faqItemClick.setOnDebounceClick {
             state?.isExpanded = !isExpanded
-            state?.let {
-                it.onClickExpanded?.invoke(it)
-            }
+            binding.faqItemExpandedDescription.setExpanded(
+                expand = isExpanded,
+                animate = true
+            )
+            binding.faqItemExpanded
+                .animate()
+                .rotation(imageExpandRotation)
+                .setDuration(200)
+                .start()
         }
     }
 
     override fun bindState(state: FaqItem.State) {
         this.state = state
         applyPadding(state.padding)
+        binding.faqItemDescription.text = state.description
+        binding.faqItemTitle.text = state.title
+        binding.faqItemExpandedDescription.setExpanded(
+            expand = isExpanded,
+            animate = false
+        )
+        binding.faqItemExpanded.rotation = imageExpandRotation
+    }
+
+    private companion object {
+        const val EXPANDED_ROTATION = 180f
+        const val EXPANDED_COLLAPSE = 0f
     }
 }

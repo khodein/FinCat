@@ -10,6 +10,7 @@ data class EventModel(
     val categoryModel: CategoryModel?,
     val dateModel: DateModel,
     val amountModel: AmountModel,
+    val currencySymbol: String? = null,
     val description: String,
 ) {
     companion object {
@@ -21,6 +22,7 @@ data class EventModel(
                 description = "",
                 categoryModel = null,
                 budgetType = BudgetType.INCOME,
+                currencySymbol = null,
                 amountModel = AmountModel.getDefault()
             )
         }

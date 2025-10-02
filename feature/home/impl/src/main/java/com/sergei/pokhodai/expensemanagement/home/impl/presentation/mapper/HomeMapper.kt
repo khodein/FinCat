@@ -10,7 +10,7 @@ import com.sergei.pokhodai.expensemanagement.core.base.utils.getFormatCurrency
 import com.sergei.pokhodai.expensemanagement.core.base.image.ImageValue
 import com.sergei.pokhodai.expensemanagement.core.base.spanned.foreground
 import com.sergei.pokhodai.expensemanagement.core.formatter.LocalDateFormatter
-import com.sergei.pokhodai.expensemanagement.core.support.api.ResManager
+import com.sergei.pokhodai.expensemanagement.core.support.api.manager.ResManager
 import com.sergei.pokhodai.expensemanagement.feature.eventeditor.api.domain.model.AmountModel
 import com.sergei.pokhodai.expensemanagement.feature.category.api.domain.model.BudgetType
 import com.sergei.pokhodai.expensemanagement.feature.eventeditor.api.domain.model.DateModel
@@ -25,6 +25,7 @@ import com.sergei.pokhodai.expensemanagement.home.impl.presentation.ui.event_sum
 import com.sergei.pokhodai.expensemanagement.uikit.button.ButtonItem
 import com.sergei.pokhodai.expensemanagement.uikit.header.HeaderItem
 import com.sergei.pokhodai.expensemanagement.uikit.kind.CategoryKindItem
+import com.sergei.pokhodai.expensemanagement.uikit.request.RequestItem
 import java.math.BigDecimal
 
 internal class HomeMapper(
@@ -65,7 +66,8 @@ internal class HomeMapper(
                 val sumAmountList = model.value.map { value ->
                     SumAmountModel(
                         amountModel = value.amountModel,
-                        budgetType = value.budgetType
+                        budgetType = value.budgetType,
+                        currencySymbol = value.currencySymbol
                     )
                 }.apply {
                     amounts.addAll(this)
@@ -73,7 +75,7 @@ internal class HomeMapper(
 
                 val eventHeaderState = getEventHeaderItemState(
                     dateModel = model.key,
-                    sumAmountList = sumAmountList
+                    sumAmountList = sumAmountList,
                 )
 
                 val eventStateList = getEventListStates(
@@ -88,17 +90,13 @@ internal class HomeMapper(
                 ).let(::add)
             }
 
-            getEventSumItemState(amounts)?.let {
-                add(0, it)
+            if (amounts.isNotEmpty()) {
+                add(0, getEventSumItemState(amounts))
             }
         }
     }
 
-    private fun getEventSumItemState(amounts: MutableList<SumAmountModel>): EventSumItem.State? {
-        if (amounts.isEmpty()) {
-            return null
-        }
-
+    private fun getEventSumItemState(amounts: List<SumAmountModel>): EventSumItem.State {
         val expense = mutableListOf<SumAmountModel>()
         val income = mutableListOf<SumAmountModel>()
         val balance = mutableListOf<SumAmountModel>()
@@ -113,7 +111,8 @@ internal class HomeMapper(
                 BudgetType.EXPENSE -> {
                     val model = SumAmountModel(
                         amountModel = it.amountModel.copy(value = it.amountModel.value.negate()),
-                        budgetType = it.budgetType
+                        budgetType = it.budgetType,
+                        currencySymbol = it.currencySymbol
                     )
                     expense.add(model)
                     model
@@ -129,18 +128,21 @@ internal class HomeMapper(
         val expenseText = buildSpannedString {
             foreground(resManager.getColor(baseR.color.red_600)) {
                 append(sumExpense.first)
+                expense.firstOrNull()?.currencySymbol?.let(::append)
             }
         }
 
         val balanceText = buildSpannedString {
             foreground(resManager.getColor(baseR.color.grey_900)) {
                 append(sumBalance.first)
+                balance.firstOrNull()?.currencySymbol?.let(::append)
             }
         }
 
         val incomeText = buildSpannedString {
             foreground(resManager.getColor(baseR.color.green_600)) {
                 append(sumIncome.first)
+                income.firstOrNull()?.currencySymbol?.let(::append)
             }
         }
 
@@ -149,6 +151,19 @@ internal class HomeMapper(
             expenseText = expenseText,
             balanceText = balanceText,
             incomeText = incomeText,
+        )
+    }
+
+    fun getEmptyItems(): List<RecyclerState> {
+        return listOf(
+            getEventSumItemState(amounts = emptyList()),
+            RequestItem.State.Empty(
+                message = getEmptyText(),
+                container = RequestItem.State.Container(
+                    width = ViewDimension.MatchParent,
+                    height = ViewDimension.WrapContent
+                )
+            )
         )
     }
 
@@ -168,6 +183,7 @@ internal class HomeMapper(
         dateModel: DateModel,
         sumAmountList: List<SumAmountModel>
     ): HeaderItem.State {
+        val firstSymbol = sumAmountList.firstOrNull()?.currencySymbol
         val amountSum = getAmountSum(sumAmountList).toString().getFormatCurrency()
         val budgetType = if (amountSum.second > BigDecimal.ZERO) {
             BudgetType.INCOME
@@ -179,8 +195,9 @@ internal class HomeMapper(
             budgetType = budgetType,
             model = AmountModel(
                 value = amountSum.second,
-                format = amountSum.first
-            )
+                format = amountSum.first,
+            ),
+            currencySymbol = firstSymbol
         )
         return HeaderItem.State(
             provideId = "event_header_item_id",
@@ -224,6 +241,7 @@ internal class HomeMapper(
             amount = getAmount(
                 budgetType = model.budgetType,
                 model = model.amountModel,
+                currencySymbol = model.currencySymbol
             )
         )
     }
@@ -240,7 +258,8 @@ internal class HomeMapper(
 
     private fun getAmount(
         budgetType: BudgetType,
-        model: AmountModel
+        model: AmountModel,
+        currencySymbol: String?,
     ): CharSequence {
         return buildSpannedString {
             val (prefix, colorRes) = when (budgetType) {
@@ -255,6 +274,7 @@ internal class HomeMapper(
             foreground(color = resManager.getColor(colorRes)) {
                 append(prefix)
                 append(model.format)
+                currencySymbol?.let(::append)
             }
         }
     }
@@ -274,5 +294,6 @@ internal class HomeMapper(
     private class SumAmountModel(
         val amountModel: AmountModel,
         val budgetType: BudgetType,
+        val currencySymbol: String?,
     )
 }
