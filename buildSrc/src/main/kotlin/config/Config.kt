@@ -32,7 +32,7 @@ object Config {
 
             buildTypes {
                 getByName("release") {
-                    isMinifyEnabled = true
+//                    isMinifyEnabled = true
                     isDebuggable = false
 
                     proguardFiles(
@@ -42,7 +42,7 @@ object Config {
                 }
 
                 getByName("debug") {
-                    isMinifyEnabled = false
+//                    isMinifyEnabled = false
                     isDebuggable = true
                 }
 

@@ -133,10 +133,10 @@ internal class SettingsViewModel(
                 SettingModel.LOGOUT -> userRouter.goToUserList()
                 SettingModel.LANGUAGE -> userRouter.goToUserLanguage()
                 SettingModel.VALUTE -> exchangeRateRouter.goToExchangeRate()
-                SettingModel.PIN_CODE -> pinCodeRouter.goToPinCode()
-                SettingModel.DONATE -> {
-
-                }
+//                SettingModel.PIN_CODE -> pinCodeRouter.goToPinCode()
+//                SettingModel.DONATE -> {
+//
+//                }
                 SettingModel.FAQ -> faqRouter.goToFaq()
             }
         }

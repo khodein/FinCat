@@ -7,9 +7,9 @@ import com.sergei.pokhodai.expensemanagement.feature.settings.impl.R
 internal enum class SettingModel {
     MANAGER_CATEGORY,
     VALUTE,
-    DONATE,
+//    DONATE,
     FAQ,
     LANGUAGE,
-    PIN_CODE,
+//    PIN_CODE,
     LOGOUT,
 }

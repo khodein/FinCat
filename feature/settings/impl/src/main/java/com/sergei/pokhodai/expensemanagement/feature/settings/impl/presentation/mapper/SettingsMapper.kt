@@ -75,9 +75,9 @@ internal class SettingsMapper(
             SettingModel.MANAGER_CATEGORY -> R.drawable.ic_manager_category
             SettingModel.FAQ -> R.drawable.ic_quiz
             SettingModel.LOGOUT -> R.drawable.ic_logout
-            SettingModel.DONATE -> R.drawable.ic_donate
+//            SettingModel.DONATE -> R.drawable.ic_donate
             SettingModel.VALUTE -> R.drawable.ic_attach_money
-            SettingModel.PIN_CODE -> R.drawable.ic_pincode
+//            SettingModel.PIN_CODE -> R.drawable.ic_pincode
             SettingModel.LANGUAGE -> R.drawable.ic_language
         }
     }
@@ -90,8 +90,8 @@ internal class SettingsMapper(
             SettingModel.LOGOUT -> R.string.settings_logout
             SettingModel.VALUTE -> R.string.settings_exchange
             SettingModel.LANGUAGE -> R.string.settings_language
-            SettingModel.DONATE -> R.string.settings_support_us
-            SettingModel.PIN_CODE -> R.string.settings_pin_code
+//            SettingModel.DONATE -> R.string.settings_support_us
+//            SettingModel.PIN_CODE -> R.string.settings_pin_code
         }
     }
 
